@@ -15,7 +15,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
-src\com\mixpanel\src\Conf_API.java
+src/com/mixpanel/src/Conf_API.java
 
 # External tool builders
 .externalToolBuilders/
