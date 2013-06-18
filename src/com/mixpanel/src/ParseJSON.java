@@ -31,8 +31,10 @@ public class ParseJSON extends Activity {
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		send_request(All_api_define.export());// what to call
+		
+		send_request(All_api_define.segmentation_average());// what to call
 	}
+	  
 	  
 	  public void send_request(String endpoint){
 		  
