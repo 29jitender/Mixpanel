@@ -14,7 +14,7 @@ import android.util.Log;
 
 	 
 	  
-	 
+	 //to calculate sig and path for http request
 	  
 	  public static String Calc_sig(TreeMap<String, String> receive ){
 		  
