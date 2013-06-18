@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.http.Header;
@@ -27,29 +26,22 @@ public class ParseJSON extends Activity {
 	  
 	  static final String TAG ="ParseJSON"; 
 	
-	  public static String export(){
-			
-		   
-		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		  tm.put("from_date", new String("2013-06-14"));
-	      tm.put("to_date", new String("2013-06-16"));
-	      String path_http = Newapicall.Calc_sig(tm);
-	      
-	      
-		  return path_http;
-	  }	
+	  
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		send_request(export());// what to call
+		send_request(All_api_define.export());// what to call
 	}
+	  
 	  public void send_request(String endpoint){
 		  
-		  
+		  Log.i("check endpoint",endpoint+"");
 		  DefaultHttpClient httpclient = new DefaultHttpClient();
 //			HttpGet getRequest = new HttpGet(Callapi.funnel());
-			HttpGet getRequest = new HttpGet(endpoint);
+		  
+			HttpGet getRequest = new HttpGet(endpoint);// main request
+			
 			//Log.d(TAG,"onClicked with bundle:"+ export());		
 	 		 getRequest.setHeader("Accept", "application/json");
 			// Use GZIP encoding
@@ -113,10 +105,5 @@ public class ParseJSON extends Activity {
 		}
 		return sb.toString();
 	}
-
-
-
-
-	
-	
+ 	
 }

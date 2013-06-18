@@ -1,6 +1,8 @@
 package com.mixpanel.src;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
@@ -14,31 +16,44 @@ import android.util.Log;
 
 	 
 	  
-	 //to calculate sig and path for http request
-	  
-	  public static String Calc_sig(TreeMap<String, String> receive ){
+	 
+	  /**
+	   * 
+	   * @param receive this is the values we pass in http request and to calculate sig
+	   * @param path getting the initial path for httprequest from parseJSON
+	   * @return the sig and the path for http request
+	   */
+	  public static String Calc_sig(TreeMap<String, String> receive , String path){
 		  
 		  receive.put("api_key", Conf_API.API_key);
 		  receive.put("expire",  Conf_API.expire);
-		  Log.i("hii",receive+"");
+		 
 		  Set<Entry<String, String>> set = receive.entrySet();
 	      // Get an iterator
 	      Iterator<Entry<String, String>> i = set.iterator();
 	      // Display elements
 	      String sig="";
-	      String Send_path = "https://data.mixpanel.com/api/2.0/export?";
+	      String Send_path = path;// path for diff api
 	      while(i.hasNext()) {
 	         Entry<String, String> me = i.next();
-	        
+	         String value = me.getValue();
+	         try {
+				value =URLEncoder.encode(value, "UTF-8");// encoding the values for url
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	          
 	         sig= sig + me.getKey()+"="+ me.getValue();
-	         Send_path=Send_path+ me.getKey()+"="+ me.getValue()+"&";
+	         Send_path=Send_path+ me.getKey()+"="+ value+"&";
+	         //Log.i("check the newew send path",Send_path+"sdad");
 	         
 	      }
 	        sig= sig+ Conf_API.API_sceret;
 	      	
 	        sig = md5(sig);
 	        Send_path = Send_path + "&sig=" + sig;
-	        
+	        Log.i("hii",Send_path+"");
 		  
 		  
 		  
