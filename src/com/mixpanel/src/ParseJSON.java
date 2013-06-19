@@ -11,8 +11,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,14 +23,15 @@ public class ParseJSON extends Activity {
 	
 	  
 	  static final String TAG ="ParseJSON"; 
-	
+	  public static String result="";
+	  public static String[] arg = {"data"}; // what to pass
 	  
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		send_request(All_api_define.segmentation_average());// what to call
+		send_request(All_api_define.event());// what to call
 	}
 	  
 	  
@@ -40,12 +39,8 @@ public class ParseJSON extends Activity {
 		  
 		  Log.i("check endpoint",endpoint+"");
 		  DefaultHttpClient httpclient = new DefaultHttpClient();
-//			HttpGet getRequest = new HttpGet(Callapi.funnel());
-		  
-			HttpGet getRequest = new HttpGet(endpoint);// main request
-			
-			//Log.d(TAG,"onClicked with bundle:"+ export());		
-	 		 getRequest.setHeader("Accept", "application/json");
+		   HttpGet getRequest = new HttpGet(endpoint);// main request
+			  getRequest.setHeader("Accept", "application/json");
 			// Use GZIP encoding
 			getRequest.setHeader("Accept-Encoding", "gzip"); //
 			
@@ -62,26 +57,18 @@ public class ParseJSON extends Activity {
 						instream = new GZIPInputStream(instream);
 					}
 					// convert content stream to a String
-					String result = readStream(instream);
+					result = readStream(instream);
 					instream.close();
 
 					Log.i("JSON", result);
 					TextView view = (TextView) findViewById(R.id.result);
 					
-					//JSONObject jsonObject = new JSONObject(result);
-					  result = result.replaceAll("(\\r|\\n)", ",");
-					  result = result.substring(0, result.length() - 1);
-					    view.setText(result);
-	 
-	 				    JSONArray Jarray = new JSONArray("["+result+"]");
-	 				    String finalOutput = "";
-					    for (int i = 0; i < Jarray.length(); i++) {
-					      JSONObject Jasonobject = Jarray.getJSONObject(i);	
-					       
-					       finalOutput = finalOutput + ( Jasonobject.getString("event") + " " )+ "\n";
-					       Log.i("jsonnew obasdasdasdasd",finalOutput);
-					    }
-					    //view.setText(finalOutput);
+					 //in this arry paas what we need from JSONobject
+					 //public static String[] arg = {"data"};
+					String display = Json_values.jsonresult(arg);// what things we want from jsonobect
+					//Log.i("temppp", display);
+					
+					 view.setText(display);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
