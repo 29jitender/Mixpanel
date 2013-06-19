@@ -4,5 +4,9 @@
     <string name="app_name">Mixpanel</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="button_graph">Show graph event</string>
+    <string name="title_activity_webview_graph">Webview_graph</string>
+    <string name="title_activity_webview_graph1">Webview_graph1</string>
+    <string name="menu_event">Event</string>
 
 </resources>

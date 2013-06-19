@@ -24,15 +24,29 @@ public class ParseJSON extends Activity {
 	  
 	  static final String TAG ="ParseJSON"; 
 	  public static String result="";
-	  public static String[] arg = {"data"}; // what to pass
+	  public static String[] arg = {"data","values","watched video"}; // what to pass
 	  
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		send_request(All_api_define.event());// what to call
 	}
+	  
+//	  public static String Store_value_graph(){// this is to store the values in graph
+//		
+//	  	  
+//		  TreeMap<String, String> tm = new TreeMap<String, String>();
+//		  
+//		  tm.put("from_date", new String("2013-06-14"));
+//	      tm.put("to_date", new String("2013-06-16"));
+//	     
+//	      
+//	      //Log.i("check",path_http+"");
+//		  return "temp";
+//		  
+//	  }	
+	  
 	  
 	  
 	  public void send_request(String endpoint){
