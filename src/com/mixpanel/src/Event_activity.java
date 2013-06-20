@@ -3,6 +3,7 @@ package com.mixpanel.src;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,26 +14,21 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class Event_activity extends ListActivity {
-
+public class Event_activity extends ListActivity{
+	 SharedPreferences prefs;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-			//setContentView(R.layout.activity_event_activity);
+		  
 		ParseJSON ParseJson_object = new ParseJSON();
-				//ParseJson_object.pass_values("event_name");
-				//TextView view = (TextView) findViewById(R.id.result);
 		String display1 =ParseJson_object.pass_values("event_name");
-		//view.setText(display1);
-		
 		String result =  display1.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
-		 
 		String[]  array = result.split(", ");//to get the result in list without ", "
 		
 		
  		
  		
- 	Log.i("display in event_activity", display1);		
+			Log.i("display in event_activity", display1);		
 		
 		
 	        setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));
@@ -71,6 +67,7 @@ public class Event_activity extends ListActivity {
 		
 	}
 
+	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -101,6 +98,7 @@ public class Event_activity extends ListActivity {
 			
 		}
 	}
+	 
 
 	
 }

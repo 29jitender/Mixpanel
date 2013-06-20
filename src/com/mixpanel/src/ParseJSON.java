@@ -41,6 +41,7 @@ public class ParseJSON extends Activity {
 		  if(type_event=="event"){
 			  arg = new String[]{"data"};
 			  //send_request(All_api_define.event());// what to call
+			   
 			  retrun_stuff=send_request(All_api_define.event());
 			return retrun_stuff;// haved to change this
 		  }

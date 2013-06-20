@@ -2,23 +2,12 @@ package com.mixpanel.src;
 
 import java.util.TreeMap;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.util.Log;
 
-public class All_api_define   implements OnSharedPreferenceChangeListener{
-	 SharedPreferences prefs;
+public class All_api_define{
+	 
 	// prefs stuff
-	//@Override
-//	public void onCreate() {
-//		super.onCreate();
-//		// prefs stuff
-//		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
-//		prefs.registerOnSharedPreferenceChangeListener(this);
-//		
-//
-//		
-//	}
+	 
 		
 	
 	public static String export(){// this is for export api
@@ -37,12 +26,7 @@ public class All_api_define   implements OnSharedPreferenceChangeListener{
 	  
 	  public static  String event(){// is for event 
 		  	
-		  //prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//		  	String type =prefs.getString("type", "");
-//			String unit =prefs.getString("unit", "");
-//			String interval =prefs.getString("interval", "");
-//			
-			//Log.i("11checkkd asd sd as das dsa", type);
+ 
 		  
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
@@ -249,10 +233,6 @@ public class All_api_define   implements OnSharedPreferenceChangeListener{
 	      return path_http;
 	  }
 
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 
 }

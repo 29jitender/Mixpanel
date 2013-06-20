@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class Webview_graph extends Activity {
     /** Called when the activity is first created. */
+	
     @SuppressLint("SetJavaScriptEnabled")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,11 +20,12 @@ public class Webview_graph extends Activity {
         setContentView(R.layout.webview);
         graph();
         display();
+       
+        
     }
     public void display(){
     	ParseJSON ParseJson_object = new ParseJSON();
-    	String display1 =ParseJson_object.pass_values("event");
-		
+    	String display1 =ParseJson_object.pass_values("event");		
 		TextView view = (TextView) findViewById(R.id.graph_output);
 		view.setText(display1);
     	
@@ -53,4 +55,5 @@ public class Webview_graph extends Activity {
             return true;
         }
     }
+	 
 }
