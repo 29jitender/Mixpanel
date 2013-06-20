@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
 		
 		case R.id.event:
 			//startService(intentUpdater);
+			startActivity(new Intent(this, Prefrenceactivity.class));
 			return true;
 		
 		default:

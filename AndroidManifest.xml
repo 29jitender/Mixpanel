@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="com.mixpanel.src.MainActivity"
+            android:name="com.mixpanel.src.ParseJSON"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +26,14 @@
         </activity>
         <activity android:name="com.mixpanel.src.Create_graph" >
         </activity>
-        <activity android:name="com.mixpanel.src.ParseJSON" >
+        <activity android:name="com.mixpanel.src.MainActivity" >
         </activity>
-        <activity android:name="com.mixpanel.src.Webview_graph"></activity>
+        <activity android:name="com.mixpanel.src.Webview_graph" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Prefrenceactivity"
+            android:label="@string/title_activity_prefrenceactivity" >
+        </activity>
     </application>
 
 </manifest>

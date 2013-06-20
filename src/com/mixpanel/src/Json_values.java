@@ -22,14 +22,15 @@ public class Json_values  {
 				    JSONArray Jarray = new JSONArray("["+result+"]");
 				    
 				   String add_finaloutput="";
-			    for (int i = 0; i < Jarray.length(); i++) {
-			      JSONObject Jasonobject = Jarray.getJSONObject(i);	
-			       		if (Jarray.length()>1) {
-							for (int j = 0; j < S1.length; j++) { // this is to get the jsonboject and get at last string
+				   for (int i = 0; i < Jarray.length(); i++) {
+				   JSONObject Jasonobject = Jarray.getJSONObject(i);	
+			       		if (S1.length>1) {
+							for (int j = 0; j < S1.length-1; j++) 
+							{ // this is to get the jsonboject and get at last string
 								Jasonobject = Jasonobject.getJSONObject(S1[j]);
 								if (j == S1.length - 2) {
 									add_finaloutput = (Jasonobject.getString(S1[++j]) + " ") + "\n";
-								}
+														}
 							}
 							
 							

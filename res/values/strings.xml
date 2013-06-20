@@ -8,5 +8,44 @@
     <string name="title_activity_webview_graph">Webview_graph</string>
     <string name="title_activity_webview_graph1">Webview_graph1</string>
     <string name="menu_event">Event</string>
+    <string name="pref_event_type">type</string>
+    <string name="pref_event_type_summary">The analysis type you would like to get data for events.</string>
+
+    <string-array name="pref_event_type_name">
+        <item>General</item>
+        <item>Unique</item>
+        <item>Average</item>
+    </string-array>
+    <string-array name="pref_event_type_values">
+        <item>general</item>
+        <item>unique</item>
+        <item>average</item>
+    </string-array>
+    <string-array name="pref_event_unit_name">
+        <item>Minute</item>
+        <item>Hour</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="pref_event_unit_values">
+         <item>minute</item>
+        <item>hour</item>
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+    </string-array>
+	
+    
+    
+    <string name="title_activity_prefrenceactivity">Prefrenceactivity</string>
+
+    <string name="pref_event_unit">Unit</string>
+
+    <string name="pref_event_unit_summary">It determines the level of granularity of the data you get back.**Note that you cannot get hourly uniques.**</string>
+
+    <string name="pref_event_interval">Interval</string>
+
+    <string name="pref_event_interval_summary">The number of \"units\" to return data for - minutes, hours, days, weeks, or months.</string>
 
 </resources>
