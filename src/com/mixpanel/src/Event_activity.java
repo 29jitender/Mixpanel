@@ -1,5 +1,6 @@
 package com.mixpanel.src;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +12,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Event_activity extends ListActivity {
 
@@ -43,11 +42,15 @@ public class Event_activity extends ListActivity {
 	        lv.setTextFilterEnabled(true);
 	        
 	        lv.setOnItemClickListener(new OnItemClickListener() {
+	        	
 	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 	    		//When clicked, show a toast with the TextView text
-	    		Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+	        		startGraphActivity(Webview_graph.class);//open graph
+	        		//((All_api_define)getApplication()).event("");//calling the intent
+	    		//Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 					
 				}
+	        	
 	        });      
 		
 		
@@ -55,7 +58,11 @@ public class Event_activity extends ListActivity {
             
 		
 	}
-
+	private void startGraphActivity(Class<? extends Activity> activity) {
+		Intent intent = new Intent(Event_activity.this, activity);
+		 
+		startActivity(intent);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -8,6 +8,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class Webview_graph extends Activity {
     /** Called when the activity is first created. */
@@ -16,7 +17,20 @@ public class Webview_graph extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
-        
+        graph();
+        display();
+    }
+    public void display(){
+    	ParseJSON ParseJson_object = new ParseJSON();
+    	String display1 =ParseJson_object.pass_values("event");
+		
+		TextView view = (TextView) findViewById(R.id.graph_output);
+		view.setText(display1);
+    	
+    }
+    @SuppressLint("SetJavaScriptEnabled")
+	public void graph(){
+    	 
         WebView mainWebView = (WebView) findViewById(R.id.webview1);
         WebSettings webSettings = mainWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -32,7 +46,6 @@ public class Webview_graph extends Activity {
         webSettings.setSupportZoom(true);
         mainWebView.loadUrl("file:///android_asset/graph/index.html");
     }
-    
     private class MyCustomWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

@@ -2,9 +2,24 @@ package com.mixpanel.src;
 
 import java.util.TreeMap;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.util.Log;
 
-public class All_api_define {
+public class All_api_define   implements OnSharedPreferenceChangeListener{
+	 SharedPreferences prefs;
+	// prefs stuff
+	//@Override
+//	public void onCreate() {
+//		super.onCreate();
+//		// prefs stuff
+//		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+//		prefs.registerOnSharedPreferenceChangeListener(this);
+//		
+//
+//		
+//	}
+		
 	
 	public static String export(){// this is for export api
 		
@@ -20,14 +35,25 @@ public class All_api_define {
 		  
 	  }	
 	  
-	  public static String event(){// is for event 
+	  public static  String event(){// is for event 
+		  	
+		  //prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//		  	String type =prefs.getString("type", "");
+//			String unit =prefs.getString("unit", "");
+//			String interval =prefs.getString("interval", "");
+//			
+			//Log.i("11checkkd asd sd as das dsa", type);
+		  
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  //some bug in api when calling watched video in average
-		  tm.put("event", new String("[\"watched video\"]"));
-	      tm.put("type", new String("general"));
-	      tm.put("unit", new String("day"));
-	      tm.put("interval", new String("7"));
+		 // tm.put("event", new String("[\"watched video\"]"));
+		  	  tm.put("event", new String("[\"Signup Form Submit\"]"));
+		         tm.put("type", new String("average"));
+		   	      tm.put("unit", new String("day"));
+		  	      tm.put("interval", new String("7"));
+		         //tm.put("format", new String("")); //currently not available
+
 	      //tm.put("format", new String("")); //currently not available
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
@@ -222,5 +248,11 @@ public class All_api_define {
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;
 	  }
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
