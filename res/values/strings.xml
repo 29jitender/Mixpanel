@@ -29,23 +29,35 @@
         <item>Month</item>
     </string-array>
     <string-array name="pref_event_unit_values">
-         <item>minute</item>
+        <item>minute</item>
         <item>hour</item>
         <item>day</item>
         <item>week</item>
         <item>month</item>
     </string-array>
-	
-    
-    
+    <string-array name="pref_event_event_name">
+        <item>Minute</item>
+        <item>Hour</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="pref_event_event_values">
+        <item>minute</item>
+        <item>hour</item>
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+    </string-array>
+
     <string name="title_activity_prefrenceactivity">Prefrenceactivity</string>
-
     <string name="pref_event_unit">Unit</string>
-
     <string name="pref_event_unit_summary">It determines the level of granularity of the data you get back.**Note that you cannot get hourly uniques.**</string>
-
     <string name="pref_event_interval">Interval</string>
-
     <string name="pref_event_interval_summary">The number of \"units\" to return data for - minutes, hours, days, weeks, or months.</string>
+    <string name="pref_event_event">Event</string>
+    <string name="pref_event_event_summary">The event or events that you wish to get data for</string>
+    <string name="title_activity_event_activity">Event_activity</string>
+    <string name="event_setting">Event Setting</string>
 
 </resources>

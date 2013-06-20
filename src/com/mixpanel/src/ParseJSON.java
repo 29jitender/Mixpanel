@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
  
 
 public class ParseJSON extends Activity {
@@ -24,19 +23,37 @@ public class ParseJSON extends Activity {
 	  
 	  static final String TAG ="ParseJSON"; 
 	  public static String result="";
-	  public static String[] arg = {"data","values","watched video"}; // what to pass
+	  public static String[] arg = {}; 
+	  public static String display="";
 	  
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		send_request(All_api_define.event());// what to call
+		//send_request(All_api_define.event());// what to call
+		//pass_values("event_name");
 	}
 	  
-
+	  public String pass_values(String type_event){ // passing everything
+		  
+		  
+		  if(type_event=="event"){
+			  arg = new String[]{"data","values","watched video"};
+			  send_request(All_api_define.event());// what to call
+		  }
+		  else if(type_event=="event_name"){
+			  arg = new String[]{};
+			  send_request(All_api_define.event_name());// what to call
+		  }
+		  
+		  
+		  return type_event ;
+		  
+	  }
 	  
 	  
-	  public void send_request(String endpoint){
+	  
+	  public String send_request(String endpoint){
 		  
 		  Log.i("check endpoint",endpoint+"");
 		  DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -62,18 +79,25 @@ public class ParseJSON extends Activity {
 					instream.close();
 
 					Log.i("JSON", result);
-					TextView view = (TextView) findViewById(R.id.result);
+					//TextView view = (TextView) findViewById(R.id.result);
 					
 					 //in this arry paas what we need from JSONobject
-					 //public static String[] arg = {"data"};
-					String display = Json_values.jsonresult(arg);// what things we want from jsonobect
-					//Log.i("temppp", display);
 					
-					 view.setText(display);
+					
+					if(arg.length==0){// if we are not passing anything
+						display= result;
+		       		}
+					else{
+						display = Json_values.jsonresult(arg);// what things we want from jsonobect
+					
+					}
+					Log.i("temppp", display);
+					 //view.setText(display);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			return display;
 	  }
 	private static String readStream(InputStream is) {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));

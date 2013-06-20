@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
 		 
 		startActivity(intent);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -40,13 +41,16 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		 
 //		Intent intentUpdater = new Intent(this, UpdaterService.class);
-//		Intent intentRefresh = new Intent(this, RefreshService.class);
+		//Intent start_event = new Intent(this, ParseJSON.class);
 	
 		switch (item.getItemId()){
 		
 		case R.id.event:
 			//startService(intentUpdater);
-			startActivity(new Intent(this, Prefrenceactivity.class));
+			
+			startActivity(new Intent(this, Event_activity.class));
+			ParseJSON ParseJson_object = new ParseJSON();
+			ParseJson_object.pass_values("event_name");
 			return true;
 		
 		default:
@@ -57,5 +61,17 @@ public class MainActivity extends Activity {
 		
 		
 		 
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		
+		
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 	}	
 }
