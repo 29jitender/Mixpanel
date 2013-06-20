@@ -26,14 +26,11 @@ public class Event_activity extends ListActivity {
 		String display1 =ParseJson_object.pass_values("event_name");
 		//view.setText(display1);
 		
-		String result = display1.substring(0, 1) + display1.substring(1+1);
+		String result =  display1.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
+		 
+		String[]  array = result.split(", ");//to get the result in list without ", "
 		
-		String[]  array = result.split("\", \"");//to get the result in list without ", "
-			
-	       for(int i=0;i<array.length;i++)
-	       {
-	           System.out.println(array[i]);
-	       }
+		
  		
  		
  	Log.i("display in event_activity", display1);		
