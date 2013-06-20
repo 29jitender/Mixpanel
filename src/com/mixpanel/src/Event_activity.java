@@ -16,11 +16,13 @@ public class Event_activity extends Activity {
 		setContentView(R.layout.activity_event_activity);
 		ParseJSON ParseJson_object = new ParseJSON();
 		//ParseJson_object.pass_values("event_name");
-		
-		TextView view = (TextView) findViewById(R.id.event_type);
+		TextView view = (TextView) findViewById(R.id.result);
 		String display1 =ParseJson_object.pass_values("event_name");
 		view.setText(display1);
 		Log.i("display in event_activity", display1);
+		
+		 
+            
 		
 	}
 
