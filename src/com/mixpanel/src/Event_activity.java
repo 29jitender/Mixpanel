@@ -1,25 +1,58 @@
 package com.mixpanel.src;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Event_activity extends Activity {
+public class Event_activity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_event_activity);
+			//setContentView(R.layout.activity_event_activity);
 		ParseJSON ParseJson_object = new ParseJSON();
-		//ParseJson_object.pass_values("event_name");
-		TextView view = (TextView) findViewById(R.id.result);
+				//ParseJson_object.pass_values("event_name");
+				//TextView view = (TextView) findViewById(R.id.result);
 		String display1 =ParseJson_object.pass_values("event_name");
-		view.setText(display1);
-		Log.i("display in event_activity", display1);
+		//view.setText(display1);
+		
+		String result = display1.substring(0, 1) + display1.substring(1+1);
+		
+		String[]  array = result.split("\", \"");//to get the result in list without ", "
+			
+	       for(int i=0;i<array.length;i++)
+	       {
+	           System.out.println(array[i]);
+	       }
+ 		
+ 		
+ 	Log.i("display in event_activity", display1);		
+		
+		
+	        setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));
+	      
+	        
+	        ListView lv = getListView();
+	        lv.setTextFilterEnabled(true);
+	        
+	        lv.setOnItemClickListener(new OnItemClickListener() {
+	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+	    		//When clicked, show a toast with the TextView text
+	    		Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+					
+				}
+	        });      
+		
 		
 		 
             
