@@ -25,6 +25,7 @@ public class ParseJSON extends Activity {
 	  public static String result="";
 	  public static String[] arg = {}; 
 	  public static String display="";
+	  public static String retrun_stuff="";
 	  
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,19 @@ public class ParseJSON extends Activity {
 		  
 		  if(type_event=="event"){
 			  arg = new String[]{"data","values","watched video"};
-			  send_request(All_api_define.event());// what to call
+			  //send_request(All_api_define.event());// what to call
+			  retrun_stuff=send_request(All_api_define.event());
+			  
 		  }
 		  else if(type_event=="event_name"){
 			  arg = new String[]{};
-			  send_request(All_api_define.event_name());// what to call
+			  //send_request(All_api_define.event_name());// what to call
+			  
+			  retrun_stuff=send_request(All_api_define.event_name());
 		  }
 		  
 		  
-		  return type_event ;
+		  return retrun_stuff ;
 		  
 	  }
 	  

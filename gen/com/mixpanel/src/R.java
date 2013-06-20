@@ -36,10 +36,10 @@ public final class R {
         public static final int event=0x7f0a0007;
         public static final int event_graph=0x7f0a0000;
         public static final int event_setting=0x7f0a0006;
+        public static final int event_type=0x7f0a0001;
         public static final int result=0x7f0a0004;
         public static final int scrollView1=0x7f0a0002;
         public static final int showgraph=0x7f0a0003;
-        public static final int textView1=0x7f0a0001;
         public static final int webview1=0x7f0a0005;
     }
     public static final class layout {

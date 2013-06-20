@@ -49,8 +49,7 @@ public class MainActivity extends Activity {
 			//startService(intentUpdater);
 			
 			startActivity(new Intent(this, Event_activity.class));
-			ParseJSON ParseJson_object = new ParseJSON();
-			ParseJson_object.pass_values("event_name");
+			
 			return true;
 		
 		default:
