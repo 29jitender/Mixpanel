@@ -5,10 +5,7 @@ import java.util.TreeMap;
 import android.util.Log;
 
 public class All_api_define{
-	 
-	// prefs stuff
-	 
-		
+ 
 	
 	public static String export(){// this is for export api
 		
@@ -21,23 +18,24 @@ public class All_api_define{
 	      
 	      Log.i("check",path_http+"");
 		  return path_http;
-		  
+		   
 	  }	
-	  
-	  public static  String event(){// is for event 
-		  	
- 
-		  
+
+	 public static String event(){// is for event 
+
+		 String event = Event_activity.click_type;//getting type of list click from event activity
+		 
+		 String event1= "[\""+event;// converting it into required formet
+		 String event2= event1+"\"]";
+		 String event3=event2;
+		 Log.i("event type in all api call",event3);
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  //some bug in api when calling watched video in average
-		 // tm.put("event", new String("[\"watched video\"]"));
-		  	  tm.put("event", new String("[\"Signup Form Submit\"]"));
-		         tm.put("type", new String("average"));
-		   	      tm.put("unit", new String("day"));
-		  	      tm.put("interval", new String("7"));
-		         //tm.put("format", new String("")); //currently not available
-
+		  tm.put("event", event3);
+	      tm.put("type", new String("general"));
+	      tm.put("unit", new String("day"));
+	      tm.put("interval", new String("7"));
 	      //tm.put("format", new String("")); //currently not available
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);

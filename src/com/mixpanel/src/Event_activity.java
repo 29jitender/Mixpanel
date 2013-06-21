@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,35 +15,59 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-public class Event_activity extends ListActivity{
+public class Event_activity extends ListActivity implements OnSharedPreferenceChangeListener{
 	 SharedPreferences prefs;
+	public static String click_type="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		  
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+		prefs.registerOnSharedPreferenceChangeListener(this);
+		
+		get_values_pref();
 		ParseJSON ParseJson_object = new ParseJSON();
 		String display1 =ParseJson_object.pass_values("event_name");
 		String result =  display1.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
 		String[]  array = result.split(", ");//to get the result in list without ", "
-		
-		
- 		
- 		
-			Log.i("display in event_activity", display1);		
+		 	Log.i("display in event_activity", display1);		
 		
 		
 	        setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));
 	      
 	        
-	        ListView lv = getListView();
-	        lv.setTextFilterEnabled(true);
+	        click_action();
 	        
-	        lv.setOnItemClickListener(new OnItemClickListener() {
+		
+	}
+	
+public void get_values_pref(){// getting values from preference  
+		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+
+		String event_interval =prefs.getString("Interval", "7");
+		String event_unit =prefs.getString("Unit", "day");
+		String event_type =prefs.getString("Type", "general");
+		Log.i("11checking pref",event_interval);
+		Log.i("11checking pref",event_unit);
+		Log.i("11checking pref",event_type);
+		
+		
+	} 
+	
+	public String click_action(){
+		ListView lv = getListView();
+        lv.setTextFilterEnabled(true);
+        
+		 lv.setOnItemClickListener(new OnItemClickListener() {
 	        	
 	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 	    		//When clicked, show a toast with the TextView text
 	        		startGraphActivity(Webview_graph.class);//open graph
+	        		
+	        		click_type =(String) ((TextView) view).getText();
+	        		Log.i("on click event type",(String) ((TextView) view).getText());	
 	        		//((All_api_define)getApplication()).event("");//calling the intent
 	    		//Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
 					
@@ -49,11 +75,9 @@ public class Event_activity extends ListActivity{
 	        	
 	        });      
 		
-		
-		 
-            
-		
+		return click_type;
 	}
+	
 	private void startGraphActivity(Class<? extends Activity> activity) {
 		Intent intent = new Intent(Event_activity.this, activity);
 		 
@@ -97,6 +121,15 @@ public class Event_activity extends ListActivity{
 			
 			
 		}
+	}
+
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		// TODO Auto-generated method stub
+		get_values_pref();
+		
 	}
 	 
 

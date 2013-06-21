@@ -27,10 +27,22 @@ public class Webview_graph extends Activity {
     	ParseJSON ParseJson_object = new ParseJSON();
     	String display1 =ParseJson_object.pass_values("event");		
 		TextView view = (TextView) findViewById(R.id.graph_output);
+		
 		view.setText(display1);
     	
     }
-    @SuppressLint("SetJavaScriptEnabled")
+    @Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+	}
+	@SuppressLint("SetJavaScriptEnabled")
 	public void graph(){
     	 
         WebView mainWebView = (WebView) findViewById(R.id.webview1);

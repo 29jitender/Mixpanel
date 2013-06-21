@@ -39,7 +39,7 @@ public class ParseJSON extends Activity {
 		  
 		  
 		  if(type_event=="event"){
-			  arg = new String[]{"data"};
+			  arg = new String[]{"data","values"};
 			  //send_request(All_api_define.event());// what to call
 			   
 			  retrun_stuff=send_request(All_api_define.event());
@@ -50,6 +50,13 @@ public class ParseJSON extends Activity {
 			  //send_request(All_api_define.event_name());// what to call
 			  
 			  retrun_stuff=send_request(All_api_define.event_name());
+		  }
+		  
+		  else if(type_event=="export"){
+			  arg = new String[]{};
+			  //send_request(All_api_define.event_name());// what to call
+			  
+			  retrun_stuff=send_request(All_api_define.export());
 		  }
 		  
 		  
