@@ -3,6 +3,7 @@ package com.mixpanel.src;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -25,21 +26,29 @@ public class Webview_graph extends Activity {
     }
     public void display(){
     	ParseJSON ParseJson_object = new ParseJSON();
-    	String display1 =ParseJson_object.pass_values("event");		
-		TextView view = (TextView) findViewById(R.id.graph_output);
+    	String display1 =ParseJson_object.pass_values("event");// we can use if condition for diff		
 		
+		// have to sort this before display
+    	TextView view = (TextView) findViewById(R.id.graph_output);
+    
 		view.setText(display1);
+		Log.i("lol checking ",display1);
     	
     }
     @Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onPause();
+    	
+    	
+    	super.onPause();
+    	 
 	}
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		 
+    	
 		
 	}
 	@SuppressLint("SetJavaScriptEnabled")

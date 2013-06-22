@@ -99,10 +99,16 @@ public class ParseJSON extends Activity {
 					
 					if(arg.length==0){// if we are not passing anything
 						display= result;
+						 
+						
 		       		}
-					else{
+					else{//
+						// a bug it is calling two time please check please please 
+						//
+						//
+						//trying :P
 						display = Json_values.jsonresult(arg);// what things we want from jsonobect
-					
+						 
 					}
 					Log.i("temppp", display);
 					 //view.setText(display);
