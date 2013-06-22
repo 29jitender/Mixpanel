@@ -16,10 +16,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Event_activity extends ListActivity implements OnSharedPreferenceChangeListener{
 	 SharedPreferences prefs;
-	public static String click_type="";
+	 public static String click_type="";
+	 public static String event_interval="";//global 
+	 public static String event_unit="";
+	 public static String event_type="";
+	 
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,18 +48,24 @@ public class Event_activity extends ListActivity implements OnSharedPreferenceCh
 		
 	}
 	
-public void get_values_pref(){// getting values from preference  
+public void  get_values_pref(){// getting values from preference  
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 
-		String event_interval =prefs.getString("Interval", "7");
-		String event_unit =prefs.getString("Unit", "day");
-		String event_type =prefs.getString("Type", "general");
-		Log.i("11checking pref",event_interval);
-		Log.i("11checking pref",event_unit);
-		Log.i("11checking pref",event_type);
+		event_interval =prefs.getString("Interval", "7");
+		event_unit =prefs.getString("Unit", "day");
+		event_type =prefs.getString("Type", "general");
 		
 		
+		// condition of api
+				//event
+		if(event_type.equals("unique") && event_unit.equals("hour")){
+			Toast.makeText(getApplicationContext(), "You cannot get hourly uniques please change the event setting again", Toast.LENGTH_LONG).show();
+		}
+		
+		
+		
+		//return event_interval,event_unit,event_type;
 	} 
 	
 	public String click_action(){

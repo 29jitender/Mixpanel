@@ -32,10 +32,18 @@ public class All_api_define{
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  //some bug in api when calling watched video in average
+		  	
+		  
+		  	Event_activity event_object= new Event_activity();
+		   
+		  String type = event_object.event_type;
+		  String unit = event_object.event_unit;
+		  String interval = event_object.event_interval;
+		
 		  tm.put("event", event3);
-	      tm.put("type", new String("general"));
-	      tm.put("unit", new String("day"));
-	      tm.put("interval", new String("7"));
+	      tm.put("type", type);
+	      tm.put("unit", unit);
+	      tm.put("interval", interval);
 	      //tm.put("format", new String("")); //currently not available
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
