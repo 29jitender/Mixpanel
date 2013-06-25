@@ -59,5 +59,6 @@
     <string name="pref_event_event_summary">The event or events that you wish to get data for</string>
     <string name="title_activity_event_activity">Event_activity</string>
     <string name="event_setting">Event Setting</string>
+    <string name="title_activity_splash">Splash</string>
 
 </resources>

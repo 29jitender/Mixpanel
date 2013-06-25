@@ -16,11 +16,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="com.mixpanel.src.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.mixpanel.src.Splash"
+             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-				 <category android:name="android.intent.category.LAUNCHER" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.mixpanel.src.Create_graph" >
@@ -36,6 +37,10 @@
         <activity
             android:name="com.mixpanel.src.Event_activity"
             android:label="@string/title_activity_event_activity" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.MainActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 
