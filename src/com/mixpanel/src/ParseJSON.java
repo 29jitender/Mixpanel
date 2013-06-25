@@ -1,23 +1,14 @@
 package com.mixpanel.src;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.zip.GZIPInputStream;
-
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
  
+interface Callback {
+    void methodToCallback(String response);
+}
 
-public class ParseJSON extends Activity {
+public class ParseJSON extends Activity implements Callback{
 	/** Called when the activity is first created. */
 	
 	  
@@ -34,109 +25,55 @@ public class ParseJSON extends Activity {
 		//send_request(All_api_define.event());// what to call
 		//pass_values("event_name");
 	}
+	  public void methodToCallback(String display1) {
+		 	display=display1;
+		 	callbackInstance1.methodToCallback(display);
+	  		}
+	 
 	  
 	  public String pass_values(String type_event){ // passing everything
 		  
 		  
 		  if(type_event=="event"){
-			  arg = new String[]{"data","values"};
-			  //send_request(All_api_define.event());// what to call
-			   
-			  retrun_stuff=send_request(All_api_define.event());
-			return retrun_stuff;// haved to change this
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg=new String[]{"data","values"};
+			  asyncRequest.execute(All_api_define.event());
+			  asyncRequest.setListener(this);
+			  
+			  
+			  retrun_stuff=display;
 		  }
 		  else if(type_event=="event_name"){
 			  arg = new String[]{};
 			  //send_request(All_api_define.event_name());// what to call
-			  
-			  retrun_stuff=send_request(All_api_define.event_name());
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.execute(All_api_define.event_name());
+			  Log.i("are you working",retrun_stuff);
+			  asyncRequest.setListener(this);
+			  	 
+			  retrun_stuff=display;
+			  Log.i("plese check",retrun_stuff);
 		  }
 		  
 		  else if(type_event=="export"){
 			  arg = new String[]{};
-			  //send_request(All_api_define.event_name());// what to call
-			  
-			  retrun_stuff=send_request(All_api_define.export());
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.execute(All_api_define.export());
+			  asyncRequest.setListener(this);
+			  	 
+			  retrun_stuff=display;
 		  }
 		  
 		  
 		  return retrun_stuff ;
 		  
 	  }
-	  
-	  
-	  
-	  public String send_request(String endpoint){
-		  
-		  Log.i("check endpoint",endpoint+"");
-		  DefaultHttpClient httpclient = new DefaultHttpClient();
-		   HttpGet getRequest = new HttpGet(endpoint);// main request
-			  getRequest.setHeader("Accept", "application/json");
-			// Use GZIP encoding
-			getRequest.setHeader("Accept-Encoding", "gzip"); //
-			
-			 
-			try {
-				HttpResponse response = (HttpResponse) httpclient.execute(getRequest);
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					InputStream instream = entity.getContent();
-					Header contentEncoding = response
-							.getFirstHeader("Content-Encoding");
-					if (contentEncoding != null
-							&& contentEncoding.getValue().equalsIgnoreCase("gzip")) {
-						instream = new GZIPInputStream(instream);
-					}
-					// convert content stream to a String
-					result = readStream(instream);
-					instream.close();
+	  Callback callbackInstance1;// callback variable
 
-					Log.i("JSON", result);
-					//TextView view = (TextView) findViewById(R.id.result);
-					
-					 //in this arry paas what we need from JSONobject
-					
-					
-					if(arg.length==0){// if we are not passing anything
-						display= result;
-						 
-						
-		       		}
-					else{//
-						// a bug it is calling two time please check please please 
-						//
-						//
-						//trying :P
-						display = Json_values.jsonresult(arg);// what things we want from jsonobect
-						 
-					}
-					Log.i("temppp", display);
-					 //view.setText(display);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return display;
-	  }
-	private static String readStream(InputStream is) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
-
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		public void setListener(Callback listener){
+		   callbackInstance1 = listener;
 		}
-		return sb.toString();
-	}
- 	
+	  
+	  
+	  	
 }

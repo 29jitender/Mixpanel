@@ -8,7 +8,7 @@ public class All_api_define{
  
 	
 	public static String export(){// this is for export api
-		
+		 
 	  	  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  tm.put("from_date", new String("2013-06-14"));
@@ -68,6 +68,7 @@ public class All_api_define{
 		  //tm.put("limit", new String("Signup Form Submit")); //its optional  
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/names/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      Log.i("result in event_name",path_http);
 	      return path_http;
 	  }
 	  

@@ -18,38 +18,45 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Event_activity extends ListActivity implements OnSharedPreferenceChangeListener{
+//interface Callback {
+//    void methodToCallback(String response);
+//}
+
+public class Event_activity extends ListActivity implements OnSharedPreferenceChangeListener, Callback {
 	 SharedPreferences prefs;
 	 public static String click_type="";
 	 public static String event_interval="";//global 
 	 public static String event_unit="";
 	 public static String event_type="";
-	 
+	 public static  String display1="lol";
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
-		prefs.registerOnSharedPreferenceChangeListener(this);
-		
-		get_values_pref();
+		super.onCreate(savedInstanceState);		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
+	 	prefs.registerOnSharedPreferenceChangeListener(this);
+		get_values_pref(); 
+		Log.i("in async sucess",display1);
 		ParseJSON ParseJson_object = new ParseJSON();
-		String display1 =ParseJson_object.pass_values("event_name");
-		String result =  display1.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
-		String[]  array = result.split(", ");//to get the result in list without ", "
-		 	Log.i("display in event_activity", display1);		
+		ParseJson_object.pass_values("event_name");
+		ParseJson_object.setListener(this);
 		
-		
-	        setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));
-	      
-	        
-	        click_action();
-	        
-		
+ 		 
 	}
 	
+	@Override
+	public void methodToCallback(String display12) {
+		// TODO Auto-generated method stub
+		//String display1 =ParseJson_object.pass_values("event_name");
+		String result =  display12.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
+		String[]  array = result.split(", ");//to get the result in list without ", "
+ 		setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));	
+ 		click_action();
+	}
+
+
+
 public void  get_values_pref(){// getting values from preference  
-		
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 
 		event_interval =prefs.getString("Interval", "7");
@@ -143,7 +150,10 @@ public void  get_values_pref(){// getting values from preference
 		get_values_pref();
 		
 	}
-	 
 
+
+
+
+	
 	
 }
