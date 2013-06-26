@@ -55,10 +55,10 @@ public class ParseJSON extends Activity implements Callback{
 			  Log.i("plese check",retrun_stuff);
 		  }
 		  
-		  else if(type_event=="export"){
+		  else if(type_event=="event_top"){
 			  arg = new String[]{};
 			  Async_task asyncRequest = new Async_task();
-			  asyncRequest.execute(All_api_define.export());
+			  asyncRequest.execute(All_api_define.event_top());
 			  asyncRequest.setListener(this);
 			  	 
 			  retrun_stuff=display;

@@ -53,9 +53,9 @@ public class All_api_define{
 	  public static String event_top(){// is for event method is TOP
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		  //tm.put("limit", new String("Signup Form Submit")); //its optional
+		 tm.put("limit", new String("2")); //its optional
 	      tm.put("type", new String("unique"));
-	        
+	         
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/top/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;
