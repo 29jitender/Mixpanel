@@ -17,14 +17,20 @@ public final class R {
         public static final int translate=0x7f040005;
     }
     public static final class array {
-        public static final int pref_event_event_name=0x7f080004;
-        public static final int pref_event_event_values=0x7f080005;
-        public static final int pref_event_type_name=0x7f080000;
-        public static final int pref_event_type_values=0x7f080001;
-        public static final int pref_event_unit_name=0x7f080002;
-        public static final int pref_event_unit_values=0x7f080003;
+        public static final int Spinner_Content=0x7f090006;
+        public static final int pref_event_event_name=0x7f090004;
+        public static final int pref_event_event_values=0x7f090005;
+        public static final int pref_event_type_name=0x7f090000;
+        public static final int pref_event_type_values=0x7f090001;
+        public static final int pref_event_unit_name=0x7f090002;
+        public static final int pref_event_unit_values=0x7f090003;
     }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int tabDark=0x7f060001;
+        public static final int tabMedium=0x7f060000;
+        public static final int tabTransparent=0x7f060002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -33,63 +39,91 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
+        public static final int corner_radius=0x7f070002;
+        public static final int tab_space=0x7f070004;
+        public static final int tab_space_bottom_line=0x7f070006;
+        public static final int tab_space_plus1=0x7f070005;
+        public static final int tab_space_top=0x7f070003;
+        public static final int tab_space_unselected_top=0x7f070007;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int logo=0x7f020001;
-        public static final int radialback=0x7f020002;
+        public static final int app_background=0x7f020000;
+        public static final int home_normal=0x7f020001;
+        public static final int home_selected=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int logo=0x7f020005;
+        public static final int radialback=0x7f020006;
+        public static final int search_normal=0x7f020007;
+        public static final int search_selected=0x7f020008;
+        public static final int tab_focus=0x7f020009;
+        public static final int tab_home=0x7f02000a;
+        public static final int tab_indicator=0x7f02000b;
+        public static final int tab_press=0x7f02000c;
+        public static final int tab_search=0x7f02000d;
+        public static final int tab_selected=0x7f02000e;
+        public static final int tab_unselected=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b000a;
-        public static final int event=0x7f0b000b;
-        public static final int event_setting=0x7f0b0009;
-        public static final int graph_output=0x7f0b0008;
-        public static final int logo1=0x7f0b0005;
-        public static final int mainView=0x7f0b0000;
-        public static final int result=0x7f0b0003;
-        public static final int scrollView1=0x7f0b0001;
-        public static final int showgraph=0x7f0b0002;
-        public static final int splash_bg=0x7f0b0004;
-        public static final int textView1=0x7f0b0007;
-        public static final int webview1=0x7f0b0006;
+        public static final int action_settings=0x7f0c000c;
+        public static final int event=0x7f0c000d;
+        public static final int event_setting=0x7f0c000b;
+        public static final int graph_output=0x7f0c000a;
+        public static final int icon=0x7f0c0006;
+        public static final int logo1=0x7f0c0005;
+        public static final int mainView=0x7f0c0000;
+        public static final int result=0x7f0c0003;
+        public static final int scrollView1=0x7f0c0001;
+        public static final int showgraph=0x7f0c0002;
+        public static final int splash_bg=0x7f0c0004;
+        public static final int textView1=0x7f0c0009;
+        public static final int title=0x7f0c0007;
+        public static final int webview1=0x7f0c0008;
     }
     public static final class layout {
         public static final int activity_event_activity=0x7f030000;
         public static final int activity_homescreen=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_splash=0x7f030003;
-        public static final int webview=0x7f030004;
+        public static final int activity_homescreen1=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_splash=0x7f030004;
+        public static final int homescreen_values=0x7f030005;
+        public static final int tab_indicator=0x7f030006;
+        public static final int webview=0x7f030007;
     }
     public static final class menu {
-        public static final int event_activity=0x7f0a0000;
-        public static final int homescreen=0x7f0a0001;
-        public static final int menu=0x7f0a0002;
-        public static final int prefrenceactivity=0x7f0a0003;
-        public static final int splash=0x7f0a0004;
+        public static final int event_activity=0x7f0b0000;
+        public static final int homescreen=0x7f0b0001;
+        public static final int homescreen1=0x7f0b0002;
+        public static final int menu=0x7f0b0003;
+        public static final int prefrenceactivity=0x7f0b0004;
+        public static final int splash=0x7f0b0005;
+        public static final int top_event=0x7f0b0006;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int app_name=0x7f070000;
-        public static final int button_graph=0x7f070003;
-        public static final int event_setting=0x7f070011;
-        public static final int hello_world=0x7f070002;
-        public static final int menu_event=0x7f070006;
-        public static final int pref_event_event=0x7f07000e;
-        public static final int pref_event_event_summary=0x7f07000f;
-        public static final int pref_event_interval=0x7f07000c;
-        public static final int pref_event_interval_summary=0x7f07000d;
-        public static final int pref_event_type=0x7f070007;
-        public static final int pref_event_type_summary=0x7f070008;
-        public static final int pref_event_unit=0x7f07000a;
-        public static final int pref_event_unit_summary=0x7f07000b;
-        public static final int title_activity_event_activity=0x7f070010;
-        public static final int title_activity_homescreen=0x7f070013;
-        public static final int title_activity_prefrenceactivity=0x7f070009;
-        public static final int title_activity_splash=0x7f070012;
-        public static final int title_activity_webview_graph=0x7f070004;
-        public static final int title_activity_webview_graph1=0x7f070005;
+        public static final int action_settings=0x7f080001;
+        public static final int app_name=0x7f080000;
+        public static final int button_graph=0x7f080003;
+        public static final int event_setting=0x7f080011;
+        public static final int hello_world=0x7f080002;
+        public static final int menu_event=0x7f080006;
+        public static final int pref_event_event=0x7f08000e;
+        public static final int pref_event_event_summary=0x7f08000f;
+        public static final int pref_event_interval=0x7f08000c;
+        public static final int pref_event_interval_summary=0x7f08000d;
+        public static final int pref_event_type=0x7f080007;
+        public static final int pref_event_type_summary=0x7f080008;
+        public static final int pref_event_unit=0x7f08000a;
+        public static final int pref_event_unit_summary=0x7f08000b;
+        public static final int title_activity_event_activity=0x7f080010;
+        public static final int title_activity_homescreen=0x7f080013;
+        public static final int title_activity_homescreen1=0x7f080014;
+        public static final int title_activity_prefrenceactivity=0x7f080009;
+        public static final int title_activity_splash=0x7f080012;
+        public static final int title_activity_top_event=0x7f080015;
+        public static final int title_activity_webview_graph=0x7f080004;
+        public static final int title_activity_webview_graph1=0x7f080005;
     }
     public static final class style {
         /** 
@@ -102,11 +136,12 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
+        public static final int app_theme=0x7f0a0002;
     }
     public static final class xml {
         public static final int pref_event=0x7f050000;

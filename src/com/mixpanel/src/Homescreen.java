@@ -37,8 +37,8 @@ public class Homescreen extends Activity {
     class MyGestureDetector extends SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-	    Intent intent = new Intent(Homescreen.this.getBaseContext(), Homescreen.class);
- 
+	    Intent intent = new Intent(Homescreen.this.getBaseContext(), MainActivity.class);
+	    Intent intent1 = new Intent(Homescreen.this.getBaseContext(), Webview_graph.class);
             if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
                 return false;
             }
@@ -52,7 +52,7 @@ public class Homescreen extends Activity {
     		);
     	    // right to left swipe
             }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-    		startActivity(intent);
+    		startActivity(intent1);
     		Homescreen.this.overridePendingTransition(
 			R.anim.slide_in_left, 
 			R.anim.slide_out_right

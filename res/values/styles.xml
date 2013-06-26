@@ -16,5 +16,10 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+	<style name="app_theme" parent="android:Theme.NoTitleBar">
+		<item name="android:windowBackground">@drawable/app_background</item>
+	</style>
+    
+    
+    
 </resources>

@@ -49,6 +49,11 @@
         <item>week</item>
         <item>month</item>
     </string-array>
+    <string-array name="Spinner_Content">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+    </string-array>
 
     <string name="title_activity_prefrenceactivity">Prefrenceactivity</string>
     <string name="pref_event_unit">Unit</string>
@@ -61,5 +66,7 @@
     <string name="event_setting">Event Setting</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_homescreen">Homescreen</string>
+    <string name="title_activity_homescreen1">Homescreen1</string>
+    <string name="title_activity_top_event">Top event</string>
 
 </resources>

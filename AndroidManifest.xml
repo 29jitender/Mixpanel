@@ -44,6 +44,14 @@
             android:name="com.mixpanel.src.Homescreen"
             android:label="@string/title_activity_homescreen" >
         </activity>
+        <activity
+            android:name="com.mixpanel.src.Homescreen1"
+            android:label="@string/title_activity_homescreen1" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Top_event"
+            android:label="@string/title_activity_top_event" >
+        </activity>
     </application>
 
 </manifest>

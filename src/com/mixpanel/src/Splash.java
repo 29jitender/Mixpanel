@@ -33,7 +33,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(Splash.this,Homescreen.class);
+                Intent mainIntent = new Intent(Splash.this,Homescreen1.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }
