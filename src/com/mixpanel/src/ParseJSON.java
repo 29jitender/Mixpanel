@@ -36,7 +36,7 @@ public class ParseJSON extends Activity implements Callback{
 		  
 		  if(type_event=="event"){
 			  Async_task asyncRequest = new Async_task();
-			  asyncRequest.arg=new String[]{"data","values"};
+			  asyncRequest.arg=new String[]{"data","values"};// pasing the depth
 			  asyncRequest.execute(All_api_define.event());
 			  asyncRequest.setListener(this);
 			  
@@ -44,9 +44,10 @@ public class ParseJSON extends Activity implements Callback{
 			  retrun_stuff=display;
 		  }
 		  else if(type_event=="event_name"){
-			  arg = new String[]{};
+			  
 			  //send_request(All_api_define.event_name());// what to call
 			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{};
 			  asyncRequest.execute(All_api_define.event_name());
 			  Log.i("are you working",retrun_stuff);
 			  asyncRequest.setListener(this);
@@ -56,8 +57,9 @@ public class ParseJSON extends Activity implements Callback{
 		  }
 		  
 		  else if(type_event=="event_top"){
-			  arg = new String[]{};
+			  
 			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{"events"};
 			  asyncRequest.execute(All_api_define.event_top());
 			  asyncRequest.setListener(this);
 			  	 
