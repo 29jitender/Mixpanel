@@ -61,5 +61,6 @@
     <string name="event_setting">Event Setting</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_event_top">Top Event</string>
+    
 
 </resources>

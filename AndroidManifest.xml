@@ -44,6 +44,7 @@
             android:name="com.mixpanel.src.Splash"
             android:label="@string/title_activity_event_top" >
         </activity>
+       
     </application>
 
 </manifest>

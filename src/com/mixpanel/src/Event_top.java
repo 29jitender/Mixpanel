@@ -28,6 +28,7 @@ public class Event_top extends Activity implements Callback {
 	@Override
 	public void methodToCallback(String print) {
 		// TODO Auto-generated method stub
+		Log.i("check in event top",print);
 		
 		TextView view = (TextView) findViewById(R.id.textView1);
     	view.setText(print);
