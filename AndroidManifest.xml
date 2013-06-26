@@ -15,9 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
-        <activity
-            android:name="com.mixpanel.src.Splash"
-             >
+        <activity android:name="com.mixpanel.src.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,6 +39,10 @@
         <activity
             android:name="com.mixpanel.src.MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Homescreen"
+            android:label="@string/title_activity_homescreen" >
         </activity>
     </application>
 
