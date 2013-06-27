@@ -45,16 +45,19 @@ class Async_task extends AsyncTask<String, Void, String> {
 						result = readStream(instream);
 						instream.close();
 						int temp1 = arg.length;
-						Log.i("i am checking arg",temp1+"");
+						Log.i("i am checking arg",result);
 						if(arg.length==0){// if we are not passing anything
 							display= result;							
 			       		}
 						else{
 							
 							String result1 = result;
+							 
 							result1 = result1.replaceAll("(\\r|\\n)", ",");
-							  result1 = result1.substring(0, result1.length() - 1);
-							   
+							  
+							result1 = result1.substring(0, result1.length() - 1);
+							  
+
 							    
 								    JSONArray Jarray = new JSONArray("["+result1+"]");
 								    

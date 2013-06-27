@@ -59,7 +59,7 @@ public class ParseJSON extends Activity implements Callback{
 		  else if(type_event=="event_top"){
 			  
 			  Async_task asyncRequest = new Async_task();
-			  asyncRequest.arg = new String[]{"events"};
+			  asyncRequest.arg = new String[]{};
 			  asyncRequest.execute(All_api_define.event_top());
 			  asyncRequest.setListener(this);
 			  	 
