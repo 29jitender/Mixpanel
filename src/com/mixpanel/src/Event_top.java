@@ -9,8 +9,13 @@ import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,32 +23,51 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Event_top extends ListActivity implements Callback {
+public class Event_top extends ListActivity implements Callback,OnSharedPreferenceChangeListener {
 	  static JSONObject json = null;
 	  private static final String TAG_event = "events";
 	    private static final String amount = "amount";
 	    private static final String percent_change = "percent_change";
 	    private static final String event = "event";
 	    public static String click_type="";
+	    static String API_sceret= "";//defining variable 
+		 static String API_key=""; 
+		 SharedPreferences prefs;
+
 	    JSONArray event_data = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.homescreen_value);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
+	 	prefs.registerOnSharedPreferenceChangeListener(this);
+		get_values_pref(); 
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
+		if(API_key.equals("nill") && API_sceret.equals("nill")){
+			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
+		}
 		
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.event_top, menu);
-		return true;
+ 
+	  private void get_values_pref() {//api key and stuff
+		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+		  	
+		  
+		  
+			API_key =prefs.getString("api_key", "");
+			API_sceret =prefs.getString("api_secret", "");
+			Log.i("hi we are in pref",API_key);
+			Log.i("hi we are in pref",API_sceret);
+			
+		
 	}
-
+	
+	
+	
 	@Override
 	public void methodToCallback(String print) {
 		// TODO Auto-generated method stub
@@ -102,7 +126,7 @@ public class Event_top extends ListActivity implements Callback {
  
       // selecting single ListView item
       ListView lv = getListView();
- 
+     
       // Launching new screen on Selecting Single ListItem
       lv.setOnItemClickListener(new OnItemClickListener() {
  
@@ -130,4 +154,53 @@ public class Event_top extends ListActivity implements Callback {
 		
 	}
 
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.event_top, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()){
+		
+		case R.id.setting:
+			//startService(intentUpdater);
+			
+			startActivity(new Intent(this, Prefrenceactivity.class));
+			 
+			return true;
+		
+		default:
+			return false;
+			
+			
+		}
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		 
+			get_values_pref();
+		
+		
+		
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		 
+		
+	}
+
+	
+	
+	
+	
+	
 }

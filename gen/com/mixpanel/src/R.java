@@ -39,7 +39,7 @@ public final class R {
     }
     public static final class id {
         public static final int E_amount=0x7f0b0007;
-        public static final int action_settings=0x7f0b000f;
+        public static final int action_settings=0x7f0b0011;
         public static final int e_date=0x7f0b0006;
         public static final int e_name_amount=0x7f0b000a;
         public static final int event=0x7f0b0010;
@@ -52,6 +52,7 @@ public final class R {
         public static final int p_change=0x7f0b0005;
         public static final int result=0x7f0b0002;
         public static final int scrollView1=0x7f0b0000;
+        public static final int setting=0x7f0b000f;
         public static final int showgraph=0x7f0b0001;
         public static final int splash_bg=0x7f0b0003;
         public static final int webview1=0x7f0b000b;
@@ -75,6 +76,11 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
+        public static final int api_conf=0x7f070017;
+        public static final int api_key=0x7f070013;
+        public static final int api_key_summary=0x7f070014;
+        public static final int api_secret=0x7f070015;
+        public static final int api_secret_summary=0x7f070016;
         public static final int app_name=0x7f070000;
         public static final int button_graph=0x7f070003;
         public static final int event_setting=0x7f070011;
@@ -112,6 +118,7 @@ public final class R {
         public static final int AppTheme=0x7f090001;
     }
     public static final class xml {
-        public static final int pref_event=0x7f050000;
+        public static final int api_pref=0x7f050000;
+        public static final int pref_event=0x7f050001;
     }
 }

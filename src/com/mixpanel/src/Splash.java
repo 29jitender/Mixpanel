@@ -26,6 +26,7 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//making full screen
         setContentView(R.layout.activity_splash);
+        
         StartAnimations();
    
        

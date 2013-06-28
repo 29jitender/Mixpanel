@@ -38,7 +38,7 @@ public class Top_event_click  extends ListActivity implements Callback  {
 	 JSONObject event_data = null;
 	 static JSONObject json = null;
 	public static String name="";  // defining event name
-	public static String interval="10";// defining event interval
+	public static String interval="7";// defining event interval
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,8 @@ public class Top_event_click  extends ListActivity implements Callback  {
          // Displaying all values on the screen
         TextView lblName = (TextView) findViewById(R.id.name_label);
         lblName.setText(name);
+//        TextView lblName1 = (TextView) findViewById(R.id.event_duration);
+//        lblName1.setText(interval);
     	ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event");
 		ParseJson_object.setListener(this);
@@ -88,7 +90,7 @@ public class Top_event_click  extends ListActivity implements Callback  {
 		            String mkey=key;
 		            String mvalue= (String) c.getString(key);
 		            
-		            map.put(mkey, mvalue); 
+		            //map.put(mkey, mvalue); 
 		            map.put(KEY1, mkey);
 		            map.put(VALUE1, mvalue);
 		            Log.i("key",mkey);

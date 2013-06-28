@@ -10,8 +10,8 @@ static final String TAG="PrefsActivity";
 	protected void onCreate(Bundle savedInstanceState) {
 	 
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.pref_event);//adding preference from prefs.xml
-		
+		//addPreferencesFromResource(R.xml.pref_event);//adding preference from prefs.xml
+		addPreferencesFromResource(R.xml.api_pref);
 		
 	}
 

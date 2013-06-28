@@ -25,6 +25,9 @@ import android.util.Log;
 	   */
 	  public static String Calc_sig(TreeMap<String, String> receive , String path){
 		  
+		  Log.i("bccccc",Conf_API.API_sceret);
+		  Log.i("bccccc",Conf_API.API_key);
+		  Log.i("bccccc",Conf_API.expire);
 		  receive.put("api_key", Conf_API.API_key);
 		  receive.put("expire",  Conf_API.expire);
 		 

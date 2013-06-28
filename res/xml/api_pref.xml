@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference android:summary="@string/api_key_summary" android:key="api_key" android:title="@string/api_key" android:defaultValue="nill"/>
+    <EditTextPreference android:summary="@string/api_secret_summary" android:key="api_secret" android:title="@string/api_secret" android:defaultValue="nill"/>
+    
+
+</PreferenceScreen>
