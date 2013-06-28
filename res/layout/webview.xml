@@ -12,7 +12,7 @@
      </WebView>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Output text"

@@ -25,6 +25,7 @@ public class Event_top extends ListActivity implements Callback {
 	    private static final String amount = "amount";
 	    private static final String percent_change = "percent_change";
 	    private static final String event = "event";
+	    public static String click_type="";
 	    JSONArray event_data = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class Event_top extends ListActivity implements Callback {
       ListAdapter adapter = new SimpleAdapter(this, contactList,
 					    R.layout.list_item,
 					    new String[] { percent_change, event, amount }, new int[] {
-					            R.id.p_change, R.id.E_name, R.id.E_amount });
+					            R.id.p_change, R.id.e_date, R.id.E_amount });
  
       setListAdapter(adapter);
  
@@ -110,11 +111,11 @@ public class Event_top extends ListActivity implements Callback {
 					        int position, long id) {
 					    // getting values from selected ListItem
 					    String perc = ((TextView) view.findViewById(R.id.p_change)).getText().toString();
-					    String name = ((TextView) view.findViewById(R.id.E_name)).getText().toString();
+					    String name = ((TextView) view.findViewById(R.id.e_date)).getText().toString();
 					    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
-					     
+					    
 					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), SingleMenuItemActivity.class);
+					    Intent in = new Intent(getApplicationContext(), Top_event_click.class);
 					    in.putExtra(percent_change, perc);
 					    in.putExtra(event, name);
 					    in.putExtra(amount, amount1);

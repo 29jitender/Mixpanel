@@ -39,21 +39,21 @@ public final class R {
     }
     public static final class id {
         public static final int E_amount=0x7f0b0007;
-        public static final int E_name=0x7f0b0006;
         public static final int action_settings=0x7f0b000f;
-        public static final int email_label=0x7f0b0009;
+        public static final int e_date=0x7f0b0006;
+        public static final int e_name_amount=0x7f0b000a;
         public static final int event=0x7f0b0010;
+        public static final int event_date=0x7f0b000c;
+        public static final int event_duration=0x7f0b0009;
         public static final int event_setting=0x7f0b000e;
         public static final int graph_output=0x7f0b000d;
         public static final int logo1=0x7f0b0004;
-        public static final int mobile_label=0x7f0b000a;
         public static final int name_label=0x7f0b0008;
         public static final int p_change=0x7f0b0005;
         public static final int result=0x7f0b0002;
         public static final int scrollView1=0x7f0b0000;
         public static final int showgraph=0x7f0b0001;
         public static final int splash_bg=0x7f0b0003;
-        public static final int textView1=0x7f0b000c;
         public static final int webview1=0x7f0b000b;
     }
     public static final class layout {
@@ -62,8 +62,9 @@ public final class R {
         public static final int activity_splash=0x7f030002;
         public static final int homescreen_value=0x7f030003;
         public static final int list_item=0x7f030004;
-        public static final int single_list_item=0x7f030005;
-        public static final int webview=0x7f030006;
+        public static final int top_event_click=0x7f030005;
+        public static final int top_event_click_list=0x7f030006;
+        public static final int webview=0x7f030007;
     }
     public static final class menu {
         public static final int event_activity=0x7f0a0000;
@@ -88,7 +89,6 @@ public final class R {
         public static final int pref_event_unit=0x7f07000a;
         public static final int pref_event_unit_summary=0x7f07000b;
         public static final int title_activity_event_activity=0x7f070010;
-        public static final int title_activity_event_top=0x7f070013;
         public static final int title_activity_prefrenceactivity=0x7f070009;
         public static final int title_activity_splash=0x7f070012;
         public static final int title_activity_webview_graph=0x7f070004;

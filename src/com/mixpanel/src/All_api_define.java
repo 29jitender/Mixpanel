@@ -23,26 +23,25 @@ public class All_api_define{
 
 	 public static String event(){// is for event 
 
-		 String event = Event_activity.click_type;//getting type of list click from event activity
-		 
+		 //String event = Event_activity.click_type;//getting type of list click from event activity
+		
+		 String event=Top_event_click.name;	 
+		 Log.i("checkinh i am",event);
 		 String event1= "[\""+event;// converting it into required formet
 		 String event2= event1+"\"]";
 		 String event3=event2;
-		 Log.i("event type in all api call",event3);
-		  
-		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		 String interval=Top_event_click.interval;
+		 TreeMap<String, String> tm = new TreeMap<String, String>();
 		  //some bug in api when calling watched video in average
-		  	
-		  
-		  	Event_activity event_object= new Event_activity();
-		   
-		  String type = event_object.event_type;
-		  String unit = event_object.event_unit;
-		  String interval = event_object.event_interval;
-		
+//		  Event_activity event_object= new Event_activity();
+//		   
+//		  String type = event_object.event_type;
+//		  String unit = event_object.event_unit;
+//		  String interval = event_object.event_interval;
+//		
 		  tm.put("event", event3);
-	      tm.put("type", type);
-	      tm.put("unit", unit);
+	      tm.put("type", "general");
+	      tm.put("unit", "day");
 	      tm.put("interval", interval);
 	      //tm.put("format", new String("")); //currently not available
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
@@ -53,7 +52,7 @@ public class All_api_define{
 	  public static String event_top(){// is for event method is TOP
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		 tm.put("limit", new String("2")); //its optional
+		 tm.put("limit", new String("7")); //its optional
 	      tm.put("type", new String("unique"));
 	         
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/top/?";
