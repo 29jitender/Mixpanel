@@ -39,23 +39,22 @@ public final class R {
     }
     public static final class id {
         public static final int E_amount=0x7f0b0007;
-        public static final int action_settings=0x7f0b0011;
+        public static final int action_settings=0x7f0b0010;
         public static final int e_date=0x7f0b0006;
-        public static final int e_name_amount=0x7f0b000a;
-        public static final int event=0x7f0b0010;
-        public static final int event_date=0x7f0b000c;
-        public static final int event_duration=0x7f0b0009;
-        public static final int event_setting=0x7f0b000e;
-        public static final int graph_output=0x7f0b000d;
+        public static final int e_name_amount=0x7f0b0009;
+        public static final int event=0x7f0b000f;
+        public static final int event_date=0x7f0b000b;
+        public static final int event_setting=0x7f0b000d;
+        public static final int graph_output=0x7f0b000c;
         public static final int logo1=0x7f0b0004;
         public static final int name_label=0x7f0b0008;
         public static final int p_change=0x7f0b0005;
         public static final int result=0x7f0b0002;
         public static final int scrollView1=0x7f0b0000;
-        public static final int setting=0x7f0b000f;
+        public static final int setting=0x7f0b000e;
         public static final int showgraph=0x7f0b0001;
         public static final int splash_bg=0x7f0b0003;
-        public static final int webview1=0x7f0b000b;
+        public static final int webview1=0x7f0b000a;
     }
     public static final class layout {
         public static final int activity_event_activity=0x7f030000;

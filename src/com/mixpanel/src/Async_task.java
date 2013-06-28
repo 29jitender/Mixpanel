@@ -44,7 +44,7 @@ class Async_task extends AsyncTask<String, Void, String> {
 						}
 						result = readStream(instream);
 						instream.close();
-						int temp1 = arg.length;
+						//int temp1 = arg.length;
 						Log.i("i am checking arg",result);
 						if(arg.length==0){// if we are not passing anything
 							display= result;							

@@ -139,7 +139,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 					    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
 					    
 					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), Top_event_click.class);
+					    Intent in = new Intent(getApplicationContext(), Event_top_click.class);
 					    in.putExtra(percent_change, perc);
 					    in.putExtra(event, name);
 					    in.putExtra(amount, amount1);

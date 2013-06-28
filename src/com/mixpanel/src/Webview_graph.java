@@ -21,7 +21,7 @@ public class Webview_graph extends Activity implements Callback {
         graph();
         //display();
         ParseJSON ParseJson_object = new ParseJSON();
-		ParseJson_object.pass_values("event");
+		ParseJson_object.pass_values("event1");// because it came from other
 		ParseJson_object.setListener(this);
         
     }
