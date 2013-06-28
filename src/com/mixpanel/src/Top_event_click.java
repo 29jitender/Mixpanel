@@ -1,19 +1,18 @@
 package com.mixpanel.src;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+ 
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -31,6 +30,7 @@ public class Top_event_click  extends ListActivity implements Callback  {
 	 private static String[] key_print = new String[100];
 	 private static String KEY1= "temp";
 	 private static String VALUE1= "temp1";
+	 private static String flag=null;
 	 
 	// private static final String[] series={};   
 	    
@@ -42,6 +42,8 @@ public class Top_event_click  extends ListActivity implements Callback  {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         flag="1";
+         getIntent().setAction("Already created");// activity already alive
         setContentView(R.layout.top_event_click);
         
         // getting intent data
@@ -141,9 +143,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 //		    startActivity(in);
 		}
 });
-		
-		
-		
-		
+		 
 	}
+	  
 }

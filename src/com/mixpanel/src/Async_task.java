@@ -80,7 +80,7 @@ class Async_task extends AsyncTask<String, Void, String> {
 							       			add_finaloutput = ( Jasonobject.getString(arg[0]) + " " )+ "\n";
 							       			
 							       		}
-							       		
+							       		finalOutput="";//so that it doest print previous value
 								finalOutput = finalOutput + add_finaloutput+ "\n";
 							       
 							       Log.i("jsonnew obasdasdasdasd", finalOutput+"");
