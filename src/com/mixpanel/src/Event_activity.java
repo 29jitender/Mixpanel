@@ -1,12 +1,16 @@
 package com.mixpanel.src;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,25 +18,40 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 //interface Callback {
 //    void methodToCallback(String response);
 //}
 
-public class Event_activity extends ListActivity implements OnSharedPreferenceChangeListener, Callback {
+public class Event_activity extends Activity implements OnSharedPreferenceChangeListener, Callback {
 	 SharedPreferences prefs;
 	 public static String click_type="";
 	 public static String event_interval="";//global 
 	 public static String event_unit="";
 	 public static String event_type="";
 	 public static  String display1="lol";
+	// List view
+		private ListView lv;
+		
+		// Listview Adapter
+		ArrayAdapter<String> adapter;
+		
+		// Search EditText
+		EditText inputSearch;
+		
+		
+		// ArrayList for Listview
+		ArrayList<HashMap<String, String>> productList;
+
+	 
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
+		 setContentView(R.layout.activity_event_activity);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); 
@@ -50,8 +69,40 @@ public class Event_activity extends ListActivity implements OnSharedPreferenceCh
 		//String display1 =ParseJson_object.pass_values("event_name");
 		String result =  display12.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
 		String[]  array = result.split(", ");//to get the result in list without ", "
- 		setListAdapter (new ArrayAdapter<String>(this, R.layout.activity_event_activity, array));	
+		lv = (ListView) findViewById(R.id.list_view);
+        inputSearch = (EditText) findViewById(R.id.inputSearch);
+        
+        // Adding items to listview
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item1, R.id.event_activity_list, array);
+        lv.setAdapter(adapter);
+        
+        // this is to search the items in list
+        inputSearch.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+				// When user changed the Text
+				Event_activity.this.adapter.getFilter().filter(cs);	
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub							
+			}
+		});
+		
+		
+		
+		
  		click_action();
+
 	}
 
 
@@ -76,20 +127,15 @@ public void  get_values_pref(){// getting values from preference
 	} 
 	
 	public String click_action(){
-		ListView lv = getListView();
+		 
         lv.setTextFilterEnabled(true);
         
 		 lv.setOnItemClickListener(new OnItemClickListener() {
 	        	
 	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-	    		//When clicked, show a toast with the TextView text
-	        		startGraphActivity(Webview_graph.class);//open graph
-	        		
-	        		click_type =(String) ((TextView) view).getText();
-	        		Log.i("on click event type",(String) ((TextView) view).getText());	
-	        		//((All_api_define)getApplication()).event("");//calling the intent
-	    		//Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-					
+	        		  Log.i("item",""+lv.getItemAtPosition(position));
+	        		  startGraphActivity(Webview_graph.class);//open graph
+	        		  click_type=(String) lv.getItemAtPosition(position);
 				}
 	        	
 	        });      
@@ -131,7 +177,7 @@ public void  get_values_pref(){// getting values from preference
 		case R.id.event_setting:
 			//startService(intentUpdater);
 			
-			startActivity(new Intent(this, Prefrenceactivity.class));
+			startActivity(new Intent(this, Prefrenceactivity_event.class));
 			 
 			return true;
 		

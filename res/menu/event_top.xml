@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/setting" android:title="@string/api_conf"></item>
+    <item android:id="@+id/event" android:title="@string/menu_event"></item>
 
 </menu>

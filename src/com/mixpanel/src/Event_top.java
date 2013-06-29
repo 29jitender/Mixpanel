@@ -172,7 +172,11 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 			startActivity(new Intent(this, Prefrenceactivity.class));
 			 
 			return true;
-		
+		case R.id.event:
+			
+			startActivity(new Intent(this, Event_activity.class));
+			
+			return true;
 		default:
 			return false;
 			

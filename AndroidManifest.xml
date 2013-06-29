@@ -31,7 +31,11 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity"
-            android:label="@string/title_activity_prefrenceactivity" >
+            android:label="Settings" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Prefrenceactivity_event"
+            android:label="Event settings" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_activity"

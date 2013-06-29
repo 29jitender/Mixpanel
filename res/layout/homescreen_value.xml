@@ -4,7 +4,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-     
+
+     <TextView
+         android:id="@+id/name_label"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.00"
+         android:paddingBottom="10dip"
+         android:paddingTop="10dip"
+         android:text="@string/home_screen_text"
+         android:textColor="#43bd00"
+         android:textSize="25dip"
+         android:textStyle="bold" />
+
+    <!-- Description Label -->
     <ListView
         android:id="@+id/android:list"
         android:layout_height="fill_parent"
