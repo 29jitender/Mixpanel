@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light" >
-        <activity android:name="com.mixpanel.src.Event_top" >
+        <activity android:name="com.mixpanel.src.Event_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +38,7 @@
             android:label="Event settings" >
         </activity>
         <activity
-            android:name="com.mixpanel.src.Event_activity"
+            android:name="com.mixpanel.src.event_final"
             android:label="@string/title_activity_event_activity" >
         </activity>
         <activity
@@ -51,20 +51,19 @@
         </activity>
         <activity android:name="com.mixpanel.src.Conf_API" >
         </activity>
-        <activity
-            android:name="com.mixpanel.src.ItemListActivity"
-              >
+        <activity android:name="com.mixpanel.src.ItemListActivity" >
         </activity>
-        <activity
-            android:name="com.mixpanel.src.ItemDetailActivity"
-             >
+        <activity android:name="com.mixpanel.src.ItemDetailActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemListActivity" />
         </activity>
+        <activity android:name="com.mixpanel.src.Check_key" >
+        </activity>
+       
         <activity
-            android:name="com.mixpanel.src.Check_key"
-            >
+            android:name="com.mixpanel.src.Event_top"
+            android:label="@string/title_activity_temp" >
         </activity>
     </application>
 

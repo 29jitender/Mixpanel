@@ -5,7 +5,7 @@ import java.util.TreeMap;
 import android.util.Log;
 
 public class All_api_define{
- 
+	public static String interval1="";
 	
 	public static String export(){// this is for export api
 		 
@@ -37,12 +37,12 @@ public class All_api_define{
 		   
 		  String type = event_object.event_type;
 		  String unit = event_object.event_unit;
-		  String interval = event_object.event_interval;
+		  interval1 = event_object.event_interval;
 		
 		  tm.put("event", event3);
 	      tm.put("type", type);
 	      tm.put("unit", unit);
-	      tm.put("interval", interval);
+	      tm.put("interval", interval1);
 	      //tm.put("format", new String("")); //currently not available
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);

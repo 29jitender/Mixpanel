@@ -136,7 +136,7 @@ public void  get_values_pref(){// getting values from preference
 	        	
 	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 	        		  Log.i("item",""+lv.getItemAtPosition(position));
-	        		  startGraphActivity(Webview_graph.class);//open graph
+	        		  startGraphActivity(event_final.class);//open graph
 	        		  click_type=(String) lv.getItemAtPosition(position);
 				}
 	        	
