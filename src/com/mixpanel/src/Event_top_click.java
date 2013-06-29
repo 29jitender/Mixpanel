@@ -42,7 +42,7 @@ public class Event_top_click  extends ListActivity implements Callback  {
         
          getIntent().setAction("Already created");// activity already alive
         setContentView(R.layout.top_event_click);
-        
+
         // getting intent data
         Intent in = getIntent();
          // Get JSON values from previous intent

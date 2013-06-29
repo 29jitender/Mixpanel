@@ -1,8 +1,13 @@
 package com.mixpanel.src;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +16,9 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -44,22 +51,26 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); 
+		 new GetDataTask().execute();
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
+		
 		if(API_key.equals("nill") && API_sceret.equals("nill")){
 			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
 		}
 		
 	}
  
+	
+	
+	
 	  private void get_values_pref() {//api key and stuff
 		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 		  	
-		  
-		  
-			API_key =prefs.getString("api_key", "");
-			API_sceret =prefs.getString("api_secret", "");
+		   
+			API_key =prefs.getString("api_key", "nill");
+			API_sceret =prefs.getString("api_secret", "nill");
 			Log.i("hi we are in pref",API_key);
 			Log.i("hi we are in pref",API_sceret);
 			
@@ -67,6 +78,62 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	}
 	
 	
+	  private class GetDataTask extends AsyncTask<Void, Void, Integer> {
+
+	        protected Integer doInBackground(Void... params) {
+	        	String url = All_api_define.api_check();
+	   	     
+		    	DefaultHttpClient httpclient = new DefaultHttpClient();
+				HttpGet getRequest = new HttpGet(url);// main request
+				getRequest.setHeader("Accept", "application/json");
+				getRequest.setHeader("Accept-Encoding", "gzip"); //
+				int result = 0;
+				try {
+					HttpResponse response = (HttpResponse) httpclient.execute(getRequest);
+					 result= response.getStatusLine().getStatusCode();
+					
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				 
+		    	
+				return result;
+		    	 
+	        	
+	        }
+
+	        protected void onPostExecute(Integer result) {
+
+				 if(result==200){
+					 Log.i("working test",result+"");
+				 }
+				 else{
+					 new Handler().postDelayed(new Runnable() {// opening menu when api key is wrong 
+						   public void run() { 
+						     openOptionsMenu(); 
+						   } 
+						}, 1000);
+
+					 Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show(); 
+				 }
+
+	            super.onPostExecute(result);
+	        }
+	    }
+	  
+	  
+	  public void check_api(){
+	    	
+	    
+	    } 
+	
+	  
+	  
 	
 	@Override
 	public void methodToCallback(String print) {
@@ -168,7 +235,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		
 		case R.id.setting:
 			//startService(intentUpdater);
-			
+			finish();//finishing current activity
 			startActivity(new Intent(this, Prefrenceactivity.class));
 			 
 			return true;
@@ -189,21 +256,14 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 			String key) {
 		 
 			get_values_pref();
+			//restarting activity with new values
+			startActivity(new Intent(this, Event_top.class));
 		
 		
 		
 	}
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		 
-		
-	}
-
-	
-	
+	 
 	
 	
 	

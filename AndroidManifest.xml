@@ -15,8 +15,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-         android:theme="@android:style/Theme.Light"    >
-        <activity android:name="com.mixpanel.src.Event_top" > 
+        android:theme="@android:style/Theme.Light" >
+        <activity android:name="com.mixpanel.src.Event_top" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,16 +45,27 @@
             android:name="com.mixpanel.src.MainActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity
-            android:name="com.mixpanel.src.Splash"
-             >
+        <activity android:name="com.mixpanel.src.Splash" >
         </activity>
-       <activity 
-           android:name="com.mixpanel.src.Event_top_click"
-           ></activity>
-            <activity 
-           android:name="com.mixpanel.src.Conf_API"
-           ></activity>
+        <activity android:name="com.mixpanel.src.Event_top_click" >
+        </activity>
+        <activity android:name="com.mixpanel.src.Conf_API" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.ItemListActivity"
+              >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.ItemDetailActivity"
+             >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ItemListActivity" />
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Check_key"
+            >
+        </activity>
     </application>
 
 </manifest>

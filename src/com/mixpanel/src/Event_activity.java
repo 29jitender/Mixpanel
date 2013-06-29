@@ -35,8 +35,10 @@ public class Event_activity extends Activity implements OnSharedPreferenceChange
 	 public static  String display1="lol";
 	// List view
 		private ListView lv;
+ 
 		
 		// Listview Adapter
+ 
 		ArrayAdapter<String> adapter;
 		
 		// Search EditText

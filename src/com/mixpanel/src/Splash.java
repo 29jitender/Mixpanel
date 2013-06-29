@@ -27,6 +27,7 @@ public class Splash extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//making full screen
         setContentView(R.layout.activity_splash);
         
+        
         StartAnimations();
    
        
@@ -41,6 +42,10 @@ public class Splash extends Activity {
         }, SPLASH_DISPLAY_LENGHT);
         
     }
+    
+   
+    
+    
     private void StartAnimations() {// animation of logo
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();

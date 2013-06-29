@@ -39,14 +39,13 @@ public final class R {
     }
     public static final class id {
         public static final int E_amount=0x7f0b000a;
-        public static final int action_settings=0x7f0b0013;
+        public static final int action_settings=0x7f0b000f;
         public static final int e_date=0x7f0b0009;
         public static final int e_name_amount=0x7f0b000c;
         public static final int event=0x7f0b0012;
         public static final int event_activity_list=0x7f0b000b;
-        public static final int event_date=0x7f0b000e;
+        public static final int event_activity_name=0x7f0b000e;
         public static final int event_setting=0x7f0b0010;
-        public static final int graph_output=0x7f0b000f;
         public static final int inputSearch=0x7f0b0000;
         public static final int list_view=0x7f0b0001;
         public static final int logo1=0x7f0b0006;
@@ -71,11 +70,12 @@ public final class R {
         public static final int webview=0x7f030008;
     }
     public static final class menu {
-        public static final int event_activity=0x7f0a0000;
-        public static final int event_top=0x7f0a0001;
-        public static final int menu=0x7f0a0002;
-        public static final int prefrenceactivity=0x7f0a0003;
-        public static final int splash=0x7f0a0004;
+        public static final int check_key=0x7f0a0000;
+        public static final int event_activity=0x7f0a0001;
+        public static final int event_top=0x7f0a0002;
+        public static final int menu=0x7f0a0003;
+        public static final int prefrenceactivity=0x7f0a0004;
+        public static final int splash=0x7f0a0005;
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
@@ -86,6 +86,7 @@ public final class R {
         public static final int api_secret_summary=0x7f070016;
         public static final int app_name=0x7f070000;
         public static final int button_graph=0x7f070003;
+        public static final int conf_summary=0x7f070019;
         public static final int event_setting=0x7f070011;
         public static final int hello_world=0x7f070002;
         public static final int home_screen_text=0x7f070018;

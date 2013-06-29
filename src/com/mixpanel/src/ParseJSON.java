@@ -43,7 +43,9 @@ public class ParseJSON extends Activity implements Callback{
 			  
 			  retrun_stuff=display;
 		  }
-		  if(type_event=="event1"){
+ 
+		  else if(type_event=="event1"){
+ 
 			  Async_task asyncRequest = new Async_task();
 			  asyncRequest.arg=new String[]{"data"};// pasing the depth
 			  asyncRequest.execute(All_api_define.event1());
