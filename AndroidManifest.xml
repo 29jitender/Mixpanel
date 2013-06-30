@@ -64,7 +64,7 @@
             android:name="com.mixpanel.src.Event_activity"
             android:label="@string/title_activity_temp" >
         </activity>
-        
+    
     </application>
 
 </manifest>

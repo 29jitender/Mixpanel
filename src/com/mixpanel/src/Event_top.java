@@ -51,7 +51,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); 
-		 new GetDataTask().execute();
+		new Check_api().execute();
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
@@ -62,6 +62,8 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		
 	}
  
+	
+	
 	
 	
 	
@@ -78,7 +80,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	}
 	
 	
-	  private class GetDataTask extends AsyncTask<Void, Void, Integer> {
+	  private class Check_api extends AsyncTask<Void, Void, Integer> {
 
 	        protected Integer doInBackground(Void... params) {
 	        	String url = All_api_define.api_check();

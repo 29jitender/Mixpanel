@@ -1025,28 +1025,28 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030013;
         public static final int abs__simple_dropdown_hint=0x7f030014;
         public static final int activity_event_activity=0x7f030015;
-        public static final int activity_funnel_home=0x7f030016;
-        public static final int activity_main=0x7f030017;
-        public static final int activity_splash=0x7f030018;
-        public static final int event_final_view=0x7f030019;
-        public static final int homescreen_value=0x7f03001a;
-        public static final int list_item=0x7f03001b;
-        public static final int list_item1=0x7f03001c;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
-        public static final int sherlock_spinner_item=0x7f03001e;
-        public static final int temp=0x7f03001f;
-        public static final int top_event_click=0x7f030020;
-        public static final int top_event_click_list=0x7f030021;
+        public static final int activity_main=0x7f030016;
+        public static final int activity_splash=0x7f030017;
+        public static final int event_final_view=0x7f030018;
+        public static final int homescreen_value=0x7f030019;
+        public static final int list_item=0x7f03001a;
+        public static final int list_item1=0x7f03001b;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001c;
+        public static final int sherlock_spinner_item=0x7f03001d;
+        public static final int temp=0x7f03001e;
+        public static final int top_event_click=0x7f03001f;
+        public static final int top_event_click_list=0x7f030020;
     }
     public static final class menu {
         public static final int check_key=0x7f0e0000;
         public static final int event_activity=0x7f0e0001;
         public static final int event_top=0x7f0e0002;
         public static final int funnel_home=0x7f0e0003;
-        public static final int menu=0x7f0e0004;
-        public static final int prefrenceactivity=0x7f0e0005;
-        public static final int splash=0x7f0e0006;
-        public static final int temp=0x7f0e0007;
+        public static final int funnel_home1=0x7f0e0004;
+        public static final int menu=0x7f0e0005;
+        public static final int prefrenceactivity=0x7f0e0006;
+        public static final int splash=0x7f0e0007;
+        public static final int temp=0x7f0e0008;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1111,6 +1111,7 @@ containing a value of this type.
         public static final int pref_event_unit_summary=0x7f060018;
         public static final int title_activity_event_activity=0x7f06001d;
         public static final int title_activity_funnel_home=0x7f060028;
+        public static final int title_activity_funnel_home1=0x7f060029;
         public static final int title_activity_prefrenceactivity=0x7f060016;
         public static final int title_activity_splash=0x7f06001f;
         public static final int title_activity_temp=0x7f060027;
