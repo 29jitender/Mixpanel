@@ -257,7 +257,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		 
 			get_values_pref();
 			//restarting activity with new values
-			startActivity(new Intent(this, Event_top.class));
+			
 		
 		
 		

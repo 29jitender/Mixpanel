@@ -21,17 +21,14 @@ public class MainActivity extends Activity {
 		((Button) findViewById(R.id.showgraph)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startGraphActivity(Webview_graph.class);
+			
 				
 			}
 		});
 		
 	}
 
-	private void startGraphActivity(Class<? extends Activity> activity) {
-		Intent intent = new Intent(MainActivity.this, activity);
-		startActivity(intent);
-	}
+	 
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

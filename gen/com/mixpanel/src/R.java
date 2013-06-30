@@ -968,15 +968,15 @@ containing a value of this type.
         public static final int abs__textButton=0x7f080013;
         public static final int abs__title=0x7f08001b;
         public static final int abs__up=0x7f08000b;
-        public static final int action_settings=0x7f080043;
+        public static final int action_settings=0x7f080042;
         public static final int disableHome=0x7f080009;
         public static final int e_date=0x7f08003d;
         public static final int e_name_amount=0x7f080041;
         public static final int edit_query=0x7f080026;
-        public static final int event=0x7f080046;
+        public static final int event=0x7f080045;
         public static final int event_activity_list=0x7f08003f;
         public static final int event_activity_name=0x7f08003a;
-        public static final int event_setting=0x7f080044;
+        public static final int event_setting=0x7f080043;
         public static final int graph=0x7f080039;
         public static final int homeAsUp=0x7f080006;
         public static final int inputSearch=0x7f080032;
@@ -989,7 +989,7 @@ containing a value of this type.
         public static final int p_change=0x7f08003c;
         public static final int result=0x7f080036;
         public static final int scrollView1=0x7f080034;
-        public static final int setting=0x7f080045;
+        public static final int setting=0x7f080044;
         public static final int showCustom=0x7f080008;
         public static final int showHome=0x7f080005;
         public static final int showTitle=0x7f080007;
@@ -997,7 +997,6 @@ containing a value of this type.
         public static final int splash_bg=0x7f080037;
         public static final int tabMode=0x7f080003;
         public static final int useLogo=0x7f080004;
-        public static final int webview1=0x7f080042;
         public static final int wrap_content=0x7f080000;
     }
     public static final class integer {
@@ -1037,7 +1036,6 @@ containing a value of this type.
         public static final int temp=0x7f03001e;
         public static final int top_event_click=0x7f03001f;
         public static final int top_event_click_list=0x7f030020;
-        public static final int webview=0x7f030021;
     }
     public static final class menu {
         public static final int check_key=0x7f0e0000;

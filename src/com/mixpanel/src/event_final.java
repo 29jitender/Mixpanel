@@ -18,10 +18,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
+import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 
 public class event_final extends ListActivity implements Callback {
     /** Called when the activity is first created. */
@@ -63,7 +65,7 @@ public class event_final extends ListActivity implements Callback {
 
 	@Override
 	public void methodToCallback(String print) {
-		int[] data_map=new int[100];//defing array 
+		float[] data_map=new float[100];//defing array 
 		ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
 		
 	 
@@ -95,7 +97,7 @@ public class event_final extends ListActivity implements Callback {
 		            map.put(VALUE1, mvalue);// all values
 		            Log.i("key",mkey);
 		            Log.i("value",mvalue);
-		            int k =Integer.parseInt(mvalue);//converting the string into int
+		            float k =Float.parseFloat(mvalue);//converting the string into float
 		            
 		            data_map[i]=k;//storing values into data_maps which will be used in graphs
 		            Log.i("k",k+"");
@@ -124,7 +126,7 @@ public class event_final extends ListActivity implements Callback {
 		
 		Line graph = new Line();
 		LinePoint p = new LinePoint();
-		int range= Integer.parseInt(All_api_define.interval1);//converting into int this is the inteval
+		int range= Integer.parseInt(All_api_define.interval1);//converting into float this is the inteval
 		 for(int i=1;i<=range;i++){
 			p = new LinePoint();
 			p.setX(i);
@@ -133,16 +135,30 @@ public class event_final extends ListActivity implements Callback {
 			graph.addPoint(p);
 		}
 		
+		 float rangeY=0;//getting the range for y-axis
+		 for(int i= 0;i<data_map.length;i++){
+			 if(data_map[i]>rangeY){
+				 rangeY=data_map[i];
+			 }
+			 
+		 }
 		 
 		 
 		graph.setColor(Color.parseColor("#FFBB33"));
 
 		LineGraph li = (LineGraph)findViewById(R.id.graph);
 		li.addLine(graph);
-		li.setRangeY(0, range);
+		li.setRangeY(0, rangeY);
 		li.setLineToFill(2);//change filling
 		
-		
+		li.setOnPointClickedListener(new OnPointClickedListener(){
+
+			@Override
+			public void onClick(int lineIndex, int pointIndex) {
+ 				//Toast.makeText(getApplicationContext(), ""+lineIndex, Toast.LENGTH_LONG).show();
+			}
+			
+		});
 		
 		
 		
