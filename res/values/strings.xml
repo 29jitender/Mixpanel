@@ -68,5 +68,6 @@
     <string name="home_screen_text">Top ten events of the day</string>
     <string name="conf_summary">Please enter your api key and api secret.API key can be found on your account page under API Information.  API secret is a secret API key corresponding to the project. You should never give this out to anyone or show it.</string>
     <string name="title_activity_temp">Temp</string>
+    <string name="title_activity_funnel_home">Funnel_home</string>
 
 </resources>
