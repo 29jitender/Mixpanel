@@ -5,17 +5,17 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
 
     <application
-        android:allowBackup="true"
+         
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Light" >
+        android:theme="@style/AppBaseTheme" >
         <activity android:name="com.mixpanel.src.Event_top" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,7 @@
             android:label="@string/title_activity_event_activity" >
         </activity>
         <activity
-            android:name="com.mixpanel.src.MainActivity"
+            android:name="com.mixpanel.src.MainActivity1"
             android:label="@string/app_name" >
         </activity>
         <activity android:name="com.mixpanel.src.Splash" >
@@ -64,7 +64,15 @@
             android:name="com.mixpanel.src.Event_activity"
             android:label="@string/title_activity_temp" >
         </activity>
-    
+        <activity
+            android:name="com.mixpanel.src.Funnel_home"
+            android:label="@string/title_activity_funnel_home" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Funnel"
+            android:label="@string/title_activity_funnel" >
+        </activity>
+       
     </application>
 
 </manifest>

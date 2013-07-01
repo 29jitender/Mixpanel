@@ -50,8 +50,8 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		setContentView(R.layout.homescreen_value);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
-		get_values_pref(); 
-		new Check_api().execute();
+		get_values_pref(); //getting values from pre
+		new Check_api().execute();//checking api
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
@@ -62,8 +62,6 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		
 	}
  
-	
-	
 	
 	
 	
@@ -109,7 +107,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	        	
 	        }
 
-	        protected void onPostExecute(Integer result) {
+  protected void onPostExecute(Integer result) {
 
 				 if(result==200){
 					 Log.i("working test",result+"");
@@ -128,14 +126,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	        }
 	    }
 	  
-	  
-	  public void check_api(){
-	    	
-	    
-	    } 
-	
-	  
-	  
+   
 	
 	@Override
 	public void methodToCallback(String print) {
@@ -227,7 +218,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.event_top, menu);
+		getMenuInflater().inflate(R.menu.event_top, (Menu) menu);
 		return true;
 	}
 	@Override
@@ -237,7 +228,7 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		
 		case R.id.setting:
 			//startService(intentUpdater);
-			finish();//finishing current activity
+			 
 			startActivity(new Intent(this, Prefrenceactivity.class));
 			 
 			return true;
@@ -253,11 +244,17 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		}
 	}
 
+ 
+
+
+
+
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		 
 			get_values_pref();
+			 
 			//restarting activity with new values
 			
 		

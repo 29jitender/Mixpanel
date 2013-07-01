@@ -70,5 +70,6 @@
     <string name="title_activity_temp">Temp</string>
     <string name="title_activity_funnel_home">Funnel_home</string>
     <string name="title_activity_funnel_home1">Funnel_home1</string>
-
+    <string name="title_activity_funnel">Funnel</string>
+ 
 </resources>

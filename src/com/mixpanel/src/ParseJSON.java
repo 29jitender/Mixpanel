@@ -21,7 +21,7 @@ public class ParseJSON extends Activity implements Callback{
 	  @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main1);
 		//send_request(All_api_define.event());// what to call
 		//pass_values("event_name");
 	}

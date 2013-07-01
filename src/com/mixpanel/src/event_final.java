@@ -151,14 +151,14 @@ public class event_final extends ListActivity implements Callback {
 		li.setRangeY(0, rangeY);
 		li.setLineToFill(2);//change filling
 		
-		li.setOnPointClickedListener(new OnPointClickedListener(){
-
-			@Override
-			public void onClick(int lineIndex, int pointIndex) {
- 				//Toast.makeText(getApplicationContext(), ""+lineIndex, Toast.LENGTH_LONG).show();
-			}
-			
-		});
+//		li.setOnPointClickedListener(new OnPointClickedListener(){
+//
+//			@Override
+//			public void onClick(int lineIndex, int pointIndex) {
+// 				//Toast.makeText(getApplicationContext(), ""+lineIndex, Toast.LENGTH_LONG).show();
+//			}
+//			
+//		});
 		
 		
 		
