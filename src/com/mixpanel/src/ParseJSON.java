@@ -1,14 +1,12 @@
 package com.mixpanel.src;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
  
 interface Callback {
     void methodToCallback(String response);
 }
 
-public class ParseJSON extends Activity implements Callback{
+public class ParseJSON  implements Callback{
 	/** Called when the activity is first created. */
 	
 	  
@@ -18,13 +16,13 @@ public class ParseJSON extends Activity implements Callback{
 	  public static String display="";
 	  public static String retrun_stuff="";
 	  
-	  @Override
-	 public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main1);
-		//send_request(All_api_define.event());// what to call
-		//pass_values("event_name");
-	}
+//	  @Override
+//	 public void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_main1);
+//		//send_request(All_api_define.event());// what to call
+//		//pass_values("event_name");
+//	}
 	  public void methodToCallback(String display1) {
 		 	display=display1;
 		 	callbackInstance1.methodToCallback(display);
