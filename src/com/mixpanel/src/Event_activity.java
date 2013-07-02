@@ -3,7 +3,13 @@ package com.mixpanel.src;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -12,8 +18,7 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+ 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,8 +31,9 @@ import android.widget.Toast;
 //    void methodToCallback(String response);
 //}
 
-public class Event_activity extends Activity implements OnSharedPreferenceChangeListener, Callback {
+public class Event_activity extends SherlockActivity implements OnSharedPreferenceChangeListener, Callback,ActionBar.OnNavigationListener {
 	 SharedPreferences prefs;
+	
 	 public static String click_type="";
 	 public static String event_interval="";//global 
 	 public static String event_unit="";
@@ -53,6 +59,7 @@ public class Event_activity extends Activity implements OnSharedPreferenceChange
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
+		getActionBar().setDisplayShowTitleEnabled(false);
 		 setContentView(R.layout.activity_event_activity);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
@@ -61,9 +68,11 @@ public class Event_activity extends Activity implements OnSharedPreferenceChange
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_name");
 		ParseJson_object.setListener(this);
-		
+		navigation();// calling navigation
  		 
 	}
+	
+	
 	
 	@Override
 	public void methodToCallback(String display12) {
@@ -150,26 +159,73 @@ public void  get_values_pref(){// getting values from preference
 		 
 		startActivity(intent);
 	}
+	
+	  
+	
+	//for navigation
+	  public void navigation(){
+		  
+		  getSupportActionBar().setDisplayShowTitleEnabled(false);
+		 
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
+		// starting of menu
+		   Context context = getSupportActionBar().getThemedContext();
+	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
+	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+
+	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        getSupportActionBar().setListNavigationCallbacks(list, this);
+		// ending of menu
+	  }
+		 @Override
+			protected void onResume() {// setting defult values
+				 getSupportActionBar().setSelectedNavigationItem(1);
+				super.onResume();
+			}
+	  
+	  
+	  @Override
+	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		  
+		 switch (itemPosition){
+			
+			case 0:
+				startActivity(new Intent(this, Event_top.class)); 
+				return true;
+			case 2:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 3:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 4:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 5:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;	
+			default:
+				return false;
+		 }
+	    }
+	
+	
+	// this is the option
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.event_activity, menu);
+		 boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+         getSherlock().getMenuInflater().inflate(R.menu.event_activity, menu);
 		return true;
 		
 	}
 
-	
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
+	 
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

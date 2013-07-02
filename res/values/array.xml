@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <string-array name="locations">
+        <item>Home</item>
+        <item>Event</item>
+        <item>Funnel</item>
+        <item>Segmentation</item>
+        <item>Retention</item>
+         
+        <item>People</item>
+    </string-array>
 </resources>

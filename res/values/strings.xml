@@ -71,5 +71,8 @@
     <string name="title_activity_funnel_home">Funnel_home</string>
     <string name="title_activity_funnel_home1">Funnel_home1</string>
     <string name="title_activity_funnel">Funnel</string>
+    <string name="meun_funnel">Funnel</string>
+    <string name="menu_segmentation">Segmentation</string>
+    <string name="about">About</string>
  
 </resources>

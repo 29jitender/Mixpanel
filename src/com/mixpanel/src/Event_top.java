@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -21,32 +21,39 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Event_top extends ListActivity implements Callback,OnSharedPreferenceChangeListener {
-	  static JSONObject json = null;
-	  private static final String TAG_event = "events";
-	    private static final String amount = "amount";
-	    private static final String percent_change = "percent_change";
-	    private static final String event = "event";
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class Event_top extends SherlockListActivity implements Callback,OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
+	static JSONObject json = null;
+	 private static final String TAG_event = "events";
+	private static final String amount = "amount";
+	private static final String percent_change = "percent_change";
+	private static final String event = "event";
 	    public static String click_type="";
 	    static String API_sceret= "";//defining variable 
 		 static String API_key=""; 
 		 SharedPreferences prefs;
 
 	    JSONArray event_data = null;
-	@Override
+	
+	    
+	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.homescreen_value);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
@@ -59,9 +66,11 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		if(API_key.equals("nill") && API_sceret.equals("nill")){
 			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
 		}
+		navigation();// calling navigation
 		
 	}
- 
+
+	   
 	
 	
 	
@@ -127,7 +136,6 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 	    }
 	  
    
-	
 	@Override
 	public void methodToCallback(String print) {
 		// TODO Auto-generated method stub
@@ -214,16 +222,74 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 		
 	}
 
+	  
+	//for navigation
+	  public void navigation(){
+		  
+		  getSupportActionBar().setDisplayShowTitleEnabled(false);
+		  
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
+		// starting of menu
+		   Context context = getSupportActionBar().getThemedContext();
+	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
+	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.event_top, (Menu) menu);
-		return true;
+	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        getSupportActionBar().setListNavigationCallbacks(list, this);
+	        
+		// ending of menu
+	  }
+	 @Override
+	protected void onResume() {
+		 getSupportActionBar().setSelectedNavigationItem(0);
+		super.onResume();
 	}
+
+ 
+	@Override
+	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		  
+		 switch (itemPosition){
+			
+			case 1:
+				startActivity(new Intent(this, Event_activity.class)); 
+				return true;
+			case 2:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 3:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 4:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 5:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;	
+			default:
+				return false;
+		 }
+	    }
+	
+    @Override
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Used to put dark icons on light action bar
+        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+         getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
+
+        return true;
+    }
+    
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		
 		switch (item.getItemId()){
 		
 		case R.id.setting:
@@ -232,9 +298,9 @@ public class Event_top extends ListActivity implements Callback,OnSharedPreferen
 			startActivity(new Intent(this, Prefrenceactivity.class));
 			 
 			return true;
-		case R.id.event:
+		case R.id.about:
+				//make someting for about
 			
-			startActivity(new Intent(this, Event_activity.class));
 			
 			return true;
 		default:
