@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,18 +75,21 @@ public class event_final extends SherlockListActivity implements Callback,Action
 		
 		try {
 			 json = new JSONObject(print);
- 
+			 JSONArray series = json.getJSONArray("series");//taking the series 
 			
 			event_data = json.getJSONObject(TAG_event);
-			 JSONObject c = event_data.getJSONObject(name);
 			
+			 JSONObject c = event_data.getJSONObject(name);
+			 		
+			 	
+			 	
 			 	
 			 	
 			 	int i = 0;
 			 	for (Iterator<?> keys = c.keys(); keys.hasNext(); i++) {
-			 		 key = (String)keys.next();
+			 		 //key = (String)keys.next();
 		             // adding each child node to HashMap key => value
-		             	
+		             	key=series.getString(i);// taking the key value from the serioues 
 		            HashMap<String, String> map = new HashMap<String, String>();
 		            
 		            String mkey=key;

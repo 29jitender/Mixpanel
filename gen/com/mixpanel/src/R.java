@@ -936,8 +936,8 @@ containing a value of this type.
         public static final int radialback=0x7f02007a;
     }
     public static final class id {
-        public static final int E_amount=0x7f060040;
-        public static final int about=0x7f060046;
+        public static final int E_amount=0x7f06003f;
+        public static final int about=0x7f060045;
         public static final int abs__action_bar=0x7f060020;
         public static final int abs__action_bar_container=0x7f06001f;
         public static final int abs__action_bar_subtitle=0x7f060011;
@@ -977,16 +977,15 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060013;
         public static final int abs__title=0x7f06001b;
         public static final int abs__up=0x7f06000b;
-        public static final int action_settings=0x7f060043;
-        public static final int button1=0x7f06003c;
+        public static final int action_settings=0x7f060042;
         public static final int disableHome=0x7f060009;
-        public static final int e_date=0x7f06003f;
-        public static final int e_name_amount=0x7f060042;
+        public static final int e_date=0x7f06003e;
+        public static final int e_name_amount=0x7f060041;
         public static final int edit_query=0x7f060026;
-        public static final int event_activity_list=0x7f060041;
+        public static final int event_activity_list=0x7f060040;
         public static final int event_activity_name=0x7f06003b;
-        public static final int event_filter=0x7f060048;
-        public static final int event_setting=0x7f060044;
+        public static final int event_filter=0x7f060047;
+        public static final int event_setting=0x7f060043;
         public static final int graph=0x7f06003a;
         public static final int homeAsUp=0x7f060006;
         public static final int inputSearch=0x7f060032;
@@ -994,13 +993,13 @@ containing a value of this type.
         public static final int list_view=0x7f060033;
         public static final int logo1=0x7f060039;
         public static final int my_spinner=0x7f060034;
-        public static final int name_label=0x7f06003d;
+        public static final int name_label=0x7f06003c;
         public static final int normal=0x7f060001;
-        public static final int p_change=0x7f06003e;
-        public static final int refresh=0x7f060047;
+        public static final int p_change=0x7f06003d;
+        public static final int refresh=0x7f060046;
         public static final int result=0x7f060037;
         public static final int scrollView1=0x7f060035;
-        public static final int setting=0x7f060045;
+        public static final int setting=0x7f060044;
         public static final int showCustom=0x7f060008;
         public static final int showHome=0x7f060005;
         public static final int showTitle=0x7f060007;
