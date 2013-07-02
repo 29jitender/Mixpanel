@@ -7,23 +7,29 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
 
-public class event_final extends ListActivity implements Callback {
+public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener {
     /** Called when the activity is first created. */
 	 
 	 private static String TAG_event = "values";
@@ -53,10 +59,8 @@ public class event_final extends ListActivity implements Callback {
     	ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event1");
 		ParseJson_object.setListener(this);
-        
-        
-        
-        
+		navigation();
+         
     }
         
     
@@ -69,9 +73,7 @@ public class event_final extends ListActivity implements Callback {
 	 
 		
 		try {
-			   
-			
-			json = new JSONObject(print);
+			 json = new JSONObject(print);
  
 			
 			event_data = json.getJSONObject(TAG_event);
@@ -171,7 +173,7 @@ public class event_final extends ListActivity implements Callback {
 				new String[] {VALUE1,KEY1}, new int[] {
 		             R.id.e_name_amount,R.id.e_date});
  
-	setListAdapter(adapter);
+			setListAdapter(adapter);
 	 
 		
 	
@@ -199,24 +201,94 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 });
 		 
 	}
-    
-    
-    @Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-    	
-    	
-    	super.onPause();
-    	 
-	}
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
+
+	//for navigation
+	  public void navigation(){
+		  
+		  getSupportActionBar().setDisplayShowTitleEnabled(false);
 		 
-    	
-		
-	} 
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
+		// starting of menu
+		   Context context = getSupportActionBar().getThemedContext();
+	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
+	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+
+	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        getSupportActionBar().setListNavigationCallbacks(list, this);
+		// ending of menu
+	  }
+		 @Override
+			protected void onResume() {// setting defult values
+				 getSupportActionBar().setSelectedNavigationItem(1);
+				super.onResume();
+			}
+	  
+	  
+	  @Override
+	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		  
+		 switch (itemPosition){
+			
+			case 0:
+				startActivity(new Intent(this, Event_top.class)); 
+				return true;
+			case 2:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 3:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 4:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 5:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;	
+			default:
+				return false;
+		 }
+	    }
+	
+    //creating the buttons for the period and blah
+	  
+	  @Override
+	    public boolean onCreateOptionsMenu(Menu menu) {
+	        //Used to put dark icons on light action bar
+	        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+   
+	        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+            .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+
+	        return true;
+	    }
+	  
+	  @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        //This uses the imported MenuItem from ActionBarSherlock
+		     
+		  		switch(item.getItemId()){
+		  		 
+		  			case R.id.refresh:
+		  				 Intent myIntent = new Intent(this ,event_final.class);//refreshing
+		  				startActivity(myIntent);
+		  				finish();
+
+						return true;	
+					default:
+						return false;	
+		  						
+		  		}
+		  	
+	        
+	       
+	    }
+
 	
 	 
 }

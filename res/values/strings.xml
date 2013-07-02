@@ -10,7 +10,7 @@
     <string name="menu_event">Event</string>
     <string name="pref_event_type">type</string>
     <string name="pref_event_type_summary">The analysis type you would like to get data for events.</string>
-
+	 <string name="spinner_funnel">Select Funnel</string>
     <string-array name="pref_event_type_name">
         <item>General</item>
         <item>Unique</item>
@@ -74,5 +74,10 @@
     <string name="meun_funnel">Funnel</string>
     <string name="menu_segmentation">Segmentation</string>
     <string name="about">About</string>
- 
+    <string name="graph_button">Change</string>
+    <string name="event_type">Type</string>
+    <string name="refresh">refresh</string>
+    <string name="event_filter">Filter</string>
+    <string name="title_activity_funnel_activity">Funnel_activity</string>
+
 </resources>

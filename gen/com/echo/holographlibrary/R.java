@@ -16,6 +16,6 @@ public final class R {
 	}
 	public static final class drawable {
 		public static final int ic_launcher = 0x7f020073;
-		public static final int popup_black = 0x7f020077;
+		public static final int popup_black = 0x7f020079;
 	}
 }

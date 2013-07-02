@@ -256,7 +256,7 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 				startActivity(new Intent(this, Event_activity.class)); 
 				return true;
 			case 2:
-				//startActivity(new Intent(this, Event_activity.class));
+				//startActivity(new Intent(this, Funnel_activity.class));
 				
 				return true;
 			case 3:
@@ -281,6 +281,10 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+
          getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
 
         return true;
@@ -303,6 +307,11 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 			
 			
 			return true;
+		case R.id.refresh:
+			 Intent myIntent = new Intent(this ,Event_top.class);//refreshing
+				startActivity(myIntent);
+				finish();
+			return true;	
 		default:
 			return false;
 			

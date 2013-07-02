@@ -1,22 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/refresh" android:title="@string/refresh"></item>
+    <item android:id="@+id/event_filter" android:title="@string/event_filter"></item>
 
-    <item
-        android:id="@+id/item1"
-        android:orderInCategory="100"
-         
-        android:title="@string/action_settings"
-        
-    	android:showAsAction="ifRoom">
-        <menu>
-            <item 
-                android:id="@+id/Sitem1"
-                android:title="Subitem1"
-                />
-            <item 
-                android:id="@+id/Sitem2"
-                android:title=""
-                />
-        </menu>
-        
-    </item>
+   
 </menu>

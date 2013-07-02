@@ -18,7 +18,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 class Async_task extends AsyncTask<String, Void, String> {
-	
+
 	public static String result="";
 	public  String[] arg = {}; 
 	public static String display="";
@@ -44,24 +44,24 @@ class Async_task extends AsyncTask<String, Void, String> {
 						}
 						result = readStream(instream);
 						instream.close();
-						
+
 						//int temp1 = arg.length;
 						Log.i("i am checking arg",result);
 						if(arg.length==0){// if we are not passing anything
 							display= result;							
 			       		}
 						else{
-							
-							String result1 = result;
-							 
-							result1 = result1.replaceAll("(\\r|\\n)", ",");
-							  
-							result1 = result1.substring(0, result1.length() - 1);
-							  
 
-							    
+							String result1 = result;
+
+							result1 = result1.replaceAll("(\\r|\\n)", ",");
+
+							result1 = result1.substring(0, result1.length() - 1);
+
+
+
 								    JSONArray Jarray = new JSONArray("["+result1+"]");
-								    
+
 								   String add_finaloutput="";
 								   for (int i = 0; i < Jarray.length(); i++) {
 								   JSONObject Jasonobject = Jarray.getJSONObject(i);	
@@ -73,27 +73,27 @@ class Async_task extends AsyncTask<String, Void, String> {
 													add_finaloutput = (Jasonobject.getString(arg[++j]) + " ") + "\n";
 																		}
 											}
-											
-											
+
+
 										}
-							       		
+
 							       		else { // this if for just one argument
 							       			add_finaloutput = ( Jasonobject.getString(arg[0]) + " " )+ "\n";
-							       			
+
 							       		}
 							       		finalOutput="";//so that it doest print previous value
 								finalOutput = finalOutput + add_finaloutput+ "\n";
-							       
+
 							       Log.i("jsonnew obasdasdasdasd", finalOutput+"");
 							    }
-								   
+
 							display= finalOutput;
-							
-							
-							
-							 
-							
-							
+
+
+
+
+
+
 						}
 					}
 				} catch (Exception e) {
@@ -107,13 +107,13 @@ class Async_task extends AsyncTask<String, Void, String> {
 	public void setListener(Callback listener){
 	   callbackInstance = listener;
 	}
-	
-	
+
+
 	//@Override
 	protected void onPostExecute(String result1) {
 			Log.i("result in postexecute",display);
 			callbackInstance.methodToCallback(display);
-			
+
 	}
 
  

@@ -220,7 +220,11 @@ public void  get_values_pref(){// getting values from preference
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		 boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-         getSherlock().getMenuInflater().inflate(R.menu.event_activity, menu);
+
+	        menu.add(Menu.NONE, R.id.event_filter, Menu.NONE, R.string.event_filter)
+         
+         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+         //getSherlock().getMenuInflater().inflate(R.menu.event_activity, menu);
 		return true;
 		
 	}
@@ -232,7 +236,7 @@ public void  get_values_pref(){// getting values from preference
 
 		switch (item.getItemId()){
 		
-		case R.id.event_setting:
+		case R.id.event_filter:
 			//startService(intentUpdater);
 			
 			startActivity(new Intent(this, Prefrenceactivity_event.class));

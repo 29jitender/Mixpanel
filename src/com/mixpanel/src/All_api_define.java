@@ -24,9 +24,6 @@ public class All_api_define{
 	 public static String event1(){// is for event coming from event_activity not in use 
 
 		 String event = Event_activity.click_type;//getting type of list click from event activity
-		
-		 
-		 Log.i("checkinh i am",event);
 		 String event1= "[\""+event;// converting it into required formet
 		 String event2= event1+"\"]";
 		 String event3=event2;
