@@ -18,12 +18,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
-import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 
 public class event_final extends ListActivity implements Callback {
     /** Called when the activity is first created. */

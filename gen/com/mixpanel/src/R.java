@@ -40,27 +40,26 @@ public final class R {
         public static final int radialback=0x7f020004;
     }
     public static final class id {
-        public static final int E_amount=0x7f0b000d;
-        public static final int Sitem1=0x7f0b0015;
-        public static final int Sitem2=0x7f0b0016;
-        public static final int action_settings=0x7f0b0010;
-        public static final int e_date=0x7f0b000c;
-        public static final int e_name_amount=0x7f0b000f;
-        public static final int event=0x7f0b0013;
-        public static final int event_activity_list=0x7f0b000e;
+        public static final int E_amount=0x7f0b000c;
+        public static final int Sitem1=0x7f0b0014;
+        public static final int Sitem2=0x7f0b0015;
+        public static final int action_settings=0x7f0b000f;
+        public static final int e_date=0x7f0b000b;
+        public static final int e_name_amount=0x7f0b000e;
+        public static final int event=0x7f0b0012;
+        public static final int event_activity_list=0x7f0b000d;
         public static final int event_activity_name=0x7f0b0008;
-        public static final int event_setting=0x7f0b0011;
+        public static final int event_setting=0x7f0b0010;
         public static final int graph=0x7f0b0007;
         public static final int inputSearch=0x7f0b0000;
-        public static final int item1=0x7f0b0014;
+        public static final int item1=0x7f0b0013;
         public static final int list_view=0x7f0b0001;
         public static final int logo1=0x7f0b0006;
-        public static final int name_label=0x7f0b000a;
-        public static final int p_change=0x7f0b000b;
+        public static final int name_label=0x7f0b0009;
+        public static final int p_change=0x7f0b000a;
         public static final int result=0x7f0b0004;
         public static final int scrollView1=0x7f0b0002;
-        public static final int section_label=0x7f0b0009;
-        public static final int setting=0x7f0b0012;
+        public static final int setting=0x7f0b0011;
         public static final int showgraph=0x7f0b0003;
         public static final int splash_bg=0x7f0b0005;
     }
@@ -69,13 +68,12 @@ public final class R {
         public static final int activity_main1=0x7f030001;
         public static final int activity_splash=0x7f030002;
         public static final int event_final_view=0x7f030003;
-        public static final int fragment_funnel_dummy=0x7f030004;
-        public static final int homescreen_value=0x7f030005;
-        public static final int list_item=0x7f030006;
-        public static final int list_item1=0x7f030007;
-        public static final int temp=0x7f030008;
-        public static final int top_event_click=0x7f030009;
-        public static final int top_event_click_list=0x7f03000a;
+        public static final int homescreen_value=0x7f030004;
+        public static final int list_item=0x7f030005;
+        public static final int list_item1=0x7f030006;
+        public static final int temp=0x7f030007;
+        public static final int top_event_click=0x7f030008;
+        public static final int top_event_click_list=0x7f030009;
     }
     public static final class menu {
         public static final int check_key=0x7f0a0000;
