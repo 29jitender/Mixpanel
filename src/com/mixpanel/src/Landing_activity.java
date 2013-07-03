@@ -1,8 +1,6 @@
 package com.mixpanel.src;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -17,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +31,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.echo.holographlibrary.PieGraph;
-import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
 import com.echo.holographlibrary.PieSlice;
 
 
@@ -65,6 +64,10 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
+		if(isNetworkOnline()==false){//starting settings if internet is not working
+			Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+			startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+		}
 		
 		
 	}
@@ -260,7 +263,28 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
            
 
 }
+		//checking internet connection
+		
+		 public boolean isNetworkOnline() {
+			    boolean status=false;
+			    try{
+			        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			        NetworkInfo netInfo = cm.getNetworkInfo(0);
+			        if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+			            status= true;
+			        }else {
+			            netInfo = cm.getNetworkInfo(1);
+			            if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+			                status= true;
+			        }
+			    }catch(Exception e){
+			        e.printStackTrace();  
+			        return false;
+			    }
+			    return status;
 
+			    }  
+		 
 	  
 	//for navigation
 	  public void navigation(){
