@@ -81,5 +81,8 @@
     <string name="event_filter">Filter</string>
     <string name="title_activity_funnel_activity">Funnel_activity</string>
     <string name="title_activity_landing_activity">Landing_activity</string>
+    <string name="title_activity_about">About</string>
+    <string name="landing_more">More</string>
+    <string name="landing">More</string>
 
 </resources>

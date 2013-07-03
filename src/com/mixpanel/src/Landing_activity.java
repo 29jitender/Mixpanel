@@ -1,35 +1,53 @@
 package com.mixpanel.src;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.echo.holographlibrary.PieGraph;
+import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
+import com.echo.holographlibrary.PieSlice;
+
 
  
 
-public class Landing_activity extends SherlockActivity implements OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
+public class Landing_activity extends SherlockActivity implements Callback,OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
 	 SharedPreferences prefs;
 		public static String API_sceret= "";//defining variable 
 		public static String API_key=""; 
+		//for pie chart
+		private static final String amount = "amount";
+		private static final String percent_change = "percent_change";
+		private static final String event = "event";
+	    JSONArray event_data = null;
+		static JSONObject json = null;
+		 private static final String TAG_event = "events";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +61,12 @@ public class Landing_activity extends SherlockActivity implements OnSharedPrefer
 			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
 		}
 		navigation();
+		//for pie chart
+		ParseJSON ParseJson_object = new ParseJSON();
+		ParseJson_object.pass_values("event_top");
+		ParseJson_object.setListener(this);
+		
+		
 	}
 	 private void get_values_pref() {//api key and stuff
 		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
@@ -108,6 +132,136 @@ public class Landing_activity extends SherlockActivity implements OnSharedPrefer
 	        }
 	    }
 	
+	  //for pie chart
+	  
+
+		@Override
+		public void methodToCallback(String print) {
+			// TODO Auto-generated method stub
+	 
+				// Hashmap for ListView
+			 String[] name_value=new String[5];
+			  String[] e_name=new String[5];
+			  Float[] values_amount=new Float[5];
+						 
+	 
+						try {
+							json = new JSONObject(print);
+							event_data = json.getJSONArray(TAG_event);
+							 
+							// looping through All data
+							for(int i = 0; i < event_data.length(); i++){
+							    JSONObject c = event_data.getJSONObject(i);
+							     
+							    // Storing each json item in variable
+							    String Amount = c.getString(amount);
+							    String parcent_change = c.getString(percent_change);
+							    String Event = c.getString(event);
+							    
+							    e_name[i]=  Event;//name of event
+							    float k =Float.parseFloat(Amount);//amount to pass in pie chart
+							    values_amount[i]=k;//amount ot pass in pie chart
+							    name_value[i]=Amount;
+							    
+							     
+							    
+		 
+							}
+		  
+							
+							
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+				//adding text in layout
+				final TextView textViewToChange1 = (TextView) findViewById(R.id.textView1);
+				textViewToChange1.setText(e_name[0]);
+				final TextView textViewToChange2 = (TextView) findViewById(R.id.textView2);
+				textViewToChange2.setText(e_name[1]);
+				final TextView textViewToChange3 = (TextView) findViewById(R.id.textView3);
+				textViewToChange3.setText(e_name[2]);
+				final TextView textViewToChange4 = (TextView) findViewById(R.id.textView4);
+				textViewToChange4.setText(e_name[3]);
+				final TextView textViewToChange5 = (TextView) findViewById(R.id.textView5);
+				textViewToChange5.setText(e_name[4]);
+				//printing amount
+//				final TextView textViewToChange6 = (TextView) findViewById(R.id.textView6);
+//				textViewToChange6.setText(name_value[0]);
+//				final TextView textViewToChange7 = (TextView) findViewById(R.id.textView7);
+//				textViewToChange7.setText(name_value[1]);
+//				final TextView textViewToChange8 = (TextView) findViewById(R.id.textView8);
+//				textViewToChange8.setText(name_value[2]);
+//				final TextView textViewToChange9 = (TextView) findViewById(R.id.textView9);
+//				textViewToChange9.setText(name_value[3]);
+//				final TextView textViewToChange10 = (TextView) findViewById(R.id.textView10);
+//				textViewToChange10.setText(name_value[4]);
+//						   	
+				
+						
+						
+	
+						
+			/**
+	       * Updating parsed JSON data into pie chart
+	       * 
+	       * */  PieGraph pg1 = (PieGraph)findViewById(R.id.piegraph);
+           PieSlice slice1 = new PieSlice();
+           slice1.setColor(Color.parseColor("#99CC00"));
+           slice1.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
+           pg1.addSlice(slice1);
+           slice1 = new PieSlice();
+           slice1.setColor(Color.parseColor("#FFBB33"));
+           slice1.setValue(values_amount[1]+1);
+           pg1.addSlice(slice1);
+           slice1 = new PieSlice();
+           slice1.setColor(Color.parseColor("#AA66CC"));
+           slice1.setValue(values_amount[2]+1);
+           pg1.addSlice(slice1);
+           slice1 = new PieSlice();
+           slice1.setColor(Color.parseColor("#f41212"));
+           slice1.setValue(values_amount[3]+1);
+           pg1.addSlice(slice1);
+           slice1 = new PieSlice();
+           slice1.setColor(Color.parseColor("#25d3ee"));
+           slice1.setValue(values_amount[4]+1);
+           pg1.addSlice(slice1);  
+           
+           
+           
+           
+           //yesteday
+           PieGraph pg = (PieGraph)findViewById(R.id.piegraph1);
+           PieSlice slice = new PieSlice();
+           slice.setColor(Color.parseColor("#99CC00"));
+           slice.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
+           pg.addSlice(slice);
+           slice = new PieSlice();
+           slice.setColor(Color.parseColor("#FFBB33"));
+           slice.setValue(values_amount[1]+1);
+           pg.addSlice(slice);
+           slice = new PieSlice();
+           slice.setColor(Color.parseColor("#AA66CC"));
+           slice.setValue(values_amount[2]+1);
+           pg.addSlice(slice);
+           slice = new PieSlice();
+           slice.setColor(Color.parseColor("#f41212"));
+           slice.setValue(values_amount[3]+1);
+           pg.addSlice(slice);
+           slice = new PieSlice();
+           slice.setColor(Color.parseColor("#25d3ee"));
+           slice.setValue(values_amount[4]+1);
+           pg.addSlice(slice);  
+           
+          
+           
+
+           
+
+}
+
+	  
 	//for navigation
 	  public void navigation(){
 		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
@@ -168,7 +322,9 @@ public class Landing_activity extends SherlockActivity implements OnSharedPrefer
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
          
          getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
-
+         menu.add(Menu.NONE, R.id.landing, Menu.NONE, R.string.landing)
+         .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
         return true;
     }
     
@@ -186,9 +342,14 @@ public class Landing_activity extends SherlockActivity implements OnSharedPrefer
 			return true;
 		case R.id.about:
 				//make someting for about
-			
+			startActivity(new Intent(this, About.class));
 			
 			return true;
+		case R.id.landing:
+			//make someting for about
+		startActivity(new Intent(this, Event_top.class));
+		
+		return true;	
 	 	
 		default:
 			return false;

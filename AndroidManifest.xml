@@ -79,7 +79,11 @@
             android:name="com.mixpanel.src.Event_top"
             android:label="@string/title_activity_landing_activity" >
         </activity>
-        
+        <activity
+            android:name="com.mixpanel.src.About"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>
