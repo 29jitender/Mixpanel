@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.echo.holographlibrary.Line;
+import com.echo.holographlibrary.LineGraph;
+import com.echo.holographlibrary.LinePoint;
+
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,45 +68,55 @@ public class Event_top_click  extends ListActivity implements Callback  {
     }
 	 
 	
-	
-	
+
 	@Override
 	public void methodToCallback(String print) {
-			  
+		float[] data_map=new float[100];//defing array 
 		ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
-
+		
+	 
+		
 		try {
-			   
-			
-			json = new JSONObject(print);
- 
+			 json = new JSONObject(print);
+			 JSONArray series = json.getJSONArray("series");//taking the series 
 			
 			event_data = json.getJSONObject(TAG_event);
-			 JSONObject c = event_data.getJSONObject(name);
 			
-			 Iterator<?> keys = c.keys();
-
-		        while( keys.hasNext() ){
-		            key = (String)keys.next();
-		           
-		            // adding each child node to HashMap key => value
-		             	
+			 JSONObject c = event_data.getJSONObject(name);
+			 		
+			 	
+			 	
+			 	
+			 	
+			 	int i = 0;
+			 	for (Iterator<?> keys = c.keys(); keys.hasNext(); i++) {
+			 		 //key = (String)keys.next();
+		             // adding each child node to HashMap key => value
+		             	key=series.getString(i);// taking the key value from the series 
 		            HashMap<String, String> map = new HashMap<String, String>();
+		            
 		            String mkey=key;
 		            String mvalue= (String) c.getString(key);
 		            
 		            //map.put(mkey, mvalue); 
-		            map.put(KEY1, mkey);
-		            map.put(VALUE1, mvalue);
+		            map.put(KEY1, mkey);// all dates
+		            
+		            map.put(VALUE1, mvalue);// all values
 		            Log.i("key",mkey);
 		            Log.i("value",mvalue);
+		            float k =Float.parseFloat(mvalue);//converting the string into float
+		            
+		            data_map[i]=k;//storing values into data_maps which will be used in graphs
+		            Log.i("k",k+"");
+		            // data_map[0]=Integer.parseInt(mvalue);// storing all the values
 				    // adding HashList to ArrayList
 				    Event_list.add(map);
 		            	if( c.get(key) instanceof JSONObject ){
 		            	 
-		            	}
-		            
-		            }
+		            	} 
+			 	}
+			 	
+		       
 		        
 		       
 			
@@ -109,6 +125,7 @@ public class Event_top_click  extends ListActivity implements Callback  {
 			e.printStackTrace();
 		}
 
+	 
 		
 
 /**
@@ -118,7 +135,7 @@ public class Event_top_click  extends ListActivity implements Callback  {
 				new String[] {VALUE1,KEY1}, new int[] {
 		             R.id.e_name_amount,R.id.e_date});
  
-	setListAdapter(adapter);
+			setListAdapter(adapter);
 	 
 		
 	
@@ -146,5 +163,8 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 });
 		 
 	}
-	  
+
+	
+	
+ 	  
 }

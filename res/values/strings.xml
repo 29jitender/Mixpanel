@@ -66,7 +66,7 @@
     <string name="api_secret">Api secret</string>
     <string name="api_secret_summary">Please enter your api secret</string>
     <string name="api_conf">Setting</string>
-    <string name="home_screen_text">Top ten events of the day</string>
+    <string name="home_screen_text">Top events of the day</string>
     <string name="conf_summary">Please enter your api key and api secret.API key can be found on your account page under API Information.  API secret is a secret API key corresponding to the project. You should never give this out to anyone or show it.</string>
     <string name="title_activity_temp">Temp</string>
     <string name="title_activity_funnel_home">Funnel_home</string>
@@ -84,5 +84,9 @@
     <string name="title_activity_about">About</string>
     <string name="landing_more">More</string>
     <string name="landing">More</string>
+    <string name="event_top_setting">Setting</string>
+    <string name="top_event">Limit</string>
+    <string name="event_top_limit">The maximum number of events to return.  The maximum this value can be is 100</string>
+    <string name="title_activity_prefrenceactivity_event_top">Prefrenceactivity_event_top</string>
 
 </resources>

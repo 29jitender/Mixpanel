@@ -81,8 +81,12 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.About"
-            android:theme="@android:style/Theme.Dialog"
-            android:label="@string/title_activity_about" >
+            android:label="@string/title_activity_about"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Prefrenceactivity_event_top"
+            android:label="@string/title_activity_prefrenceactivity_event_top" >
         </activity>
     </application>
 

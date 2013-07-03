@@ -7,9 +7,8 @@
 
      <TextView
          android:id="@+id/name_label"
-         android:layout_width="fill_parent"
+         android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_weight="0.00"
          android:paddingBottom="10dip"
          android:paddingTop="10dip"
          android:text="@string/home_screen_text"

@@ -79,6 +79,7 @@ public class All_api_define{
 	 public static String api_check(){
 		 
 		 // sending randome reuest to check response
+		
 		 TreeMap<String, String> tm = new TreeMap<String, String>();
 		 tm.put("limit", new String("10")); //its optional
 	      tm.put("type", new String("unique"));
@@ -93,6 +94,16 @@ public class All_api_define{
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		 tm.put("limit", new String("5")); //its optional
+	      tm.put("type", new String("unique"));
+	         
+	      String send_path_first ="http://mixpanel.com/api/2.0/events/top/?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	  }
+	  public static String event_top1(){// to call from inside event_top.java
+		  String limit=Event_top.limit;
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		  tm.put("limit", new String(limit)); //its optional
 	      tm.put("type", new String("unique"));
 	         
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/top/?";

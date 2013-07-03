@@ -1,13 +1,8 @@
 package com.mixpanel.src;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,11 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -37,8 +29,10 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-public class Event_top extends SherlockListActivity implements Callback,OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
+public class Event_top extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
 	static JSONObject json = null;
+	 SharedPreferences prefs;
+
 	 private static final String TAG_event = "events";
 	private static final String amount = "amount";
 	private static final String percent_change = "percent_change";
@@ -46,7 +40,8 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 	    public static String click_type="";
 	    static String API_sceret= "";//defining variable 
 		 static String API_key=""; 
-		 SharedPreferences prefs;
+		 
+		 public static String limit="";
 
 	    JSONArray event_data = null;
 	
@@ -56,88 +51,46 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 		super.onCreate(savedInstanceState);
 		 requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
-
-		setContentView(R.layout.homescreen_value);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
-	 	prefs.registerOnSharedPreferenceChangeListener(this);
-		get_values_pref(); //getting values from pre
-		new Check_api().execute();//checking api
+		  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
+		 	prefs.registerOnSharedPreferenceChangeListener(this);
+		setContentView(R.layout.event_top);
+		 
+		 
 		ParseJSON ParseJson_object = new ParseJSON();
-		ParseJson_object.pass_values("event_top");
+		ParseJson_object.pass_values("event_top1");
 		ParseJson_object.setListener(this);
 		
-		if(API_key.equals("nill") && API_sceret.equals("nill")){
-			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
-		}
+		 get_values_pref();
 		navigation();// calling navigation
 		
 	}
 
-	   
-	
-	
-	
-	  private void get_values_pref() {//api key and stuff
-		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
-		  	
-		   
-			API_key =prefs.getString("api_key", "nill");
-			API_sceret =prefs.getString("api_secret", "nill");
-			Log.i("hi we are in pref",API_key);
-			Log.i("hi we are in pref",API_sceret);
-			
+
+public void  get_values_pref(){// getting values from preference  
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+
+		 
+		limit =prefs.getString("top_event", "10");
 		
-	}
+		final TextView textViewToChange10 = (TextView) findViewById(R.id.name_label);//printing the text as heading
+		textViewToChange10.setText("Top"+" "+limit+" "+"events of the day");
+		 
+		int check= Integer.parseInt(limit);
+		// condition of api
+				//event
+		if(check>100 ){
+			Toast.makeText(getApplicationContext(), "The maximum Limit can be is 100", Toast.LENGTH_LONG).show();
+		}
+		
+		
+		
+		 
+	} 	   
 	
 	
-	  private class Check_api extends AsyncTask<Void, Void, Integer> {
-
-	        protected Integer doInBackground(Void... params) {
-	        	String url = All_api_define.api_check();
-	   	     
-		    	DefaultHttpClient httpclient = new DefaultHttpClient();
-				HttpGet getRequest = new HttpGet(url);// main request
-				getRequest.setHeader("Accept", "application/json");
-				getRequest.setHeader("Accept-Encoding", "gzip"); //
-				int result = 0;
-				try {
-					HttpResponse response = (HttpResponse) httpclient.execute(getRequest);
-					 result= response.getStatusLine().getStatusCode();
-					
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				 
-		    	
-				return result;
-		    	 
-	        	
-	        }
-
-  protected void onPostExecute(Integer result) {
-
-				 if(result==200){
-					 Log.i("working test",result+"");
-				 }
-				 else{
-					 new Handler().postDelayed(new Runnable() {// opening menu when api key is wrong 
-						   public void run() { 
-						     openOptionsMenu(); 
-						   } 
-						}, 1000);
-
-					 Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show(); 
-				 }
-
-	            super.onPostExecute(result);
-	        }
-	    }
-	  
+	 
+	
+	 
    
 	@Override
 	public void methodToCallback(String print) {
@@ -287,8 +240,10 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
         menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
         .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
-
-         getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
+        
+        menu.add(Menu.NONE, R.id.event_top_setting, Menu.NONE, R.string.event_top_setting)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+       //  getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
 
         return true;
     }
@@ -299,17 +254,13 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 		
 		switch (item.getItemId()){
 		
-		case R.id.setting:
+		case R.id.event_top_setting:
 			//startService(intentUpdater);
 			 
-			startActivity(new Intent(this, Prefrenceactivity.class));
+			startActivity(new Intent(this, Prefrenceactivity_event_top.class));
 			 
 			return true;
-		case R.id.about:
-				//make someting for about
-			
-			
-			return true;
+		 
 		case R.id.refresh:
 			 Intent myIntent = new Intent(this ,Event_top.class);//refreshing
 				startActivity(myIntent);
@@ -322,7 +273,9 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 		}
 	}
 
- 
+
+
+
 
 
 
@@ -330,15 +283,15 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		 
-			get_values_pref();
-			 
-			//restarting activity with new values
-			
-		
-		
+		get_values_pref();
 		
 	}
+
+ 
+
+
+
+ 
 
 	 
 	

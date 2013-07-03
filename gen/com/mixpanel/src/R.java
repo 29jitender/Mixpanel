@@ -986,6 +986,7 @@ containing a value of this type.
         public static final int event_activity_name=0x7f060047;
         public static final int event_filter=0x7f060053;
         public static final int event_setting=0x7f06004f;
+        public static final int event_top_setting=0x7f060055;
         public static final int graph=0x7f060046;
         public static final int homeAsUp=0x7f060006;
         public static final int inputSearch=0x7f060036;
@@ -1054,7 +1055,7 @@ containing a value of this type.
         public static final int activity_main1=0x7f030019;
         public static final int activity_splash=0x7f03001a;
         public static final int event_final_view=0x7f03001b;
-        public static final int homescreen_value=0x7f03001c;
+        public static final int event_top=0x7f03001c;
         public static final int list_item=0x7f03001d;
         public static final int list_item1=0x7f03001e;
         public static final int sherlock_spinner_dropdown_item=0x7f03001f;
@@ -1072,8 +1073,9 @@ containing a value of this type.
         public static final int landing_activity=0x7f0e0005;
         public static final int menu=0x7f0e0006;
         public static final int prefrenceactivity=0x7f0e0007;
-        public static final int splash=0x7f0e0008;
-        public static final int temp=0x7f0e0009;
+        public static final int prefrenceactivity_event_top=0x7f0e0008;
+        public static final int splash=0x7f0e0009;
+        public static final int temp=0x7f0e000a;
     }
     public static final class string {
         public static final int about=0x7f0b002e;
@@ -1127,6 +1129,8 @@ containing a value of this type.
         public static final int conf_summary=0x7f0b0027;
         public static final int event_filter=0x7f0b0032;
         public static final int event_setting=0x7f0b001f;
+        public static final int event_top_limit=0x7f0b003a;
+        public static final int event_top_setting=0x7f0b0038;
         public static final int event_type=0x7f0b0030;
         public static final int graph_button=0x7f0b002f;
         public static final int hello_world=0x7f0b000f;
@@ -1154,10 +1158,12 @@ containing a value of this type.
         public static final int title_activity_funnel_home1=0x7f0b002a;
         public static final int title_activity_landing_activity=0x7f0b0034;
         public static final int title_activity_prefrenceactivity=0x7f0b0017;
+        public static final int title_activity_prefrenceactivity_event_top=0x7f0b003b;
         public static final int title_activity_splash=0x7f0b0020;
         public static final int title_activity_temp=0x7f0b0028;
         public static final int title_activity_webview_graph=0x7f0b0011;
         public static final int title_activity_webview_graph1=0x7f0b0012;
+        public static final int top_event=0x7f0b0039;
     }
     public static final class style {
         /** 
@@ -1289,7 +1295,8 @@ containing a value of this type.
     }
     public static final class xml {
         public static final int api_pref=0x7f050000;
-        public static final int pref_event=0x7f050001;
+        public static final int event_top=0x7f050001;
+        public static final int pref_event=0x7f050002;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 
