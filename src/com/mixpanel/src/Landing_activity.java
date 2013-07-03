@@ -1,16 +1,11 @@
 package com.mixpanel.src;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,63 +16,35 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-public class Event_top extends SherlockListActivity implements Callback,OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
-	static JSONObject json = null;
-	 private static final String TAG_event = "events";
-	private static final String amount = "amount";
-	private static final String percent_change = "percent_change";
-	private static final String event = "event";
-	    public static String click_type="";
-	    static String API_sceret= "";//defining variable 
-		 static String API_key=""; 
-		 SharedPreferences prefs;
+ 
 
-	    JSONArray event_data = null;
-	
-	    
-	    @Override
+public class Landing_activity extends SherlockActivity implements OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
+	 SharedPreferences prefs;
+		public static String API_sceret= "";//defining variable 
+		public static String API_key=""; 
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
-
-		setContentView(R.layout.homescreen_value);
+		setContentView(R.layout.activity_landing_activity);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); //getting values from pre
-		new Check_api().execute();//checking api
-		ParseJSON ParseJson_object = new ParseJSON();
-		ParseJson_object.pass_values("event_top");
-		ParseJson_object.setListener(this);
 		
 		if(API_key.equals("nill") && API_sceret.equals("nill")){
 			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
 		}
-		navigation();// calling navigation
-		
+		navigation();
 	}
-
-	   
-	
-	
-	
-	  private void get_values_pref() {//api key and stuff
+	 private void get_values_pref() {//api key and stuff
 		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 		  	
 		   
@@ -85,11 +52,14 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 			API_sceret =prefs.getString("api_secret", "nill");
 			Log.i("hi we are in pref",API_key);
 			Log.i("hi we are in pref",API_sceret);
-			
+			Conf_API.setting();// calling conf api to update the api key and valyes
+			new Check_api().execute();//checking api after the values are updated in conf_api
 		
 	}
-	
-	
+	 
+	 
+		
+		
 	  private class Check_api extends AsyncTask<Void, Void, Integer> {
 
 	        protected Integer doInBackground(Void... params) {
@@ -119,7 +89,7 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 	        	
 	        }
 
-  protected void onPostExecute(Integer result) {
+ protected void onPostExecute(Integer result) {
 
 				 if(result==200){
 					 Log.i("working test",result+"");
@@ -137,100 +107,12 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 	            super.onPostExecute(result);
 	        }
 	    }
-	  
-   
-	@Override
-	public void methodToCallback(String print) {
-		// TODO Auto-generated method stub
- 
-			// Hashmap for ListView
-
-					ArrayList<HashMap<String, String>> contactList = new ArrayList<HashMap<String, String>>();
- 
-					try {
-						json = new JSONObject(print);
-						event_data = json.getJSONArray(TAG_event);
-						 
-						// looping through All Contacts
-						for(int i = 0; i < event_data.length(); i++){
-						    JSONObject c = event_data.getJSONObject(i);
-						     
-						    // Storing each json item in variable
-						    String Amount = c.getString(amount);
-						    String parcent_change = c.getString(percent_change);
-						    String Event = c.getString(event);
-						  
-						 
-						    // creating new HashMap
-						    HashMap<String, String> map = new HashMap<String, String>();
-						     
-						    // adding each child node to HashMap key => value
-						    map.put(amount, Amount);
-						    map.put(percent_change, parcent_change);
-						    map.put(event, Event);
-						  
-	 
-						    // adding HashList to ArrayList
-						    contactList.add(map);
-	 
-						}
-	  
-						
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-					
- 
-		/**
-       * Updating parsed JSON data into ListView
-       * */
-					
-      ListAdapter adapter = new SimpleAdapter(this, contactList,
-					    R.layout.list_item,
-					    new String[] { percent_change, event, amount }, new int[] {
-					            R.id.p_change, R.id.e_date, R.id.E_amount });
- 
-      setListAdapter(adapter);
- 
-      // selecting single ListView item
-      ListView lv = getListView();
-     
-      // Launching new screen on Selecting Single ListItem
-      lv.setOnItemClickListener(new OnItemClickListener() {
- 
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-					        int position, long id) {
-					    // getting values from selected ListItem
-					    String perc = ((TextView) view.findViewById(R.id.p_change)).getText().toString();
-					    String name = ((TextView) view.findViewById(R.id.e_date)).getText().toString();
-					    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
-					    
-					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), Event_top_click.class);
-					    in.putExtra(percent_change, perc);
-					    in.putExtra(event, name);
-					    in.putExtra(amount, amount1);
-					    
-					    
-					    startActivity(in);
-					}
-      });
-				 
-		 		
-		
-		
-	}
-
-	  
+	
 	//for navigation
 	  public void navigation(){
-		  
+		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
-		  
+		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
 		// starting of menu
@@ -284,10 +166,7 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
-        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
-
+         
          getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
 
         return true;
@@ -303,45 +182,34 @@ public class Event_top extends SherlockListActivity implements Callback,OnShared
 			//startService(intentUpdater);
 			 
 			startActivity(new Intent(this, Prefrenceactivity.class));
-			 
+ 			 
 			return true;
 		case R.id.about:
 				//make someting for about
 			
 			
 			return true;
-		case R.id.refresh:
-			 Intent myIntent = new Intent(this ,Event_top.class);//refreshing
-				startActivity(myIntent);
-				finish();
-			return true;	
+	 	
 		default:
 			return false;
 			
 			
 		}
-	}
-
- 
-
-
-
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		 
-			get_values_pref();
-			 
-			//restarting activity with new values
-			
-		
-		
-		
-	}
 
 	 
-	
-	
-	
+	}
+
+
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+				String key) {
+			 
+				get_values_pref();
+ 				//restarting activity with new values
+				
+			
+			
+			
+		}
+		
 }

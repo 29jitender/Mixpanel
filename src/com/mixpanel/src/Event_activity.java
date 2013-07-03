@@ -58,6 +58,8 @@ public class Event_activity extends SherlockActivity implements OnSharedPreferen
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+
 		super.onCreate(savedInstanceState);		
 		getActionBar().setDisplayShowTitleEnabled(false);
 		 setContentView(R.layout.activity_event_activity);

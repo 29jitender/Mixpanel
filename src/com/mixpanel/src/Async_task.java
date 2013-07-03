@@ -102,9 +102,16 @@ class Async_task extends AsyncTask<String, Void, String> {
 		return display;
 	}
 
+	@Override
+	protected void onPreExecute() {
+		// TODO Auto-generated method stub
+		super.onPreExecute();
+	}
+
 	Callback callbackInstance;// callback variable
 
 	public void setListener(Callback listener){
+		
 	   callbackInstance = listener;
 	}
 

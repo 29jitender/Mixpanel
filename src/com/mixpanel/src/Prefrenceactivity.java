@@ -14,7 +14,6 @@ static final String TAG="PrefsActivity";
 		addPreferencesFromResource(R.xml.api_pref);
 		
 	}
-
-	
+	 
 }
 

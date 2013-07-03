@@ -15,7 +15,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme" >
-        <activity android:name="com.mixpanel.src.Event_top" >
+        <activity android:name="com.mixpanel.src.Landing_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,6 +75,11 @@
             android:name="com.mixpanel.src.Funnel_activity"
             android:label="@string/title_activity_funnel_activity" >
         </activity>
+        <activity
+            android:name="com.mixpanel.src.Event_top"
+            android:label="@string/title_activity_landing_activity" >
+        </activity>
+        
     </application>
 
 </manifest>

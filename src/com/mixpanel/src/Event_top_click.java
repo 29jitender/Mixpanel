@@ -38,6 +38,8 @@ public class Event_top_click  extends ListActivity implements Callback  {
 	public static String interval="7";// defining event interval
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+
         super.onCreate(savedInstanceState);
         
          getIntent().setAction("Already created");// activity already alive
