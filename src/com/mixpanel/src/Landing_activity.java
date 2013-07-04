@@ -78,7 +78,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 			 getSupportActionBar().setSelectedNavigationItem(0);//navigations
 
 			 if(isNetworkOnline()==true){//starting settings if internet is not working
-				 iamcallin();
+				 iamcallin();//calling the function to build everything
 
 			}
 				 

@@ -48,30 +48,40 @@ public class Event_top extends SherlockListActivity implements Callback,ActionBa
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.event_top);
-		 //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		  //setTheme(SampleList.THEME); //Used for theme switching in samples
-		  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
-		 	prefs.registerOnSharedPreferenceChangeListener(this);
 		
-		 
-		 
-		ParseJSON ParseJson_object = new ParseJSON();
-		ParseJson_object.pass_values("event_top1");
-		ParseJson_object.setListener(this);
-		
-		 get_values_pref();
 		navigation();// calling navigation
 		
 	}
+	    public void iamcallin(){
+	    	 setContentView(R.layout.event_top);
+			 //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+			  //setTheme(SampleList.THEME); //Used for theme switching in samples
+			  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
+			  prefs.registerOnSharedPreferenceChangeListener(this);
+			
+			 
+			 
+			ParseJSON ParseJson_object = new ParseJSON();
+			ParseJson_object.pass_values("event_top1");
+			ParseJson_object.setListener(this);
+			
+			get_values_pref();
+	    }
+		@Override
+			protected void onResume() {
+			iamcallin();//calling the activity on resume only
+				 getSupportActionBar().setSelectedNavigationItem(0);//getting the navigation 
+				 iamcallin();
+				super.onResume();
+			}
 
 
 public void  get_values_pref(){// getting values from preference  
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 
 		 
-		limit =prefs.getString("top_event", "10");
-		
+		String limit1 =prefs.getString("top_event", "10");
+		limit=limit1.replaceAll("\\s","");//removing spaces if user entered by mistake
 		final TextView textViewToChange10 = (TextView) findViewById(R.id.name_label);//printing the text as heading
 		textViewToChange10.setText("Top"+" "+limit+" "+"events of the day");
 		 
@@ -196,11 +206,6 @@ public void  get_values_pref(){// getting values from preference
 	        
 		// ending of menu
 	  }
-	 @Override
-	protected void onResume() {
-		 getSupportActionBar().setSelectedNavigationItem(0);
-		super.onResume();
-	}
 
  
 	@Override
