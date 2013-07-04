@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
@@ -25,7 +27,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class Event_top_click  extends ListActivity implements Callback  {
+public class Event_top_click  extends SherlockListActivity implements Callback  {
 	
 	// JSON node keys
 	 
@@ -47,9 +49,11 @@ public class Event_top_click  extends ListActivity implements Callback  {
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 
         super.onCreate(savedInstanceState);
-        
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+
          getIntent().setAction("Already created");// activity already alive
         setContentView(R.layout.top_event_click);
+        setSupportProgressBarIndeterminateVisibility(true);//onload show
 
         // getting intent data
         Intent in = getIntent();
@@ -127,6 +131,7 @@ public class Event_top_click  extends ListActivity implements Callback  {
 
 	 
 		
+        setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
 
 /**
 * Updating parsed JSON data into ListView

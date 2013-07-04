@@ -48,12 +48,15 @@ public class Event_top extends SherlockListActivity implements Callback,ActionBa
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+
 		navigation();// calling navigation
 		
 	}
 	    public void iamcallin(){
 	    	 setContentView(R.layout.event_top);
+	         setSupportProgressBarIndeterminateVisibility(true);//onload show
+
 			 //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 			  //setTheme(SampleList.THEME); //Used for theme switching in samples
 			  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
@@ -145,7 +148,8 @@ public void  get_values_pref(){// getting values from preference
 						e.printStackTrace();
 					}
 
-					
+	                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
  
 		/**
        * Updating parsed JSON data into ListView

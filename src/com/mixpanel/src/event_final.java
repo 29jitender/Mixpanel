@@ -10,8 +10,12 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,23 +25,27 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
 
-public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener {
-    /** Called when the activity is first created. */
-	 
+public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
+ 	 SharedPreferences prefs;
+
 	 private static String TAG_event = "values";
-	 private static String  key = "";
-	
+	 private static String  key = "";	
 	 private static String KEY1= "temp";
 	 private static String VALUE1= "temp1";
+	 public static String event_interval="";//global 
+	 public static String event_unit="";
+	 public static String event_type="";
 	  
 	// private static final String[] series={};   
 	    
@@ -52,21 +60,54 @@ public class event_final extends SherlockListActivity implements Callback,Action
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_final_view);
-    
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+
+		navigation();
+         
+    }
+	
+	public void iamcallin(){
+		setContentView(R.layout.event_final_view);
+        setSupportProgressBarIndeterminateVisibility(true);//onload show
+
         name = Event_activity.click_type;
          // Displaying all values on the screen
         
         TextView lblName1 = (TextView) findViewById(R.id.event_activity_name);
         lblName1.setText(name);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
+	 	prefs.registerOnSharedPreferenceChangeListener(this);
+	 	
+	 	//prefs.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+		get_values_pref(); 
     	ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event1");
 		ParseJson_object.setListener(this);
-		navigation();
-         
-    }
-        
-    
+	}
+	
+	@Override
+	protected void onResume() {// setting defult values
+		iamcallin();//for refresh purpose
+		 getSupportActionBar().setSelectedNavigationItem(1);
+		super.onResume();
+	}
+   
+	public void  get_values_pref(){// getting values from preference  
+		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
+		String event_interval1=prefs.getString("Interval", "7");
+		event_interval =event_interval1.replaceAll("\\s","");//to remove spaces
+		Log.i("i am checking interval",event_interval);
+		event_unit =prefs.getString("Unit", "day");
+		event_type =prefs.getString("Type", "general");
+		
+		
+		// condition of api
+				//event
+		if(event_type.equals("unique") && event_unit.equals("hour")){
+			Toast.makeText(getApplicationContext(), "You cannot get hourly uniques please change the event setting again", Toast.LENGTH_LONG).show();
+		}
+	}
 
 	@Override
 	public void methodToCallback(String print) {
@@ -128,7 +169,8 @@ public class event_final extends SherlockListActivity implements Callback,Action
 		* Updating parsed JSON data into graphs
 		* */
 		
-		
+        setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
 		
 		Line graph = new Line();
 		LinePoint p = new LinePoint();
@@ -224,11 +266,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	        getSupportActionBar().setListNavigationCallbacks(list, this);
 		// ending of menu
 	  }
-		 @Override
-			protected void onResume() {// setting defult values
-				 getSupportActionBar().setSelectedNavigationItem(1);
-				super.onResume();
-			}
+		 
 	  
 	  
 	  @Override
@@ -270,6 +308,10 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
             .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+ 
+	        menu.add(Menu.NONE, R.id.event_filter, Menu.NONE, R.string.event_filter)
+         
+         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
 
 	        return true;
 	    }
@@ -285,7 +327,13 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  				startActivity(myIntent);
 		  				finish();
 
-						return true;	
+						return true;
+		  			case R.id.event_filter:
+		  				//startService(intentUpdater);
+		  				
+		  				startActivity(new Intent(this, Prefrenceactivity_event.class));
+		  				 
+		  				return true;
 					default:
 						return false;	
 		  						
@@ -294,6 +342,15 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	        
 	       
 	    }
+
+
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+				String key) {
+			// TODO Auto-generated method stub
+			get_values_pref();
+			
+		}
 
 	
 	 

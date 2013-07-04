@@ -32,9 +32,9 @@ public class All_api_define{
 		  //some bug in api when calling watched video in average
 		  Event_activity event_object= new Event_activity();
 		   
-		  String type = event_object.event_type;
-		  String unit = event_object.event_unit;
-		  interval1 = event_object.event_interval;
+		  String type = event_final.event_type;
+		  String unit = event_final.event_unit;
+		  interval1 = event_final.event_interval;
 		
 		  tm.put("event", event3);
 	      tm.put("type", type);

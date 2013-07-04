@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <ListPreference android:key="Type" android:title="@string/pref_event_type" android:summary="@string/pref_event_type_summary" android:entries="@array/pref_event_type_name" android:entryValues="@array/pref_event_type_values"/>
     <ListPreference android:key="Unit" android:entryValues="@array/pref_event_unit_values" android:summary="@string/pref_event_unit_summary" android:entries="@array/pref_event_unit_name" android:title="@string/pref_event_unit"/>
-    <EditTextPreference android:title="@string/pref_event_interval" android:key="Interval" android:summary="@string/pref_event_interval_summary"/>
+    <EditTextPreference android:title="@string/pref_event_interval" android:key="Interval" android:summary="@string/pref_event_interval_summary"  />
     
 
 </PreferenceScreen>

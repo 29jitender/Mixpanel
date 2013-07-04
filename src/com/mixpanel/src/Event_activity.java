@@ -7,6 +7,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,13 +32,10 @@ import android.widget.Toast;
 //    void methodToCallback(String response);
 //}
 
-public class Event_activity extends SherlockActivity implements OnSharedPreferenceChangeListener, Callback,ActionBar.OnNavigationListener {
-	 SharedPreferences prefs;
-	
+public class Event_activity extends SherlockActivity implements   Callback,ActionBar.OnNavigationListener {
+ 	
 	 public static String click_type="";
-	 public static String event_interval="";//global 
-	 public static String event_unit="";
-	 public static String event_type="";
+	 
 	 public static  String display1="lol";
 	// List view
 		private ListView lv;
@@ -60,13 +58,13 @@ public class Event_activity extends SherlockActivity implements OnSharedPreferen
 	protected void onCreate(Bundle savedInstanceState) {
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 
-		super.onCreate(savedInstanceState);		
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+
 		getActionBar().setDisplayShowTitleEnabled(false);
 		 setContentView(R.layout.activity_event_activity);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
-	 	prefs.registerOnSharedPreferenceChangeListener(this);
-		get_values_pref(); 
-		Log.i("in async sucess",display1);
+	        setSupportProgressBarIndeterminateVisibility(true);//onload show loading
+
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_name");
 		ParseJson_object.setListener(this);
@@ -80,8 +78,11 @@ public class Event_activity extends SherlockActivity implements OnSharedPreferen
 	public void methodToCallback(String display12) {
 		// TODO Auto-generated method stub
 		//String display1 =ParseJson_object.pass_values("event_name");
+		
 		String result =  display12.replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "");
 		String[]  array = result.split(", ");//to get the result in list without ", "
+        setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
 		lv = (ListView) findViewById(R.id.list_view);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
         
@@ -118,26 +119,7 @@ public class Event_activity extends SherlockActivity implements OnSharedPreferen
 
 	}
 
-
-
-public void  get_values_pref(){// getting values from preference  
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
-
-		event_interval =prefs.getString("Interval", "7");
-		event_unit =prefs.getString("Unit", "day");
-		event_type =prefs.getString("Type", "general");
-		
-		
-		// condition of api
-				//event
-		if(event_type.equals("unique") && event_unit.equals("hour")){
-			Toast.makeText(getApplicationContext(), "You cannot get hourly uniques please change the event setting again", Toast.LENGTH_LONG).show();
-		}
-		
-		
-		
-		//return event_interval,event_unit,event_type;
-	} 
+ 
 	
 	public String click_action(){
 		 
@@ -221,12 +203,7 @@ public void  get_values_pref(){// getting values from preference
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		 boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-
-	        menu.add(Menu.NONE, R.id.event_filter, Menu.NONE, R.string.event_filter)
-         
-         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
-         //getSherlock().getMenuInflater().inflate(R.menu.event_activity, menu);
+		 
 		return true;
 		
 	}
@@ -238,12 +215,7 @@ public void  get_values_pref(){// getting values from preference
 
 		switch (item.getItemId()){
 		
-		case R.id.event_filter:
-			//startService(intentUpdater);
-			
-			startActivity(new Intent(this, Prefrenceactivity_event.class));
-			 
-			return true;
+		 
 		
 		default:
 			return false;
@@ -252,14 +224,7 @@ public void  get_values_pref(){// getting values from preference
 		}
 	}
 
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		// TODO Auto-generated method stub
-		get_values_pref();
-		
-	}
+ 
 
 
 

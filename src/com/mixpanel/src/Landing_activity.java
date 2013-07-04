@@ -30,6 +30,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
 
@@ -51,10 +52,14 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+
 		
 		
 		navigation();
-		
+        
+
+
  
 		
 		
@@ -62,6 +67,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	
 	public void iamcallin(){//calling everything to start
 		setContentView(R.layout.activity_landing_activity);
+        setSupportProgressBarIndeterminateVisibility(true);//onload show
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); //getting values from pre
@@ -189,7 +195,8 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 							  
 		 
 							}
-		  
+			                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
 
 							//adding text in layout
 							final TextView textViewToChange1 = (TextView) findViewById(R.id.textView1);
