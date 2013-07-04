@@ -38,8 +38,7 @@ public class Event_top extends SherlockListActivity implements Callback,ActionBa
 	private static final String percent_change = "percent_change";
 	private static final String event = "event";
 	    public static String click_type="";
-	    static String API_sceret= "";//defining variable 
-		 static String API_key=""; 
+	    
 		 
 		 public static String limit="";
 
@@ -49,11 +48,12 @@ public class Event_top extends SherlockListActivity implements Callback,ActionBa
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		setContentView(R.layout.event_top);
+		 //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		  //setTheme(SampleList.THEME); //Used for theme switching in samples
 		  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 		 	prefs.registerOnSharedPreferenceChangeListener(this);
-		setContentView(R.layout.event_top);
+		
 		 
 		 
 		ParseJSON ParseJson_object = new ParseJSON();

@@ -51,26 +51,47 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		navigation();
+		
+ 
+		
+		
+	}
+	
+	public void iamcallin(){//calling everything to start
 		setContentView(R.layout.activity_landing_activity);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 		get_values_pref(); //getting values from pre
-		
-		if(API_key.equals("nill") && API_sceret.equals("nill")){
-			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
-		}
-		navigation();
-		//for pie chart
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
-		if(isNetworkOnline()==false){//starting settings if internet is not working
-			Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-			startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+		if(API_key.equals("nill") && API_sceret.equals("nill")){
+			Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
 		}
 		
-		
 	}
+	 @Override
+		protected void onResume() {
+			 getSupportActionBar().setSelectedNavigationItem(0);//navigations
+
+			 if(isNetworkOnline()==true){//starting settings if internet is not working
+				 iamcallin();
+
+			}
+				 
+			 else if(isNetworkOnline()==false){//starting settings if internet is not working
+					Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+					//startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+
+				}
+				
+			 super.onResume();
+		}
+
+	
 	 private void get_values_pref() {//api key and stuff
 		  prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
 		  	
@@ -151,7 +172,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 						try {
 							json = new JSONObject(print);
 							event_data = json.getJSONArray(TAG_event);
-							 
+							
 							// looping through All data
 							for(int i = 0; i < event_data.length(); i++){
 							    JSONObject c = event_data.getJSONObject(i);
@@ -165,100 +186,103 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 							    float k =Float.parseFloat(Amount);//amount to pass in pie chart
 							    values_amount[i]=k;//amount ot pass in pie chart
 							    name_value[i]=Amount;
-							    
-							     
-							    
+							  
 		 
 							}
 		  
+
+							//adding text in layout
+							final TextView textViewToChange1 = (TextView) findViewById(R.id.textView1);
+							textViewToChange1.setText(e_name[0]);
+							final TextView textViewToChange2 = (TextView) findViewById(R.id.textView2);
+							textViewToChange2.setText(e_name[1]);
+							final TextView textViewToChange3 = (TextView) findViewById(R.id.textView3);
+							textViewToChange3.setText(e_name[2]);
+							final TextView textViewToChange4 = (TextView) findViewById(R.id.textView4);
+							textViewToChange4.setText(e_name[3]);
+							final TextView textViewToChange5 = (TextView) findViewById(R.id.textView5);
+							textViewToChange5.setText(e_name[4]);
+							//printing amount
+//							final TextView textViewToChange6 = (TextView) findViewById(R.id.textView6);
+//							textViewToChange6.setText(name_value[0]);
+//							final TextView textViewToChange7 = (TextView) findViewById(R.id.textView7);
+//							textViewToChange7.setText(name_value[1]);
+//							final TextView textViewToChange8 = (TextView) findViewById(R.id.textView8);
+//							textViewToChange8.setText(name_value[2]);
+//							final TextView textViewToChange9 = (TextView) findViewById(R.id.textView9);
+//							textViewToChange9.setText(name_value[3]);
+//							final TextView textViewToChange10 = (TextView) findViewById(R.id.textView10);
+//							textViewToChange10.setText(name_value[4]);
+//									   	
+							
+									
+									
+				
+									
+						/**
+				       * Updating parsed JSON data into pie chart
+				       * 
+				       * */  PieGraph pg1 = (PieGraph)findViewById(R.id.piegraph);
+			           PieSlice slice1 = new PieSlice();
+			           slice1.setColor(Color.parseColor("#99CC00"));
+			           slice1.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
+			           pg1.addSlice(slice1);
+			           slice1 = new PieSlice();
+			           slice1.setColor(Color.parseColor("#FFBB33"));
+			           slice1.setValue(values_amount[1]+1);
+			           pg1.addSlice(slice1);
+			           slice1 = new PieSlice();
+			           slice1.setColor(Color.parseColor("#AA66CC"));
+			           slice1.setValue(values_amount[2]+1);
+			           pg1.addSlice(slice1);
+			           slice1 = new PieSlice();
+			           slice1.setColor(Color.parseColor("#f41212"));
+			           slice1.setValue(values_amount[3]+1);
+			           pg1.addSlice(slice1);
+			           slice1 = new PieSlice();
+			           slice1.setColor(Color.parseColor("#25d3ee"));
+			           slice1.setValue(values_amount[4]+1);
+			           pg1.addSlice(slice1);  
+			           
+			           
+			           
+			           
+			           //yesteday
+			           PieGraph pg = (PieGraph)findViewById(R.id.piegraph1);
+			           PieSlice slice = new PieSlice();
+			           slice.setColor(Color.parseColor("#99CC00"));
+			           slice.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
+			           pg.addSlice(slice);
+			           slice = new PieSlice();
+			           slice.setColor(Color.parseColor("#FFBB33"));
+			           slice.setValue(values_amount[1]+1);
+			           pg.addSlice(slice);
+			           slice = new PieSlice();
+			           slice.setColor(Color.parseColor("#AA66CC"));
+			           slice.setValue(values_amount[2]+1);
+			           pg.addSlice(slice);
+			           slice = new PieSlice();
+			           slice.setColor(Color.parseColor("#f41212"));
+			           slice.setValue(values_amount[3]+1);
+			           pg.addSlice(slice);
+			           slice = new PieSlice();
+			           slice.setColor(Color.parseColor("#25d3ee"));
+			           slice.setValue(values_amount[4]+1);
+			           pg.addSlice(slice);  
+			           
+			          
+			           
+							
 							
 							
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
+						
+					//if(json.getJSONObject("error")==null){}	
 
-				//adding text in layout
-				final TextView textViewToChange1 = (TextView) findViewById(R.id.textView1);
-				textViewToChange1.setText(e_name[0]);
-				final TextView textViewToChange2 = (TextView) findViewById(R.id.textView2);
-				textViewToChange2.setText(e_name[1]);
-				final TextView textViewToChange3 = (TextView) findViewById(R.id.textView3);
-				textViewToChange3.setText(e_name[2]);
-				final TextView textViewToChange4 = (TextView) findViewById(R.id.textView4);
-				textViewToChange4.setText(e_name[3]);
-				final TextView textViewToChange5 = (TextView) findViewById(R.id.textView5);
-				textViewToChange5.setText(e_name[4]);
-				//printing amount
-//				final TextView textViewToChange6 = (TextView) findViewById(R.id.textView6);
-//				textViewToChange6.setText(name_value[0]);
-//				final TextView textViewToChange7 = (TextView) findViewById(R.id.textView7);
-//				textViewToChange7.setText(name_value[1]);
-//				final TextView textViewToChange8 = (TextView) findViewById(R.id.textView8);
-//				textViewToChange8.setText(name_value[2]);
-//				final TextView textViewToChange9 = (TextView) findViewById(R.id.textView9);
-//				textViewToChange9.setText(name_value[3]);
-//				final TextView textViewToChange10 = (TextView) findViewById(R.id.textView10);
-//				textViewToChange10.setText(name_value[4]);
-//						   	
-				
-						
-						
-	
-						
-			/**
-	       * Updating parsed JSON data into pie chart
-	       * 
-	       * */  PieGraph pg1 = (PieGraph)findViewById(R.id.piegraph);
-           PieSlice slice1 = new PieSlice();
-           slice1.setColor(Color.parseColor("#99CC00"));
-           slice1.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
-           pg1.addSlice(slice1);
-           slice1 = new PieSlice();
-           slice1.setColor(Color.parseColor("#FFBB33"));
-           slice1.setValue(values_amount[1]+1);
-           pg1.addSlice(slice1);
-           slice1 = new PieSlice();
-           slice1.setColor(Color.parseColor("#AA66CC"));
-           slice1.setValue(values_amount[2]+1);
-           pg1.addSlice(slice1);
-           slice1 = new PieSlice();
-           slice1.setColor(Color.parseColor("#f41212"));
-           slice1.setValue(values_amount[3]+1);
-           pg1.addSlice(slice1);
-           slice1 = new PieSlice();
-           slice1.setColor(Color.parseColor("#25d3ee"));
-           slice1.setValue(values_amount[4]+1);
-           pg1.addSlice(slice1);  
-           
-           
-           
-           
-           //yesteday
-           PieGraph pg = (PieGraph)findViewById(R.id.piegraph1);
-           PieSlice slice = new PieSlice();
-           slice.setColor(Color.parseColor("#99CC00"));
-           slice.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
-           pg.addSlice(slice);
-           slice = new PieSlice();
-           slice.setColor(Color.parseColor("#FFBB33"));
-           slice.setValue(values_amount[1]+1);
-           pg.addSlice(slice);
-           slice = new PieSlice();
-           slice.setColor(Color.parseColor("#AA66CC"));
-           slice.setValue(values_amount[2]+1);
-           pg.addSlice(slice);
-           slice = new PieSlice();
-           slice.setColor(Color.parseColor("#f41212"));
-           slice.setValue(values_amount[3]+1);
-           pg.addSlice(slice);
-           slice = new PieSlice();
-           slice.setColor(Color.parseColor("#25d3ee"));
-           slice.setValue(values_amount[4]+1);
-           pg.addSlice(slice);  
-           
-          
-           
 
            
 
@@ -303,13 +327,10 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	        
 		// ending of menu
 	  }
-	 @Override
-	protected void onResume() {
-		 getSupportActionBar().setSelectedNavigationItem(0);
-		super.onResume();
-	}
-
+	
  
+ 
+
 	@Override
 	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		  
@@ -344,11 +365,15 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-         
+        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	 
+        
          getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
          menu.add(Menu.NONE, R.id.landing, Menu.NONE, R.string.landing)
          .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
          .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+         
         return true;
     }
     
@@ -374,7 +399,11 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 		startActivity(new Intent(this, Event_top.class));
 		
 		return true;	
-	 	
+		case R.id.refresh:
+			 Intent myIntent = new Intent(this ,Landing_activity.class);//refreshing
+				startActivity(myIntent);
+				finish();
+			return true;
 		default:
 			return false;
 			
