@@ -2,80 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">  
+    android:orientation="horizontal"
+     android:background="@drawable/list_selector" >
+
     <LinearLayout
-         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-	 
-		 <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
-        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.23"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/e_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingBottom="2dip"
+                android:text="Signup form submit "
+                android:textColor="#FFBB33"   
+                android:textSize="20sp"
+                android:textStyle="bold" >
+
+        </TextView>
+
+            <LinearLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#5d5d5d"
             android:gravity="left"
             android:textStyle="bold"
-            android:text="Percent change: " >
+            
+            android:text="% Change: " >
         </TextView>
+
       <TextView
-            android:id="@+id/p_change"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#43bd00"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:paddingTop="6dip"
-            android:paddingBottom="2dip" />
+          android:id="@+id/p_change"
+          android:layout_width="145dp"
+          android:layout_height="wrap_content"
+          android:paddingBottom="2dip"
+          android:paddingTop="6dip"
+          android:text="0.45451514 "
+          android:textColor="#43bd00"
+          android:textSize="15sp" />
+
+            </LinearLayout>
+          
         </LinearLayout>
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#5d5d5d"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:text="Event name: " >
-        </TextView>
-       <TextView
-            android:id="@+id/e_date"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#acacac"
-            android:paddingBottom="2dip">
-        </TextView>
-        </LinearLayout>
-		 
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- Cost Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#5d5d5d"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:text="Amount: " >
-        </TextView>
-        <!-- Price Label -->
-        <TextView
+  <TextView
             android:id="@+id/E_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="93dip"
             android:layout_height="wrap_content"
-            android:textColor="#acacac" 
+            android:textColor="#AA66CC" 
             android:textStyle="bold"
-            android:gravity="left">
-        </TextView>
-        </LinearLayout>
+            android:gravity="right"
+            android:textSize="40sp"
+            
+            android:text="1334" />
+        
     </LinearLayout>
 
 </LinearLayout>

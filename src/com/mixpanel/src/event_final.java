@@ -15,14 +15,15 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.InputType;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
+import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 import com.echo.holographlibrary.LinePoint;
 
 public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
@@ -53,7 +55,7 @@ public class event_final extends SherlockListActivity implements Callback,Action
 	 JSONObject event_data = null;
 	 static JSONObject json = null;
 	public static String name="";  // defining event name
-	 
+	public JSONArray series= null;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,14 @@ public class event_final extends SherlockListActivity implements Callback,Action
 	public void iamcallin(){
 		setContentView(R.layout.event_final_view);
         setSupportProgressBarIndeterminateVisibility(true);//onload show
-
+      //layout for diff screen 
+      		Display display = getWindowManager().getDefaultDisplay(); 		 
+      		int height = display.getHeight();  // deprecated
+      		
+      		RelativeLayout rl = (RelativeLayout) findViewById(R.id.relativeLayout_eventfinal);
+      	    rl.getLayoutParams().height = height/2;
+       	  
+      	  ///
         name = Event_activity.click_type;
          // Displaying all values on the screen
         
@@ -111,14 +120,14 @@ public class event_final extends SherlockListActivity implements Callback,Action
 
 	@Override
 	public void methodToCallback(String print) {
-		float[] data_map=new float[100];//defing array 
+		final float[] data_map=new float[100];//defing array 
 		ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
 		
 	 
 		
 		try {
 			 json = new JSONObject(print);
-			 JSONArray series = json.getJSONArray("series");//taking the series 
+			  series = json.getJSONArray("series");//taking the series 
 			
 			event_data = json.getJSONObject(TAG_event);
 			
@@ -199,14 +208,19 @@ public class event_final extends SherlockListActivity implements Callback,Action
 		li.setRangeY(0, rangeY);
 		li.setLineToFill(2);//change filling
 		
-//		li.setOnPointClickedListener(new OnPointClickedListener(){
-//
-//			@Override
-//			public void onClick(int lineIndex, int pointIndex) {
-// 				//Toast.makeText(getApplicationContext(), ""+lineIndex, Toast.LENGTH_LONG).show();
-//			}
-//			
-//		});
+		li.setOnPointClickedListener(new OnPointClickedListener(){
+
+			@Override
+			public void onClick(int lineIndex, int pointIndex) {
+ 				try {
+					Toast.makeText(getApplicationContext(), ":"+series.getString(pointIndex)+":----:"+Math.round(data_map[pointIndex])+":", Toast.LENGTH_SHORT).show();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
 		
 		
 		

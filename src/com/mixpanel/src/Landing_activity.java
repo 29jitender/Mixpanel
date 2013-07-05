@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -22,7 +23,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Display;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +58,17 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+		 if(isNetworkOnline()==true){//starting settings if internet is not working
+			 iamcallin();//calling the function to build everything
 
+		}
+			 
+		 else if(isNetworkOnline()==false){//starting settings if internet is not working
+				Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+				//startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+
+			}
+			
 		
 		
 		navigation();
@@ -67,6 +82,20 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 	
 	public void iamcallin(){//calling everything to start
 		setContentView(R.layout.activity_landing_activity);
+		//layout for diff screen 
+		Display display = getWindowManager().getDefaultDisplay(); 		 
+		int height = display.getHeight();  // deprecated
+		
+		RelativeLayout rl = (RelativeLayout) findViewById(R.id.relativeLayout1);
+	    rl.getLayoutParams().height = height/4;
+ 	    RelativeLayout r2 = (RelativeLayout) findViewById(R.id.relativeLayout2);
+ 	    r2.getLayoutParams().height = height/4;
+	  ///
+		
+		
+		
+		
+		
         setSupportProgressBarIndeterminateVisibility(true);//onload show
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
@@ -84,7 +113,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 			 getSupportActionBar().setSelectedNavigationItem(0);//navigations
 
 			 if(isNetworkOnline()==true){//starting settings if internet is not working
-				 iamcallin();//calling the function to build everything
+				//+ iamcallin();//calling the function to build everything
 
 			}
 				 

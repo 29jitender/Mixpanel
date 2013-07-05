@@ -16,8 +16,10 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme" >
-        <activity android:name="com.mixpanel.src.Landing_activity" >
+        android:theme="@style/AppBaseTheme" 
+        >
+        <activity android:name="com.mixpanel.src.Landing_activity" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +42,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.event_final"
-            android:label="@string/title_activity_event_activity" >
+             android:label="@string/title_activity_event_activity" >
         </activity>
         <activity
             android:name="com.mixpanel.src.MainActivity1"
