@@ -10,7 +10,11 @@ package com.mixpanel.src;
 public final class R {
     public static final class anim {
         public static final int alpha=0x7f040000;
-        public static final int translate=0x7f040001;
+        public static final int fadein=0x7f040001;
+        public static final int fadeout=0x7f040002;
+        public static final int push_down_in=0x7f040003;
+        public static final int push_down_out=0x7f040004;
+        public static final int translate=0x7f040005;
     }
     public static final class array {
         public static final int locations=0x7f0d0000;

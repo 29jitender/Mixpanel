@@ -50,6 +50,7 @@ public final class HomeFragment extends Fragment implements Callback{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top");
 		ParseJson_object.setListener(this);
@@ -80,6 +81,8 @@ public final class HomeFragment extends Fragment implements Callback{
 		 String[] name_value=new String[5];
 		  final String[] e_name=new String[5];
 		  final Float[] values_amount=new Float[5];
+		  final Float[] change = new Float[5];
+		  final Float[] yes_value = new Float[5];
 					 
 		  Log.i("i am check frag",mContent);
 					try {
@@ -99,11 +102,19 @@ public final class HomeFragment extends Fragment implements Callback{
 						    float k =Float.parseFloat(Amount);//amount to pass in pie chart
 						    values_amount[i]=k;//amount ot pass in pie chart
 						    name_value[i]=Amount;
+						    float j =Float.parseFloat(Amount);//percent change to calculate yesterday
+						     change[i]=j;//storing in change
 						  
 	 
 						}
 		               // setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
 
+						//calc yes
+						for(int i=0;i<5;i++){
+							yes_value[i]=values_amount[i]/(1+change[i]);
+							Log.i("asdasdasddddddddddddasdasdasdasd",yes_value[i]+"");
+						}
+						
 
 						//adding text in layout
 						final TextView textViewToChange1 = (TextView) getView().findViewById(R.id.textView1);
@@ -168,30 +179,31 @@ public final class HomeFragment extends Fragment implements Callback{
 		           PieGraph pg = (PieGraph)getView().findViewById(R.id.piegraph);
 		           PieSlice slice = new PieSlice();
 		           slice.setColor(Color.parseColor("#99CC00"));
-		           slice.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
+		           
+		           slice.setValue(Math.round(yes_value[0])+1);//adding 1 to show the graph with value 
 		           pg.addSlice(slice);
 		           slice = new PieSlice();
 		           slice.setColor(Color.parseColor("#FFBB33"));
-		           slice.setValue(values_amount[1]+1);
+		           slice.setValue(Math.round(yes_value[1])+1);
 		           pg.addSlice(slice);
 		           slice = new PieSlice();
 		           slice.setColor(Color.parseColor("#AA66CC"));
-		           slice.setValue(values_amount[2]+1);
+		           slice.setValue(Math.round(yes_value[2])+1);
 		           pg.addSlice(slice);
 		           slice = new PieSlice();
 		           slice.setColor(Color.parseColor("#f41212"));
-		           slice.setValue(values_amount[3]+1);
+		           slice.setValue(Math.round(yes_value[3])+1);
 		           pg.addSlice(slice);
 		           slice = new PieSlice();
 		           slice.setColor(Color.parseColor("#25d3ee"));
-		           slice.setValue(values_amount[4]+1);
+		           slice.setValue(Math.round(yes_value[4])+1);
 		           pg.addSlice(slice);  
 		           
 		           pg.setOnSliceClickedListener(new OnSliceClickedListener(){
 
                        @Override
                        public void onClick(int index) {
-           				Toast.makeText(getActivity(), e_name[index]+" Got Clicked " +Math.round(values_amount[index])+" times" +" today", Toast.LENGTH_SHORT).show();
+           				Toast.makeText(getActivity(), e_name[index]+" Got Clicked " +Math.round(yes_value[index])+" times" +" today", Toast.LENGTH_SHORT).show();
 
                                
                        }

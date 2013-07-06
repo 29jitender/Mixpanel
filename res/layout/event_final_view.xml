@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp" 
+        android:layout_margin="4dip"
         android:id="@+id/relativeLayout_eventfinal">
         <com.echo.holographlibrary.LineGraph
         android:id="@+id/graph"
@@ -26,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Output text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="23dip"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
 

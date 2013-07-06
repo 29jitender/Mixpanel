@@ -52,13 +52,15 @@ public class Home extends SherlockFragmentActivity implements ActionBar.OnNaviga
         
         if(isNetworkOnline()==true){//starting settings if internet is not working
         	internt_count=true; 
+  		  setTheme(SampleList.THEME); //Used for theme switching in samples
+
         	iamcallin();//calling the function to build everything
 
 		}
 			 
-		 else if(isNetworkOnline()==false){//starting settings if internet is not working
+		 else if(isNetworkOnline()==false){ 
 				//Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-			 setContentView(R.layout.nointernet);
+			 //setContentView(R.layout.nointernet);
 			 internt_count= false;
 			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout1);
 			  rlayout.setOnClickListener(new OnClickListener() {
@@ -178,9 +180,10 @@ protected void onPostExecute(Integer result) {
 				 
 			   if(internt_count==false){//starting settings if internet is not working
 //					Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-				 setContentView(R.layout.nointernet);
-				 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout1);
-				  rlayout.setOnClickListener(new OnClickListener() {
+				   setContentView(R.layout.nointernet);
+				   internt_count= false;
+				   RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+				   rlayout.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
@@ -199,7 +202,10 @@ protected void onPostExecute(Integer result) {
 	
 		//checking internet connection
 		
-	 public boolean isNetworkOnline() {
+	 
+
+
+	public boolean isNetworkOnline() {
 		    boolean status=false;
 		    try{
 		        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -251,9 +257,11 @@ protected void onPostExecute(Integer result) {
 			
 			case 1:
 				startActivity(new Intent(this, Event_activity.class)); 
+				overridePendingTransition(R.anim.fadein,R.anim.fadeout);
 				return true;
 			case 2:
 				startActivity(new Intent(this, Event_top.class));
+				overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
 				
 				return true;
 			case 3:

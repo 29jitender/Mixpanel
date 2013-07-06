@@ -7,7 +7,6 @@
   <LinearLayout android:layout_weight="1" android:layout_height="fill_parent" android:layout_width="fill_parent">
   <com.echo.holographlibrary.PieGraph
             android:id="@+id/piegraph"
-            android:layout_marginTop="10dip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -116,7 +115,7 @@
                   android:id="@+id/textView5" android:layout_marginLeft="10dip"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text=" " android:textColor="#676363"
+                  android:text=" "
                   android:textAppearance="?android:attr/textAppearanceMedium" />
 
           </TableRow>
