@@ -20,10 +20,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -218,7 +216,7 @@ protected void onPostExecute(Integer result) {
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
 		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
-		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
+		  //String[] mLocations = getResources().getStringArray(R.array.locations);// item location
 		// starting of menu
 		   Context context = getSupportActionBar().getThemedContext();
 	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
@@ -270,8 +268,7 @@ protected void onPostExecute(Integer result) {
 
   public boolean onCreateOptionsMenu(Menu menu) {
       //Used to put dark icons on light action bar
-      boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-      
+       
       
        getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
       

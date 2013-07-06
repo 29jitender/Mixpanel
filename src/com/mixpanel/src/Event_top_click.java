@@ -8,19 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
-import com.echo.holographlibrary.Line;
-import com.echo.holographlibrary.LineGraph;
-import com.echo.holographlibrary.LinePoint;
-
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +20,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 
 public class Event_top_click  extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener  {
 	
@@ -183,8 +178,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
 		 
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
-		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
-		// starting of menu
+ 		// starting of menu
 		   Context context = getSupportActionBar().getThemedContext();
 	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
 	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);

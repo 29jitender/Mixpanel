@@ -200,8 +200,7 @@ public void  get_values_pref(){// getting values from preference
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
 		  getSupportActionBar().setDisplayUseLogoEnabled  (true);		  
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
-		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
-		// starting of menu
+ 		// starting of menu
 		   Context context = getSupportActionBar().getThemedContext();
 	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
 	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);

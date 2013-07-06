@@ -30,7 +30,7 @@ public class All_api_define{
 		 
 		 TreeMap<String, String> tm = new TreeMap<String, String>();
 		  //some bug in api when calling watched video in average
-		  Event_activity event_object= new Event_activity();
+		 // Event_activity event_object= new Event_activity();
 		   
 		  String type = event_final.event_type;
 		  String unit = event_final.event_unit;

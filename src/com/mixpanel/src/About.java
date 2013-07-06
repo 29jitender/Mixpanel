@@ -2,8 +2,6 @@ package com.mixpanel.src;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;

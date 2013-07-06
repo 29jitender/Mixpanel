@@ -3,7 +3,6 @@ package com.mixpanel.src;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.viewpagerindicator.IconPagerAdapter;
 
 class HomeFragmentAdapter extends FragmentPagerAdapter   {
     protected static final String[] CONTENT = new String[] { "Today", "Yesteday"  };//setting title
