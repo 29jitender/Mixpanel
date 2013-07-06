@@ -13,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.echo.holographlibrary.PieGraph;
+import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
 import com.echo.holographlibrary.PieSlice;
 
 public final class HomeFragment extends Fragment implements Callback{
@@ -76,8 +78,8 @@ public final class HomeFragment extends Fragment implements Callback{
  
 			// Hashmap for ListView
 		 String[] name_value=new String[5];
-		  String[] e_name=new String[5];
-		  Float[] values_amount=new Float[5];
+		  final String[] e_name=new String[5];
+		  final Float[] values_amount=new Float[5];
 					 
 		  Log.i("i am check frag",mContent);
 					try {
@@ -147,14 +149,25 @@ public final class HomeFragment extends Fragment implements Callback{
 		           slice1.setColor(Color.parseColor("#25d3ee"));
 		           slice1.setValue(values_amount[4]+1);
 		           pg1.addSlice(slice1);  
+		           
+		           pg1.setOnSliceClickedListener(new OnSliceClickedListener(){
+
+                       @Override
+                       public void onClick(int index) {
+           				Toast.makeText(getActivity(), e_name[index]+" Got Clicked " +Math.round(values_amount[index])+" times" +" today", Toast.LENGTH_SHORT).show();
+
+                               
+                       }
+                       
+               });
 				   }
 		           
 		           
-				   else if(mContent.equals("Yesteday")){
+				   else if(mContent.equals("Yesteday")){ // for other tab
 		           //yesteday
 		           PieGraph pg = (PieGraph)getView().findViewById(R.id.piegraph);
 		           PieSlice slice = new PieSlice();
-		           slice.setColor(Color.parseColor("#25d3ee"));
+		           slice.setColor(Color.parseColor("#99CC00"));
 		           slice.setValue(values_amount[0]+1);//adding 1 to show the graph with value 
 		           pg.addSlice(slice);
 		           slice = new PieSlice();
@@ -173,6 +186,18 @@ public final class HomeFragment extends Fragment implements Callback{
 		           slice.setColor(Color.parseColor("#25d3ee"));
 		           slice.setValue(values_amount[4]+1);
 		           pg.addSlice(slice);  
+		           
+		           pg.setOnSliceClickedListener(new OnSliceClickedListener(){
+
+                       @Override
+                       public void onClick(int index) {
+           				Toast.makeText(getActivity(), e_name[index]+" Got Clicked " +Math.round(values_amount[index])+" times" +" today", Toast.LENGTH_SHORT).show();
+
+                               
+                       }
+                       
+               });
+		           
 		           
 				   }
 		           

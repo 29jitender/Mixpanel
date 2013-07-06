@@ -3,90 +3,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Landing_activity" >
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="300dip"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" >
-
-        <com.echo.holographlibrary.PieGraph
+<LinearLayout android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent">
+  <LinearLayout android:layout_weight="1" android:layout_height="fill_parent" android:layout_width="fill_parent">
+  <com.echo.holographlibrary.PieGraph
             android:id="@+id/piegraph"
+            android:layout_marginTop="10dip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true" />
-    </RelativeLayout>
+  </LinearLayout>
+  
+  <LinearLayout android:layout_weight="1" android:layout_height="fill_parent" android:layout_width="fill_parent">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="200dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
-    </RelativeLayout>
+      <TableLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" >
+ 
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/relativeLayout2"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="26dp"
-        android:layout_toRightOf="@+id/relativeLayout2"
-        android:text="TextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#99CC00"
-        android:textStyle="bold" />
+          <TableRow
+              android:id="@+id/tableRow1" android:layout_margin="2dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@+id/relativeLayout2"
-        android:text="TextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFBB33"
-        android:textStyle="bold" />
+              <Button
+                  android:id="@+id/button1" 
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" android:background="#99CC00"
+                 
+                  android:text=" " />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@+id/relativeLayout2"
-        android:text="TextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#25d3ee"
-        android:textStyle="bold" />
+              <TextView
+                  android:id="@+id/textView1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"      android:layout_marginLeft="10dip"
+                  android:text="   "
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:textColor="#676363" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@+id/relativeLayout2"
-        android:text="TextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#f41212"
-        android:textStyle="bold" />
+          </TableRow>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@+id/relativeLayout2"
-        android:text="TextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#AA66CC"
-        android:textStyle="bold" />
+          <TableRow
+              android:id="@+id/tableRow2" android:layout_margin="2dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+
+              <Button
+                  android:id="@+id/button2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"  android:background="#FFBB33"
+                  android:text=" " />
+
+              <TextView
+                  android:id="@+id/textView2" android:layout_marginLeft="10dip"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text=" " android:textColor="#676363"
+                  android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          </TableRow>
+
+          <TableRow
+              android:id="@+id/tableRow3" android:layout_margin="2dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+
+              <Button
+                  android:id="@+id/button3"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"   android:background="#AA66CC"
+                  android:text=" " />
+
+              <TextView
+                  android:id="@+id/textView3" android:layout_marginLeft="10dip"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text=" " android:textColor="#676363"
+                  android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          </TableRow>
+   <TableRow 
+              android:id="@+id/tableRow4" android:layout_margin="2dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+
+              <Button
+                  android:id="@+id/button4" 
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"   android:background="#f41212"
+                  android:text=" " />
+
+              <TextView
+                  android:id="@+id/textView4" android:layout_marginLeft="10dip"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="  " android:textColor="#676363"
+                  android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          </TableRow>
+			<TableRow
+              android:id="@+id/tableRow5" android:layout_margin="2dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" > 
+
+              <Button
+                  android:id="@+id/button5"
+                  android:layout_width="wrap_content"   android:background="#25d3ee"
+                  android:layout_height="wrap_content"
+                  android:text="      " />
+
+              <TextView
+                  android:id="@+id/textView5" android:layout_marginLeft="10dip"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text=" " android:textColor="#676363"
+                  android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          </TableRow>
+      </TableLayout>
+      
+      </LinearLayout>
+</LinearLayout>
 
 </RelativeLayout>

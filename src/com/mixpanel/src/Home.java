@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.viewpagerindicator.TitlePageIndicator;
 
 public class Home extends SherlockFragmentActivity implements ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
 	   HomeFragmentAdapter mAdapter;
+	   LinearLayout linlaHeaderProgress;
 	    ViewPager mPager;
 	    PageIndicator mIndicator;
 	    SharedPreferences prefs;
@@ -69,7 +71,7 @@ public class Home extends SherlockFragmentActivity implements ActionBar.OnNaviga
 				}
 			});
 			 
-			 
+ 
 
 			}
 		navigation();
@@ -79,6 +81,7 @@ public class Home extends SherlockFragmentActivity implements ActionBar.OnNaviga
 	public void iamcallin(){
 		
 		 setContentView(R.layout.activity_home);
+		  linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);//progress
 
 	        mAdapter = new HomeFragmentAdapter(getSupportFragmentManager());
 
@@ -137,7 +140,17 @@ public class Home extends SherlockFragmentActivity implements ActionBar.OnNaviga
 	        	
 	        }
 
+	        
+@Override
+			protected void onPreExecute() {
+    linlaHeaderProgress.setVisibility(View.VISIBLE);
+
+ 				super.onPreExecute();
+			}
+
+
 protected void onPostExecute(Integer result) {
+    linlaHeaderProgress.setVisibility(View.GONE);//hiding the loader
 
 				 if(result==200){
 					 Log.i("working test",result+"");
@@ -271,6 +284,10 @@ protected void onPostExecute(Integer result) {
        
       
        getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
+       boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+       menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+       .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+       .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
       
       return true;
   }
@@ -292,7 +309,11 @@ protected void onPostExecute(Integer result) {
 			startActivity(new Intent(this, About.class));
 			
 			return true;
-		 	
+		case R.id.refresh:
+			 Intent myIntent = new Intent(this ,Home.class);//refreshing
+				startActivity(myIntent);
+				finish();
+			return true;	
 	 
 		default:
 			return false;
