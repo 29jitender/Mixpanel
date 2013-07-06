@@ -73,7 +73,7 @@ public class Event_top extends SherlockListActivity implements Callback,ActionBa
 		@Override
 			protected void onResume() {
 			iamcallin();//calling the activity on resume only
-				 getSupportActionBar().setSelectedNavigationItem(0);//getting the navigation 
+				 getSupportActionBar().setSelectedNavigationItem(2);//getting the navigation 
 				 iamcallin();
 				super.onResume();
 			}
@@ -196,8 +196,9 @@ public void  get_values_pref(){// getting values from preference
 	//for navigation
 	  public void navigation(){
 		  
+		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
-		  
+		  getSupportActionBar().setDisplayUseLogoEnabled  (true);		  
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
 		// starting of menu
@@ -217,11 +218,11 @@ public void  get_values_pref(){// getting values from preference
 		  
 		 switch (itemPosition){
 			
-			case 1:
-				startActivity(new Intent(this, Event_activity.class)); 
+			case 0:
+				startActivity(new Intent(this, Home.class)); 
 				return true;
-			case 2:
-				//startActivity(new Intent(this, Funnel_activity.class));
+			case 1:
+				startActivity(new Intent(this, Event_activity.class));
 				
 				return true;
 			case 3:

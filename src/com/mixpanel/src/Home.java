@@ -20,7 +20,12 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -31,37 +36,53 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
 public class Home extends SherlockFragmentActivity implements ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
-	   TestFragmentAdapter mAdapter;
+	   HomeFragmentAdapter mAdapter;
 	    ViewPager mPager;
 	    PageIndicator mIndicator;
 	    SharedPreferences prefs;
 		public static String API_sceret= "";//defining variable 
 		public static String API_key=""; 
-	 
+		public Boolean internt_count=null;// to check the connectvity
 	    JSONArray event_data = null;
 		static JSONObject json = null;
 		 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         if(isNetworkOnline()==true){//starting settings if internet is not working
-			 iamcallin();//calling the function to build everything
+        	internt_count=true; 
+        	iamcallin();//calling the function to build everything
 
 		}
 			 
 		 else if(isNetworkOnline()==false){//starting settings if internet is not working
-				Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-				//startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+				//Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+			 setContentView(R.layout.nointernet);
+			 internt_count= false;
+			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout1);
+			  rlayout.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+					startActivity(myIntent);
+					finish();					
+				}
+			});
+			 
+			 
 
 			}
 		navigation();
     }
 
+	 
 	public void iamcallin(){
 		
 		 setContentView(R.layout.activity_home);
 
-	        mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+	        mAdapter = new HomeFragmentAdapter(getSupportFragmentManager());
 
 	        mPager = (ViewPager)findViewById(R.id.pager);
 	        mPager.setAdapter(mAdapter);
@@ -142,14 +163,22 @@ protected void onPostExecute(Integer result) {
 		protected void onResume() {
 			 getSupportActionBar().setSelectedNavigationItem(0);//navigations
 
-			 if(isNetworkOnline()==true){//starting settings if internet is not working
-				//+ iamcallin();//calling the function to build everything
-
-			}
+			  
 				 
-			 else if(isNetworkOnline()==false){//starting settings if internet is not working
-					Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-					//startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+			   if(internt_count==false){//starting settings if internet is not working
+//					Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+				 setContentView(R.layout.nointernet);
+				 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout1);
+				  rlayout.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+						startActivity(myIntent);
+						finish();					
+					}
+				});
+				 
 
 				}
 				
@@ -213,7 +242,7 @@ protected void onPostExecute(Integer result) {
 				startActivity(new Intent(this, Event_activity.class)); 
 				return true;
 			case 2:
-				//startActivity(new Intent(this, Funnel_activity.class));
+				startActivity(new Intent(this, Event_top.class));
 				
 				return true;
 			case 3:
@@ -227,6 +256,10 @@ protected void onPostExecute(Integer result) {
 			case 5:
 				//startActivity(new Intent(this, Event_activity.class));
 				
+				return true;
+			case 6:
+				//startActivity(new Intent(this, Event_activity.class));
+				
 				return true;	
 			default:
 				return false;
@@ -238,15 +271,10 @@ protected void onPostExecute(Integer result) {
   public boolean onCreateOptionsMenu(Menu menu) {
       //Used to put dark icons on light action bar
       boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-      menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
-      .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	 
+      
       
        getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
-       menu.add(Menu.NONE, R.id.landing, Menu.NONE, R.string.landing)
-       .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
-       .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
-       
+      
       return true;
   }
   
@@ -267,16 +295,8 @@ protected void onPostExecute(Integer result) {
 			startActivity(new Intent(this, About.class));
 			
 			return true;
-		case R.id.landing:
-			//make someting for about
-		startActivity(new Intent(this, Event_top.class));
-		
-		return true;	
-		case R.id.refresh:
-			 Intent myIntent = new Intent(this ,Landing_activity.class);//refreshing
-				startActivity(myIntent);
-				finish();
-			return true;
+		 	
+	 
 		default:
 			return false;
 			

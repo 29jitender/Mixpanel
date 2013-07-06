@@ -8,13 +8,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,12 +26,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class Event_top_click  extends SherlockListActivity implements Callback  {
+public class Event_top_click  extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener  {
 	
 	// JSON node keys
 	 
@@ -67,6 +72,8 @@ public class Event_top_click  extends SherlockListActivity implements Callback  
     	ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event");
 		ParseJson_object.setListener(this);
+		navigation();// calling navigation
+
 		
          
     }
@@ -169,7 +176,83 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		 
 	}
 
+	//for navigation
+	  public void navigation(){
+		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
+		  getSupportActionBar().setDisplayShowTitleEnabled(false);
+		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
+		 
+		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
+		// starting of menu
+		   Context context = getSupportActionBar().getThemedContext();
+	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
+	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+
+	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        getSupportActionBar().setListNavigationCallbacks(list, this);
+		// ending of menu
+	  }
+		 @Override
+			protected void onResume() {// setting defult values
+				 getSupportActionBar().setSelectedNavigationItem(2);
+				super.onResume();
+			}
+	  
+	  
+	  @Override
+	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		  
+		  switch (itemPosition){
+			
+			case 0:
+				startActivity(new Intent(this, Home.class)); 
+				return true;
+			case 1:
+				startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 3:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 4:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;
+			case 5:
+				//startActivity(new Intent(this, Event_activity.class));
+				
+				return true;	
+			default:
+				return false;
+		 }
+	    }
 	
+	// this is the option
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		 
+		return true;
+		
+	}
+
+	 
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()){
+		
+		 
+		
+		default:
+			return false;
+			
+			
+		}
+	}	
 	
  	  
 }

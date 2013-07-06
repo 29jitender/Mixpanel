@@ -3,7 +3,8 @@
     
     <string-array name="locations">
         <item>Home</item>
-        <item>Event</item>
+        <item>Events</item>
+        <item>Top Events</item>
         <item>Funnel</item>
         <item>Segmentation</item>
         <item>Retention</item>

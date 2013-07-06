@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
 
-public final class TestFragment extends Fragment implements Callback{
+public final class HomeFragment extends Fragment implements Callback{
     private static final String KEY_CONTENT = "TestFragment:Content";
     SharedPreferences prefs;
 	public static String API_sceret= "";//defining variable 
@@ -33,8 +33,8 @@ public final class TestFragment extends Fragment implements Callback{
 	static JSONObject json = null;
 	 private static final String TAG_event = "events";
 
-    public static TestFragment newInstance(String content) {
-        TestFragment fragment = new TestFragment();
+    public static HomeFragment newInstance(String content) {
+        HomeFragment fragment = new HomeFragment();
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 1; i++) {

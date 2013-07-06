@@ -148,8 +148,9 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 	
 	//for navigation
 	  public void navigation(){
-		  
+		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
+		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
 		 
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
 		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
@@ -175,14 +176,14 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 		 switch (itemPosition){
 			
 			case 0:
-				startActivity(new Intent(this, Event_top.class)); 
+				startActivity(new Intent(this, Home.class)); 
 				return true;
 			case 2:
-				//startActivity(new Intent(this, Event_activity.class));
+				 startActivity(new Intent(this, Event_top.class));
 				
 				return true;
 			case 3:
-				//startActivity(new Intent(this, Event_activity.class));
+//				startActivity(new Intent(this, Event_top.class));
 				
 				return true;
 			case 4:
