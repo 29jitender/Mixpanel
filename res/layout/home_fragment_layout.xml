@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Landing_activity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="300dip"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" >
+
+        <com.echo.holographlibrary.PieGraph
+            android:id="@+id/piegraph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/relativeLayout2"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#99CC00"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="42dp"
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFBB33"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="42dp"
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#25d3ee"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_marginLeft="42dp"
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#f41212"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginLeft="42dp"
+        android:layout_toRightOf="@+id/relativeLayout2"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#AA66CC"
+        android:textStyle="bold" />
+
+</RelativeLayout>

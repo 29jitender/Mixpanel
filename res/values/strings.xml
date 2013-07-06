@@ -88,5 +88,7 @@
     <string name="top_event">Limit</string>
     <string name="event_top_limit">The maximum number of events to return.  The maximum this value can be is 100</string>
     <string name="title_activity_prefrenceactivity_event_top">Prefrenceactivity_event_top</string>
+    <string name="title_activity_new_landing">New_landing</string>
+    <string name="title_activity_home">Home</string>
 
 </resources>

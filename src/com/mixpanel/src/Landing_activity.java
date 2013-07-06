@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -25,8 +24,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +40,7 @@ import com.echo.holographlibrary.PieSlice;
  
 
 public class Landing_activity extends SherlockActivity implements Callback,OnSharedPreferenceChangeListener,ActionBar.OnNavigationListener {
-	 SharedPreferences prefs;
+	    SharedPreferences prefs;
 		public static String API_sceret= "";//defining variable 
 		public static String API_key=""; 
 		//for pie chart
