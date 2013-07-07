@@ -37,16 +37,14 @@ import com.actionbarsherlock.view.MenuItem;
 public class Event_top extends SherlockListActivity implements Callback ,OnSharedPreferenceChangeListener,View.OnClickListener {
 	static JSONObject json = null;
 	 SharedPreferences prefs;
-	    public Boolean internt_count=null;// to check the connectvity
+	 public Boolean internt_count=null;// to check the connectvity
 
 	 private static final String TAG_event = "events";
-	private static final String amount = "amount";
-	private static final String percent_change = "percent_change";
-	private static final String event = "event";
-	    public static String click_type="";
-	    
-		 
-		 public static String limit="";
+	 private static final String amount = "amount";
+	 private static final String percent_change = "percent_change";
+	 private static final String event = "event";
+	 public static String click_type="";
+	 public static String limit="";
 
 	    JSONArray event_data = null;
 		 //navigation drawer variables
@@ -124,14 +122,12 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
  
 			  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 			  prefs.registerOnSharedPreferenceChangeListener(this);
-			
-			 
-			 
-			ParseJSON ParseJson_object = new ParseJSON();
+			  get_values_pref();// it should get values before
+			  ParseJSON ParseJson_object = new ParseJSON();
 			ParseJson_object.pass_values("event_top1");
 			ParseJson_object.setListener(this);
 			
-			get_values_pref();
+			
 	    }
 	 
 

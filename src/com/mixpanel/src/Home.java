@@ -349,13 +349,15 @@ protected void onPostExecute(Integer result) {
     	 else if(((TextView) v).getText().equals("Event"))
     	 { mMenuDrawer.setActiveView(v);
 		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_activity.class));    
+          startActivity(new Intent(this, Event_activity.class));
+          //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
     		 
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
     	 { mMenuDrawer.setActiveView(v);
 		  mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_top.class));    
+          //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
     		 
     	 }
       

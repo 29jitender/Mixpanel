@@ -69,5 +69,11 @@
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:src="@drawable/retry" />
+    <!-- Nothing to do but it is here just to make sure this layout load in listactivity :P -->
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        />
 
 </RelativeLayout>

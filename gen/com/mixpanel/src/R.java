@@ -14,7 +14,9 @@ public final class R {
         public static final int fadeout=0x7f040002;
         public static final int push_down_in=0x7f040003;
         public static final int push_down_out=0x7f040004;
-        public static final int translate=0x7f040005;
+        public static final int push_up_in=0x7f040005;
+        public static final int push_up_out=0x7f040006;
+        public static final int translate=0x7f040007;
     }
     public static final class array {
         public static final int locations=0x7f0d0000;
@@ -1377,19 +1379,17 @@ containing a value of this type.
         public static final int md__list_selector_disabled_holo_dark=0x7f020088;
         public static final int md__list_selector_holo_dark=0x7f020089;
         public static final int menu_arrow=0x7f02008a;
-        public static final int menu_arrow_bottom=0x7f02008b;
-        public static final int menu_arrow_right=0x7f02008c;
-        public static final int menu_arrow_top=0x7f02008d;
-        public static final int popup_black=0x7f02008e;
-        public static final int radialback=0x7f02008f;
-        public static final int retry=0x7f020090;
-        public static final int vpi__tab_indicator=0x7f020091;
-        public static final int vpi__tab_selected_focused_holo=0x7f020092;
-        public static final int vpi__tab_selected_holo=0x7f020093;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020094;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020095;
-        public static final int vpi__tab_unselected_holo=0x7f020096;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020097;
+        public static final int menu_arrow_right=0x7f02008b;
+        public static final int popup_black=0x7f02008c;
+        public static final int radialback=0x7f02008d;
+        public static final int retry=0x7f02008e;
+        public static final int vpi__tab_indicator=0x7f02008f;
+        public static final int vpi__tab_selected_focused_holo=0x7f020090;
+        public static final int vpi__tab_selected_holo=0x7f020091;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020092;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020093;
+        public static final int vpi__tab_unselected_holo=0x7f020094;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020095;
     }
     public static final class id {
         public static final int E_amount=0x7f070065;
@@ -1727,9 +1727,7 @@ containing a value of this type.
         public static final int MenuDrawer_Widget_Category=0x7f080062;
         public static final int MenuDrawer_Widget_Title=0x7f080063;
         public static final int MenuDrawerStyle=0x7f080064;
-        public static final int MenuDrawerStyle_Bottom=0x7f080067;
         public static final int MenuDrawerStyle_Right=0x7f080065;
-        public static final int MenuDrawerStyle_Top=0x7f080066;
         public static final int Sherlock___TextAppearance_Small=0x7f08004b;
         public static final int Sherlock___Theme=0x7f080056;
         public static final int Sherlock___Theme_DarkActionBar=0x7f080058;
