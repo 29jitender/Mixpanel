@@ -90,5 +90,6 @@
     <string name="title_activity_prefrenceactivity_event_top">Prefrenceactivity_event_top</string>
     <string name="title_activity_new_landing">New_landing</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_event_top_options">Event_top_options</string>
 
 </resources>

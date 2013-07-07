@@ -32,8 +32,7 @@ public class Event_top_click  extends SherlockListActivity implements Callback,A
 	// JSON node keys
 	 
 	 private static String TAG_event = "values";
-	 private static String  key = "";
-	
+	 private static String  key = "";	
 	 private static String KEY1= "temp";
 	 private static String VALUE1= "temp1";
 	  
@@ -236,7 +235,10 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		if (item.getItemId() == android.R.id.home) {
+	        finish();
+	        return true;
+	    }
 		switch (item.getItemId()){
 		
 		 

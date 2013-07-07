@@ -3,10 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <!-- Single ListItem -->
-    
-    <!-- Product Name -->
+     
     <TextView android:id="@+id/event_activity_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

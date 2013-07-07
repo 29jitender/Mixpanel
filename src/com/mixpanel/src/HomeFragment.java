@@ -111,7 +111,7 @@ public final class HomeFragment extends Fragment implements Callback{
 
 						//calc yes
 						for(int i=0;i<5;i++){
-							yes_value[i]=values_amount[i]/(1+change[i]);
+							yes_value[i]=values_amount[i]/(1-change[i]);
 							Log.i("asdasdasddddddddddddasdasdasdasd",yes_value[i]+"");
 						}
 						

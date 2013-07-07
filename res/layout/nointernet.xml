@@ -69,5 +69,11 @@
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:src="@drawable/retry" />
+     <!-- Description Label -->
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        />
 
 </RelativeLayout>

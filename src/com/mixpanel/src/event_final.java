@@ -13,11 +13,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -40,6 +43,7 @@ import com.echo.holographlibrary.LinePoint;
 
 public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
  	 SharedPreferences prefs;
+		public Boolean internt_count=null;// to check the connectvity
 
 	 private static String TAG_event = "values";
 	 private static String  key = "";	
@@ -59,16 +63,65 @@ public class event_final extends SherlockListActivity implements Callback,Action
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
+		
 
         super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+        if(isNetworkOnline()==true){//starting settings if internet is not working
+         	internt_count=true; 
+   		  setTheme(SampleList.THEME); //Used for theme switching in samples
 
+         	iamcallin();//calling the function to build everything
+
+ 		}
+ 			 
+ 		 else if(isNetworkOnline()==false){ 
+ 				//Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+ 			 setContentView(R.layout.nointernet);
+ 			 internt_count= false;
+ 			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+ 			  rlayout.setOnClickListener(new OnClickListener() {
+ 				
+ 				@Override
+ 				public void onClick(View v) {
+ 					Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+ 					startActivity(myIntent);
+ 					finish();					
+ 				}
+ 			});
+ 			 
+  
+
+ 			}
+		
+		
 		navigation();
          
     }
 	
+	public boolean isNetworkOnline() {
+	    boolean status=false;
+	    try{
+	        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo netInfo = cm.getNetworkInfo(0);
+	        if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+	            status= true;
+	        }else {
+	            netInfo = cm.getNetworkInfo(1);
+	            if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+	                status= true;
+	        }
+	    }catch(Exception e){
+	        e.printStackTrace();  
+	        return false;
+	    }
+	    return status;
+
+	    }  
+
+	
 	public void iamcallin(){
+		setTheme(SampleList.THEME); //Used for theme switching in samples
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
 		setContentView(R.layout.event_final_view);
         setSupportProgressBarIndeterminateVisibility(true);//onload show
       //layout for diff screen 
@@ -96,8 +149,30 @@ public class event_final extends SherlockListActivity implements Callback,Action
 	
 	@Override
 	protected void onResume() {// setting defult values
-		iamcallin();//for refresh purpose
+		//iamcallin();//for refresh purpose
 		 getSupportActionBar().setSelectedNavigationItem(1);
+		  if(internt_count==false){//starting settings if internet is not working
+//				Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+			   setContentView(R.layout.nointernet);
+			   internt_count= false;
+			   RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+			   rlayout.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent myInten1t = new Intent(event_final.this ,Home.class);//refreshing home to get apikey
+					startActivity(myInten1t);
+					finish();	
+					Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+					startActivity(myIntent);
+					finish();					
+				}
+			});
+			 
+
+			}
+		 
+		 
 		super.onResume();
 	}
    
@@ -334,7 +409,10 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	  @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        //This uses the imported MenuItem from ActionBarSherlock
-		     
+		  if (item.getItemId() == android.R.id.home) {
+		        finish();
+		        return true;
+		    }
 		  		switch(item.getItemId()){
 		  		 
 		  			case R.id.refresh:

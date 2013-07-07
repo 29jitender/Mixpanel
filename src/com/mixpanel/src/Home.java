@@ -60,9 +60,9 @@ public class Home extends SherlockFragmentActivity implements ActionBar.OnNaviga
 			 
 		 else if(isNetworkOnline()==false){ 
 				//Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-			 //setContentView(R.layout.nointernet);
+			 setContentView(R.layout.nointernet);
 			 internt_count= false;
-			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout1);
+			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 			  rlayout.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -231,7 +231,7 @@ protected void onPostExecute(Integer result) {
 	
 	//for navigation
 	  public void navigation(){
-		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
+		 // getSupportActionBar().setDisplayHomeAsUpEnabled (true);
 		  getSupportActionBar().setDisplayShowTitleEnabled(false);
 		  getSupportActionBar().setDisplayUseLogoEnabled  (true);
 		  setTheme(SampleList.THEME); //Used for theme switching in samples
@@ -257,7 +257,7 @@ protected void onPostExecute(Integer result) {
 			
 			case 1:
 				startActivity(new Intent(this, Event_activity.class)); 
-				overridePendingTransition(R.anim.fadein,R.anim.fadeout);
+				overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
 				return true;
 			case 2:
 				startActivity(new Intent(this, Event_top.class));

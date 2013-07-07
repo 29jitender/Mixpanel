@@ -14,6 +14,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -21,11 +23,13 @@ import android.text.TextWatcher;
 import android.util.Log;
  
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 //interface Callback {
@@ -35,7 +39,8 @@ import android.widget.Toast;
 public class Event_activity extends SherlockActivity implements   Callback,ActionBar.OnNavigationListener {
  	
 	 public static String click_type="";
-	 
+		public Boolean internt_count=null;// to check the connectvity
+
 	 public static  String display1="lol";
 	// List view
 		private ListView lv;
@@ -56,11 +61,62 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
+ 		 super.onCreate(savedInstanceState);
+ 		 if(isNetworkOnline()==true){//starting settings if internet is not working
+         	internt_count=true; 
+   		  setTheme(SampleList.THEME); //Used for theme switching in samples
 
-		super.onCreate(savedInstanceState);
+         	iamcallin();//calling the function to build everything
+
+ 		}
+ 			 
+ 		 else if(isNetworkOnline()==false){ 
+ 				//Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+ 			 setContentView(R.layout.nointernet);
+ 			 internt_count= false;
+ 			 RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+ 			  rlayout.setOnClickListener(new OnClickListener() {
+ 				
+ 				@Override
+ 				public void onClick(View v) {
+ 					Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
+ 					startActivity(myIntent);
+ 					finish();					
+ 				}
+ 			});
+ 			 
+  
+
+ 			}
+		navigation();// calling navigation
+ 		 
+	}
+	
+	public boolean isNetworkOnline() {
+	    boolean status=false;
+	    try{
+	        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo netInfo = cm.getNetworkInfo(0);
+	        if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+	            status= true;
+	        }else {
+	            netInfo = cm.getNetworkInfo(1);
+	            if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+	                status= true;
+	        }
+	    }catch(Exception e){
+	        e.printStackTrace();  
+	        return false;
+	    }
+	    return status;
+
+	    }  
+
+	
+	public void iamcallin(){
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
-
+		
+		
 		getActionBar().setDisplayShowTitleEnabled(false);
 		 setContentView(R.layout.activity_event_activity);
 	        setSupportProgressBarIndeterminateVisibility(true);//onload show loading
@@ -68,10 +124,8 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_name");
 		ParseJson_object.setListener(this);
-		navigation();// calling navigation
- 		 
+		
 	}
-	
 	
 	
 	@Override
@@ -166,6 +220,30 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 		 @Override
 			protected void onResume() {// setting defult values
 				 getSupportActionBar().setSelectedNavigationItem(1);
+				 
+				   if(internt_count==false){//starting settings if internet is not working
+//						Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+					   setContentView(R.layout.nointernet);
+					   internt_count= false;
+					   RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+					   rlayout.setOnClickListener(new OnClickListener() {
+						
+						   
+						@Override
+						public void onClick(View v) {
+							Intent myInten1t = new Intent(Event_activity.this ,Home.class);//refreshing
+							startActivity(myInten1t);
+							finish();	
+							Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
+							startActivity(myIntent);
+							finish();					
+						}
+					});
+					 
+
+					}
+				 
+				 
 				super.onResume();
 			}
 	  
@@ -213,7 +291,10 @@ public class Event_activity extends SherlockActivity implements   Callback,Actio
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		if (item.getItemId() == android.R.id.home) {// this is for home as up
+	        finish();
+	        return true;
+	    }
 		switch (item.getItemId()){
 		
 		 
