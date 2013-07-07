@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import net.simonvt.menudrawer.MenuDrawer;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,14 +15,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -28,7 +33,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -38,8 +42,9 @@ import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 import com.echo.holographlibrary.LinePoint;
 
-public class event_final extends SherlockListActivity implements Callback,ActionBar.OnNavigationListener,OnSharedPreferenceChangeListener {
+public class event_final extends SherlockListActivity implements Callback,OnSharedPreferenceChangeListener,View.OnClickListener {
  	 SharedPreferences prefs;
+     public Boolean internt_count=null;// to check the connectvity
 
 	 private static String TAG_event = "values";
 	 private static String  key = "";	
@@ -47,29 +52,77 @@ public class event_final extends SherlockListActivity implements Callback,Action
 	 private static String VALUE1= "temp1";
 	 public static String event_interval="";//global 
 	 public static String event_unit="";
-	 public static String event_type="";
-	  
-	// private static final String[] series={};   
-	    
-	 
+	 public static String event_type="";		 
 	 JSONObject event_data = null;
 	 static JSONObject json = null;
 	public static String name="";  // defining event name
 	public JSONArray series= null;
-    
+	 //navigation drawer variables
+    private static final String STATE_MENUDRAWER = "net.simonvt.menudrawer.samples.WindowSample.menuDrawer";
+    private static final String STATE_ACTIVE_VIEW_ID = "net.simonvt.menudrawer.samples.WindowSample.activeViewId";
+    private MenuDrawer mMenuDrawer; 
+    private int mActiveViewId;
+    //navigation
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
-
+    public void onCreate(Bundle savedInstanceState) { 
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+		 //navigation
+        if (savedInstanceState != null) {
+            mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
+        }
 
-		navigation();
+        mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
+        mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+       // mContentTextView = (TextView) findViewById(R.id.contentText);
+
+        findViewById(R.id.item1).setOnClickListener(this);
+        findViewById(R.id.item2).setOnClickListener(this);
+        findViewById(R.id.item3).setOnClickListener(this);
          
+
+        TextView activeView = (TextView) findViewById(mActiveViewId);
+        if (activeView != null) {
+            mMenuDrawer.setActiveView(activeView);
+            //mContentTextView.setText("Active item: " + activeView.getText());
+        } 
+        // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
+        // called on first launch.
+        mMenuDrawer.peekDrawer();
+        //navigation
+        
+        if(isNetworkOnline()==true){//starting settings if internet is not working
+            internt_count=true; 
+            iamcallin();//calling the function to build everything
+
+        }
+             
+         else if(isNetworkOnline()==false){ 
+                //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+              mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+              //setContentView(R.layout.nointernet);
+             internt_count= false;
+             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
+              rlayout.setOnClickListener(new OnClickListener() {
+                
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+                    startActivity(myIntent);
+                    finish();                   
+                }
+            });     
+             }
+          
     }
 	
 	public void iamcallin(){
-		setContentView(R.layout.event_final_view);
+    	mMenuDrawer.setContentView(R.layout.event_final_view);//givin layout to drawer 
         setSupportProgressBarIndeterminateVisibility(true);//onload show
       //layout for diff screen 
       		Display display = getWindowManager().getDefaultDisplay(); 		 
@@ -93,13 +146,7 @@ public class event_final extends SherlockListActivity implements Callback,Action
 		ParseJson_object.pass_values("event1");
 		ParseJson_object.setListener(this);
 	}
-	
-	@Override
-	protected void onResume() {// setting defult values
-		iamcallin();//for refresh purpose
-		 getSupportActionBar().setSelectedNavigationItem(1);
-		super.onResume();
-	}
+ 
    
 	public void  get_values_pref(){// getting values from preference  
 		
@@ -263,55 +310,32 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 });
 		 
 	}
+	 @Override
+     protected void onResume() {
 
-	//for navigation
-	  public void navigation(){
-		  
-		  getSupportActionBar().setDisplayHomeAsUpEnabled (true);
-		  getSupportActionBar().setDisplayShowTitleEnabled(false);
-		  getSupportActionBar().setDisplayUseLogoEnabled  (true);		 
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
-		  
-		// starting of menu
-		   Context context = getSupportActionBar().getThemedContext();
-	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
-	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+           
+              
+            if(internt_count==false){//starting settings if internet is not working
+//               Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+                mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+                internt_count= false;
+                RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+                rlayout.setOnClickListener(new OnClickListener() {
+                 
+                 @Override
+                 public void onClick(View v) {
+                     Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+                     startActivity(myIntent);
+                     finish();                   
+                 }
+             });
+              
 
-	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-	        getSupportActionBar().setListNavigationCallbacks(list, this);
-		// ending of menu
-	  }
-		 
-	  
-	  
-	  @Override
-	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		  
-		 switch (itemPosition){
-			
-			case 0:
-				startActivity(new Intent(this, Home.class)); 
-				return true;
-			case 2:
-				startActivity(new Intent(this, Event_top.class));
-				
-				return true;
-			case 3:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;
-			case 4:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;
-			case 5:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;	
-			default:
-				return false;
-		 }
-	    }
+             }
+             
+          super.onResume();
+     }
+	 
 	
     //creating the buttons for the period and blah
 	  
@@ -330,7 +354,34 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 
 	        return true;
 	    }
-	  
+
+      //checking internet connection
+      
+   
+
+
+  public boolean isNetworkOnline() {
+          boolean status=false;
+          try{
+              ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+              NetworkInfo netInfo = cm.getNetworkInfo(0);
+              if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+                  status= true;
+              }else {
+                  netInfo = cm.getNetworkInfo(1);
+                  if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+                      status= true;
+              }
+          }catch(Exception e){
+              e.printStackTrace();  
+              return false;
+          }
+          return status;
+
+          }  
+  
+  
+  
 	  @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        //This uses the imported MenuItem from ActionBarSherlock
@@ -349,6 +400,9 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  				startActivity(new Intent(this, Prefrenceactivity_event.class));
 		  				 
 		  				return true;
+		  			case android.R.id.home:
+		  	            mMenuDrawer.toggleMenu();
+		  	            return true; 
 					default:
 						return false;	
 		  						
@@ -357,7 +411,56 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	        
 	       
 	    }
+	//rest functinality for of navigation
+	    @Override
+	    protected void onRestoreInstanceState(Bundle inState) {
+	        super.onRestoreInstanceState(inState);
+	        mMenuDrawer.restoreState(inState.getParcelable(STATE_MENUDRAWER));
+	    }
 
+	    @Override
+	    protected void onSaveInstanceState(Bundle outState) {
+	        super.onSaveInstanceState(outState);
+	        outState.putParcelable(STATE_MENUDRAWER, mMenuDrawer.saveState());
+	        outState.putInt(STATE_ACTIVE_VIEW_ID, mActiveViewId);
+	    }
+	 
+	    @Override
+	    public void onBackPressed() {
+	        final int drawerState = mMenuDrawer.getDrawerState();
+	        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
+	            mMenuDrawer.closeMenu();
+	            return;
+	        }
+
+	        super.onBackPressed();
+	    }
+
+	    @Override
+	    public void onClick(View v) { // for the click view
+	    	 if(((TextView) v).getText().equals("Home")){
+	    		 mMenuDrawer.setActiveView(v);
+	    		  mMenuDrawer.closeMenu();
+	              startActivity(new Intent(this, Home.class));    		  
+	    	 }
+	    	 else if(((TextView) v).getText().equals("Event"))
+	    	 { mMenuDrawer.setActiveView(v);
+			  mMenuDrawer.closeMenu();
+	          startActivity(new Intent(this, Event_activity.class));    
+	    		 
+	    	 }
+	    	 else if(((TextView) v).getText().equals("Event Top"))
+	    	 { mMenuDrawer.setActiveView(v);
+			  mMenuDrawer.closeMenu();
+	          startActivity(new Intent(this, Event_top.class));    
+	    		 
+	    	 }
+	      
+	         
+	      
+	        mActiveViewId = v.getId();
+	    }
+	//navigaiton ending
 
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
