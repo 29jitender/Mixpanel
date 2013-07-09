@@ -3,17 +3,130 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
- <com.echo.holographlibrary.LineGraph
+
+    <com.echo.holographlibrary.LineGraph
+        android:id="@+id/linegraph_home"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:id="@+id/linegraph_home"/>
+        android:layout_margin="8dip" />
 
- <TextView
-     android:id="@+id/days"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     
-     android:text=""
-     android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="14dip" >
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+             android:layout_marginTop="9dip" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5pt"
+                android:layout_marginLeft="4dip" >
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="12pt"
+                    android:layout_height="8pt"
+                    android:background="#99CC00"
+                    android:text=" " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5pt"
+                android:layout_marginLeft="4dip" >
+
+                <Button
+                    android:id="@+id/button2"
+                   android:layout_width="12pt"
+                    android:layout_height="8pt"
+                    android:background="#FFBB33"
+                    android:text=" " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5pt"
+                android:layout_marginLeft="4dip" >
+
+                <Button
+                    android:id="@+id/button3"
+                  android:layout_width="12pt"
+                    android:layout_height="8pt"
+                    android:background="#AA66CC"
+                    android:text=" " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5pt"
+                android:layout_marginLeft="4dip" >
+
+                <Button
+                    android:id="@+id/button4"
+                   android:layout_width="12pt"
+                    android:layout_height="8pt"
+                    android:background="#f41212"
+                    android:text=" " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5pt"
+                android:layout_marginLeft="4dip" >
+
+                <Button
+                    android:id="@+id/button5"
+                   android:layout_width="12pt"
+                    android:layout_height="8pt"
+                    android:background="#25d3ee"
+                    android:text="      " />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+             
+            android:layout_toRightOf="@+id/tableLayout1"
+            android:orientation="vertical" >
+
+  <ExpandableListView
+      android:id="@+id/eventname_list"
+      android:layout_width="wrap_content"
+      android:layout_height="179dp"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginLeft="8dip"
+      android:choiceMode="singleChoice"
+      android:divider="@android:color/transparent"
+      android:dividerHeight="0dp" >
+
+	        </ExpandableListView>        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

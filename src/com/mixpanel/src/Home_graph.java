@@ -1,5 +1,6 @@
 package com.mixpanel.src;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.json.JSONArray;
@@ -11,14 +12,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
 
-public class Home_graph extends Activity  implements Callback{
+public class Home_graph extends Activity  implements Callback,OnChildClickListener{
 	 public static String[] event_name=new String[5];
 	 private static String TAG_event = "values";
 	 private static String  key = "";	
@@ -32,6 +36,13 @@ public class Home_graph extends Activity  implements Callback{
 	public static String name="";  // defining event name
 	public JSONArray series= null;
 	 public static String[] e_name=new String[5];
+	 float[][] data_map=new float[10][100];//defing array 
+	//list	
+	 private ExpandableListView list_event;
+		ArrayList<String> groupItem = new ArrayList<String>();
+		ArrayList<Object> childItem = new ArrayList<Object>();
+		//list
+
 //line graph
 	  
 	 float rangeY1=0;
@@ -50,12 +61,26 @@ public class Home_graph extends Activity  implements Callback{
 		ParseJson_object.pass_values("event_top_value");//to get event top value
 		ParseJson_object.setListener(this);
 		
+		//for expandable list
+		
+		
 		
 		}
+	
+	public void calllist(){
+		seteventname();
+		senteventname_value();
+		list_event = (ExpandableListView) findViewById(R.id.eventname_list);
+
+		list_event.setAdapter(new Home_list_adapter(this, groupItem, childItem));
+
+		list_event.setOnChildClickListener(this);
+
+	}
 
 	@Override
 	public void methodToCallback(String print) {
-		 float[][] data_map=new float[10][100];//defing array 
+		 
 		final String[] key_series= new String[100];
 		int range= 7;//converting into float this is the inteval
 		 try {
@@ -139,7 +164,7 @@ public class Home_graph extends Activity  implements Callback{
 			 
 		 }		 
 		 
-		 graph1.setColor(Color.parseColor("#FFBB33"));
+		 graph1.setColor(Color.parseColor("#99CC00"));
   		 //2
 		 Line graph2 = new Line();
 			LinePoint p2 = new LinePoint();		
@@ -159,7 +184,7 @@ public class Home_graph extends Activity  implements Callback{
 				 
 			 }		 
 			 
-			 graph2.setColor(Color.parseColor("#25d3ee"));
+			 graph2.setColor(Color.parseColor("#FFBB33"));
 	  	//3
 			 Line graph3 = new Line();
 				LinePoint p3 = new LinePoint();		
@@ -179,7 +204,7 @@ public class Home_graph extends Activity  implements Callback{
 					 
 				 }		 
 				 
-				 graph3.setColor(Color.parseColor("#99CC00"));
+				 graph3.setColor(Color.parseColor("#AA66CC"));
 				//4
 				 Line graph4 = new Line();
 					LinePoint p4 = new LinePoint();		
@@ -199,7 +224,7 @@ public class Home_graph extends Activity  implements Callback{
 						 
 					 }		 
 					 
-					 graph4.setColor(Color.parseColor("#AA66CC"));
+					 graph4.setColor(Color.parseColor("#f41212"));
 				
 					//5
 					 Line graph5 = new Line();
@@ -220,7 +245,7 @@ public class Home_graph extends Activity  implements Callback{
 							 
 						 }		 
 						 
-						 graph5.setColor(Color.parseColor("#f41212"));	 
+						 graph5.setColor(Color.parseColor("#25d3ee"));	 
 					 
 					 float[] therange = new float []{rangeY1,rangeY2,rangeY3,rangeY4,rangeY5}; 
 					 float maxrange=0;
@@ -243,17 +268,105 @@ public class Home_graph extends Activity  implements Callback{
 		li.addLine(graph5);
 		li.setRangeY(0, maxrange);
 
-		
-		
-		
-		
-		
-		
- 
- 
+	 
+		calllist();//calling list after graph
 		 
 	}
+	//list 
 	
+	public void seteventname() {
+		for(int i=0;i<5;i++){
+			groupItem.add(All_api_define.event_name_array[i]);
+			
+		}
+		 
+	}
 
+	 
+
+	public void senteventname_value() {
+		/**
+		 * Add Data For event1
+		 */
+		ArrayList<String> child = new ArrayList<String>();
+		
+			try {
+				for(int i=0;i<7;i++){
+				child.add(series.getString(i)+"          "+Math.round(data_map[0][i]));
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 		 
+		childItem.add(child);
+
+		/**
+		 * Add Data For event 2
+		 */
+		child = new ArrayList<String>();
+		try {
+			for(int i=0;i<7;i++){
+			child.add(series.getString(i)+"          "+Math.round(data_map[1][i]));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 		 
+	childItem.add(child);
+		/**
+		 * Add Data For event 3
+		 */
+		child = new ArrayList<String>();
+		try {
+			for(int i=0;i<7;i++){
+			child.add(series.getString(i)+"          "+Math.round(data_map[2][i]));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		childItem.add(child);
+
+		/**
+		 * Add Data For event 4
+		 */
+		child = new ArrayList<String>();
+		try {
+			for(int i=0;i<7;i++){
+			child.add(series.getString(i)+"          "+Math.round(data_map[3][i]));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		childItem.add(child);
+
+		/**
+		 * Add Data For event 5
+		 */
+		child = new ArrayList<String>();
+		try {
+			for(int i=0;i<7;i++){
+			child.add(series.getString(i)+"          "+Math.round(data_map[4][i]));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		childItem.add(child);
+
+		
+	}
+	
+	@Override
+	public boolean onChildClick(ExpandableListView parent, View v,
+			int groupPosition, int childPosition, long id) {
+		Toast.makeText(this, "Clicked On Child" + v.getTag(),
+				Toast.LENGTH_SHORT).show();
+		return true;
+	}
+	
 		
 }
