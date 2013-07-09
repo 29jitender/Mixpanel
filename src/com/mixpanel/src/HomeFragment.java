@@ -28,6 +28,8 @@ public final class HomeFragment extends Fragment implements Callback{
 	private static final String amount = "amount";
 	private static final String percent_change = "percent_change";
 	private static final String event = "event";
+	public static  final String[] e_name=new String[5];
+
     JSONArray event_data = null;
 	static JSONObject json = null;
 	 private static final String TAG_event = "events";
@@ -79,7 +81,6 @@ public final class HomeFragment extends Fragment implements Callback{
  
 			// Hashmap for ListView
 		 String[] name_value=new String[5];
-		  final String[] e_name=new String[5];
 		  final Float[] values_amount=new Float[5];
 		  final Float[] change = new Float[5];
 		  final Float[] yes_value = new Float[5];
@@ -99,6 +100,7 @@ public final class HomeFragment extends Fragment implements Callback{
 						    String Event = c.getString(event);
 						    
 						    e_name[i]=  Event;//name of event
+						    
 						    float k =Float.parseFloat(Amount);//amount to pass in pie chart
 						    values_amount[i]=k;//amount ot pass in pie chart
 						    name_value[i]=Amount;
@@ -108,7 +110,7 @@ public final class HomeFragment extends Fragment implements Callback{
 	 
 						}
 		               // setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
+ 						All_api_define.event_name_array=e_name;
 						//calc yes
 						for(int i=0;i<5;i++){
 							yes_value[i]=values_amount[i]/(1+change[i]);

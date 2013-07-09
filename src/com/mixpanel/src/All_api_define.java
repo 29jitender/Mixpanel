@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class All_api_define{
 	public static String interval1="";
-	
+	public static String[] event_name_array=new String[5];
 	public static String export(){// this is for export api
 		 
 	  	  
@@ -46,6 +46,30 @@ public class All_api_define{
 	      return path_http;
 	  }
 	
+
+	 public static String event_top_value(){// is for event coming from event_activity not in use 
+		 
+		String temp="";
+		 for(int i=0;i < event_name_array.length;i++){
+			 temp=temp+"\""+event_name_array[i]+"\""+",";
+		 }
+		  temp = temp.substring(0, temp.length() - 1);
+		 
+		 String event1= "["+temp; 
+		 String event2= event1+"]";
+		 
+		 String event3=event2;
+		 Log.i("we are in all api define",event3);
+		 TreeMap<String, String> tm = new TreeMap<String, String>();		   
+		  tm.put("event", event3); 
+	      tm.put("type", "general");
+	      tm.put("unit", "day");
+	      tm.put("interval", "7");
+	      //tm.put("format", new String("")); //currently not available
+	      String send_path_first ="http://mixpanel.com/api/2.0/events/?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	  }
 	
 	
 	 public static String event(){// is for event 
@@ -93,7 +117,7 @@ public class All_api_define{
 	  public static String event_top(){// is for event method is TOP
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		 tm.put("limit", new String("5")); //its optional
+		  tm.put("limit", new String("5")); //its optional
 	      tm.put("type", new String("unique"));
 	         
 	      String send_path_first ="http://mixpanel.com/api/2.0/events/top/?";

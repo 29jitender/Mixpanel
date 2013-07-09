@@ -52,6 +52,16 @@ public class ParseJSON  implements Callback{
 
 			  retrun_stuff=display;
 		  }
+		  else if(type_event=="event_top_value"){
+			  
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg=new String[]{"data"};// pasing the depth
+			  asyncRequest.execute(All_api_define.event_top_value());
+			  asyncRequest.setListener(this);
+
+
+			  retrun_stuff=display;
+		  }
 
 		  else if(type_event=="event_name"){
 

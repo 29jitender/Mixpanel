@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 class HomeFragmentAdapter extends FragmentPagerAdapter   {
-    protected static final String[] CONTENT = new String[] { "Today", "Yesteday"  };//setting title
+    protected static final String[] CONTENT = new String[] { "Today", "Yesteday" };//setting title
   
     private int mCount = CONTENT.length;
 

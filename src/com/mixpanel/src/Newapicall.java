@@ -54,7 +54,7 @@ import android.util.Log;
 	      	
 	        sig = md5(sig);
 	        Send_path = Send_path + "&sig=" + sig;
-	        Log.i("hii",Send_path+"");
+	        Log.i("hii123",Send_path+"");
 		  
 		  
 		  

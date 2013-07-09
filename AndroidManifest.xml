@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.event_final"
-             android:label="@string/title_activity_event_activity" >
+            android:label="@string/title_activity_event_activity" >
         </activity>
         <activity
             android:name="com.mixpanel.src.MainActivity1"
@@ -95,6 +95,10 @@
         <activity
             android:name="com.mixpanel.src.Landing_activity"
             android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.Home_graph"
+            android:label="@string/title_activity_home_graph" >
         </activity>
     </application>
 
