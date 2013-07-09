@@ -9,10 +9,11 @@
         android:id="@+id/linegraph_home"/>
 
  <TextView
-     android:id="@+id/textView1"
-     android:layout_width="wrap_content"
+     android:id="@+id/days"
+     android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:text="Large Text"
-     android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+     android:text=""
+     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

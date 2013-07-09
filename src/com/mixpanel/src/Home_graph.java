@@ -9,7 +9,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.widget.TextView;
 
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
@@ -93,9 +96,24 @@ public class Home_graph extends Activity  implements Callback{
 		 	 }
 		 	 
 				
-//	  	data_map= new float[data_map.length];// removing all the values form data_map
+//setting y axis lable 
+		 	DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+		 	int width = metrics.widthPixels;
+		 	 int size= width/61;
+		 	TextView text = (TextView) findViewById(R.id.days);
+		 	text.setTextSize(size);
+		 	String temp="";
+		 	for(int i=0;i < 7;i++){
+				 try {
+					temp=temp+series.getString(i)+"    " ;
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 }
+		 	text.setText(temp);
 	  	 
-		 	 
+	//	 	 
 		 
 		 	/**
 			* Updating parsed JSON data into graphs
