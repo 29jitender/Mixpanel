@@ -74,6 +74,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         findViewById(R.id.item1).setOnClickListener(this);
         findViewById(R.id.item2).setOnClickListener(this);
         findViewById(R.id.item3).setOnClickListener(this);
+        findViewById(R.id.item4).setOnClickListener(this);
+
         
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -292,12 +294,9 @@ protected void onPostExecute(Integer result) {
             startActivity(new Intent(this, Prefrenceactivity.class));
              
             return true;
-        case R.id.about:
-                //make someting for about
-            startActivity(new Intent(this, About.class));
+     
             
-            return true;
-        case R.id.refresh:
+         case R.id.refresh:
              Intent myIntent = new Intent(this ,Home.class);//refreshing
                 startActivity(myIntent);
                 finish();
@@ -360,6 +359,11 @@ protected void onPostExecute(Integer result) {
           startActivity(new Intent(this, Event_top.class));    
           //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
     		 
+    	 }
+    	 else if(((TextView) v).getText().equals("About")){
+    		 mMenuDrawer.setActiveView(v);
+   		  mMenuDrawer.closeMenu();
+           startActivity(new Intent(this, About.class));
     	 }
       
          

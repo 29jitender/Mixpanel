@@ -52,7 +52,7 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 			convertView = new TextView(context);
 		}
 		text = (TextView) convertView;
-	 	text.setTextSize(20);//child size
+	 	text.setTextSize(18);//child size
 	 	
 		text.setText(tempChild.get(childPosition));
 //		 
@@ -67,7 +67,7 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 			convertView = new TextView(context);
 		}
 		text1=(TextView) convertView;
-	 	text1.setTextSize(24);//parent size
+	 	text1.setTextSize(23);//parent size
 	 	text1.setTextColor(0xff494949);//its color
 
 		

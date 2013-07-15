@@ -20,7 +20,7 @@
         <activity
             android:name="com.mixpanel.src.Home"
             android:screenOrientation="portrait" 
-             android:label="Home">
+             android:label="Mixpanel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,7 +88,7 @@
         <activity
             android:name="com.mixpanel.src.About"
             android:label="@string/title_activity_about"
-            android:theme="@android:style/Theme.Dialog" >
+             >
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity_event_top"

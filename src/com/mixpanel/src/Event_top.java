@@ -76,7 +76,8 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        findViewById(R.id.item1).setOnClickListener(this);
        findViewById(R.id.item2).setOnClickListener(this);
        findViewById(R.id.item3).setOnClickListener(this);
-      
+       findViewById(R.id.item4).setOnClickListener(this);
+
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
        if (activeView != null) {
@@ -381,7 +382,11 @@ public void  get_values_pref(){// getting values from preference
           startActivity(new Intent(this, Event_top.class));    
     		 
     	 }
-      
+    	 else if(((TextView) v).getText().equals("About")){
+    		 mMenuDrawer.setActiveView(v);
+   		  mMenuDrawer.closeMenu();
+           startActivity(new Intent(this, About.class));
+    	 }
          
       
         mActiveViewId = v.getId();

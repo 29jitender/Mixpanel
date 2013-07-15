@@ -9,12 +9,15 @@ import org.json.JSONObject;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.TextView;
@@ -76,8 +79,10 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
         if ((savedInstanceState != null) && savedInstanceState.containsKey(KEY_CONTENT)) {
             mContent = savedInstanceState.getString(KEY_CONTENT);
         }
+        
+        
     }
-
+    
     public void newcall(){
     	 ParseJSON ParseJson_object = new ParseJSON();
 			ParseJson_object.pass_values("event_top_value");//to get event top value
@@ -100,7 +105,14 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
 
 		list_event.setOnChildClickListener(this);
+		ViewTreeObserver vto = list_event.getViewTreeObserver();/// this is to move the icon to right
 
+        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+            	list_event.setIndicatorBounds(list_event.getRight()- 40, list_event.getWidth());
+            }
+        });
 	}
 
     @Override

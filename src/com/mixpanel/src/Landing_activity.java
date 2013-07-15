@@ -422,11 +422,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 			startActivity(new Intent(this, Prefrenceactivity.class));
  			 
 			return true;
-		case R.id.about:
-				//make someting for about
-			startActivity(new Intent(this, About.class));
-			
-			return true;
+		 
 		case R.id.landing:
 			//make someting for about
 		startActivity(new Intent(this, Event_top.class));

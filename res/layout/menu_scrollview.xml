@@ -34,6 +34,13 @@
             android:drawableLeft="@drawable/ic_action_select_all_dark"
             android:text="Event Top"
             style="@style/MenuDrawer.Widget.Title" />
+        <TextView
+            android:id="@+id/item4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_select_all_dark"
+            android:text="About"
+            style="@style/MenuDrawer.Widget.Title" />
 
         <TextView
             android:layout_width="match_parent"
