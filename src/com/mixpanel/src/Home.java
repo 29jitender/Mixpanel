@@ -52,6 +52,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         private static final String STATE_ACTIVE_VIEW_ID = "net.simonvt.menudrawer.samples.WindowSample.activeViewId";
         private MenuDrawer mMenuDrawer; 
         private int mActiveViewId;
+        private int anmi=0;
         //navigation
          
     @Override
@@ -208,32 +209,6 @@ protected void onPostExecute(Integer result) {
         }
     
     
-     @Override
-        protected void onResume() {
- 
-              
-                 
-               if(internt_count==false){//starting settings if internet is not working
-//                  Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-                   mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
-                   internt_count= false;
-                   RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-                   rlayout.setOnClickListener(new OnClickListener() {
-                    
-                    @Override
-                    public void onClick(View v) {
-                        Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
-                        startActivity(myIntent);
-                        finish();                   
-                    }
-                });
-                 
-
-                }
-                
-             super.onResume();
-        }
-    
     
         //checking internet connection
         
@@ -284,7 +259,39 @@ protected void onPostExecute(Integer result) {
       
       return true;
   }
-  
+  @Override
+  protected void onResume() {
+if(anmi==1){
+   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+}
+else if(anmi==2){
+	
+    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+
+}
+           
+         if(internt_count==false){//starting settings if internet is not working
+//            Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+             mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+             internt_count= false;
+             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+             rlayout.setOnClickListener(new OnClickListener() {
+              
+              @Override
+              public void onClick(View v) {
+                  Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+                  startActivity(myIntent);
+                  finish();                   
+              }
+          });
+           
+
+          }
+          
+       super.onResume();
+  }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -295,7 +302,8 @@ protected void onPostExecute(Integer result) {
             //startService(intentUpdater);
              
             startActivity(new Intent(this, Prefrenceactivity.class));
-             
+            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+            anmi=2;
             return true;
      
             
@@ -333,13 +341,16 @@ protected void onPostExecute(Integer result) {
  
     @Override
     public void onBackPressed() {
+ 
         final int drawerState = mMenuDrawer.getDrawerState();
+
         if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
             return;
         }
 
         super.onBackPressed();
+
     }
 
     @Override
@@ -351,22 +362,28 @@ protected void onPostExecute(Integer result) {
     	 }
     	 else if(((TextView) v).getText().equals("Event"))
     	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
+ 		  
           startActivity(new Intent(this, Event_activity.class));
+          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+          anmi=1;
           //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
     		 
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
     	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
+		  //mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_top.class));    
+          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+          anmi=1;
           //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
     		 
     	 }
     	 else if(((TextView) v).getText().equals("About")){
     		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
+   		 // mMenuDrawer.closeMenu();
            startActivity(new Intent(this, About.class));
+           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+           anmi=1;
     	 }
       
          

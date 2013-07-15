@@ -53,7 +53,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         private MenuDrawer mMenuDrawer; 
         private int mActiveViewId;
         //navigation
-	 
+	 private int anmi=0;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -189,13 +189,17 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 		Intent intent = new Intent(Event_activity.this, activity);
 		 
 		startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        anmi=1;
 	}
 	
 	   
     @Override
        protected void onResume() {
 
-             
+    	if(anmi==1){
+    		   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    		}
                 
               if(internt_count==false){//starting settings if internet is not working
 //                 Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
@@ -278,6 +282,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
  
     @Override
     public void onBackPressed() {
+    	
         final int drawerState = mMenuDrawer.getDrawerState();
         if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
@@ -291,7 +296,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     public void onClick(View v) { // for the click view
     	 if(((TextView) v).getText().equals("Home")){
     		 mMenuDrawer.setActiveView(v);
-    		  mMenuDrawer.closeMenu();
+    		  //mMenuDrawer.closeMenu();
               startActivity(new Intent(this, Home.class));    		  
     	 }
     	 else if(((TextView) v).getText().equals("Event"))
@@ -302,14 +307,17 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
     	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
+		  //mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_top.class));    
-    		 
+          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     	 }
     	 else if(((TextView) v).getText().equals("About")){
     		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
+   		  //mMenuDrawer.closeMenu();
            startActivity(new Intent(this, About.class));
+           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     	 }
          
       

@@ -53,7 +53,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
         private MenuDrawer mMenuDrawer; 
         private int mActiveViewId;
         //navigation
-	    
+	    private int anmi=0;
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -237,6 +237,9 @@ public void  get_values_pref(){// getting values from preference
 					    
 					    
 					    startActivity(in);
+				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+					    anmi=1;
 					}
       });
 				 
@@ -247,7 +250,13 @@ public void  get_values_pref(){// getting values from preference
 	@Override
     protected void onResume() {
 
-          
+		if(anmi==1){
+			   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+			}
+			else if(anmi==2){
+				
+			    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+			}
              
            if(internt_count==false){//starting settings if internet is not working
 //              Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
@@ -319,7 +328,8 @@ public void  get_values_pref(){// getting values from preference
 			//startService(intentUpdater);
 			 
 			startActivity(new Intent(this, Prefrenceactivity_event_top.class));
-			 
+			 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+	            anmi=2;
 			return true;
 		 
 		case R.id.refresh:
@@ -367,25 +377,33 @@ public void  get_values_pref(){// getting values from preference
     public void onClick(View v) { // for the click view
     	 if(((TextView) v).getText().equals("Home")){
     		 mMenuDrawer.setActiveView(v);
-    		  mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, Home.class));    		  
+    		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, Home.class));   
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+              anmi=1;
+
     	 }
     	 else if(((TextView) v).getText().equals("Event"))
     	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_activity.class));    
+//		  mMenuDrawer.closeMenu();
+          startActivity(new Intent(this, Event_activity.class));
+          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+          anmi=1;
     		 
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
     	 { mMenuDrawer.setActiveView(v);
 		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_top.class));    
+          startActivity(new Intent(this, Event_top.class)); 
+          
     		 
     	 }
     	 else if(((TextView) v).getText().equals("About")){
     		 mMenuDrawer.setActiveView(v);
    		  mMenuDrawer.closeMenu();
            startActivity(new Intent(this, About.class));
+           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+           anmi=1;
     	 }
          
       

@@ -337,13 +337,17 @@ lv.setOnItemClickListener(new OnItemClickListener() {
     public void onClick(View v) { // for the click view
     	 if(((TextView) v).getText().equals("Home")){
     		 mMenuDrawer.setActiveView(v);
-    		  mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, Home.class));    		  
+    		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, Home.class));    	
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     	 }
     	 else if(((TextView) v).getText().equals("Event"))
     	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_activity.class));    
+		 // mMenuDrawer.closeMenu();
+          startActivity(new Intent(this, Event_activity.class)); 
+          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     		 
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
@@ -354,8 +358,10 @@ lv.setOnItemClickListener(new OnItemClickListener() {
     	 }
     	 else if(((TextView) v).getText().equals("About")){
     		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
+   		  //mMenuDrawer.closeMenu();
            startActivity(new Intent(this, About.class));
+           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     	 }
          
       

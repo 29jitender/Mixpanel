@@ -66,6 +66,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
     private static final String STATE_ACTIVE_VIEW_ID = "net.simonvt.menudrawer.samples.WindowSample.activeViewId";
     private MenuDrawer mMenuDrawer; 
     private int mActiveViewId;
+    private int anmi=0;
     //navigation
 	@Override
     public void onCreate(Bundle savedInstanceState) { 
@@ -323,7 +324,14 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	 @Override
      protected void onResume() {
 
-           
+		 if(anmi==1){
+			   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+			}
+			else if(anmi==2){
+				
+			    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+
+			} 
               
             if(internt_count==false){//starting settings if internet is not working
 //               Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
@@ -408,7 +416,8 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  				//startService(intentUpdater);
 		  				
 		  				startActivity(new Intent(this, Prefrenceactivity_event.class));
-		  				 
+		  	            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+		  	            	anmi=2;
 		  				return true;
 		  			case android.R.id.home:
 		  	            mMenuDrawer.toggleMenu();
@@ -450,8 +459,11 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	    public void onClick(View v) { // for the click view
 	    	 if(((TextView) v).getText().equals("Home")){
 	    		 mMenuDrawer.setActiveView(v);
-	    		  mMenuDrawer.closeMenu();
-	              startActivity(new Intent(this, Home.class));    		  
+	    		  //mMenuDrawer.closeMenu();
+	              startActivity(new Intent(this, Home.class));
+	              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	              anmi=1;
+
 	    	 }
 	    	 else if(((TextView) v).getText().equals("Event"))
 	    	 { mMenuDrawer.setActiveView(v);
@@ -461,14 +473,18 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	    	 }
 	    	 else if(((TextView) v).getText().equals("Event Top"))
 	    	 { mMenuDrawer.setActiveView(v);
-			  mMenuDrawer.closeMenu();
-	          startActivity(new Intent(this, Event_top.class));    
+			 // mMenuDrawer.closeMenu();
+	          startActivity(new Intent(this, Event_top.class));   
+	          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	          anmi=1;
 	    		 
 	    	 }
 	    	 else if(((TextView) v).getText().equals("About")){
 	    		 mMenuDrawer.setActiveView(v);
-	   		  mMenuDrawer.closeMenu();
+	   		  //mMenuDrawer.closeMenu();
 	           startActivity(new Intent(this, About.class));
+	           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	           anmi=1;
 	    	 }
 	         
 	      
