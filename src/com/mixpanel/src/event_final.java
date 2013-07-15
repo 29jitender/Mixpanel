@@ -15,11 +15,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -130,14 +134,19 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
       		int height = display.getHeight();  // deprecated
       		
       		RelativeLayout rl = (RelativeLayout) findViewById(R.id.relativeLayout_eventfinal);
-      	    rl.getLayoutParams().height = height/2;
+      	    rl.getLayoutParams().height = (int) (height/2.3);
        	  
       	  ///
         name = Event_activity.click_type;
          // Displaying all values on the screen
         
         TextView lblName1 = (TextView) findViewById(R.id.event_activity_name);
-        lblName1.setText(name);
+        SpannableString spanString = new SpannableString(name);//underline
+		  spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
+		  spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+		  spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
+		  lblName1.setText(spanString);
+       // lblName1.setText(name);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 	 	

@@ -132,7 +132,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
             prefs.registerOnSharedPreferenceChangeListener(this);
             get_values_pref(); //getting values from pre
             if(API_key.equals("nill") && API_sceret.equals("nill")){
-                Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in MODIFY", Toast.LENGTH_LONG).show();
             }
     }
     
@@ -196,11 +196,11 @@ protected void onPostExecute(Integer result) {
                  else{
                      new Handler().postDelayed(new Runnable() {// opening menu when api key is wrong 
                            public void run() { 
-                             openOptionsMenu(); 
+                               startActivity(new Intent(Home.this, Prefrenceactivity.class));
                            } 
                         }, 1000);
 
-                     Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in Settings", Toast.LENGTH_LONG).show(); 
+                     Toast.makeText(getApplicationContext(), "Please enter your api sceret and Key in MODIFY", Toast.LENGTH_LONG).show(); 
                  }
 
                 super.onPostExecute(result);
@@ -273,11 +273,14 @@ protected void onPostExecute(Integer result) {
       //Used to put dark icons on light action bar
        
       
-       getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
+       //getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);   
+       menu.add(Menu.NONE, R.id.landing, Menu.NONE, "Modify")
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+      
       
       return true;
   }
@@ -288,7 +291,7 @@ protected void onPostExecute(Integer result) {
         
         switch (item.getItemId()){
         
-        case R.id.setting:
+        case R.id.landing:
             //startService(intentUpdater);
              
             startActivity(new Intent(this, Prefrenceactivity.class));

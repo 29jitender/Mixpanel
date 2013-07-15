@@ -22,5 +22,7 @@
         android:id="@+id/android:list"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
+        android:divider="@android:color/transparent"
+  android:dividerHeight="3.0sp"
         />
 </LinearLayout>

@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginTop="4dip"
+                android:layout_marginLeft="6dip"
                 android:paddingBottom="2dip"
                 android:text="Signup form submit "
                 android:textColor="#1e1e1e"   
@@ -40,6 +42,7 @@
             android:textColor="#5d5d5d"
             android:gravity="left"
             android:textStyle="bold"
+                            android:layout_marginLeft="6dip"
             
             android:text="% Change: " >
         </TextView>
@@ -65,6 +68,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:textSize="40sp"
+                            android:layout_marginRight="6dip"
             
             android:text="1334" />
         
