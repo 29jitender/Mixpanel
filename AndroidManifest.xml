@@ -19,7 +19,8 @@
         android:theme="@style/AppBaseTheme" >
         <activity
             android:name="com.mixpanel.src.Home"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" 
+             android:label="Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +43,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.event_final"
-            android:label="@string/title_activity_event_activity" >
+            android:label="Events" >
         </activity>
         <activity
             android:name="com.mixpanel.src.MainActivity1"
@@ -50,7 +51,8 @@
         </activity>
         <activity android:name="com.mixpanel.src.Splash" >
         </activity>
-        <activity android:name="com.mixpanel.src.Event_top_click" >
+        <activity android:name="com.mixpanel.src.Event_top_click" 
+             android:label="Top event">
         </activity>
         <activity android:name="com.mixpanel.src.Conf_API" >
         </activity>
@@ -65,7 +67,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_activity"
-            android:label="@string/title_activity_temp" >
+             android:label="All events" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Funnel_home"
@@ -81,7 +83,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_top"
-            android:label="@string/title_activity_landing_activity" >
+            android:label="Top events" >
         </activity>
         <activity
             android:name="com.mixpanel.src.About"
@@ -90,7 +92,7 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity_event_top"
-            android:label="@string/title_activity_prefrenceactivity_event_top" >
+            android:label="Top event filter" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Landing_activity"

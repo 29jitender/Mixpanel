@@ -24,7 +24,7 @@
                 android:layout_gravity="left"
                 android:paddingBottom="2dip"
                 android:text="Signup form submit "
-                android:textColor="#FFBB33"   
+                android:textColor="#1e1e1e"   
                 android:textSize="20sp"
                 android:textStyle="bold" >
 
@@ -51,7 +51,7 @@
           android:paddingBottom="2dip"
           android:paddingTop="6dip"
           android:text="0.45451514 "
-          android:textColor="#43bd00"
+          android:textColor="#1a1919"
           android:textSize="15sp" />
 
             </LinearLayout>
@@ -61,7 +61,7 @@
             android:id="@+id/E_amount"
             android:layout_width="93dip"
             android:layout_height="wrap_content"
-            android:textColor="#AA66CC" 
+            android:textColor="#FFBB33" 
             android:textStyle="bold"
             android:gravity="right"
             android:textSize="40sp"

@@ -9,10 +9,11 @@
          android:id="@+id/name_label"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:layout_gravity="center"
          android:paddingBottom="10dip"
          android:paddingTop="10dip"
          android:text="@string/home_screen_text"
-         android:textColor="#43bd00"
+         android:textColor="#1c0707"
          android:textSize="25dip"
          android:textStyle="bold" />
 

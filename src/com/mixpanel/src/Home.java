@@ -57,9 +57,6 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         
-        Home_graph_call homeobj = new Home_graph_call();
-        homeobj.tocall();//starting home_graph_call
         
         //navigation
         if (savedInstanceState != null) {
@@ -297,7 +294,7 @@ protected void onPostExecute(Integer result) {
             return true;
         case R.id.about:
                 //make someting for about
-            startActivity(new Intent(this, Home_graph.class));
+            startActivity(new Intent(this, About.class));
             
             return true;
         case R.id.refresh:

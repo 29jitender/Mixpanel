@@ -54,9 +54,7 @@ public class Home_graph extends Activity  implements Callback,OnChildClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.home_fragment_layout_line);
-//		Home_graph_call obj =new Home_graph_call();//this is to find top events and send value to all api call
-//		obj.tocall();//caling
+		setContentView(R.layout.home_fragment_layout_line); 
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("event_top_value");//to get event top value
 		ParseJson_object.setListener(this);

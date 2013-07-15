@@ -68,7 +68,7 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 		}
 		text1=(TextView) convertView;
 	 	text1.setTextSize(24);//parent size
-	 	text1.setTextColor(0xffbdbdbd);//its color
+	 	text1.setTextColor(0xff494949);//its color
 
 		
 		text1.setText(groupItem.get(groupPosition));
