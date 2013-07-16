@@ -302,7 +302,8 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     	 else if(((TextView) v).getText().equals("Event"))
     	 { mMenuDrawer.setActiveView(v);
 		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_activity.class));    
+          startActivity(new Intent(this, Event_activity.class));
+          anmi=1;
     		 
     	 }
     	 else if(((TextView) v).getText().equals("Event Top"))
@@ -310,14 +311,14 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 		  //mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_top.class));    
           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
+          anmi=1;
     	 }
     	 else if(((TextView) v).getText().equals("About")){
     		 mMenuDrawer.setActiveView(v);
    		  //mMenuDrawer.closeMenu();
            startActivity(new Intent(this, About.class));
            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
+           anmi=1;
     	 }
          
       

@@ -106,6 +106,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
                 @Override
                 public void onClick(View v) {
                     Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+                    Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
+
                     startActivity(myIntent);
                     finish();                   
                 }
