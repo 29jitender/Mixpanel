@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -20,7 +19,8 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.TextView;
+import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.echo.holographlibrary.Line;
@@ -93,7 +93,7 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	
     	View view = inflater.inflate(R.layout.home_fragment_layout_line, container, false);//defing layout
-    	 
+ 
         return view;        
     }
 
@@ -105,6 +105,20 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
 
 		list_event.setOnChildClickListener(this);
+		
+		list_event.setOnGroupExpandListener(new OnGroupExpandListener() { // this to auto close the list when something is already clicked
+	        int previousGroup = -1;
+
+	        @Override
+	        public void onGroupExpand(int groupPosition) {
+	            if(groupPosition != previousGroup)
+	            	list_event.collapseGroup(previousGroup);
+	            previousGroup = groupPosition;
+	        }
+	    });
+		
+		
+		
 		ViewTreeObserver vto = list_event.getViewTreeObserver();/// this is to move the icon to right
 
         vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -162,27 +176,32 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 						e.printStackTrace();
 					}					
 		 	 }
-		 	 
-				
-//setting y axis lable 
-		 	DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-		 	int width = metrics.widthPixels;
-		 	 int size= width/61;
-		 	TextView text = (TextView) getView().findViewById(R.id.days);
-		 	text.setTextSize(size);
-		 	String temp="";
-		 	for(int i=0;i < 7;i++){
-				 try {
-					temp=temp+series.getString(i)+"    " ;
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 }
-		 	text.setText(temp);
-	  	 
-	//	 	 
-		 
+		 	 // this is for the height of graph
+		 	int density = getActivity().getResources().getDisplayMetrics().densityDpi ;
+	    	RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rel1);
+	    	if (density == DisplayMetrics.DENSITY_LOW) {
+	    	    rl.getLayoutParams().height = (int) 300;
+
+	    	} else if (density == DisplayMetrics.DENSITY_MEDIUM) {
+	    	    rl.getLayoutParams().height = (int) 340;
+
+	    	}  else if (density == DisplayMetrics.DENSITY_TV) {
+	    	    rl.getLayoutParams().height = (int) 380;
+
+	    	}
+	    	 else if (density == DisplayMetrics.DENSITY_HIGH) {
+	     	    rl.getLayoutParams().height = (int) 420;
+
+	     	}
+	    	 else if (density == DisplayMetrics.DENSITY_XHIGH) {
+	     	    rl.getLayoutParams().height = (int) 460;
+
+	     	}
+	    	 else if (density == DisplayMetrics.DENSITY_DEFAULT) {
+	     	    rl.getLayoutParams().height = (int) 480;
+
+	     	}
+ 
 		 	/**
 			* Updating parsed JSON data into graphs
 			* */

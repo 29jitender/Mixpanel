@@ -4,18 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.echo.holographlibrary.LineGraph
+     <RelativeLayout
+         android:id="@+id/rel1"
+         android:layout_width="match_parent"
+         android:layout_height="300dp" >
+
+     <com.echo.holographlibrary.LineGraph
         android:id="@+id/linegraph_home"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="8dip" />
-
-    <TextView
-        android:id="@+id/days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_height="match_parent"
+        android:layout_margin="8dip"
+         />
+</RelativeLayout>
+  
+    
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -123,9 +125,11 @@
       android:layout_alignParentTop="true"
       android:layout_marginLeft="8dip"
       android:choiceMode="singleChoice"
-      android:divider="@android:color/darker_gray"
+      android:divider="@android:color/transparent"
       
-      android:dividerHeight="2dp" >
+      android:dividerHeight="3dp"
+      android:childDivider="@android:color/transparent" 
+      >
 
 	        </ExpandableListView>        </LinearLayout>
     </RelativeLayout>

@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressWarnings("unchecked")
 public class Home_list_adapter extends BaseExpandableListAdapter {
@@ -52,7 +49,7 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 			convertView = new TextView(context);
 		}
 		text = (TextView) convertView;
-	 	text.setTextSize(18);//child size
+	 	text.setTextSize(17);//child size
 	 	
 		text.setText(tempChild.get(childPosition));
 //		 

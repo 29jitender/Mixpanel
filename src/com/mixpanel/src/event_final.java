@@ -97,9 +97,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
             mMenuDrawer.setActiveView(activeView);
             //mContentTextView.setText("Active item: " + activeView.getText());
         } 
-        // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
-        // called on first launch.
-        mMenuDrawer.peekDrawer();
+        
         //navigation
         
         if(isNetworkOnline()==true){//starting settings if internet is not working
@@ -329,7 +327,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 			}
 			else if(anmi==2){
 				
-			    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+			    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
 
 			} 
               
@@ -416,7 +414,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  				//startService(intentUpdater);
 		  				
 		  				startActivity(new Intent(this, Prefrenceactivity_event.class));
-		  	            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+		  	            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
 		  	            	anmi=2;
 		  				return true;
 		  			case android.R.id.home:

@@ -268,7 +268,7 @@ if(anmi==1){
 }
 else if(anmi==2){
 	
-    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
 
 }
            
@@ -304,7 +304,7 @@ else if(anmi==2){
             //startService(intentUpdater);
              
             startActivity(new Intent(this, Prefrenceactivity.class));
-            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
             anmi=2;
             return true;
      

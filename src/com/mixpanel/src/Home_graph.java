@@ -10,12 +10,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.echo.holographlibrary.Line;
@@ -119,24 +117,7 @@ public class Home_graph extends Activity  implements Callback,OnChildClickListen
 		 	 }
 		 	 
 				
-//setting y axis lable 
-		 	DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-		 	int width = metrics.widthPixels;
-		 	 int size= width/61;
-		 	TextView text = (TextView) findViewById(R.id.days);
-		 	text.setTextSize(size);
-		 	String temp="";
-		 	for(int i=0;i < 7;i++){
-				 try {
-					temp=temp+series.getString(i)+"    " ;
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 }
-		 	text.setText(temp);
-	  	 
-	//	 	 
+ 
 		 
 		 	/**
 			* Updating parsed JSON data into graphs

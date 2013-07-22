@@ -87,9 +87,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
             mMenuDrawer.setActiveView(activeView);
             //mContentTextView.setText("Active item: " + activeView.getText());
         } 
-        // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
-        // called on first launch.
-        mMenuDrawer.peekDrawer();
+    
         //navigation
         
         if(isNetworkOnline()==true){//starting settings if internet is not working

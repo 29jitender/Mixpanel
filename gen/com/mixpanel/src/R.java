@@ -1445,7 +1445,6 @@ containing a value of this type.
         public static final int button3=0x7f070061;
         public static final int button4=0x7f070063;
         public static final int button5=0x7f070065;
-        public static final int days=0x7f070067;
         public static final int disableHome=0x7f070014;
         public static final int e_date=0x7f07006a;
         public static final int e_name_amount=0x7f070077;
@@ -1471,7 +1470,7 @@ containing a value of this type.
         public static final int item4=0x7f070072;
         public static final int landing=0x7f070080;
         public static final int linearLayout1=0x7f070042;
-        public static final int linegraph_home=0x7f070066;
+        public static final int linegraph_home=0x7f070067;
         public static final int linlaHeaderProgress=0x7f07004a;
         public static final int listMode=0x7f07000d;
         public static final int list_view=0x7f070048;
@@ -1505,6 +1504,7 @@ containing a value of this type.
         public static final int piegraph1=0x7f070051;
         public static final int random=0x7f07007b;
         public static final int refresh=0x7f07007e;
+        public static final int rel1=0x7f070066;
         public static final int relativeLayout=0x7f070073;
         public static final int relativeLayout1=0x7f07004e;
         public static final int relativeLayout2=0x7f070050;
