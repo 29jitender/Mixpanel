@@ -3,6 +3,7 @@
     <item android:id="@+id/event_filter" android:title="@string/event_filter"></item>
     <item android:id="@+id/landing" android:title="@string/landing"></item>
     <item android:id="@+id/event_top_setting" android:title="@string/event_top_setting"></item>
+    <item android:id="@+id/search" android:title="@string/Search"></item>
 
    
 </menu>

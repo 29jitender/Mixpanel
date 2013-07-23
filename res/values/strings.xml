@@ -91,5 +91,6 @@
     <string name="title_activity_new_landing">New_landing</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_home_graph">Home_graph</string>
+    <string name="Search">Search</string>
 
 </resources>

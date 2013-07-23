@@ -415,6 +415,8 @@ public void  get_values_pref(){// getting values from preference
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		get_values_pref();
+	 
+		
 		
 	}
 

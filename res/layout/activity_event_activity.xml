@@ -4,12 +4,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-    <!-- Editext for Search -->
+    <!-- Editext for Search 
     <EditText android:id="@+id/inputSearch"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:hint="Search Events..."
-    	android:inputType="textVisiblePassword"/>
+    	android:inputType="textVisiblePassword"/>< -->
  
 	<!-- List View -->
     <ListView

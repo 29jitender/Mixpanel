@@ -15,8 +15,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -36,7 +37,7 @@ import com.actionbarsherlock.view.Window;
 
 public class Event_activity extends SherlockActivity implements   Callback,View.OnClickListener  {
     public Boolean internt_count=null;// to check the connectvity
-
+    private EditText search;
 	 public static String click_type="";	 
 	 public static  String display1="lol";
 	 // List view
@@ -44,7 +45,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 		// Listview Adapter 
 		ArrayAdapter<String> adapter;		
 		// Search EditText
-		EditText inputSearch;		
+		//EditText inputSearch;		
 		// ArrayList for Listview
 		ArrayList<HashMap<String, String>> productList;
 		 //navigation drawer variables
@@ -134,34 +135,35 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
 
 		lv = (ListView) findViewById(R.id.list_view);
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
         
         // Adding items to listview
         adapter = new ArrayAdapter<String>(this, R.layout.list_item1, R.id.event_activity_list, array);
         lv.setAdapter(adapter);
         
         // this is to search the items in list
-        inputSearch.addTextChangedListener(new TextWatcher() {
-			
-			@Override
-			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-				// When user changed the Text
-				Event_activity.this.adapter.getFilter().filter(cs);	
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-					int arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub							
-			}
-		});
-		
+//        inputSearch = (EditText) findViewById(R.id.inputSearch);
+//
+//        inputSearch.addTextChangedListener(new TextWatcher() {
+//			
+//			@Override
+//			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+//				// When user changed the Text
+//				Event_activity.this.adapter.getFilter().filter(cs);	
+//			}
+//			
+//			@Override
+//			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+//					int arg3) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//			@Override
+//			public void afterTextChanged(Editable arg0) {
+//				// TODO Auto-generated method stub							
+//			}
+//		});
+//		
 		 click_action();
 
 	}
@@ -243,13 +245,17 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 
 	
   // this is the option
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		 
-		return true;
-		
-	}
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Used to put dark icons on light action bar
+        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+
+        menu.add(Menu.NONE, R.id.search, Menu.NONE, "Search")
+            .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+            .setActionView(R.layout.collapsible_edittext)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+
+        return true;
+    }
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -257,13 +263,57 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 		case android.R.id.home: //on pressing home
             mMenuDrawer.toggleMenu();
             return true; 
+            
+		case R.id.search: //on pressing home
+			search = (EditText) item.getActionView();
+            search.addTextChangedListener(filterTextWatcher);
+            search.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+			
+			
+			
+			return true;    
 		default:
 			return false;
 			
 			
 		}
 	}
+	private TextWatcher filterTextWatcher = new TextWatcher() {
+	    public void afterTextChanged(Editable s) {
+	    }
 
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+	    	
+	    	// this is to search the items in list
+	    	search.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+					// When user changed the Text
+					Event_activity.this.adapter.getFilter().filter(cs);	
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+						int arg3) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable arg0) {
+					// TODO Auto-generated method stub							
+				}
+			});
+	    	
+ 	    }
+
+	};
 	//rest functinality for of navigation
     @Override
     protected void onRestoreInstanceState(Bundle inState) {

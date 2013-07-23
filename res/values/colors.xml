@@ -5,4 +5,12 @@
     <color name="md__transparent">#00000000</color>
 
     <color name="md__defaultBackground">#FF555555</color>
+    <color name="c1">#99CC00</color>
+    <color name="c2">#FFBB33</color>
+    <color name="c3">#AA66CC</color>
+    <color name="c4">#f41212</color>
+    <color name="c5">#25d3ee</color>
+    <color name="nill">#fff</color>
+    
+    
 </resources>

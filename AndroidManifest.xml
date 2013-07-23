@@ -92,7 +92,8 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity_event_top"
-            android:label="Top event filter" >
+            android:label="Top event filter" 
+           >
         </activity>
         <activity
             android:name="com.mixpanel.src.Landing_activity"

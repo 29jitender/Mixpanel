@@ -14,6 +14,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -69,8 +71,12 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+            // this is for the color of title bar
+            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
+            getSupportActionBar().setBackgroundDrawable(bg);
 
+        }
+     
  
         findViewById(R.id.item1).setOnClickListener(this);
         findViewById(R.id.item2).setOnClickListener(this);
@@ -145,8 +151,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
            
             API_key =prefs.getString("api_key", "nill");
             API_sceret =prefs.getString("api_secret", "nill");
-            Log.i("hi we are in pref",API_key);
-            Log.i("hi we are in pref",API_sceret);
+             
             Conf_API.setting();// calling conf api to update the api key and valyes
             new Check_api().execute();//checking api after the values are updated in conf_api
         

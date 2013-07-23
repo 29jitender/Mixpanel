@@ -22,7 +22,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="14dip" >
+        android:layout_marginTop="11dip" >
 
         <TableLayout
             android:id="@+id/tableLayout1"
@@ -31,20 +31,20 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-             android:layout_marginTop="9dip" >
+             android:layout_marginTop="10dip" >
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5pt"
+                android:layout_marginBottom="8pt"
                 android:layout_marginLeft="4dip" >
 
                 <Button
-                    android:id="@+id/button1"
-                    android:layout_width="12pt"
-                    android:layout_height="8pt"
-                    android:background="#99CC00"
+                    android:id="@+id/button11"
+                    android:layout_width="14pt"
+                    android:layout_height="9pt"
+                    android:background="@drawable/round_button1"
                     android:text=" " />
             </TableRow>
 
@@ -52,14 +52,14 @@
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5pt"
+                android:layout_marginBottom="8pt"
                 android:layout_marginLeft="4dip" >
 
                 <Button
-                    android:id="@+id/button2"
-                   android:layout_width="12pt"
-                    android:layout_height="8pt"
-                    android:background="#FFBB33"
+                    android:id="@+id/button21"
+                   android:layout_width="14pt"
+                    android:layout_height="9pt"
+                    android:background="@drawable/round_button2"
                     android:text=" " />
             </TableRow>
 
@@ -67,14 +67,14 @@
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5pt"
+                android:layout_marginBottom="8pt"
                 android:layout_marginLeft="4dip" >
 
                 <Button
-                    android:id="@+id/button3"
-                  android:layout_width="12pt"
-                    android:layout_height="8pt"
-                    android:background="#AA66CC"
+                    android:id="@+id/button31"
+                  android:layout_width="14pt"
+                    android:layout_height="9pt"
+                    android:background="@drawable/round_button3"
                     android:text=" " />
             </TableRow>
 
@@ -82,14 +82,14 @@
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5pt"
+                android:layout_marginBottom="8pt"
                 android:layout_marginLeft="4dip" >
 
                 <Button
-                    android:id="@+id/button4"
-                   android:layout_width="12pt"
-                    android:layout_height="8pt"
-                    android:background="#f41212"
+                    android:id="@+id/button41"
+                   android:layout_width="14pt"
+                    android:layout_height="9pt"
+                    android:background="@drawable/round_button4"
                     android:text=" " />
             </TableRow>
 
@@ -97,14 +97,14 @@
                 android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5pt"
+                android:layout_marginBottom="8pt"
                 android:layout_marginLeft="4dip" >
 
                 <Button
-                    android:id="@+id/button5"
-                   android:layout_width="12pt"
-                    android:layout_height="8pt"
-                    android:background="#25d3ee"
+                    android:id="@+id/button51"
+                   android:layout_width="14pt"
+                    android:layout_height="9pt"
+                    android:background="@drawable/round_button5"
                     android:text="      " />
             </TableRow>
         </TableLayout>
@@ -126,8 +126,8 @@
       android:layout_marginLeft="8dip"
       android:choiceMode="singleChoice"
       android:divider="@android:color/transparent"
-      
-      android:dividerHeight="3dp"
+      android:transcriptMode="disabled"
+      android:dividerHeight="13dp"
       android:childDivider="@android:color/transparent" 
       >
 

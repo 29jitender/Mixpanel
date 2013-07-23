@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -46,8 +48,7 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 		ArrayList<String> groupItem = new ArrayList<String>();
 		ArrayList<Object> childItem = new ArrayList<Object>();
 		//list
-
-//line graph
+ //line graph
 	  
 	 float rangeY1=0;
 	 float rangeY2=0;
@@ -100,21 +101,117 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 	public void calllist(){
 		seteventname();
 		senteventname_value();
+		
+	    final Button b1=(Button)getView().findViewById(R.id.button11);
+	    final Button b2=(Button)getView().findViewById(R.id.button21);
+	    final Button b3=(Button)getView().findViewById(R.id.button31);
+	    final  Button b4=(Button)getView().findViewById(R.id.button41);
+	    final Button b5=(Button)getView().findViewById(R.id.button51);
+
+	    
 		list_event = (ExpandableListView) getView().findViewById(R.id.eventname_list);
 
 		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
 
 		list_event.setOnChildClickListener(this);
+        	
 		
+        list_event.setOnGroupCollapseListener(new OnGroupCollapseListener() {// when it collops
+			
+			@Override
+			public void onGroupCollapse(int arg0) {
+ 
+ 				b1.setVisibility(View.VISIBLE);
+        		b2.setVisibility(View.VISIBLE);
+        		b3.setVisibility(View.VISIBLE);
+        		b4.setVisibility(View.VISIBLE);
+        		b5.setVisibility(View.VISIBLE);
+
+        		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
+        		b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+        		b3.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
+        		b4.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
+        		b5.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+			}
+		});
+			 
 		list_event.setOnGroupExpandListener(new OnGroupExpandListener() { // this to auto close the list when something is already clicked
 	        int previousGroup = -1;
 
+	        
+	        
+	        
 	        @Override
 	        public void onGroupExpand(int groupPosition) {
-	            if(groupPosition != previousGroup)
-	            	list_event.collapseGroup(previousGroup);
+  	            if(groupPosition != previousGroup){
+ 	            	list_event.collapseGroup(previousGroup);
+ 	 	           
+
 	            previousGroup = groupPosition;
+	            
+	            }
+  	            switch(groupPosition){
+	            case 0:
+	            		b1.setVisibility(View.VISIBLE);
+	            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
+		            	b2.setVisibility(View.GONE);
+		            	b3.setVisibility(View.GONE);
+		            	b4.setVisibility(View.GONE);
+		            	b5.setVisibility(View.GONE);
+  	            		break;
+	            case 1:
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+	            	//b1.setBackgroundColor(getResources().getColor(R.color.c2));
+	            	b2.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+               		break;
+	            case 2:
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
+	            	b3.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+             		break;
+	            case 3:
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
+	            	b4.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+             		break;
+	            case 4:
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+	            	b5.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+             		break;
+            	default:
+             		b1.setVisibility(View.VISIBLE);
+            		b2.setVisibility(View.VISIBLE);
+            		b3.setVisibility(View.VISIBLE);
+            		b4.setVisibility(View.VISIBLE);
+            		b5.setVisibility(View.VISIBLE);
+
+            		b1.setBackgroundColor(getResources().getColor(R.color.c1));
+	            	b2.setBackgroundColor(getResources().getColor(R.color.c2));
+	            	b3.setBackgroundColor(getResources().getColor(R.color.c3));
+	            	b4.setBackgroundColor(getResources().getColor(R.color.c4));
+	            	b5.setBackgroundColor(getResources().getColor(R.color.c5));
+
+            		break;
+            		
+	            }
 	        }
+	        	
+	       
+	        
 	    });
 		
 		
@@ -124,7 +221,7 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
         vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-            	list_event.setIndicatorBounds(list_event.getRight()- 40, list_event.getWidth());
+            	list_event.setIndicatorBounds(list_event.getRight()- 80, list_event.getWidth());
             }
         });
 	}
