@@ -78,13 +78,13 @@
     <string name="graph_button">Change</string>
     <string name="event_type">Type</string>
     <string name="refresh">refresh</string>
-    <string name="event_filter">Filter</string>
+    <string name="event_filter">Modify</string>
     <string name="title_activity_funnel_activity">Funnel_activity</string>
     <string name="title_activity_landing_activity">Landing_activity</string>
     <string name="title_activity_about">About</string>
     <string name="landing_more">More</string>
     <string name="landing">More</string>
-    <string name="event_top_setting">Setting</string>
+    <string name="event_top_setting">Modify</string>
     <string name="top_event">Limit</string>
     <string name="event_top_limit">The maximum number of events to return.  The maximum this value can be is 100</string>
     <string name="title_activity_prefrenceactivity_event_top">Prefrenceactivity_event_top</string>

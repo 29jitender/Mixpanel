@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
@@ -60,7 +61,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout 
+
         //navigation
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
@@ -135,8 +137,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
             mPager = (ViewPager)findViewById(R.id.pager);
             mPager.setAdapter(mAdapter);
 
-            mIndicator = (TitlePageIndicator)findViewById(R.id.indicator);
-            mIndicator.setViewPager(mPager);
+//            mIndicator = (TitlePageIndicator)findViewById(R.id.indicator); //to use when i will use more fragments in home screen in future
+//            mIndicator.setViewPager(mPager);
             prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
             prefs.registerOnSharedPreferenceChangeListener(this);
             get_values_pref(); //getting values from pre
@@ -362,12 +364,12 @@ else if(anmi==2){
 
     @Override
     public void onClick(View v) { // for the click view
-    	 if(((TextView) v).getText().equals("Home")){
+    	 if(((TextView) v).getText().equals("Overview")){
     		 mMenuDrawer.setActiveView(v);
     		  mMenuDrawer.closeMenu();
               startActivity(new Intent(this, Home.class));    		  
     	 }
-    	 else if(((TextView) v).getText().equals("Event"))
+    	 else if(((TextView) v).getText().equals("All Events"))
     	 { mMenuDrawer.setActiveView(v);
  		  
           startActivity(new Intent(this, Event_activity.class));

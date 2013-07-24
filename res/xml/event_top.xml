@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <EditTextPreference android:key="top_event" android:title="@string/top_event" android:summary="@string/event_top_limit" android:dialogMessage="@string/event_top_limit" android:dialogTitle="@string/top_event"/>
+    <EditTextPreference android:key="top_event" android:inputType="number" android:maxLength="2" android:title="@string/top_event" android:summary="@string/event_top_limit" android:dialogMessage="@string/event_top_limit" android:dialogTitle="@string/top_event"/>
     
-
+<Preference android:title="Change"
+                android:key="button"
+                android:summary="Refresh" android:icon="@drawable/retry"/>
 </PreferenceScreen>

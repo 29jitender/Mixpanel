@@ -23,6 +23,6 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:divider="@android:color/transparent"
-  android:dividerHeight="3.0sp"
+  android:dividerHeight="6.0sp"
         />
 </LinearLayout>

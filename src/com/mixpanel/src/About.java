@@ -2,7 +2,9 @@ package com.mixpanel.src;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
@@ -21,7 +23,13 @@ public class About extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		  
+		 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+	            getActionBar().setDisplayHomeAsUpEnabled(true);
+	            // this is for the color of title bar
+	            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
+	            getSupportActionBar().setBackgroundDrawable(bg);
+
+	        }
 		setContentView(R.layout.activity_about);
 
 		String tempString="Open Source Credits";

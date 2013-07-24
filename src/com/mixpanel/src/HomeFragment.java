@@ -25,11 +25,13 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
 
-public final class HomeFragment extends Fragment implements Callback,OnChildClickListener{
+public final class HomeFragment extends SherlockFragment implements Callback,OnChildClickListener{
     private static final String KEY_CONTENT = "TestFragment:Content";
 	 public static String[] event_name=new String[5];
 	 private static String TAG_event = "values";
@@ -74,6 +76,8 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		 getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);//onload show loading
+
         Home_graph_call1 obj =new Home_graph_call1();
         obj.tocall();
        
@@ -92,9 +96,9 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	
+
     	View view = inflater.inflate(R.layout.home_fragment_layout_line, container, false);//defing layout
- 
+
         return view;        
     }
 
@@ -273,6 +277,8 @@ public final class HomeFragment extends Fragment implements Callback,OnChildClic
 						e.printStackTrace();
 					}					
 		 	 }
+		 	 getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
 		 	 // this is for the height of graph
 		 	int density = getActivity().getResources().getDisplayMetrics().densityDpi ;
 	    	RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rel1);

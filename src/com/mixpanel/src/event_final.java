@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -30,6 +31,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -82,6 +84,10 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
+            // this is for the color of title bar
+            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
+            getSupportActionBar().setBackgroundDrawable(bg);
+
         }
 
        // mContentTextView = (TextView) findViewById(R.id.contentText);
@@ -136,14 +142,15 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
       	    rl.getLayoutParams().height = (int) (height/2.3);
        	  
       	  ///
-        name = Event_activity.click_type;
+        //name = Event_activity.click_type;
+      	    name= All_api_define.event;//getting the name from all api define
          // Displaying all values on the screen
         
         TextView lblName1 = (TextView) findViewById(R.id.event_activity_name);
         SpannableString spanString = new SpannableString(name);//underline
-		  spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
+		 // spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
 		  spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-		  spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
+		 //spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
 		  lblName1.setText(spanString);
        // lblName1.setText(name);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
@@ -176,7 +183,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 
 	@Override
 	public void methodToCallback(String print) {
-		final float[] data_map=new float[100];//defing array 
+		final float[] data_map=new float[1000];//defing array 
 		ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
 		
 	 
@@ -201,6 +208,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 		            HashMap<String, String> map = new HashMap<String, String>();
 		            
 		            String mkey=key;
+		            
 		            String mvalue= (String) c.getString(key);
 		            
 		            //map.put(mkey, mvalue); 
@@ -235,11 +243,28 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 		* */
 		
         setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
+        
 		
 		Line graph = new Line();
 		LinePoint p = new LinePoint();
 		int range= Integer.parseInt(All_api_define.interval1);//converting into float this is the inteval
+		
+		// this is to check  if all values are same and 0//////////////////////////////////////////////////////////////////////
+		boolean flag = true;
+		float first = 0;
+		for(int i = 0; i < range && flag; i++)
+		{
+		  if (data_map[i] != first) flag = false;
+		}
+		if (flag){ 
+            RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout_eventfinal);
+
+            rlayout.setVisibility(RelativeLayout.GONE);//hiding the graph
+            RelativeLayout rlayout1 = (RelativeLayout) findViewById(R.id.relativeLayout_nill);
+
+            rlayout1.setVisibility(RelativeLayout.VISIBLE);//show to msg
+ 		}
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		 for(int i=1;i<=range;i++){
 			p = new LinePoint();
 			p.setX(i);
@@ -287,9 +312,10 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 /**
 * Updating parsed JSON data into ListView
 * */
+		
 		ListAdapter adapter = new SimpleAdapter(this, Event_list,  R.layout.top_event_click_list,
 				new String[] {VALUE1,KEY1}, new int[] {
-		             R.id.e_name_amount,R.id.e_date});
+		             R.id.e_name_amount,R.id.e_date1});
  
 			setListAdapter(adapter);
 	 
@@ -455,7 +481,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 
 	    @Override
 	    public void onClick(View v) { // for the click view
-	    	 if(((TextView) v).getText().equals("Home")){
+	    	 if(((TextView) v).getText().equals("Overview")){
 	    		 mMenuDrawer.setActiveView(v);
 	    		  //mMenuDrawer.closeMenu();
 	              startActivity(new Intent(this, Home.class));
@@ -463,7 +489,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	              anmi=1;
 
 	    	 }
-	    	 else if(((TextView) v).getText().equals("Event"))
+	    	 else if(((TextView) v).getText().equals("All Events"))
 	    	 { mMenuDrawer.setActiveView(v);
 			  mMenuDrawer.closeMenu();
 	          startActivity(new Intent(this, Event_activity.class));    

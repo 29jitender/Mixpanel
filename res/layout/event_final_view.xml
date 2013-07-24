@@ -17,10 +17,25 @@
         android:layout_marginRight="4dip"
         android:layout_marginTop="4dip"
         android:layout_marginBottom="4dip"
-        android:layout_weight="0.74"
-        android:background="@drawable/graphbg" />
+        android:layout_weight="0.74"/>
+       <!-- android:background="@drawable/graphbg" -->  
     </RelativeLayout>
-
+ <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp" 
+        android:layout_margin="4dip"
+        android:visibility="gone"
+        android:id="@+id/relativeLayout_nill">
+      <TextView
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Value to Plot Graph"
+            android:textColor="#2447ff"
+            android:textSize="40dip"
+            android:layout_marginLeft="16dip"
+            android:textAppearance="?android:attr/textAppearanceLarge" />   
+    </RelativeLayout>
+    
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -33,6 +48,7 @@
             android:text="Output text"
             android:textColor="#4d3131"
             android:textSize="24dip"
+            android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -41,8 +57,9 @@
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-  android:dividerHeight="6.0sp" >
+        android:layout_marginTop="8dip"
+         android:divider="@android:color/transparent"
+  android:dividerHeight="17.0sp" >
     </ListView>
     
 </LinearLayout>

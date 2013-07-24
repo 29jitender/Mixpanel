@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+   
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/item1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_refresh_dark"
-            android:text="Home"
-            style="@style/MenuDrawer.Widget.Title" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/item2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_select_all_dark"
-            android:text="Event"
-            style="@style/MenuDrawer.Widget.Title" />
+            <TextView
+                android:id="@+id/item1"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_refresh_dark"
+                android:text="Overview" />
 
-          
+            <TextView
+                android:id="@+id/item2"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_select_all_dark"
+                android:text="All Events" />
 
-        <TextView
-            android:id="@+id/item3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_select_all_dark"
-            android:text="Event Top"
-            style="@style/MenuDrawer.Widget.Title" />
-        <TextView
-            android:id="@+id/item4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_select_all_dark"
-            android:text="About"
-            style="@style/MenuDrawer.Widget.Title" />
+            <TextView
+                android:id="@+id/item3"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_select_all_dark"
+                android:text="Event Top" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="More Setting"
-            style="@style/MenuDrawer.Widget.Category" />
+            <TextView
+                android:id="@+id/item4"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_select_all_dark"
+                android:text="About" />
+ 
+        </LinearLayout>
+    </ScrollView>
+ 
+     <RelativeLayout
+         android:id="@+id/relativeLayout2"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="bottom" >
 
-        
+          <TextView
+              style="@style/MenuDrawer.Widget.Category"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Version Beta" 
+              android:layout_marginLeft="80dp"/>
 
-    </LinearLayout>
-</ScrollView>
+    </RelativeLayout>
+    
+</RelativeLayout>

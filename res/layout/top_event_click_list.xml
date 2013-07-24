@@ -16,7 +16,7 @@
     >
   </TextView>
   <TextView 
-    android:id="@+id/e_date"
+    android:id="@+id/e_date1"
     android:layout_alignParentLeft="true"
     android:layout_toLeftOf="@id/e_name_amount"
     android:layout_width="fill_parent"
@@ -25,7 +25,8 @@
     android:lines="1"
     android:singleLine="true"
     android:maxLines="1"
-        android:text=""
+        android:text="aaaaaa"
+ 
              android:textSize="22dip"
         android:layout_marginLeft="20dip"
     

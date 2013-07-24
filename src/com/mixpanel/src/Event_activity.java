@@ -7,6 +7,7 @@ import net.simonvt.menudrawer.MenuDrawer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -59,7 +60,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); //open only when user click
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); //open only keyboard when user click
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout 
 
@@ -73,6 +74,10 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
+            // this is for the color of title bar
+            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
+            getSupportActionBar().setBackgroundDrawable(bg);
+
         }
 
        // mContentTextView = (TextView) findViewById(R.id.contentText);
@@ -177,7 +182,11 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 	        	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 	        		  Log.i("item",""+lv.getItemAtPosition(position));
 	        		  startGraphActivity(event_final.class);//open graph
+	        		  All_api_define.event=click_type;
 	        		  click_type=(String) lv.getItemAtPosition(position);
+	        		  All_api_define.event=click_type;//assinging values
+	        		  All_api_define.event1();//callin it once
+
 				}
 	        	
 	        });      
@@ -342,12 +351,12 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 
     @Override
     public void onClick(View v) { // for the click view
-    	 if(((TextView) v).getText().equals("Home")){
+    	 if(((TextView) v).getText().equals("Overview")){
     		 mMenuDrawer.setActiveView(v);
     		  //mMenuDrawer.closeMenu();
               startActivity(new Intent(this, Home.class));    		  
     	 }
-    	 else if(((TextView) v).getText().equals("Event"))
+    	 else if(((TextView) v).getText().equals("All Events"))
     	 { mMenuDrawer.setActiveView(v);
 		  mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_activity.class));

@@ -203,7 +203,7 @@ public class Event_top_click  extends SherlockListActivity implements Callback,V
 * */
 		ListAdapter adapter = new SimpleAdapter(this, Event_list,  R.layout.top_event_click_list,
 				new String[] {VALUE1,KEY1}, new int[] {
-		             R.id.e_name_amount,R.id.e_date});
+		             R.id.e_name_amount,R.id.e_date1});
  
 			setListAdapter(adapter);
 	 
@@ -340,7 +340,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     	 }
-    	 else if(((TextView) v).getText().equals("Event"))
+    	 else if(((TextView) v).getText().equals("All Events"))
     	 { mMenuDrawer.setActiveView(v);
 		 // mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_activity.class)); 

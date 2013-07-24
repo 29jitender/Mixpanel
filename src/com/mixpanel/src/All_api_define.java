@@ -6,6 +6,7 @@ import android.util.Log;
 
 public class All_api_define{
 	public static String interval1="";
+	public static String event=null;
 	public static String[] event_name_array=new String[5];
 	public static String export(){// this is for export api
 		 
@@ -23,7 +24,8 @@ public class All_api_define{
 
 	 public static String event1(){// is for event coming from event_activity not in use 
 
-		 String event = Event_activity.click_type;//getting type of list click from event activity
+		// String event = Event_activity.click_type;//getting type of list click from event activity
+		 //now getting the name of event on click
 		 String event1= "[\""+event;// converting it into required formet
 		 String event2= event1+"\"]";
 		 String event3=event2;

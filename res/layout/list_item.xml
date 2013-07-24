@@ -55,7 +55,8 @@
           android:paddingTop="6dip"
           android:text="0.45451514 "
           android:textColor="#1a1919"
-          android:textSize="15sp" />
+          android:textSize="15sp"
+          android:maxLength="6" />
 
             </LinearLayout>
           

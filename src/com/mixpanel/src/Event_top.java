@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -58,7 +59,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
-
+		
 		 //navigation
        if (savedInstanceState != null) {
            mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
@@ -69,6 +70,10 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
 
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
            getActionBar().setDisplayHomeAsUpEnabled(true);
+           // this is for the color of title bar
+           BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
+           getSupportActionBar().setBackgroundDrawable(bg);
+
        }
 
       // mContentTextView = (TextView) findViewById(R.id.contentText);
@@ -228,12 +233,12 @@ public void  get_values_pref(){// getting values from preference
 					    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
 					    
 					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), Event_top_click.class);
+					    Intent in = new Intent(getApplicationContext(), event_final.class);
 					    in.putExtra(percent_change, perc);
 					    in.putExtra(event, name);
 					    in.putExtra(amount, amount1);
-					    
-					    
+					    All_api_define.event=name;//assing value to all api deifne
+					    All_api_define.event1();//callin it onece
 					    startActivity(in);
 				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
@@ -373,7 +378,7 @@ public void  get_values_pref(){// getting values from preference
 
     @Override
     public void onClick(View v) { // for the click view
-    	 if(((TextView) v).getText().equals("Home")){
+    	 if(((TextView) v).getText().equals("Overview")){
     		 mMenuDrawer.setActiveView(v);
     		 // mMenuDrawer.closeMenu();
               startActivity(new Intent(this, Home.class));   
@@ -381,7 +386,7 @@ public void  get_values_pref(){// getting values from preference
               anmi=1;
 
     	 }
-    	 else if(((TextView) v).getText().equals("Event"))
+    	 else if(((TextView) v).getText().equals("All Events"))
     	 { mMenuDrawer.setActiveView(v);
 //		  mMenuDrawer.closeMenu();
           startActivity(new Intent(this, Event_activity.class));
