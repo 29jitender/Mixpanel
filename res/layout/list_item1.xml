@@ -1,34 +1,31 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout01" 
-    android:layout_width="fill_parent" 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="10dp">
-
-<TextView
-    			android:id="@+id/imageView1"
-            	android:layout_width="47dp"
-            	android:layout_height="48dp"
-              	android:textAppearance="?android:attr/textAppearanceLarge"
-  				 android:background="#1F9DD4"
-    			android:text="Y" 
-    			 android:maxLength="1" 
-                android:textSize="40sp"
-    		    android:gravity="center"/>
- 
-
+    android:gravity="right"
+    android:padding="10dp" >
  
     <TextView
         android:id="@+id/event_activity_list"
         android:layout_width="243dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView1"
-                android:layout_alignParentRight="true" 
         
         android:padding="10dip"
         android:text="sasdasd"
         android:textSize="16dip"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/event_activity_list"
+        android:background="@drawable/list_event"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp" />
+ 
 </RelativeLayout>
         
  

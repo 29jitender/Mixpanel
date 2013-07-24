@@ -58,6 +58,13 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	 float rangeY4=0;
 	 float rangeY5=0;
 
+	 Line graph1;
+	 Line graph2;
+	 Line graph3;
+	 Line graph4;
+	 Line graph5;
+	 float maxrange=0;
+
     public static HomeFragment newInstance(String content) {
         HomeFragment fragment = new HomeFragment();
 
@@ -103,131 +110,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
     }
 
 	public void calllist(){
-		seteventname();
-		senteventname_value();
-		
-	    final Button b1=(Button)getView().findViewById(R.id.button11);
-	    final Button b2=(Button)getView().findViewById(R.id.button21);
-	    final Button b3=(Button)getView().findViewById(R.id.button31);
-	    final  Button b4=(Button)getView().findViewById(R.id.button41);
-	    final Button b5=(Button)getView().findViewById(R.id.button51);
-
-	    
-		list_event = (ExpandableListView) getView().findViewById(R.id.eventname_list);
-
-		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
-
-		list_event.setOnChildClickListener(this);
-        	
-		
-        list_event.setOnGroupCollapseListener(new OnGroupCollapseListener() {// when it collops
-			
-			@Override
-			public void onGroupCollapse(int arg0) {
- 
- 				b1.setVisibility(View.VISIBLE);
-        		b2.setVisibility(View.VISIBLE);
-        		b3.setVisibility(View.VISIBLE);
-        		b4.setVisibility(View.VISIBLE);
-        		b5.setVisibility(View.VISIBLE);
-
-        		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
-        		b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
-        		b3.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
-        		b4.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
-        		b5.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
-			}
-		});
-			 
-		list_event.setOnGroupExpandListener(new OnGroupExpandListener() { // this to auto close the list when something is already clicked
-	        int previousGroup = -1;
-
-	        
-	        
-	        
-	        @Override
-	        public void onGroupExpand(int groupPosition) {
-  	            if(groupPosition != previousGroup){
- 	            	list_event.collapseGroup(previousGroup);
- 	 	           
-
-	            previousGroup = groupPosition;
-	            
-	            }
-  	            switch(groupPosition){
-	            case 0:
-	            		b1.setVisibility(View.VISIBLE);
-	            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
-		            	b2.setVisibility(View.GONE);
-		            	b3.setVisibility(View.GONE);
-		            	b4.setVisibility(View.GONE);
-		            	b5.setVisibility(View.GONE);
-  	            		break;
-	            case 1:
-            		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
-	            	//b1.setBackgroundColor(getResources().getColor(R.color.c2));
-	            	b2.setVisibility(View.GONE);
-	            	b3.setVisibility(View.GONE);
-	            	b4.setVisibility(View.GONE);
-	            	b5.setVisibility(View.GONE);
-               		break;
-	            case 2:
-            		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
-	            	b3.setVisibility(View.GONE);
-	            	b2.setVisibility(View.GONE);
-	            	b4.setVisibility(View.GONE);
-	            	b5.setVisibility(View.GONE);
-             		break;
-	            case 3:
-            		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
-	            	b4.setVisibility(View.GONE);
-	            	b3.setVisibility(View.GONE);
-	            	b2.setVisibility(View.GONE);
-	            	b5.setVisibility(View.GONE);
-             		break;
-	            case 4:
-            		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
-	            	b5.setVisibility(View.GONE);
-	            	b3.setVisibility(View.GONE);
-	            	b4.setVisibility(View.GONE);
-	            	b2.setVisibility(View.GONE);
-             		break;
-            	default:
-             		b1.setVisibility(View.VISIBLE);
-            		b2.setVisibility(View.VISIBLE);
-            		b3.setVisibility(View.VISIBLE);
-            		b4.setVisibility(View.VISIBLE);
-            		b5.setVisibility(View.VISIBLE);
-
-            		b1.setBackgroundColor(getResources().getColor(R.color.c1));
-	            	b2.setBackgroundColor(getResources().getColor(R.color.c2));
-	            	b3.setBackgroundColor(getResources().getColor(R.color.c3));
-	            	b4.setBackgroundColor(getResources().getColor(R.color.c4));
-	            	b5.setBackgroundColor(getResources().getColor(R.color.c5));
-
-            		break;
-            		
-	            }
-	        }
-	        	
-	       
-	        
-	    });
-		
-		
-		
-		ViewTreeObserver vto = list_event.getViewTreeObserver();/// this is to move the icon to right
-
-        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-            	list_event.setIndicatorBounds(list_event.getRight()- 80, list_event.getWidth());
-            }
-        });
+	
 	}
 
     @Override
@@ -311,7 +194,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
   	  
 		 	
 		//1 	
-   	   Line graph1 = new Line();
+   	     graph1 = new Line();
 		LinePoint p = new LinePoint();		
 		 for(int x=1;x<=range;x++){
 			p = new LinePoint();
@@ -331,7 +214,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		 
 		 graph1.setColor(Color.parseColor("#99CC00"));
   		 //2
-		 Line graph2 = new Line();
+		   graph2 = new Line();
 			LinePoint p2 = new LinePoint();		
 			 for(int x=1;x<=range;x++){
 				p2 = new LinePoint();
@@ -351,7 +234,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 			 
 			 graph2.setColor(Color.parseColor("#FFBB33"));
 	  	//3
-			 Line graph3 = new Line();
+			   graph3 = new Line();
 				LinePoint p3 = new LinePoint();		
 				 for(int x=1;x<=range;x++){
 					p3 = new LinePoint();
@@ -371,7 +254,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 				 
 				 graph3.setColor(Color.parseColor("#AA66CC"));
 				//4
-				 Line graph4 = new Line();
+				   graph4 = new Line();
 					LinePoint p4 = new LinePoint();		
 					 for(int x=1;x<=range;x++){
 						p4 = new LinePoint();
@@ -392,7 +275,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 					 graph4.setColor(Color.parseColor("#f41212"));
 				
 					//5
-					 Line graph5 = new Line();
+					   graph5 = new Line();
 						LinePoint p5 = new LinePoint();		
 						 for(int x=1;x<=range;x++){
 							p5 = new LinePoint();
@@ -413,28 +296,196 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 						 graph5.setColor(Color.parseColor("#25d3ee"));	 
 					 
 					 float[] therange = new float []{rangeY1,rangeY2,rangeY3,rangeY4,rangeY5}; 
-					 float maxrange=0;
 					 for (int i=0;i<therange.length;i++){
 						 if(therange[i]>maxrange){
 							 maxrange=therange[i];
 						 }
 						 
 					 }
-					 
-		LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
-		li.addLine(graph1);
- 		li.addLine(graph2);
-		 
-		//li.setLineToFill(2);//change filling
-		li.addLine(graph3);
-		 
-		//li.setLineToFill(2);//change filling
-		li.addLine(graph4);
-		li.addLine(graph5);
-		li.setRangeY(0, maxrange);
+					 LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
+		        		li.addLine(graph1);
+		         		li.addLine(graph2);
+		        		 
+		        		//li.setLineToFill(2);//change filling
+		        		li.addLine(graph3);
+		        		 
+		        		//li.setLineToFill(2);//change filling
+		        		li.addLine(graph4);
+		        		li.addLine(graph5);
+		        		li.setRangeY(0, maxrange);
+		
 
-	 
-		calllist();//calling list after graph
+//calling list 
+		
+		seteventname();
+		senteventname_value();
+		
+	    final Button b1=(Button)getView().findViewById(R.id.button11);
+	    final Button b2=(Button)getView().findViewById(R.id.button21);
+	    final Button b3=(Button)getView().findViewById(R.id.button31);
+	    final  Button b4=(Button)getView().findViewById(R.id.button41);
+	    final Button b5=(Button)getView().findViewById(R.id.button51);
+
+	    
+		list_event = (ExpandableListView) getView().findViewById(R.id.eventname_list);
+
+		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
+
+		list_event.setOnChildClickListener(this);
+        	
+		
+        list_event.setOnGroupCollapseListener(new OnGroupCollapseListener() {// when it collops
+			
+			@Override
+			public void onGroupCollapse(int arg0) {
+ 
+ 				b1.setVisibility(View.VISIBLE);
+        		b2.setVisibility(View.VISIBLE);
+        		b3.setVisibility(View.VISIBLE);
+        		b4.setVisibility(View.VISIBLE);
+        		b5.setVisibility(View.VISIBLE);
+
+        		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
+        		b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+        		b3.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
+        		b4.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
+        		b5.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+        		LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
+        		li.addLine(graph1);
+         		li.addLine(graph2);
+        		 
+         		li.addLine(graph3);
+        		 
+         		li.addLine(graph4);
+        		li.addLine(graph5);
+        		li.setRangeY(0, maxrange);
+        		
+        		
+        		
+			}
+		});
+			 
+		list_event.setOnGroupExpandListener(new OnGroupExpandListener() { // this to auto close the list when something is already clicked
+	        int previousGroup = -1;
+
+	        
+	        
+	        
+	        @Override
+	        public void onGroupExpand(int groupPosition) {
+  	            if(groupPosition != previousGroup){
+ 	            	list_event.collapseGroup(previousGroup);
+ 	 	           
+
+	            previousGroup = groupPosition;
+	            
+	            }
+            	LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
+
+  	            switch(groupPosition){
+	            case 0:
+	            	
+	        		li.removeAllLines();
+	            	li.addLine(graph1);
+	        		li.setRangeY(0, maxrange);
+
+	            		b1.setVisibility(View.VISIBLE);
+	            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
+		            	b2.setVisibility(View.GONE);
+		            	b3.setVisibility(View.GONE);
+		            	b4.setVisibility(View.GONE);
+		            	b5.setVisibility(View.GONE);
+  	            		break;
+	            case 1:
+	            	li.removeAllLines();
+	            	li.addLine(graph2);
+	        		li.setRangeY(0, maxrange);
+	            	
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+	            	//b1.setBackgroundColor(getResources().getColor(R.color.c2));
+	            	b2.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+               		break;
+	            case 2:
+	            	li.removeAllLines();
+	            	li.addLine(graph3);
+	        		li.setRangeY(0, maxrange);
+	        		
+	        		
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
+	            	b3.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+             		break;
+	            case 3:
+	            	li.removeAllLines();
+	            	li.addLine(graph4);
+	        		li.setRangeY(0, maxrange);
+	            	
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
+	            	b4.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+	            	b5.setVisibility(View.GONE);
+             		break;
+	            case 4:
+	            	li.removeAllLines();
+	            	li.addLine(graph5);
+	        		li.setRangeY(0, maxrange);
+	            	
+            		b1.setVisibility(View.VISIBLE);
+            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+	            	b5.setVisibility(View.GONE);
+	            	b3.setVisibility(View.GONE);
+	            	b4.setVisibility(View.GONE);
+	            	b2.setVisibility(View.GONE);
+             		break;
+            	default:
+             		b1.setVisibility(View.VISIBLE);
+            		b2.setVisibility(View.VISIBLE);
+            		b3.setVisibility(View.VISIBLE);
+            		b4.setVisibility(View.VISIBLE);
+            		b5.setVisibility(View.VISIBLE);
+
+            		b1.setBackgroundColor(getResources().getColor(R.color.c1));
+	            	b2.setBackgroundColor(getResources().getColor(R.color.c2));
+	            	b3.setBackgroundColor(getResources().getColor(R.color.c3));
+	            	b4.setBackgroundColor(getResources().getColor(R.color.c4));
+	            	b5.setBackgroundColor(getResources().getColor(R.color.c5));
+
+            		break;
+            		
+	            }
+	        }
+	        	
+	       
+	        
+	    });
+		
+		
+		
+		ViewTreeObserver vto = list_event.getViewTreeObserver();/// this is to move the icon to right
+
+        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+            	list_event.setIndicatorBounds(list_event.getRight()- 80, list_event.getWidth());
+            }
+        });
+		
+		
+		
+		
+		
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////
 		 
 	}
 	//list 
