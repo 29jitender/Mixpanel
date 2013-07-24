@@ -117,7 +117,25 @@ public class About extends SherlockActivity {
 	    }
 
      
-	
+	  @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        //This uses the imported MenuItem from ActionBarSherlock
+		     
+		  		switch(item.getItemId()){
+		  		 
+		  		 
+		  			case android.R.id.home:
+		  			    finish();
+
+		  	            return true; 
+					default:
+						return false;	
+		  						
+		  		}
+		  	
+	        
+	       
+	    }
 	
 	
 	

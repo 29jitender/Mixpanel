@@ -14,7 +14,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -25,8 +24,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,8 +38,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.viewpagerindicator.PageIndicator;
-import com.viewpagerindicator.TitlePageIndicator;
-
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 public class Home extends SherlockFragmentActivity implements  OnSharedPreferenceChangeListener,View.OnClickListener {
 	HomeFragmentAdapter mAdapter;
        	LinearLayout linlaHeaderProgress;
@@ -57,7 +58,9 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         private int mActiveViewId;
         private int anmi=0;
         //navigation
-         
+       
+
+ 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +73,33 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
 
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
-
+        
+        ////////////////////////////////////////////////////
+        // Action bar
+          ActionBar mActionBar;
+        LayoutInflater mInflater;
+        View mCustomView;
+         TextView mTitleTextView;
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(false);
+        mActionBar.setDisplayShowTitleEnabled(false);
+        mInflater = LayoutInflater.from(this);
+        mCustomView = mInflater.inflate(R.layout.menu, null);
+        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+        mTitleTextView.setText("My Own Title");
+        mActionBar.setCustomView(mCustomView);
+        mActionBar.setDisplayShowCustomEnabled(true);
+        // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
+        ImageButton ibItem1 = (ImageButton)  findViewById(R.id.btn_slide);
+        ibItem1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMenuDrawer.toggleMenu();
+            }
+        });
+        
+        /////////////////////////////////////////////
+        
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
@@ -95,6 +124,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
         // called on first launch.
         mMenuDrawer.peekDrawer();
+        mMenuDrawer.setMenuSize(160);//size of menu
+        mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         //navigation
         
         if(isNetworkOnline()==true){//starting settings if internet is not working
@@ -364,39 +395,44 @@ else if(anmi==2){
 
     @Override
     public void onClick(View v) { // for the click view
-    	 if(((TextView) v).getText().equals("Overview")){
+    	
+    	switch(v.getId()){
+    	case R.id.item1:
     		 mMenuDrawer.setActiveView(v);
-    		  mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, Home.class));    		  
-    	 }
-    	 else if(((TextView) v).getText().equals("All Events"))
-    	 { mMenuDrawer.setActiveView(v);
- 		  
-          startActivity(new Intent(this, Event_activity.class));
-          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-          anmi=1;
-          //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
-    		 
-    	 }
-    	 else if(((TextView) v).getText().equals("Event Top"))
-    	 { mMenuDrawer.setActiveView(v);
-		  //mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_top.class));    
-          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-          anmi=1;
-          //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
-    		 
-    	 }
-    	 else if(((TextView) v).getText().equals("About")){
+   		  mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Home.class));    
+    		break;
+    	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
-   		 // mMenuDrawer.closeMenu();
-           startActivity(new Intent(this, About.class));
-           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-           anmi=1;
-    	 }
-      
-         
-      
+    		  
+             startActivity(new Intent(this, Event_activity.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+             //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
+    		
+    		break;
+    	case R.id.item3:
+    		 mMenuDrawer.setActiveView(v);
+   		  //mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Event_top.class));    
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+             //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+       		 
+    		
+    		break;
+    	case R.id.item4:
+    		
+    		 mMenuDrawer.setActiveView(v);
+       		 // mMenuDrawer.closeMenu();
+               startActivity(new Intent(this, About.class));
+               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+               anmi=1;
+    		
+    		break;
+
+    	}
+     	  
         mActiveViewId = v.getId();
     }
 //navigaiton ending

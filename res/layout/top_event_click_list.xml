@@ -2,20 +2,19 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="28dip">
-  <TextView 
+  <com.mixpanel.src.Font 
     android:id="@+id/e_name_amount"
     android:layout_alignParentRight="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="right"
-   android:textSize="20dip"
+   android:textSize="21dip"
 
     android:text=" "
     android:layout_marginRight="20dip"
     
-    >
-  </TextView>
-  <TextView 
+  />
+  <com.mixpanel.src.Font 
     android:id="@+id/e_date1"
     android:layout_alignParentLeft="true"
     android:layout_toLeftOf="@id/e_name_amount"
@@ -27,9 +26,9 @@
     android:maxLines="1"
         android:text="aaaaaa"
  
-             android:textSize="22dip"
+             android:textSize="23dip"
         android:layout_marginLeft="20dip"
     
-    >
-  </TextView>
+    />
+  
 </RelativeLayout>

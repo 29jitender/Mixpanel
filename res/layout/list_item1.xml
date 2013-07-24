@@ -5,14 +5,14 @@
     android:gravity="right"
     android:padding="10dp" >
  
-    <TextView
+    <com.mixpanel.src.Font
         android:id="@+id/event_activity_list"
         android:layout_width="243dp"
         android:layout_height="wrap_content"
         
         android:padding="10dip"
         android:text="sasdasd"
-        android:textSize="16dip"
+        android:textSize="17dip"
         android:textStyle="bold" />
 
     <TextView

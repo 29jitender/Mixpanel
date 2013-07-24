@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,10 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 			convertView = new TextView(context);
 		}
 		text1=(TextView) convertView;
-	 	text1.setTextSize(23);//parent size
+	    Typeface font = Typeface.createFromAsset(context.getAssets(), "Bariol_Regular.otf");
+	    
+	    text1.setTypeface(font);
+	 	text1.setTextSize(24);//parent size
 	 	text1.setTextColor(0xff494949);//its color
 
 		

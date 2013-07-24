@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:orientation="vertical" >
 
-            <TextView
+            <com.mixpanel.src.Font
                 android:id="@+id/e_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,15 +34,15 @@
                 android:text="Signup form submit "
                 android:textColor="#1e1e1e"   
                 android:textSize="20sp"
-                android:textStyle="bold" >
+                android:textStyle="bold" />
 
-        </TextView>
+       
 
             <LinearLayout
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-                <TextView
+                <com.mixpanel.src.Font
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#5d5d5d"
@@ -50,10 +50,10 @@
             android:textStyle="bold"
                             android:layout_marginLeft="6dip"
             
-            android:text="% Change: " >
-        </TextView>
+            android:text="% Change: " />
+         
 
-      <TextView
+      <com.mixpanel.src.Font
           android:id="@+id/p_change"
           android:layout_width="145dp"
           android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             </LinearLayout>
           
         </LinearLayout>
-  <TextView
+  <com.mixpanel.src.Font
             android:id="@+id/E_amount"
             android:layout_width="93dip"
             android:layout_height="wrap_content"

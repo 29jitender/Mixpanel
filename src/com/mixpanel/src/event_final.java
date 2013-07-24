@@ -78,9 +78,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
         }
-
-        mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
-        mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
+ 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,21 +88,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 
         }
 
-       // mContentTextView = (TextView) findViewById(R.id.contentText);
-
-        findViewById(R.id.item1).setOnClickListener(this);
-        findViewById(R.id.item2).setOnClickListener(this);
-        findViewById(R.id.item3).setOnClickListener(this);
-        findViewById(R.id.item4).setOnClickListener(this);
- 
-
-        TextView activeView = (TextView) findViewById(mActiveViewId);
-        if (activeView != null) {
-            mMenuDrawer.setActiveView(activeView);
-            //mContentTextView.setText("Active item: " + activeView.getText());
-        } 
-        
-        //navigation
+       
         
         if(isNetworkOnline()==true){//starting settings if internet is not working
             internt_count=true; 
@@ -114,7 +98,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
              
          else if(isNetworkOnline()==false){ 
                 //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-              mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+              setContentView(R.layout.nointernet);//giving new layout to drawer
               //setContentView(R.layout.nointernet);
              internt_count= false;
              RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
@@ -132,7 +116,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
     }
 	
 	public void iamcallin(){
-    	mMenuDrawer.setContentView(R.layout.event_final_view);//givin layout to drawer 
+    setContentView(R.layout.event_final_view);//givin layout to drawer 
         setSupportProgressBarIndeterminateVisibility(true);//onload show
       //layout for diff screen 
       		Display display = getWindowManager().getDefaultDisplay(); 		 
@@ -444,8 +428,9 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  	            	anmi=2;
 		  				return true;
 		  			case android.R.id.home:
-		  	            mMenuDrawer.toggleMenu();
-		  	            return true; 
+		  			    finish();
+
+ 		  	            return true; 
 					default:
 						return false;	
 		  						
@@ -454,73 +439,18 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	        
 	       
 	    }
-	//rest functinality for of navigation
-	    @Override
-	    protected void onRestoreInstanceState(Bundle inState) {
-	        super.onRestoreInstanceState(inState);
-	        mMenuDrawer.restoreState(inState.getParcelable(STATE_MENUDRAWER));
-	    }
-
-	    @Override
-	    protected void onSaveInstanceState(Bundle outState) {
-	        super.onSaveInstanceState(outState);
-	        outState.putParcelable(STATE_MENUDRAWER, mMenuDrawer.saveState());
-	        outState.putInt(STATE_ACTIVE_VIEW_ID, mActiveViewId);
-	    }
 	 
-	    @Override
-	    public void onBackPressed() {
-	        final int drawerState = mMenuDrawer.getDrawerState();
-	        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
-	            mMenuDrawer.closeMenu();
-	            return;
-	        }
-
-	        super.onBackPressed();
-	    }
-
-	    @Override
-	    public void onClick(View v) { // for the click view
-	    	 if(((TextView) v).getText().equals("Overview")){
-	    		 mMenuDrawer.setActiveView(v);
-	    		  //mMenuDrawer.closeMenu();
-	              startActivity(new Intent(this, Home.class));
-	              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-	              anmi=1;
-
-	    	 }
-	    	 else if(((TextView) v).getText().equals("All Events"))
-	    	 { mMenuDrawer.setActiveView(v);
-			  mMenuDrawer.closeMenu();
-	          startActivity(new Intent(this, Event_activity.class));    
-	    		 
-	    	 }
-	    	 else if(((TextView) v).getText().equals("Event Top"))
-	    	 { mMenuDrawer.setActiveView(v);
-			 // mMenuDrawer.closeMenu();
-	          startActivity(new Intent(this, Event_top.class));   
-	          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-	          anmi=1;
-	    		 
-	    	 }
-	    	 else if(((TextView) v).getText().equals("About")){
-	    		 mMenuDrawer.setActiveView(v);
-	   		  //mMenuDrawer.closeMenu();
-	           startActivity(new Intent(this, About.class));
-	           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-	           anmi=1;
-	    	 }
-	         
-	      
-	        mActiveViewId = v.getId();
-	    }
-	//navigaiton ending
-
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 				String key) {
 			// TODO Auto-generated method stub
 			get_values_pref();
+			
+		}
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
 			
 		}
 

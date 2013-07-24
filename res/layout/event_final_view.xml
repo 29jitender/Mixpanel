@@ -41,13 +41,13 @@
     android:layout_height="wrap_content"
       >
 
-        <TextView
+        <com.mixpanel.src.Font
             android:id="@+id/event_activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Output text"
             android:textColor="#4d3131"
-            android:textSize="24dip"
+            android:textSize="25dip"
             android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

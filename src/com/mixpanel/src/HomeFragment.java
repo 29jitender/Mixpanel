@@ -386,6 +386,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            case 0:
 	            	
 	        		li.removeAllLines();
+	        		
 	            	li.addLine(graph1);
 	        		li.setRangeY(0, maxrange);
 

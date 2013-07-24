@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -23,10 +24,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -68,12 +71,39 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
         }
-
+        
+        ////////////////////////////////////////////////////
+        // Action bar
+          ActionBar mActionBar;
+        LayoutInflater mInflater;
+        View mCustomView;
+         TextView mTitleTextView;
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(false);
+        mActionBar.setDisplayShowTitleEnabled(false);
+        mInflater = LayoutInflater.from(this);
+        mCustomView = mInflater.inflate(R.layout.menu, null);
+        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+        mTitleTextView.setText("My Own Title");
+        mActionBar.setCustomView(mCustomView);
+        mActionBar.setDisplayShowCustomEnabled(true);
+        // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
+        ImageButton ibItem1 = (ImageButton)  findViewById(R.id.btn_slide);
+        ibItem1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMenuDrawer.toggleMenu();
+            }
+        });
+        
+        /////////////////////////////////////////////
+        
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
-
+        mMenuDrawer.setMenuSize(160);//size of menu
+        mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+//            getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
             BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
             getSupportActionBar().setBackgroundDrawable(bg);
@@ -351,33 +381,45 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 
     @Override
     public void onClick(View v) { // for the click view
-    	 if(((TextView) v).getText().equals("Overview")){
+    	
+
+    	switch(v.getId()){
+    	case R.id.item1:
+    		mMenuDrawer.setActiveView(v);
+  		  //mMenuDrawer.closeMenu();
+            startActivity(new Intent(this, Home.class));    	  
+    		break;
+    	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
-    		  //mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, Home.class));    		  
-    	 }
-    	 else if(((TextView) v).getText().equals("All Events"))
-    	 { mMenuDrawer.setActiveView(v);
-		  mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_activity.class));
-          anmi=1;
-    		 
-    	 }
-    	 else if(((TextView) v).getText().equals("Event Top"))
-    	 { mMenuDrawer.setActiveView(v);
-		  //mMenuDrawer.closeMenu();
-          startActivity(new Intent(this, Event_top.class));    
-          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-          anmi=1;
-    	 }
-    	 else if(((TextView) v).getText().equals("About")){
+   		  mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Event_activity.class));
+             anmi=1;
+    		break;
+    	case R.id.item3:
+    		mMenuDrawer.setActiveView(v);
+  		  //mMenuDrawer.closeMenu();
+            startActivity(new Intent(this, Event_top.class));    
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            anmi=1;
+    		
+    		break;
+    	case R.id.item4:
+    		
     		 mMenuDrawer.setActiveView(v);
-   		  //mMenuDrawer.closeMenu();
-           startActivity(new Intent(this, About.class));
-           overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-           anmi=1;
-    	 }
-         
+      		  //mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, About.class));
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+              anmi=1;
+    		
+    		break;
+
+    	}
+     	  
+    	
+    	
+    	
+    	
+    	
       
         mActiveViewId = v.getId();
     }
