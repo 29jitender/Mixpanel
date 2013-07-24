@@ -210,7 +210,7 @@ public void  get_values_pref(){// getting values from preference
 		/**
        * Updating parsed JSON data into ListView
        * */
-					
+					 
       ListAdapter adapter = new SimpleAdapter(this, contactList,
 					    R.layout.list_item,
 					    new String[] { percent_change, event, amount }, new int[] {
