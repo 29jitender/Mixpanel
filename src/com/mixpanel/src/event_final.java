@@ -28,10 +28,13 @@ import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -40,6 +43,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -76,11 +80,43 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
     public void onCreate(Bundle savedInstanceState) { 
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
-		
 		///to check the flag (where it came from)
 		 Intent in = getIntent();
-         // Get flag values from previous intent
-          name1 = in.getStringExtra("flag");
+        // Get flag values from previous intent
+         name1 = in.getStringExtra("flag");
+		
+		
+		 ////////////////////////////////////////////////////
+	       // Action bar
+	         ActionBar mActionBar;
+	       LayoutInflater mInflater;
+	       View mCustomView;
+	        TextView mTitleTextView;
+	       mActionBar = getSupportActionBar();
+	       mActionBar.setDisplayShowHomeEnabled(false);
+	       mActionBar.setDisplayShowTitleEnabled(false);
+	       mInflater = LayoutInflater.from(this);
+	       mCustomView = mInflater.inflate(R.layout.final_menu, null);
+	       mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+	       mTitleTextView.setText(All_api_define.event);
+	       mTitleTextView.setTextSize(20);
+
+	       mActionBar.setCustomView(mCustomView);
+	       mActionBar.setDisplayShowCustomEnabled(true);
+	       // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
+	       TextView ibItem1 = (TextView)  findViewById(R.id.arrow);
+	       ibItem1.setOnClickListener(new View.OnClickListener() {
+	           @Override
+	           public void onClick(View view) {
+	        	   finish();
+	           }
+	       });
+	       
+	       /////////////////////////////////////////////
+		
+		
+		
+		
 		
 		 //navigation
         if (savedInstanceState != null) {
@@ -89,7 +125,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
         	
      
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-        	getActionBar().setDisplayHomeAsUpEnabled(true);
+        	//getActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
 
             // this is for the color of title bar
@@ -450,10 +486,10 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  	            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
 		  	            	anmi=2;
 		  				return true;
-		  			case android.R.id.home:
-		  			    finish();
-
- 		  	            return true; 
+//		  			case android.R.id.home:
+//		  			    finish();
+//
+// 		  	            return true; 
 					default:
 						return false;	
 		  						

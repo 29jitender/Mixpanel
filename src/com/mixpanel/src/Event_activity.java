@@ -86,7 +86,9 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         mInflater = LayoutInflater.from(this);
         mCustomView = mInflater.inflate(R.layout.menu, null);
         mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-        mTitleTextView.setText("My Own Title");
+        mTitleTextView.setText("All Events");
+        mTitleTextView.setTextSize(20);
+
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
         // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
@@ -102,10 +104,10 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
-        mMenuDrawer.setMenuSize(160);//size of menu
+        mMenuDrawer.setMenuSize(140);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//            getActionBar().setDisplayHomeAsUpEnabled(true);
+	           
             // this is for the color of title bar
         	 ColorDrawable colorDrawable = new ColorDrawable();
              colorDrawable.setColor(Color.parseColor("#44C19F"));//menu 2

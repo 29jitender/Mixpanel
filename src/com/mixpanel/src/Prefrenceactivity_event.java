@@ -1,5 +1,6 @@
 package com.mixpanel.src;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -12,6 +13,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class Prefrenceactivity_event extends SherlockPreferenceActivity{
@@ -24,6 +28,40 @@ public String name1="";
 		 Intent in = getIntent();
          // Get flag values from previous intent
           name1 = in.getStringExtra("flag");
+          
+
+ 		 ////////////////////////////////////////////////////
+ 	       // Action bar
+ 	         ActionBar mActionBar;
+ 	       LayoutInflater mInflater;
+ 	       View mCustomView;
+ 	        TextView mTitleTextView;
+ 	       mActionBar = getSupportActionBar();
+ 	       mActionBar.setDisplayShowHomeEnabled(false);
+ 	       mActionBar.setDisplayShowTitleEnabled(false);
+ 	       mInflater = LayoutInflater.from(this);
+ 	       mCustomView = mInflater.inflate(R.layout.final_menu, null);
+ 	       mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+ 	       mTitleTextView.setText(All_api_define.event);
+ 	       mTitleTextView.setTextSize(20);
+
+ 	       mActionBar.setCustomView(mCustomView);
+ 	       mActionBar.setDisplayShowCustomEnabled(true);
+ 	       // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
+ 	       TextView ibItem1 = (TextView)  findViewById(R.id.arrow);
+ 	       ibItem1.setOnClickListener(new View.OnClickListener() {
+ 	           @Override
+ 	           public void onClick(View view) {
+ 	        	   finish();
+ 	           }
+ 	       });
+ 	       
+ 	       /////////////////////////////////////////////
+          
+          
+          
+          
+          
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
           	getActionBar().setDisplayHomeAsUpEnabled(true);
               getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
@@ -49,9 +87,14 @@ public String name1="";
  		                public boolean onPreferenceClick(Preference arg0) { 
  		                	
  		                	Intent myIntent = new Intent(Prefrenceactivity_event.this ,event_final.class);//refreshing
- 			  				 myIntent.putExtra("flag", name1);
 
+ 		                	myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+ 
+ 		                	myIntent.putExtra("flag", name1);
+ 			  				 
  		                   startActivity(myIntent);
+ 	 		   			    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+
  		                   finish(); 		                  
  		                   return true;
  		                }

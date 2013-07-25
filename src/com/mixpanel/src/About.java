@@ -69,7 +69,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
         
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
-        mMenuDrawer.setMenuSize(160);//size of menu
+        mMenuDrawer.setMenuSize(140);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);

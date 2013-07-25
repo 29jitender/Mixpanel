@@ -85,7 +85,9 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("My Own Title");
+       mTitleTextView.setText("Top Events");
+       mTitleTextView.setTextSize(20);
+
        mActionBar.setCustomView(mCustomView);
        mActionBar.setDisplayShowCustomEnabled(true);
        // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
@@ -122,7 +124,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
            mMenuDrawer.setActiveView(activeView);
            //mContentTextView.setText("Active item: " + activeView.getText());
        } 
-       mMenuDrawer.setMenuSize(160);//size of menu
+       mMenuDrawer.setMenuSize(140);//size of menu
        mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
        //navigation
        

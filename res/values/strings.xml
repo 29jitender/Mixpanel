@@ -98,5 +98,9 @@
     <string name="allevent">&#xF002;</string>
     <string name="topevent">&#xF005;</string>
     <string name="about">&#xF129;</string>
+    <string name="graphno">&#xF165;</string>
+    <string name="arrow">&#xF060;</string>
+    
+    
     
 </resources>

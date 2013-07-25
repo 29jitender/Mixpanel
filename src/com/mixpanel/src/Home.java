@@ -88,7 +88,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         mInflater = LayoutInflater.from(this);
         mCustomView = mInflater.inflate(R.layout.menu, null);
         mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-        mTitleTextView.setText("My Own Title");
+        mTitleTextView.setText("Overview");
+        mTitleTextView.setTextSize(20);
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
         // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
@@ -129,7 +130,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
         // called on first launch.
         mMenuDrawer.peekDrawer();
-        mMenuDrawer.setMenuSize(160);//size of menu
+        mMenuDrawer.setMenuSize(140);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         //navigation
         

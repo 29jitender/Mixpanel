@@ -26,12 +26,14 @@
         android:layout_margin="4dip"
         android:visibility="gone"
         android:id="@+id/relativeLayout_nill">
-      <TextView
+      <com.mixpanel.src.Icon_font
              android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No Value to Plot Graph"
+            android:text="@string/graphno"
+                             android:gravity="center"
+            
             android:textColor="#2447ff"
-            android:textSize="40dip"
+            android:textSize="100dip"
             android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceLarge" />   
     </RelativeLayout>
