@@ -1,9 +1,13 @@
 package com.mixpanel.src;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -21,9 +25,14 @@ static final String TAG="PrefsActivity";
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
-            // this is for the color of title bar
-            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
-            getSupportActionBar().setBackgroundDrawable(bg);
+            getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
+
+         // this is for the color of title bar
+            ColorDrawable colorDrawable = new ColorDrawable();
+           colorDrawable.setColor(Color.parseColor("#44C1B8"));
+           android.app.ActionBar actionBar = getActionBar();
+           actionBar.setBackgroundDrawable(colorDrawable);
+
 
         }
  		addPreferencesFromResource(R.xml.api_pref);
@@ -38,6 +47,26 @@ static final String TAG="PrefsActivity";
  		                }
  		            });
 	}
-	 
+	  @Override
+	    public boolean onCreateOptionsMenu(Menu menu) {
+	         return true;
+	    }
+	  @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        //This uses the imported MenuItem from ActionBarSherlock
+		     
+		  		switch(item.getItemId()){
+		  		 
+		  			 
+		  			case android.R.id.home:
+		  			    finish();
+
+		  	            return true; 
+					default:
+						return false;	
+		  						
+		  		}
+		  	
+	  	} 
 }
 

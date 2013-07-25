@@ -7,7 +7,9 @@ import net.simonvt.menudrawer.MenuDrawer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -105,8 +107,10 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
-            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
-            getSupportActionBar().setBackgroundDrawable(bg);
+        	 ColorDrawable colorDrawable = new ColorDrawable();
+             colorDrawable.setColor(Color.parseColor("#44C19F"));//menu 2
+             android.app.ActionBar actionBar = getActionBar();
+             actionBar.setBackgroundDrawable(colorDrawable);
 
         }
 
@@ -226,6 +230,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 	
 	private void startGraphActivity(Class<? extends Activity> activity) {
 		Intent intent = new Intent(Event_activity.this, activity);
+		intent.putExtra("flag", "all");//for the color of action bar
 		 
 		startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -387,12 +392,15 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     	case R.id.item1:
     		mMenuDrawer.setActiveView(v);
   		  //mMenuDrawer.closeMenu();
-            startActivity(new Intent(this, Home.class));    	  
+            startActivity(new Intent(this, Home.class));  
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     		break;
     	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
    		  mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Event_activity.class));
+            // startActivity(new Intent(this, Event_activity.class));
+             
              anmi=1;
     		break;
     	case R.id.item3:

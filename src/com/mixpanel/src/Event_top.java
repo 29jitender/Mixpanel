@@ -13,7 +13,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -100,8 +102,10 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 //           getActionBar().setDisplayHomeAsUpEnabled(true);
            // this is for the color of title bar
-           BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
-           getSupportActionBar().setBackgroundDrawable(bg);
+    	   ColorDrawable colorDrawable = new ColorDrawable();
+           colorDrawable.setColor(Color.parseColor("#3BB0AA"));
+           android.app.ActionBar actionBar = getActionBar();
+           actionBar.setBackgroundDrawable(colorDrawable);
 
        }
 
@@ -267,6 +271,7 @@ public void  get_values_pref(){// getting values from preference
 					    in.putExtra(percent_change, perc);
 					    in.putExtra(event, name);
 					    in.putExtra(amount, amount1);
+					    in.putExtra("flag", "Top");//for the color of action bar
 					    All_api_define.event=name;//assing value to all api deifne
 					    All_api_define.event1();//callin it onece
 					    startActivity(in);
@@ -397,6 +402,7 @@ public void  get_values_pref(){// getting values from preference
  
     @Override
     public void onBackPressed() {
+    	
         final int drawerState = mMenuDrawer.getDrawerState();
         if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
@@ -426,14 +432,14 @@ public void  get_values_pref(){// getting values from preference
     		break;
     	case R.id.item3:
     		mMenuDrawer.setActiveView(v);
-  		  mMenuDrawer.closeMenu();
-            startActivity(new Intent(this, Event_top.class)); 
+    		mMenuDrawer.closeMenu();
+           // startActivity(new Intent(this, Event_top.class)); 
     		
     		break;
     	case R.id.item4:
     		
     		 mMenuDrawer.setActiveView(v);
-      		  mMenuDrawer.closeMenu();
+      		 // mMenuDrawer.closeMenu();
               startActivity(new Intent(this, About.class));
               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
               anmi=1;

@@ -10,7 +10,12 @@
     <color name="c3">#AA66CC</color>
     <color name="c4">#f41212</color>
     <color name="c5">#25d3ee</color>
+    
     <color name="nill">#fff</color>
+    <color name="menu1">#44C1B8</color>
+    <color name="menu2">#44C19F</color>
+    <color name="menu3">#3BB0AA</color>
+    <color name="menu4">#25d3ee</color>
     
     
 </resources>

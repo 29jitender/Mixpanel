@@ -14,7 +14,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -103,9 +105,12 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
-            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
-            getSupportActionBar().setBackgroundDrawable(bg);
-
+             ColorDrawable colorDrawable = new ColorDrawable();
+            colorDrawable.setColor(Color.parseColor("#44C1B8"));
+            android.app.ActionBar actionBar = getActionBar();
+            actionBar.setBackgroundDrawable(colorDrawable);
+ 
+ 
         }
      
  
@@ -399,8 +404,8 @@ else if(anmi==2){
     	switch(v.getId()){
     	case R.id.item1:
     		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Home.class));    
+    		 mMenuDrawer.closeMenu();
+            // startActivity(new Intent(this, Home.class));    
     		break;
     	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);

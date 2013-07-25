@@ -17,6 +17,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -70,21 +71,38 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
     private int mActiveViewId;
     private int anmi=0;
     //navigation
+    public static String name1="";
 	@Override
     public void onCreate(Bundle savedInstanceState) { 
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
+		
+		///to check the flag (where it came from)
+		 Intent in = getIntent();
+         // Get flag values from previous intent
+          name1 = in.getStringExtra("flag");
+		
 		 //navigation
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
         }
- 
-
+        	
+     
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+        	getActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
+
             // this is for the color of title bar
-            BitmapDrawable bg = (BitmapDrawable)getResources().getDrawable(R.drawable.bg_striped);
-            getSupportActionBar().setBackgroundDrawable(bg);
+             ColorDrawable colorDrawable = new ColorDrawable();
+             if(name1.equals("Top")){//to check from where it came from
+            	 colorDrawable.setColor(Color.parseColor("#3BB0AA"));
+             }
+             else  if(name1.equals("all"))
+             {
+            	 colorDrawable.setColor(Color.parseColor("#44C19F"));
+             }
+            android.app.ActionBar actionBar = getActionBar();
+            actionBar.setBackgroundDrawable(colorDrawable);
 
         }
 
@@ -369,8 +387,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        //Used to put dark icons on light action bar
 	        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-   
-	        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+ 	        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
             .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
  
@@ -416,6 +433,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  		 
 		  			case R.id.refresh:
 		  				 Intent myIntent = new Intent(this ,event_final.class);//refreshing
+		  				 myIntent.putExtra("flag", name1);
 		  				startActivity(myIntent);
 		  				finish();
 
@@ -423,7 +441,12 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  			case R.id.event_filter:
 		  				//startService(intentUpdater);
 		  				
-		  				startActivity(new Intent(this, Prefrenceactivity_event.class));
+		  				Intent prefin = new Intent(this ,Prefrenceactivity_event.class);//refreshing
+		  				prefin.putExtra("flag", name1);
+		  				startActivity(prefin);
+		  				
+		  				
+		  				//startActivity(new Intent(this, Prefrenceactivity_event.class));
 		  	            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
 		  	            	anmi=2;
 		  				return true;

@@ -93,4 +93,10 @@
     <string name="title_activity_home_graph">Home_graph</string>
     <string name="Search">Search</string>
 
+    
+    <string name="overview">&#xf080;</string>
+    <string name="allevent">&#xF002;</string>
+    <string name="topevent">&#xF005;</string>
+    <string name="about">&#xF129;</string>
+    
 </resources>
