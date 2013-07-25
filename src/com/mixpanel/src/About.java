@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,7 +70,9 @@ public class About extends SherlockActivity implements View.OnClickListener {
         
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
-        mMenuDrawer.setMenuSize(140);//size of menu
+        Display display = getWindowManager().getDefaultDisplay(); 		 
+  		int width = display.getWidth();  
+        mMenuDrawer.setMenuSize(width/3);//size of menu     
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);

@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+     android:background="#fff">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp" 
         android:layout_margin="4dip"
-        android:id="@+id/relativeLayout_eventfinal">
+        android:id="@+id/relativeLayout_eventfinal"
+                 android:background="#f2f2f2"
+        >
         <com.echo.holographlibrary.LineGraph
         android:id="@+id/graph"
         android:layout_width="match_parent"
@@ -50,6 +53,9 @@
             android:text="Output text"
             android:textColor="#4d3131"
             android:textSize="25dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="6dip"
+            
             android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

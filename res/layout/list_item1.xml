@@ -15,16 +15,17 @@
         android:textSize="17dip"
         android:textStyle="bold" />
 
-    <TextView
+    <com.mixpanel.src.Icon_font
         android:id="@+id/imageView1"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/event_activity_list"
-        android:background="@drawable/list_event"
-        android:gravity="center"
+         android:gravity="center"
+        android:text="@string/arrow_right"
+        android:textColor="@color/grey"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp" />
+        android:textSize="20dp" />
  
 </RelativeLayout>
         

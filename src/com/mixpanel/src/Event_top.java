@@ -21,6 +21,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -124,7 +125,10 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
            mMenuDrawer.setActiveView(activeView);
            //mContentTextView.setText("Active item: " + activeView.getText());
        } 
-       mMenuDrawer.setMenuSize(140);//size of menu
+       
+       Display display = getWindowManager().getDefaultDisplay(); 		 
+ 		int width = display.getWidth();  
+       mMenuDrawer.setMenuSize(width/3);//size of menu
        mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
        //navigation
        
@@ -215,6 +219,18 @@ public void  get_values_pref(){// getting values from preference
 						     
 						    // Storing each json item in variable
 						    String Amount = c.getString(amount);
+						    int amount_int = Integer.parseInt(Amount);
+						    int amount_int_modified=0;
+						    String Amount_new="";
+						    if(amount_int>999){ //formating amount
+						    	amount_int_modified=amount_int/1000;
+							     Amount_new= amount_int_modified+"K";
+
+						    }
+						    else{
+							    Amount_new= Amount ;
+
+						    }
 						    String parcent_change = c.getString(percent_change);
 						    String Event = c.getString(event);
 						  
@@ -223,7 +239,7 @@ public void  get_values_pref(){// getting values from preference
 						    HashMap<String, String> map = new HashMap<String, String>();
 						     
 						    // adding each child node to HashMap key => value
-						    map.put(amount, Amount);
+						    map.put(amount, Amount_new);
 						    map.put(percent_change, parcent_change);
 						    map.put(event, Event);
 						  

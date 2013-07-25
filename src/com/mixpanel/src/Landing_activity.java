@@ -404,7 +404,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
         
          getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
          menu.add(Menu.NONE, R.id.landing, Menu.NONE, R.string.landing)
-         .setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
+         //setIcon(isLight ? R.drawable.ic_compose_inverse : R.drawable.ic_compose)
          .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
          
         return true;

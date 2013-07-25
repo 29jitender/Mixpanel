@@ -9,24 +9,25 @@ import org.json.JSONObject;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow.LayoutParams;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Window;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LinePoint;
@@ -163,30 +164,12 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		 	 getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
 
 		 	 // this is for the height of graph
-		 	int density = getActivity().getResources().getDisplayMetrics().densityDpi ;
-	    	RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rel1);
-	    	if (density == DisplayMetrics.DENSITY_LOW) {
-	    	    rl.getLayoutParams().height = (int) 300;
-
-	    	} else if (density == DisplayMetrics.DENSITY_MEDIUM) {
-	    	    rl.getLayoutParams().height = (int) 340;
-
-	    	}  else if (density == DisplayMetrics.DENSITY_TV) {
-	    	    rl.getLayoutParams().height = (int) 380;
-
-	    	}
-	    	 else if (density == DisplayMetrics.DENSITY_HIGH) {
-	     	    rl.getLayoutParams().height = (int) 420;
-
-	     	}
-	    	 else if (density == DisplayMetrics.DENSITY_XHIGH) {
-	     	    rl.getLayoutParams().height = (int) 460;
-
-	     	}
-	    	 else if (density == DisplayMetrics.DENSITY_DEFAULT) {
-	     	    rl.getLayoutParams().height = (int) 480;
-
-	     	}
+ 	    	RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rel1);
+	    	  
+	        Display display = getActivity().getWindowManager().getDefaultDisplay(); 		 
+	  		int height = display.getHeight();  
+    	    rl.getLayoutParams().height = (int) (height/2.2);
+   
  
 		 	/**
 			* Updating parsed JSON data into graphs
@@ -320,11 +303,11 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		seteventname();
 		senteventname_value();
 		
-	    final Button b1=(Button)getView().findViewById(R.id.button11);
-	    final Button b2=(Button)getView().findViewById(R.id.button21);
-	    final Button b3=(Button)getView().findViewById(R.id.button31);
-	    final  Button b4=(Button)getView().findViewById(R.id.button41);
-	    final Button b5=(Button)getView().findViewById(R.id.button51);
+	    final TextView b1=(TextView)getView().findViewById(R.id.button11);
+	    final TextView b2=(TextView)getView().findViewById(R.id.button21);
+	    final TextView b3=(TextView)getView().findViewById(R.id.button31);
+	    final  TextView b4=(TextView)getView().findViewById(R.id.button41);
+	    final TextView b5=(TextView)getView().findViewById(R.id.button51);
 
 	    
 		list_event = (ExpandableListView) getView().findViewById(R.id.eventname_list);
@@ -339,17 +322,28 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 			@Override
 			public void onGroupCollapse(int arg0) {
  
+				//moving icon on click
+				LayoutParams params = new LayoutParams(
+            	        LayoutParams.FILL_PARENT,      
+            	        LayoutParams.FILL_PARENT
+            	);
+				int i=dpToPx(6);
+				
+            	params.setMargins(0, i, 0, 0);            	
+            	b1.setLayoutParams(params);
+            	//////////////////
+				
  				b1.setVisibility(View.VISIBLE);
         		b2.setVisibility(View.VISIBLE);
         		b3.setVisibility(View.VISIBLE);
         		b4.setVisibility(View.VISIBLE);
         		b5.setVisibility(View.VISIBLE);
-
-        		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
-        		b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
-        		b3.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
-        		b4.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
-        		b5.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+        		
+        		b1.setTextColor(getResources().getColor(R.color.c1));
+        		b2.setTextColor(getResources().getColor(R.color.c2));
+        		b3.setTextColor(getResources().getColor(R.color.c3));
+        		b4.setTextColor(getResources().getColor(R.color.c4));
+        		b5.setTextColor(getResources().getColor(R.color.c5));
         		LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
         		li.addLine(graph1);
          		li.addLine(graph2);
@@ -381,17 +375,22 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            
 	            }
             	LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
-
+            	LayoutParams params = new LayoutParams(
+            	        LayoutParams.FILL_PARENT,      
+            	        LayoutParams.FILL_PARENT
+            	);
+            	int i=dpToPx(14);
+            	params.setMargins(0, i, 0, 0);
   	            switch(groupPosition){
 	            case 0:
-	            	
+
 	        		li.removeAllLines();
 	        		
 	            	li.addLine(graph1);
 	        		li.setRangeY(0, maxrange);
 
 	            		b1.setVisibility(View.VISIBLE);
-	            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button1));
+	            		b1.setTextColor(getResources().getColor(R.color.c1));
 		            	b2.setVisibility(View.GONE);
 		            	b3.setVisibility(View.GONE);
 		            	b4.setVisibility(View.GONE);
@@ -401,9 +400,17 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	li.removeAllLines();
 	            	li.addLine(graph2);
 	        		li.setRangeY(0, maxrange);
-	            	
+	            	b1.setLayoutParams(params);
+
             		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button2));
+            		b1.setTextColor(getResources().getColor(R.color.c2));
+//            		LayoutParams params = new LayoutParams(
+//            		        LayoutParams.WRAP_CONTENT,      
+//            		        LayoutParams.WRAP_CONTENT
+//            		);
+//            		params.setMargins(0, 15, 0, 0);
+//            		b1..setLayoutParams(params);
+
 	            	//b1.setBackgroundColor(getResources().getColor(R.color.c2));
 	            	b2.setVisibility(View.GONE);
 	            	b3.setVisibility(View.GONE);
@@ -415,9 +422,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	li.addLine(graph3);
 	        		li.setRangeY(0, maxrange);
 	        		
-	        		
+	            	b1.setLayoutParams(params);
+
             		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button3));
+            		b1.setTextColor(getResources().getColor(R.color.c3));
 	            	b3.setVisibility(View.GONE);
 	            	b2.setVisibility(View.GONE);
 	            	b4.setVisibility(View.GONE);
@@ -427,9 +435,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	li.removeAllLines();
 	            	li.addLine(graph4);
 	        		li.setRangeY(0, maxrange);
-	            	
+	            	b1.setLayoutParams(params);
+
             		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button4));
+            		b1.setTextColor(getResources().getColor(R.color.c4));
 	            	b4.setVisibility(View.GONE);
 	            	b3.setVisibility(View.GONE);
 	            	b2.setVisibility(View.GONE);
@@ -439,9 +448,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	li.removeAllLines();
 	            	li.addLine(graph5);
 	        		li.setRangeY(0, maxrange);
-	            	
+	            	b1.setLayoutParams(params);
+
             		b1.setVisibility(View.VISIBLE);
-            		b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.round_button5));
+            		b1.setTextColor(getResources().getColor(R.color.c5));
 	            	b5.setVisibility(View.GONE);
 	            	b3.setVisibility(View.GONE);
 	            	b4.setVisibility(View.GONE);
@@ -454,12 +464,11 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
             		b4.setVisibility(View.VISIBLE);
             		b5.setVisibility(View.VISIBLE);
 
-            		b1.setBackgroundColor(getResources().getColor(R.color.c1));
-	            	b2.setBackgroundColor(getResources().getColor(R.color.c2));
-	            	b3.setBackgroundColor(getResources().getColor(R.color.c3));
-	            	b4.setBackgroundColor(getResources().getColor(R.color.c4));
-	            	b5.setBackgroundColor(getResources().getColor(R.color.c5));
-
+            		b1.setTextColor(getResources().getColor(R.color.c1));
+            		b2.setTextColor(getResources().getColor(R.color.c2));
+            		b3.setTextColor(getResources().getColor(R.color.c3));
+            		b4.setTextColor(getResources().getColor(R.color.c4));
+            		b5.setTextColor(getResources().getColor(R.color.c5));
             		break;
             		
 	            }
@@ -489,6 +498,13 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		////////////////////////////////////////////////////////////////////////////////////////////
 		 
 	}
+    
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
+        return px;
+    }
+    
 	//list 
 	
 	public void seteventname() {

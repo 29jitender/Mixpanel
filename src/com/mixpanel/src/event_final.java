@@ -177,7 +177,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
       		int height = display.getHeight();  // deprecated
       		
       		RelativeLayout rl = (RelativeLayout) findViewById(R.id.relativeLayout_eventfinal);
-      	    rl.getLayoutParams().height = (int) (height/2.3);
+      	    rl.getLayoutParams().height = (int) (height/2.6);
        	  
       	  ///
         //name = Event_activity.click_type;
@@ -319,9 +319,16 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 			 
 		 }
 		 
-		 
-		graph.setColor(Color.parseColor("#FFBB33"));
+		 if(name1.equals("Top")){//to check from where it came from and set that color to graph :P
+      		graph.setColor(Color.parseColor("#3BB0AA"));
 
+         }
+         else  if(name1.equals("all"))
+         {
+      		graph.setColor(Color.parseColor("#44C19F"));
+
+         }
+ 
 		LineGraph li = (LineGraph)findViewById(R.id.graph);
 		li.addLine(graph);
 		li.setRangeY(0, rangeY);

@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -130,7 +131,9 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         // This will animate the drawer open and closed until the user manually drags it. Usually this would only be
         // called on first launch.
         mMenuDrawer.peekDrawer();
-        mMenuDrawer.setMenuSize(140);//size of menu
+        Display display = getWindowManager().getDefaultDisplay(); 		 
+  		int width = display.getWidth();  
+        mMenuDrawer.setMenuSize(width/3);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         //navigation
         
