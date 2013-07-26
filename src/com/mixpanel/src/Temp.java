@@ -1,23 +1,34 @@
 package com.mixpanel.src;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class Temp implements OnItemClickListener{
+public class Temp extends Activity  {
+ 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		 setContentView(R.layout.nointernet);//giving new layout to drawer
+		 Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+			button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+	 
+	                Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
 
-    private View lastSelectedView = null;
+	 
+				}
+	 
+			});	
+			
+	}
 
-    public void clearSelection()
-    {
-        if(lastSelectedView != null) lastSelectedView.setBackgroundColor(0xFFF06D2F);
-    }
 
-    @Override
-    public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
-        clearSelection();
-        
-        lastSelectedView = view;
-        view.setBackgroundDrawable(view.getContext().getResources().getDrawable(R.drawable.round_button1));
-    }
+	 
 }

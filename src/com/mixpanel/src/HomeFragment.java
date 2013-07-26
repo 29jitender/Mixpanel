@@ -21,6 +21,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow.LayoutParams;
@@ -36,7 +37,8 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
     private static final String KEY_CONTENT = "TestFragment:Content";
 	 public static String[] event_name=new String[5];
 	 private static String TAG_event = "values";
-	 
+    	LinearLayout linlaHeaderProgress;
+    	RelativeLayout line_table;
 	 public static String event_interval="";//global 
 	 public static String event_unit="";
 	 public static String event_type="";		 
@@ -84,9 +86,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		 getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);//onload show loading
-
-        Home_graph_call1 obj =new Home_graph_call1();
+ 
+        Home_graph_call1 
+        
+        obj =new Home_graph_call1();
         obj.tocall();
        
         if ((savedInstanceState != null) && savedInstanceState.containsKey(KEY_CONTENT)) {
@@ -122,7 +125,9 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 
     @Override
 	public void methodToCallback(String print) {
-		 
+    	 linlaHeaderProgress = (LinearLayout) getView().findViewById(R.id.linlaHeaderProgress1);//progress
+    	 line_table = (RelativeLayout) getView().findViewById(R.id.line_table);//progress
+
 		final String[] key_series= new String[100];
 		int range= 7;//converting into float this is the inteval
 		 try {
@@ -161,8 +166,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 						e.printStackTrace();
 					}					
 		 	 }
-		 	 getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
+ 
 		 	 // this is for the height of graph
  	    	RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rel1);
 	    	  
@@ -296,8 +300,11 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		        		li.addLine(graph4);
 		        		li.addLine(graph5);
 		        		li.setRangeY(0, maxrange);
-		
-
+		        		///for loader
+		        	    linlaHeaderProgress.setVisibility(View.GONE);//hiding the loader
+		        	    rl.setVisibility(View.VISIBLE);
+		        	    line_table.setVisibility(View.VISIBLE);
+///for loader
 //calling list 
 		
 		seteventname();

@@ -5,13 +5,27 @@
     android:orientation="vertical" 
     android:background="#fff"
     >
+    <LinearLayout
+        android:id="@+id/linlaHeaderProgress1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar></LinearLayout>
 
      <RelativeLayout
          android:id="@+id/rel1"
          android:layout_width="match_parent"
          android:layout_height="300dp" 
          android:background="#f2f2f2"
-         
+          android:visibility="gone" 
          >
 
      <com.echo.holographlibrary.LineGraph
@@ -34,6 +48,9 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="15dip"
               android:background="#fff"
+                 android:id="@+id/line_table"
+              
+               android:visibility="gone" 
          >
 
         <TableLayout

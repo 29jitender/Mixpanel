@@ -26,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -143,20 +144,24 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         }
              
          else if(isNetworkOnline()==false){ 
-                //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-              mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
-              //setContentView(R.layout.nointernet);
-             internt_count= false;
-             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
-              rlayout.setOnClickListener(new OnClickListener() {
-                
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
+        	 setContentView(R.layout.nointernet);//giving new layout to drawer
+             //setContentView(R.layout.nointernet);
+            internt_count= false;
+            Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+            button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+	 
+					 Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
+
                     startActivity(myIntent);
-                    finish();                   
-                }
-            });     
+                    finish();  
+	 
+				}
+	 
+			});	   
              }
 		
   		 
@@ -252,20 +257,24 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     		}
                 
               if(internt_count==false){//starting settings if internet is not working
-//                 Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-                  mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
-                  internt_count= false;
-                  RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-                  rlayout.setOnClickListener(new OnClickListener() {
-                   
-                   @Override
-                   public void onClick(View v) {
-                       Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
-                       startActivity(myIntent);
-                       finish();                   
-                   }
-               });
-                
+            	  setContentView(R.layout.nointernet);//giving new layout to drawer
+                  //setContentView(R.layout.nointernet);
+                 internt_count= false;
+                 Button button = (Button) findViewById(R.id.nointernet_refresh);
+     			 
+                 button.setOnClickListener(new OnClickListener() {
+     	 
+     				@Override
+     				public void onClick(View arg0) {
+     	 
+     					 Intent myIntent = new Intent(Event_activity.this ,Event_activity.class);//refreshing
+
+                         startActivity(myIntent);
+                         finish();  
+     	 
+     				}
+     	 
+     			});	
 
                }
                
@@ -398,7 +407,13 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
     	case R.id.item1:
     		mMenuDrawer.setActiveView(v);
   		  //mMenuDrawer.closeMenu();
-            startActivity(new Intent(this, Home.class));  
+            //startActivity(new Intent(this, Home.class)); 
+            Intent myIntent = new Intent(Event_activity.this ,Home.class);//refreshing
+            Home.mMenuDrawer.closeMenu();
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            
+            startActivity(myIntent);
+            //finish();  
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     		break;

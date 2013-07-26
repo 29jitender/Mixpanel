@@ -1,6 +1,10 @@
 package com.mixpanel.src;
 
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -16,7 +20,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -24,8 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.SpannableString;
+import android.text.format.DateFormat;
 import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -34,8 +37,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -151,20 +152,24 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
         }
              
          else if(isNetworkOnline()==false){ 
-                //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-              setContentView(R.layout.nointernet);//giving new layout to drawer
-              //setContentView(R.layout.nointernet);
-             internt_count= false;
-             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
-              rlayout.setOnClickListener(new OnClickListener() {
-                
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+        	 setContentView(R.layout.nointernet);//giving new layout to drawer
+             //setContentView(R.layout.nointernet);
+            internt_count= false;
+            Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+            button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+	 
+					 Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+
                     startActivity(myIntent);
-                    finish();                   
-                }
-            });     
+                    finish();  
+	 
+				}
+	 
+			});	     
              }
           
     }
@@ -246,15 +251,75 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 		            HashMap<String, String> map = new HashMap<String, String>();
 		            
 		            String mkey=key;
+ 		            ///date format
+		            SimpleDateFormat formatter ; 
+		            Date date = null ;
+		            String newFormat=null;
+		               
+		               try {
+ 						if(event_unit.equals("minute")){
+				               formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+				               date = formatter.parse(mkey);
+
+							SimpleDateFormat formatter1 = new SimpleDateFormat("E dd kk:mm a");
+					        newFormat = formatter1.format(date);
+						}
+						else if(event_unit.equals("hour")){
+							formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+							date = formatter.parse(mkey);
+								SimpleDateFormat formatter1 = new SimpleDateFormat("E dd kk:mm a");
+						        newFormat = formatter1.format(date);
+							}
+						else if(event_unit.equals("day")){
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							date = formatter.parse(mkey);
+								SimpleDateFormat formatter1 = new SimpleDateFormat("E dd MMMM yyyy");
+						        newFormat = formatter1.format(date);
+							}
+						else if(event_unit.equals("week")){
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							date = formatter.parse(mkey);
+								SimpleDateFormat formatter1 = new SimpleDateFormat("F");								
+								SimpleDateFormat formatter2 = new SimpleDateFormat("MMMM yyyy");
+								String temp=formatter1.format(date);
+								String temp1=formatter2.format(date);
+								if(temp.equals("1")){
+						        newFormat = temp+"st week of "+temp1;
+						        }
+								else if(temp.equals("2")){
+							        newFormat = temp+"nd week of "+temp1;
+							        }
+								else if(temp.equals("3")){
+							        newFormat = temp+"rd week of "+temp1;
+							        }
+								else {
+							        newFormat = temp+"th week of "+temp1;
+							        }
+								
+							}
+						else if(event_unit.equals("month")){
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							date = formatter.parse(mkey);
+								SimpleDateFormat formatter1 = new SimpleDateFormat("MMMM yyyy");
+						        newFormat = formatter1.format(date);
+							}
+						
+						
+ 				        
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		            
+		            //////////////
 		            String mvalue= (String) c.getString(key);
 		            
-		            //map.put(mkey, mvalue); 
-		            map.put(KEY1, mkey);// all dates
 		            
+		            //map.put(mkey, mvalue); 
+		            //map.put(KEY1, mkey);// all dates
+		            map.put(KEY1, newFormat);
 		            map.put(VALUE1, mvalue);// all values
-		            Log.i("key",mkey);
-		            Log.i("value",mvalue);
+		          
 		            float k =Float.parseFloat(mvalue);//converting the string into float
 		            
 		            data_map[i]=k;//storing values into data_maps which will be used in graphs
@@ -403,19 +468,24 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 			} 
               
             if(internt_count==false){//starting settings if internet is not working
-//               Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-                mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+            	 setContentView(R.layout.nointernet);//giving new layout to drawer
+                 //setContentView(R.layout.nointernet);
                 internt_count= false;
-                RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-                rlayout.setOnClickListener(new OnClickListener() {
-                 
-                 @Override
-                 public void onClick(View v) {
-                     Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
-                     startActivity(myIntent);
-                     finish();                   
-                 }
-             });
+                Button button = (Button) findViewById(R.id.nointernet_refresh);
+    			 
+                button.setOnClickListener(new OnClickListener() {
+    	 
+    				@Override
+    				public void onClick(View arg0) {
+    	 
+    					 Intent myIntent = new Intent(event_final.this ,event_final.class);//refreshing
+
+                        startActivity(myIntent);
+                        finish();  
+    	 
+    				}
+    	 
+    			});	
               
 
              }

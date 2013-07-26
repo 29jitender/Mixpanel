@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,10 +27,10 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -139,20 +138,24 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        }
             
         else if(isNetworkOnline()==false){ 
-               //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-             mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+        	 setContentView(R.layout.nointernet);//giving new layout to drawer
              //setContentView(R.layout.nointernet);
             internt_count= false;
-            RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
-             rlayout.setOnClickListener(new OnClickListener() {
-               
-               @Override
-               public void onClick(View v) {
-                   Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
-                   startActivity(myIntent);
-                   finish();                   
-               }
-           });     
+            Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+            button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+	 
+					 Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
+
+                    startActivity(myIntent);
+                    finish();  
+	 
+				}
+	 
+			});	     
             }
 		
  		 
@@ -315,19 +318,24 @@ public void  get_values_pref(){// getting values from preference
 			}
              
            if(internt_count==false){//starting settings if internet is not working
-//              Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-               mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
-               internt_count= false;
-               RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-               rlayout.setOnClickListener(new OnClickListener() {
-                
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
-                    startActivity(myIntent);
-                    finish();                   
-                }
-            });
+        	   setContentView(R.layout.nointernet);//giving new layout to drawer
+               //setContentView(R.layout.nointernet);
+              internt_count= false;
+              Button button = (Button) findViewById(R.id.nointernet_refresh);
+  			 
+              button.setOnClickListener(new OnClickListener() {
+  	 
+  				@Override
+  				public void onClick(View arg0) {
+  	 
+  					 Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
+
+                      startActivity(myIntent);
+                      finish();  
+  	 
+  				}
+  	 
+  			});	
              
 
             }
@@ -437,8 +445,12 @@ public void  get_values_pref(){// getting values from preference
     	case R.id.item1:
     		mMenuDrawer.setActiveView(v);
    		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Home.class));   
-             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    		  Intent myIntent = new Intent(Event_top.this ,Home.class);//refreshing
+              myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              Home.mMenuDrawer.closeMenu();
+
+              startActivity(myIntent);
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
     		break;
     	case R.id.item2:

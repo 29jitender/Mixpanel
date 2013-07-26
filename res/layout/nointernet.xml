@@ -6,74 +6,47 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
      android:id="@+id/relativeLayout" >
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
+    <com.mixpanel.src.Icon_font
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-          <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="40dp"
-        android:text="No Internet Access"
-        android:textColor="#878383"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="99dp"
+        android:text="@string/signal"
+        android:textSize="60dip" />
 
-          <ImageView
-              android:id="@+id/imageView1"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentTop="true"
-              android:layout_centerHorizontal="true"
-              android:src="@drawable/internet" />
+     <com.mixpanel.src.Font
+         android:id="@+id/textView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_marginBottom="81dp"
+         android:gravity="center"
+         android:text="Tap to retry"
+         android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColor="#878383" />
 
-    </RelativeLayout>
+     <com.mixpanel.src.Icon_font_button
+         android:id="@+id/nointernet_refresh"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/textView3"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="18dp"
+         android:background="@android:color/transparent"
+         android:text="@string/refresh1"
+         android:textSize="60dip" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:text="Oops!!!!"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#878383" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"
-        android:text="Tap to retry"
-        android:textColor="#878383"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/retry" />
-    <!-- Nothing to do but it is here just to make sure this layout load in listactivity :P -->
-    <ListView
-        android:id="@+id/android:list"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        />
-
+     <com.mixpanel.src.Font
+         android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/imageView1"
+         android:layout_centerHorizontal="true"
+         android:text="No Internet Access"
+         android:textAppearance="?android:attr/textAppearanceLarge"
+         android:textColor="#878383" />
+  
 </RelativeLayout>

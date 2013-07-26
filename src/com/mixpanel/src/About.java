@@ -3,19 +3,20 @@ package com.mixpanel.src;
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -41,7 +42,8 @@ public class About extends SherlockActivity implements View.OnClickListener {
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
         }
-        
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); //open only keyboard when user click
+
         ////////////////////////////////////////////////////
         // Action bar
           ActionBar mActionBar;
@@ -54,7 +56,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
         mInflater = LayoutInflater.from(this);
         mCustomView = mInflater.inflate(R.layout.menu, null);
         mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-        mTitleTextView.setText("My Own Title");
+        mTitleTextView.setText("About");
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
         // mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
@@ -100,75 +102,67 @@ public class About extends SherlockActivity implements View.OnClickListener {
     
         //navigation
 		setContentView(R.layout.activity_about);
+		feedback();
+		//credit
 
-		String tempString="Open Source Credits";
-		  TextView text=(TextView)findViewById(R.id.textView4);
-		  SpannableString spanString = new SpannableString(tempString);
-		  spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
-		  spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-		  spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
-		  text.setText(spanString);
-		
-		github();
-		gmail();
-		play();
+
+ 				TextView tv1=	(TextView) findViewById(R.id.crd1);
+				tv1.setMovementMethod(LinkMovementMethod.getInstance());
+		 		tv1.setText(Html.fromHtml(  getResources().getString(R.string.crd1) ) );
+
+				stripUnderlines(tv1);
+
+				((TextView) findViewById(R.id.crd2)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd2)).setText(Html.fromHtml( getResources().getString(R.string.crd2)));
+				stripUnderlines(((TextView) findViewById(R.id.crd2)));
+
+				((TextView) findViewById(R.id.crd3)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd3)).setText(Html.fromHtml( getResources().getString(R.string.crd3) ));
+				stripUnderlines(((TextView) findViewById(R.id.crd3)));
+
+				((TextView) findViewById(R.id.crd4)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd4)).setText(Html.fromHtml( getResources().getString(R.string.crd4) ));
+				stripUnderlines(((TextView) findViewById(R.id.crd4)));
+
+				((TextView) findViewById(R.id.crd5)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd5)).setText(Html.fromHtml( getResources().getString(R.string.crd5) ));
+				stripUnderlines(((TextView) findViewById(R.id.crd5)));
+
 	}
-	public void github() {
-		 
-		imageButton = (ImageButton) findViewById(R.id.imageButton1);
- 
-		imageButton.setOnClickListener(new OnClickListener() {
- 
-			@Override
-			public void onClick(View arg0) {
-				 Uri uri = Uri.parse("https://github.com/29jitender/Mixpanel");
-				 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-				 startActivity(intent);
-			}
- 
-		});
- 
+	
+	private void stripUnderlines(TextView textView) {
+	    Spannable s = (Spannable)textView.getText();
+	    URLSpan[] spans = s.getSpans(0, s.length(), URLSpan.class);
+	    for (URLSpan span: spans) {
+	        int start = s.getSpanStart(span);
+	        int end = s.getSpanEnd(span);
+	        s.removeSpan(span);
+	        span = new URLSpanNoUnderline(span.getURL());
+	        s.setSpan(span, start, end, 0);
+	    }
+	    textView.setText(s);
 	}
-	public void gmail() {
-		 
-		imageButton = (ImageButton) findViewById(R.id.imageButton2);
- 
-		imageButton.setOnClickListener(new OnClickListener() {
- 
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + "29jitender@gmail.com"));
-				intent.putExtra(Intent.EXTRA_SUBJECT, "Mixpanel Android");
-				//intent.putExtra(Intent.EXTRA_TEXT, "your_text");
-				startActivity(intent);
-			}
- 
-		});
- 
-	}
-	public void play() {
-		 
-		imageButton = (ImageButton) findViewById(R.id.imageButton3);
- 
-		imageButton.setOnClickListener(new OnClickListener() {
- 
-			@Override
-			public void onClick(View arg0) {
-				final String appName = "com.example";
-				try {
-				    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+appName)));
-				} catch (android.content.ActivityNotFoundException anfe) {
-				    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+appName)));
+	public void feedback(){
+		  Button button = (Button) findViewById(R.id.submit);
+		  
+          button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+					 Intent Email = new Intent(Intent.ACTION_SEND);
+					 EditText feedback = (EditText)  	findViewById(R.id.feedback_edit);
+					    String feedback_string = feedback.getText().toString(); 
+				        Email.setType("text/email");
+				        Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "29jitender@gmail.com" });
+				        Email.putExtra(Intent.EXTRA_SUBJECT, "Mixpanel App Feedback");
+				        Email.putExtra(Intent.EXTRA_TEXT, feedback_string);
+				        startActivity(Intent.createChooser(Email, "Send Feedback:"));
+	 
 				}
-			}
- 
-		});
- 
+	 
+			});	     
+		
 	}
-	
-	
-	
-	
 	
 	
 	  
@@ -206,6 +200,16 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	       
 	    }
 	
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	//rest functinality for of navigation
 	    @Override
 	    protected void onRestoreInstanceState(Bundle inState) {
@@ -240,8 +244,12 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	    	case R.id.item1:
 	    		mMenuDrawer.setActiveView(v);
 	  		  	//mMenuDrawer.closeMenu();
-	            startActivity(new Intent(this, Home.class));  
-	            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	    		  Intent myIntent = new Intent(About.this ,Home.class);//refreshing
+	              myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	              Home.mMenuDrawer.closeMenu();
+
+	              startActivity(myIntent);
+	              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
 	    		break;
 	    	case R.id.item2:

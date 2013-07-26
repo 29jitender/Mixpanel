@@ -101,8 +101,16 @@
     <string name="graphno">&#xF165;</string>
     <string name="arrow">&#xF060;</string>
     <string name="home_icon_list">&#xF10C;</string>
-    <string name="arrow_right">&#xF054;</string>
+    <string name="arrow_right">&#xF054;</string> 
+        <string name="refresh1">&#xF021;</string> 
+    <string name="signal">&#xF012;</string>
+     <string name="crd1">&lt;a href="https://bitbucket.org/danielnadeau/holographlibrary " >Holograph library&lt;/a></string>
+     <string name="crd2">&lt;a href="http://actionbarsherlock.com/">Actionbar sherlock&lt;/a></string>
+     <string name="crd3">&lt;a href="http://viewpagerindicator.com/">Viewpager indicator&lt;/a></string>
+     <string name="crd4">&lt;a href="https://github.com/SimonVT/android-menudrawer">Android menudrawer&lt;/a></string>
+     <string name="crd5">&lt;a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome&lt;/a></string>
+     
     
-    
+   
     
 </resources>

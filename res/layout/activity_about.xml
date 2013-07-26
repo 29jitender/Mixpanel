@@ -1,66 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e3e3e3"
+    android:background="#fff"
     android:gravity="right"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".About" >
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="14dp"
-        android:text="Holographlibrary   : https://bitbucket.org/danielnadeau/holographlibrary 
-Actionbarsherlock  : http://actionbarsherlock.com/
-viewpagerindicator : http://viewpagerindicator.com/
-android-menudrawer : https://github.com/SimonVT/android-menudrawer
-simpleicons        : http://simpleicons.org/   " />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="112dp"
-        android:textColor="#0f0f0f"
-        android:text="Open Source Credits" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_toLeftOf="@+id/textView3"
-        android:text="Devloped By:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignRight="@+id/linearLayout1"
-        android:text="Jitender Chaudhary"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/textView1"
-        android:text="Lorem ipsum dolor sit amet,  tincidunt odio id, ornare ligula. Nulla vel odio lorem. Aliquam et urna est. Praesent blandit ante eget vulputate dictum. Nam quis justo sapien. In eget varius justo, non interdum nisl. Ut elementum tempus mattis. " />
-
-    <TextView
-        android:id="@+id/textView1"
+    
+     <TextView
+        android:id="@+id/mixpanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -68,54 +22,140 @@ simpleicons        : http://simpleicons.org/   " />
         android:text="Mixpanel"
         android:textColor="#4475ec"
         android:textSize="40px" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+     <TextView
+        android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center" >
+        android:layout_marginTop="6dip"
+         android:text="About"
+        android:textColor="@color/menu2"
+        android:textSize="30px" 
+         android:layout_below="@+id/mixpanel" />
+        />
+     <View
+       android:id="@+id/aboutview1"
+      android:layout_width="fill_parent"     
+    android:layout_height="0.5dip"
+    android:background="@color/menu1"
+    android:layout_below="@+id/about" />
+      <TextView
+        android:id="@+id/about_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dip"
+         android:text="Lorem ipsum dolor sit amet,  tincidunt odio id, ornare ligula. Nulla vel odio lorem. Aliquam et urna est. Praesent blandit ante eget vulputate dictum. Nam quis justo sapien. In eget varius justo, non interdum nisl. Ut elementum tempus mattis. "
+         android:textSize="25px" 
+         android:layout_below="@+id/aboutview1" />
+      <TextView
+        android:id="@+id/feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+         android:text="Feedback"
+        android:textColor="@color/menu2"
+        android:textSize="30px" 
+         android:layout_below="@+id/about_text" />
+        />
+       <View
+       android:id="@+id/Feedback"
+      android:layout_width="fill_parent"     
+    android:layout_height="0.5dip"
+    android:background="@color/menu1"
+    android:layout_below="@+id/feedback" />
+        />
+       
+       <EditText
+           android:id="@+id/feedback_edit"
+           android:layout_width="wrap_content"
+           android:layout_height="130dp"
+           android:layout_alignLeft="@+id/Feedback"
+           android:layout_alignRight="@+id/Feedback"
+           android:layout_marginTop="6dp"
+           android:layout_below="@+id/Feedback"
+           android:layout_centerVertical="true"
+           android:ems="10"
+           android:inputType="textMultiLine" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+       <Button
+           android:id="@+id/submit"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+            android:layout_below="@+id/feedback_edit"
+            android:text="Submit" />
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#4183C4"
-            android:src="@drawable/github" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:background="#DD4B39"
-            android:src="@drawable/gmail" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:background="#A4C639"
-            android:src="@drawable/android" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-</RelativeLayout>
+        />
+      <TextView
+        android:id="@+id/credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+         android:text="Credits"
+        android:textColor="@color/menu2"
+        android:textSize="30px" 
+         android:layout_below="@+id/submit" />
+        />
+     <View
+       android:id="@+id/credit_view"
+      android:layout_width="fill_parent"     
+    android:layout_height="0.5dip"
+    android:background="@color/menu1"
+    android:layout_below="@+id/credit" />
+        />
+         <TextView
+        android:id="@+id/crd1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd1"
+        android:textColor="#000"
+          android:textSize="22dp" 
+         android:layout_below="@+id/credit_view" />
+        />
+        <TextView
+        android:id="@+id/crd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd2"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd1" />
+        />
+        <TextView
+        android:id="@+id/crd3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd3"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd2" />
+        />
+        <TextView
+        android:id="@+id/crd4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd4"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd3" />
+        />
+        <TextView
+        android:id="@+id/crd5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd5"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd4" />
+        />
+        
+    </RelativeLayout>
+    </ScrollView>

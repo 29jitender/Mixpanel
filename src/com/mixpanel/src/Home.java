@@ -30,6 +30,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -57,7 +58,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         //navigation drawer variables
         private static final String STATE_MENUDRAWER = "net.simonvt.menudrawer.samples.WindowSample.menuDrawer";
         private static final String STATE_ACTIVE_VIEW_ID = "net.simonvt.menudrawer.samples.WindowSample.activeViewId";
-        private MenuDrawer mMenuDrawer; 
+        public static  MenuDrawer mMenuDrawer; 
         private int mActiveViewId;
         private int anmi=0;
         //navigation
@@ -67,8 +68,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout 
-
+ 
         //navigation
         if (savedInstanceState != null) {
             mActiveViewId = savedInstanceState.getInt(STATE_ACTIVE_VIEW_ID);
@@ -145,21 +145,24 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
              
          else if(isNetworkOnline()==false){ 
                 //Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-              mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
+              setContentView(R.layout.nointernet);//giving new layout to drawer
               //setContentView(R.layout.nointernet);
              internt_count= false;
-             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);// tap anywhere to refresh
-              rlayout.setOnClickListener(new OnClickListener() {
-                
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
-                    Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-
-                    startActivity(myIntent);
-                    finish();                   
-                }
-            });     
+             Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+             button.setOnClickListener(new OnClickListener() {
+ 	 
+ 				@Override
+ 				public void onClick(View arg0) {
+ 	 
+ 					 Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+ 
+                     startActivity(myIntent);
+                     finish();  
+ 	 
+ 				}
+ 	 
+ 			});	     
              }
      }
 
@@ -320,20 +323,24 @@ else if(anmi==2){
 }
            
          if(internt_count==false){//starting settings if internet is not working
-//            Toast.makeText(getApplicationContext(), "Please Check your Network connection", Toast.LENGTH_LONG).show();
-             mMenuDrawer.setContentView(R.layout.nointernet);//giving new layout to drawer
-             internt_count= false;
-             RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-             rlayout.setOnClickListener(new OnClickListener() {
-              
-              @Override
-              public void onClick(View v) {
-                  Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
-                  startActivity(myIntent);
-                  finish();                   
-              }
-          });
-           
+        	 setContentView(R.layout.nointernet);//giving new layout to drawer
+             //setContentView(R.layout.nointernet);
+            internt_count= false;
+            Button button = (Button) findViewById(R.id.nointernet_refresh);
+			 
+            button.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+	 
+					 Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
+ 
+                    startActivity(myIntent);
+                    finish();  
+	 
+				}
+	 
+			});	
 
           }
           
