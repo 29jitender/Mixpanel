@@ -29,17 +29,28 @@
         android:layout_margin="4dip"
         android:visibility="gone"
         android:id="@+id/relativeLayout_nill">
-      <com.mixpanel.src.Icon_font
-             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/graphno"
-                             android:gravity="center"
-            
-            android:textColor="#2447ff"
-            android:textSize="100dip"
-            android:layout_marginLeft="16dip"
-            android:textAppearance="?android:attr/textAppearanceLarge" />   
-    </RelativeLayout>
+     <com.mixpanel.src.Icon_font
+ 	        android:id="@+id/iconfont1"
+ 	        android:layout_width="match_parent"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_marginLeft="16dip"
+ 	        android:gravity="center"
+ 	        android:text="@string/graphno"
+ 	        android:textAppearance="?android:attr/textAppearanceLarge"
+ 	        android:textColor="@color/c2"
+ 	        android:textSize="100dip" />
+
+ 	    <com.mixpanel.src.Font
+ 	        android:id="@+id/textView1"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_below="@+id/iconfont1"
+ 	        android:layout_centerHorizontal="true"
+ 	        android:layout_marginTop="50dp"
+ 	        android:textSize="30dip"
+ 	        
+ 	        android:text="No Value to Plot Graph" />
+     </RelativeLayout>
     
 <LinearLayout
     android:layout_width="match_parent"

@@ -13,7 +13,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".About" >
     
-     <TextView
+     <com.mixpanel.src.Font
         android:id="@+id/mixpanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:text="Mixpanel"
         android:textColor="#4475ec"
         android:textSize="40px" />
-     <TextView
+     <com.mixpanel.src.Font
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,13 +32,13 @@
         android:textSize="30px" 
          android:layout_below="@+id/mixpanel" />
         />
-     <View
+     <com.mixpanel.src.Font
        android:id="@+id/aboutview1"
       android:layout_width="fill_parent"     
     android:layout_height="0.5dip"
     android:background="@color/menu1"
     android:layout_below="@+id/about" />
-      <TextView
+      <com.mixpanel.src.Font
         android:id="@+id/about_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
          android:text="Lorem ipsum dolor sit amet,  tincidunt odio id, ornare ligula. Nulla vel odio lorem. Aliquam et urna est. Praesent blandit ante eget vulputate dictum. Nam quis justo sapien. In eget varius justo, non interdum nisl. Ut elementum tempus mattis. "
          android:textSize="25px" 
          android:layout_below="@+id/aboutview1" />
-      <TextView
+      <com.mixpanel.src.Font
         android:id="@+id/feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
         android:textSize="30px" 
          android:layout_below="@+id/about_text" />
         />
-       <View
+       <com.mixpanel.src.Font
        android:id="@+id/Feedback"
       android:layout_width="fill_parent"     
     android:layout_height="0.5dip"
@@ -76,15 +76,17 @@
            android:ems="10"
            android:inputType="textMultiLine" />
 
-       <Button
+       <com.mixpanel.src.Icon_font_button
            android:id="@+id/submit"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
             android:layout_below="@+id/feedback_edit"
-            android:text="Submit" />
+             android:background="@android:color/transparent"
+             android:text="@string/keyboard"
+         android:textSize="60dip" />
 
         />
-      <TextView
+      <com.mixpanel.src.Font
         android:id="@+id/credit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,14 +96,14 @@
         android:textSize="30px" 
          android:layout_below="@+id/submit" />
         />
-     <View
+     <com.mixpanel.src.Font
        android:id="@+id/credit_view"
       android:layout_width="fill_parent"     
     android:layout_height="0.5dip"
     android:background="@color/menu1"
     android:layout_below="@+id/credit" />
         />
-         <TextView
+         <com.mixpanel.src.Font
         android:id="@+id/crd1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,7 +114,7 @@
           android:textSize="22dp" 
          android:layout_below="@+id/credit_view" />
         />
-        <TextView
+        <com.mixpanel.src.Font
         android:id="@+id/crd2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,7 +125,7 @@
           android:textColor="#000"
          android:layout_below="@+id/crd1" />
         />
-        <TextView
+        <com.mixpanel.src.Font
         android:id="@+id/crd3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,7 +136,7 @@
           android:textColor="#000"
          android:layout_below="@+id/crd2" />
         />
-        <TextView
+        <com.mixpanel.src.Font
         android:id="@+id/crd4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,7 +147,7 @@
           android:textColor="#000"
          android:layout_below="@+id/crd3" />
         />
-        <TextView
+        <com.mixpanel.src.Font
         android:id="@+id/crd5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

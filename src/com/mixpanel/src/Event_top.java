@@ -85,7 +85,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("Top Events");
+       mTitleTextView.setText("Top Events of Today");
        mTitleTextView.setTextSize(20);
 
        mActionBar.setCustomView(mCustomView);
@@ -184,8 +184,8 @@ public void  get_values_pref(){// getting values from preference
 		 
 		String limit1 =prefs.getString("top_event", "10");
 		limit=limit1.replaceAll("\\s","");//removing spaces if user entered by mistake
-		final TextView textViewToChange10 = (TextView) findViewById(R.id.name_label);//printing the text as heading
-		textViewToChange10.setText("Top"+" "+limit+" "+"events of the day");
+//		final TextView textViewToChange10 = (TextView) findViewById(R.id.name_label);//printing the text as heading
+//		textViewToChange10.setText("Top"+" "+limit+" "+"events of the day");
 		 
 		int check= Integer.parseInt(limit);
 		// condition of api

@@ -6,7 +6,7 @@
      android:background="@drawable/list_selector"
     >
 
-     <TextView
+     <!-- TextView
          android:id="@+id/name_label"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
          android:text="@string/home_screen_text"
          android:textColor="#1c0707"
          android:textSize="25dip"
-         android:textStyle="bold" />
+         android:textStyle="bold" / -->
 
     <!-- Description Label -->
     <ListView
@@ -24,6 +24,6 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:divider="@android:color/transparent"
-  android:dividerHeight="12.0sp"
+  		android:dividerHeight="14.0dp"
         />
 </LinearLayout>

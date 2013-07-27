@@ -98,12 +98,18 @@
     <string name="allevent">&#xF002;</string>
     <string name="topevent">&#xF005;</string>
     <string name="about">&#xF129;</string>
-    <string name="graphno">&#xF165;</string>
+    <string name="graphno">&#xF088;</string>
     <string name="arrow">&#xF060;</string>
     <string name="home_icon_list">&#xF10C;</string>
     <string name="arrow_right">&#xF054;</string> 
-        <string name="refresh1">&#xF021;</string> 
+    <string name="refresh1">&#xF021;</string> 
     <string name="signal">&#xF012;</string>
+    <string name="keyboard">&#xF11C;</string>
+     <string name="next">&#xF0DA;</string> 
+    <string name="previous">&#xF0D9;</string>
+    <string name="skip">Skip</string>
+     
+    
      <string name="crd1">&lt;a href="https://bitbucket.org/danielnadeau/holographlibrary " >Holograph library&lt;/a></string>
      <string name="crd2">&lt;a href="http://actionbarsherlock.com/">Actionbar sherlock&lt;/a></string>
      <string name="crd3">&lt;a href="http://viewpagerindicator.com/">Viewpager indicator&lt;/a></string>

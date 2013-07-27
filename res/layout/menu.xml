@@ -16,14 +16,14 @@
         android:scaleType="centerInside"
         android:src="@drawable/ic_navigation_drawer" />
     <View
-    android:layout_width="1dip"
+    android:layout_width="0.3dip"
             android:id="@+id/spacV"
     
     android:layout_height="fill_parent"
-    android:background="#FF0000FF"
+    android:background="#f6f6f6"
                     android:layout_toRightOf="@+id/btn_slide"
  />
-    <TextView
+    <com.mixpanel.src.Font
         android:id="@+id/title_text"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

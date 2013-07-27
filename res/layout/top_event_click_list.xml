@@ -1,13 +1,13 @@
-<RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="28dip">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="28dip"
+    android:gravity="center" >
+
   <com.mixpanel.src.Font 
     android:id="@+id/e_name_amount"
     android:layout_alignParentRight="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="right"
    android:textSize="21dip"
 
     android:text=" "
@@ -22,12 +22,13 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:lines="1"
-    android:singleLine="true"
+     android:singleLine="true"
     android:maxLines="1"
-        android:text="aaaaaa"
- 
-             android:textSize="23dip"
-        android:layout_marginLeft="20dip"
+    android:text="aaaaaa"
+        android:gravity="left"
+    
+    android:textSize="23dip"
+    android:layout_marginLeft="20dip"
     
     />
   

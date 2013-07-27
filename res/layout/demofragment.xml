@@ -12,7 +12,7 @@
         android:id="@+id/imageView1"
         android:layout_width="300dp"
         android:layout_height="300dp"
-         android:src="@drawable/screen1" />
+        android:src="@drawable/screen1" />
 
     <TextView
         android:id="@+id/demo_text"

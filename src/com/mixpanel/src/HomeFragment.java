@@ -23,7 +23,6 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +30,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
+import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 import com.echo.holographlibrary.LinePoint;
 
 public final class HomeFragment extends SherlockFragment implements Callback,OnChildClickListener{
@@ -305,6 +305,22 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		        	    rl.setVisibility(View.VISIBLE);
 		        	    line_table.setVisibility(View.VISIBLE);
 ///for loader
+		        	    
+		        	    ///////////////graph touch////////////////////////////////////////////
+		        	    
+		        	    li.setOnPointClickedListener(new OnPointClickedListener(){
+
+		        			@Override
+		        			public void onClick(int lineIndex, int pointIndex) { 
+		        				//list_event.expandGroup(lineIndex);  //can use this later if want to open list by clicking graph
+		         
+		        			}
+		        			
+		        		}); 
+		        	    
+		        	  
+		        	    //////////////////////////////////////////////////////////////////////////
+		        	    
 //calling list 
 		
 		seteventname();

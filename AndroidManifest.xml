@@ -27,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.mixpanel.src.demo.Demo" android:theme="@style/Theme.Transparent" >
+        </activity>
         <activity android:name="com.mixpanel.src.Create_graph" >
         </activity>
         <activity android:name="com.mixpanel.src.ParseJSON" >

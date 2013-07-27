@@ -11,11 +11,11 @@
         android:layout_weight="0.23"
         android:orientation="horizontal" >
 
- <ImageView
+ <!-- ImageView
      android:id="@+id/imageView1"
      android:layout_width="73dp"
      android:layout_height="74dp"
-     android:src="@drawable/list" />
+     android:src="@drawable/list" / -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +41,8 @@
             <LinearLayout
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp" >
                 <com.mixpanel.src.Font
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,17 +68,18 @@
             </LinearLayout>
           
         </LinearLayout>
-  <com.mixpanel.src.Font
+
+        <com.mixpanel.src.Font
             android:id="@+id/E_amount"
             android:layout_width="93dip"
             android:layout_height="wrap_content"
-            android:textColor="#1F9DD4" 
-            android:textStyle="bold"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="8dp"
             android:gravity="right"
-             android:textSize="40sp"
-       		android:layout_marginRight="20dip"
-            
-            android:text="1334" />
+            android:text="1334"
+            android:textColor="#1F9DD4"
+            android:textSize="40dp"
+            android:textStyle="bold" />
         
     </LinearLayout>
 
