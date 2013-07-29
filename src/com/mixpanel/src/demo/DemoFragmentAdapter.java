@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
 
 class DemoFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-    protected static final String[] CONTENT = new String[] { "1", "2", "3", "4", "5","6","7",};
+    protected static final String[] CONTENT = new String[] { "1", "2", "3", "4", "5","6","7","8"};
     protected static final int[] ICONS = new int[] {
     	 R.drawable.alert_dark_frame,
          R.drawable.alert_dark_frame,

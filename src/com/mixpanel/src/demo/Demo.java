@@ -64,9 +64,11 @@ import com.viewpagerindicator.PageIndicator;
     
      			@Override
      			public void onClick(View arg0) {
+     				position=mPager.getCurrentItem();
+
      				position=position+1;///moving fragment
 
-     				if(position>6){
+     				if(position>7){
      					position=0;
      				}
                     mIndicator.setCurrentItem(position); 
@@ -81,8 +83,10 @@ import com.viewpagerindicator.PageIndicator;
     
      			@Override
      			public void onClick(View arg0) {
+     				position=mPager.getCurrentItem();
+
      				if(position<1){
-     					position=7;
+     					position=8;
      				}
      				position=position-1;
 

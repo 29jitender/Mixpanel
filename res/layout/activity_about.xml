@@ -20,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Mixpanel"
-        android:textColor="#4475ec"
+        android:textColor="@color/menu4"
         android:textSize="40px" />
      <com.mixpanel.src.Font
         android:id="@+id/about"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
          android:text="About"
-        android:textColor="@color/menu2"
+        android:textColor="@color/menu4"
         android:textSize="30px" 
          android:layout_below="@+id/mixpanel" />
         />
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dip"
          android:text="Feedback"
-        android:textColor="@color/menu2"
+        android:textColor="@color/menu4"
         android:textSize="30px" 
          android:layout_below="@+id/about_text" />
         />
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dip"
          android:text="Credits"
-        android:textColor="@color/menu2"
+        android:textColor="@color/menu4"
         android:textSize="30px" 
          android:layout_below="@+id/submit" />
         />

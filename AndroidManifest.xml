@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme" >
         <activity
-            android:name="com.mixpanel.src.Home"
+            android:name="com.mixpanel.src.Splash"
             android:screenOrientation="portrait" 
              android:label="Mixpanel">
             <intent-filter>
@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mixpanel.src.demo.Demo" android:theme="@style/Theme.Transparent" >
+        <activity android:name="com.mixpanel.src.Home"  >
         </activity>
         <activity android:name="com.mixpanel.src.Create_graph" >
         </activity>
@@ -51,7 +51,7 @@
             android:name="com.mixpanel.src.MainActivity1"
             android:label="@string/app_name" >
         </activity>
-        <activity android:name="com.mixpanel.src.Splash" >
+        <activity android:name="com.mixpanel.src.demo.Demo" android:theme="@style/Theme.Transparent" >
         </activity>
         <activity android:name="com.mixpanel.src.Event_top_click" 
              android:label="Top event">

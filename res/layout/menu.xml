@@ -35,6 +35,9 @@
         android:textSize="20sp"
                 android:layout_toRightOf="@+id/btn_slide"
         android:gravity="center"
+         android:ellipsize="end"
+    	android:maxLines="1"
+    	android:singleLine="true" 
         android:textStyle="bold" />
 
 </RelativeLayout>

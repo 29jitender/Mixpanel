@@ -365,9 +365,13 @@ else if(anmi==2){
             
          case R.id.refresh:
              Intent myIntent = new Intent(this ,Home.class);//refreshing
-                startActivity(myIntent);
-                finish();
-            return true;    
+             overridePendingTransition(0, 0);
+             myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+             finish();
+             overridePendingTransition(0, 0);
+
+               startActivity(myIntent);
+             return true;    
         case android.R.id.home:
             mMenuDrawer.toggleMenu();
             return true; 

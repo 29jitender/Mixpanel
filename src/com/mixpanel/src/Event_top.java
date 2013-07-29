@@ -398,8 +398,12 @@ public void  get_values_pref(){// getting values from preference
 		 
 		case R.id.refresh:
 			 Intent myIntent = new Intent(this ,Event_top.class);//refreshing
-				startActivity(myIntent);
-				finish();
+			  overridePendingTransition(0, 0);
+	            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+	             finish();
+	            overridePendingTransition(0, 0);
+
+	               startActivity(myIntent);
 			return true;	
 		case android.R.id.home: //on pressing home
             mMenuDrawer.toggleMenu();

@@ -57,7 +57,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		ArrayList<Object> childItem = new ArrayList<Object>();
 		//list
  //line graph
-	  
+	TextView b1=null;
 	 float rangeY1=0;
 	 float rangeY2=0;
 	 float rangeY3=0;
@@ -318,9 +318,29 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		        	    li.setOnPointClickedListener(new OnPointClickedListener(){
 
 		        			@Override
-		        			public void onClick(int lineIndex, int pointIndex) { 
+		        			public void onClick(final int lineIndex, int pointIndex) { 
 		        				 list_event.expandGroup(lineIndex);  //can use this later if want to open list by clicking graph
 		                 		 li.setVisibility(View.GONE);//hiding graph
+		                 		//moving icon on click
+		         				LayoutParams params = new LayoutParams(
+		                     	        LayoutParams.FILL_PARENT,      
+		                     	        LayoutParams.FILL_PARENT
+		                     	);
+		         				int i=dpToPx(10);
+		         				 float k = getActivity().getResources().getDisplayMetrics().scaledDensity;
+		         	                int j=(int) (i/k);
+		                     	params.setMargins(0, j, 0, 0);            	
+		                     	b1.setLayoutParams(params);	                 		 
+		                 		 		                 		list_event.clearFocus();///to auto scroll on click
+		                 		 		                 		list_event.post(new Runnable() {
+		                 		 
+		                 		 		                              @Override
+		                 		 		                              public void run() {
+		                 		 		                            	  //list_event.smoothScrollToPosition(lineIndex);
+		                 	 	                            	  list_event.setSelection(lineIndex);
+		                 		 		                              }
+		                 	  	                          });
+		                 	 	                 		 
 
 		        			}
 		        			
@@ -390,7 +410,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 			e.printStackTrace();
 		}
 		
-	    final TextView b1=(TextView)getView().findViewById(R.id.button11);
+	     b1=(TextView)getView().findViewById(R.id.button11);
 	    final TextView b2=(TextView)getView().findViewById(R.id.button21);
 	    final TextView b3=(TextView)getView().findViewById(R.id.button31);
 	    final  TextView b4=(TextView)getView().findViewById(R.id.button41);
@@ -414,9 +434,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
             	        LayoutParams.FILL_PARENT,      
             	        LayoutParams.FILL_PARENT
             	);
-				int i=dpToPx(6);
-				
-            	params.setMargins(0, i, 0, 0);            	
+				int i=dpToPx(10);
+				 float k = getActivity().getResources().getDisplayMetrics().scaledDensity;
+	                int j=(int) (i/k);
+            	params.setMargins(0, j, 0, 0);            	
             	b1.setLayoutParams(params);
             	//////////////////
 				
@@ -463,8 +484,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
             	        LayoutParams.FILL_PARENT,      
             	        LayoutParams.FILL_PARENT
             	);
-            	int i=dpToPx(14);
-            	params.setMargins(0, i, 0, 0);
+            	int i=dpToPx(28);
+                float k = getActivity().getResources().getDisplayMetrics().scaledDensity;
+                int j=(int) (i/k);
+            	params.setMargins(0, j, 0, 0);
        		 li.setVisibility(View.GONE);//hiding graph
 
   	            switch(groupPosition){

@@ -80,7 +80,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
         	 ColorDrawable colorDrawable = new ColorDrawable();
-             colorDrawable.setColor(Color.parseColor("#44C19F"));//menu 2
+             colorDrawable.setColor(Color.parseColor("#25d3ee"));//menu 2
              android.app.ActionBar actionBar = getActionBar();
              actionBar.setBackgroundDrawable(colorDrawable);
 

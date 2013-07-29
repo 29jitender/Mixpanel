@@ -104,6 +104,12 @@ public final class DemoFragment extends Fragment {
 
 
 		   }
+		   else  if(mContent.equals("8")){
+			    text.setText("8");
+			    imageview.setImageDrawable(getResources().getDrawable(R.drawable.screen7));
+
+
+		   }
  		super.onResume();
 	}
 

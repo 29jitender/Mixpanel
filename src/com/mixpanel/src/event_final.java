@@ -547,8 +547,12 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		  			case R.id.refresh:
 		  				 Intent myIntent = new Intent(this ,event_final.class);//refreshing
 		  				 myIntent.putExtra("flag", name1);
-		  				startActivity(myIntent);
-		  				finish();
+		  				  overridePendingTransition(0, 0);
+		  	             myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		  	             finish();
+		  	             overridePendingTransition(0, 0);
+
+		  	               startActivity(myIntent);
 
 						return true;
 		  			case R.id.event_filter:

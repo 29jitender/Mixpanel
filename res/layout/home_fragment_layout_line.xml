@@ -118,7 +118,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dip"
+        android:layout_marginTop="15sp"
               android:background="#fff"
                  android:id="@+id/line_table"
                                      android:visibility="gone" 
@@ -132,21 +132,21 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-             android:layout_marginTop="2dip" >
+             android:layout_marginTop="2sp" >
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="4dip" >
+                android:layout_marginBottom="24sp"
+                android:layout_marginLeft="4sp" >
 
                 <com.mixpanel.src.Icon_font
                     android:id="@+id/button11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="22dp"
-                    android:layout_marginTop="7dip"
+                    android:textSize="22sp"
+                    android:layout_marginTop="7sp"
                     android:textColor="@color/c1"
                     android:scaleType="centerInside"
                     android:text="@string/home_icon_list" />
@@ -156,14 +156,14 @@
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="4dip" >
+                android:layout_marginBottom="24sp"
+                android:layout_marginLeft="4sp" >
 
                 <com.mixpanel.src.Icon_font
                     android:id="@+id/button21"
                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   android:textSize="22dp"
+                   android:textSize="22sp"
                     android:textColor="@color/c2"
                     android:scaleType="centerInside"
                     android:text="@string/home_icon_list" />
@@ -173,15 +173,15 @@
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="4dip" >
+                android:layout_marginBottom="24sp"
+                android:layout_marginLeft="4sp" >
 
                 <com.mixpanel.src.Icon_font
                     android:id="@+id/button31"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:scaleType="centerInside"
                     android:textColor="@color/c3"
                     android:text="@string/home_icon_list" />
@@ -191,14 +191,14 @@
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="4dip" >
+                android:layout_marginBottom="24sp"
+                android:layout_marginLeft="4sp" >
 
                 <com.mixpanel.src.Icon_font
                     android:id="@+id/button41"
                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:textColor="@color/c4"
                     android:scaleType="centerInside"
                     android:text="@string/home_icon_list" />
@@ -208,14 +208,14 @@
                 android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="4dip" >
+                android:layout_marginBottom="24sp"
+                android:layout_marginLeft="4sp" >
 
                 <com.mixpanel.src.Icon_font
                     android:id="@+id/button51"
                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:textColor="@color/c5"
                     android:scaleType="centerInside"
                     android:text="@string/home_icon_list" />
@@ -245,7 +245,7 @@
       android:choiceMode="singleChoice"
       android:divider="@android:color/transparent"
       android:transcriptMode="disabled"
-      android:dividerHeight="16dp"
+      android:dividerHeight="16sp"
       android:childDivider="@android:color/transparent" 
       >
 

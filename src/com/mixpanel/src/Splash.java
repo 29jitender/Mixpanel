@@ -1,25 +1,25 @@
 package com.mixpanel.src;
 
  
-import com.mixpanel.src.demo.Demo;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.mixpanel.src.demo.Demo;
+
 public class Splash extends Activity {
 	private final int SPLASH_DISPLAY_LENGHT = 3300;
-	
+	SharedPreferences prefs;
+	SharedPreferences.Editor editor;
 	 public void onAttachedToWindow() {
 			super.onAttachedToWindow();
 			Window window = getWindow();
@@ -32,34 +32,33 @@ public class Splash extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//making full screen
         setContentView(R.layout.activity_splash);
         
-        
+        prefs = Splash.this.getSharedPreferences("nbRepet", MODE_PRIVATE);      
+        final int value = prefs.getInt("nbRepet", 0);
         StartAnimations();
-   
+      
        
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
+            	if(value<1)
+            	{
+            		  prefs = getSharedPreferences("nbRepet",Context.MODE_PRIVATE);
+            	    	editor = prefs.edit();
+            	    	editor.putInt("nbRepet", 1);
+            	    	editor.commit();
                 Intent mainIntent = new Intent(Splash.this,Demo.class);
                 Splash.this.startActivity(mainIntent);
+            	}
+            	else{
+            		
+            		  Intent mainIntent = new Intent(Splash.this,Home.class);
+                      Splash.this.startActivity(mainIntent);
+                      Splash.this.finish();
+            	}
              }
         }, SPLASH_DISPLAY_LENGHT);
         
-        
-//        Button button = (Button) findViewById(R.id.skip);
-//		 
-//        button.setOnClickListener(new OnClickListener() {
-// 
-//			@Override
-//			public void onClick(View arg0) {
-// 
-//				 Intent mainIntent = new Intent(Splash.this,Home.class);
-//	                Splash.this.startActivity(mainIntent);
-//	                Splash.this.finish();
-// 
-//			}
-// 
-//		});	     
+     
         
     }
     
