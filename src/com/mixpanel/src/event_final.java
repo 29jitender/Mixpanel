@@ -251,7 +251,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 		            HashMap<String, String> map = new HashMap<String, String>();
 		            
 		            String mkey=key;
- 		            ///date format
+ 		           ////////////////////////// ///date format
 		            SimpleDateFormat formatter ; 
 		            Date date = null ;
 		            String newFormat=null;
@@ -311,7 +311,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 						e.printStackTrace();
 					}
 		            
-		            //////////////
+		            /////////////////////////////////////////////////////////////////
 		            String mvalue= (String) c.getString(key);
 		            
 		            

@@ -11,6 +11,7 @@
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical"
+        
         >
 
         <ProgressBar
@@ -25,32 +26,103 @@
          android:layout_width="match_parent"
          android:layout_height="300dp" 
          android:background="#f2f2f2"
-          android:visibility="gone" 
-         >
+                                android:visibility="gone" 
+         
+          >
 
      <com.echo.holographlibrary.LineGraph
         android:id="@+id/linegraph_home"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:layout_marginTop="8dip"
          />
-
+	<com.echo.holographlibrary.LineGraph
+        android:id="@+id/linegraph_home1"
+    	 android:visibility="gone" 
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginTop="8dip"
+         />
      
 
 </RelativeLayout>
-  
-    
+
+     <TableRow
+         android:id="@+id/tableRow6"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content" >
+
+         <TextView
+             android:id="@+id/hometext1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="0.16"
+                     android:layout_marginLeft="8dip"
+             
+              android:text="Mon" />
+
+         <TextView
+             android:id="@+id/hometext2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.14"
+             android:text="Tue" />
+
+         <TextView
+             android:id="@+id/hometext3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.14"
+             android:text="Wed" />
+
+         <TextView
+             android:id="@+id/hometext4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.14"
+             android:text="Thu" />
+
+         <TextView
+             android:id="@+id/hometext5"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:layout_weight="0.14"
+             android:text="Fri" />
+
+         <TextView
+             android:id="@+id/hometext6"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="right"
+             android:layout_weight="0.14"
+             android:text="Sat" />
+
+         <TextView
+             android:id="@+id/hometext7"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="right"
+               android:layout_marginRight="8dip"
+             
+              android:layout_weight="0.14"
+             android:text="Sun" />
+     
+     </TableRow>
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dip"
               android:background="#fff"
                  android:id="@+id/line_table"
+                                     android:visibility="gone" 
               
-               android:visibility="gone" 
          >
 
         <TableLayout
@@ -60,7 +132,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-             android:layout_marginTop="7dip" >
+             android:layout_marginTop="2dip" >
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -158,7 +230,8 @@
             android:layout_toRightOf="@+id/tableLayout1"
             android:orientation="vertical"
                   android:background="#fff"
-                  android:layout_marginTop="4dip"
+                  android:layout_marginTop="1dip"
+                   
              >
 
   <ExpandableListView

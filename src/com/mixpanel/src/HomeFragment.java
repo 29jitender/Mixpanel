@@ -1,6 +1,9 @@
 package com.mixpanel.src;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.json.JSONArray;
@@ -60,7 +63,9 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	 float rangeY3=0;
 	 float rangeY4=0;
 	 float rangeY5=0;
-
+	 LineGraph li;
+	 LineGraph li1;
+	 LineGraph li2;
 	 Line graph1;
 	 Line graph2;
 	 Line graph3;
@@ -289,7 +294,9 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 						 }
 						 
 					 }
-					 LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
+					    	li = (LineGraph)getView().findViewById(R.id.linegraph_home);
+		            	 li2 = (LineGraph)getView().findViewById(R.id.linegraph_home1);
+ 
 		        		li.addLine(graph1);
 		         		li.addLine(graph2);
 		        		 
@@ -305,26 +312,83 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		        	    rl.setVisibility(View.VISIBLE);
 		        	    line_table.setVisibility(View.VISIBLE);
 ///for loader
-		        	    
+		        	   
 		        	    ///////////////graph touch////////////////////////////////////////////
 		        	    
 		        	    li.setOnPointClickedListener(new OnPointClickedListener(){
 
 		        			@Override
 		        			public void onClick(int lineIndex, int pointIndex) { 
-		        				//list_event.expandGroup(lineIndex);  //can use this later if want to open list by clicking graph
-		         
+		        				 list_event.expandGroup(lineIndex);  //can use this later if want to open list by clicking graph
+		                 		 li.setVisibility(View.GONE);//hiding graph
+
 		        			}
 		        			
 		        		}); 
 		        	    
 		        	  
-		        	    //////////////////////////////////////////////////////////////////////////
+		        	    ////////////////////////////////////////////////////////////////////////// 	   
+		        
+//////////////////////this is for graph labling/////////////////////////////////////////////////////////////////////////////
+		        	    
+		        	    //series.getString(i)
+		        	    TextView lable1=(TextView)getView().findViewById(R.id.hometext1);    
+		        	    TextView lable2=(TextView)getView().findViewById(R.id.hometext2);    
+		        	    TextView lable3=(TextView)getView().findViewById(R.id.hometext3);    
+		        	    TextView lable4=(TextView)getView().findViewById(R.id.hometext4);    
+		        	    TextView lable5=(TextView)getView().findViewById(R.id.hometext5);    
+		        	    TextView lable6=(TextView)getView().findViewById(R.id.hometext6);    
+		        	    TextView lable7=(TextView)getView().findViewById(R.id.hometext7);    
+			            String newFormat[]=new String[10];
+
+		        	    for(int i=0;i<7;i++){
+					        	    String key = null;
+											try {
+												key = series.getString(i);
+											} catch (JSONException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+					        	    SimpleDateFormat formatter ; 
+						            Date date = null ;
+						            formatter = new SimpleDateFormat("yyyy-MM-dd");
+												try {
+													date = formatter.parse(key);
+												} catch (ParseException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+									SimpleDateFormat formatter1 = new SimpleDateFormat("E");
+								    newFormat[i] = formatter1.format(date);
+					        	    
+		        	    }
+		        	    lable1.setText(newFormat[0]);
+		        	    lable2.setText(newFormat[2]);
+		        	    lable3.setText(newFormat[2]);
+		        	    lable4.setText(newFormat[3]);
+		        	    lable5.setText(newFormat[4]);
+		        	    lable6.setText(newFormat[5]);
+		        	    lable7.setText(newFormat[6]);
+		        	    
+		        	    
+///////////////////////////////graph lablin end//////////////////////////////////////////////////////////////////////////////		        	    
+		        	    
+		        	    
+		        	    
+		        	    
+		        	    
+		        	    
+
 		        	    
 //calling list 
 		
 		seteventname();
-		senteventname_value();
+		try {
+			senteventname_value();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	    final TextView b1=(TextView)getView().findViewById(R.id.button11);
 	    final TextView b2=(TextView)getView().findViewById(R.id.button21);
@@ -338,7 +402,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		list_event.setAdapter(new Home_list_adapter(getActivity(), groupItem, childItem));
 
 		list_event.setOnChildClickListener(this);
-        	
+ 
 		
         list_event.setOnGroupCollapseListener(new OnGroupCollapseListener() {// when it collops
 			
@@ -367,16 +431,14 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
         		b3.setTextColor(getResources().getColor(R.color.c3));
         		b4.setTextColor(getResources().getColor(R.color.c4));
         		b5.setTextColor(getResources().getColor(R.color.c5));
-        		LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
-        		li.addLine(graph1);
-         		li.addLine(graph2);
-        		 
-         		li.addLine(graph3);
-        		 
-         		li.addLine(graph4);
-        		li.addLine(graph5);
-        		li.setRangeY(0, maxrange);
-        		
+         		 
+        	 
+	        	li.setVisibility(View.VISIBLE);
+	        	li2.setVisibility(View.GONE);
+         	   
+        	    
+        	  
+        	    ////////////////////////////////////////////////////////////////////////// 	   
         		
         		
 			}
@@ -397,20 +459,22 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            previousGroup = groupPosition;
 	            
 	            }
-            	LineGraph li = (LineGraph)getView().findViewById(R.id.linegraph_home);
             	LayoutParams params = new LayoutParams(
             	        LayoutParams.FILL_PARENT,      
             	        LayoutParams.FILL_PARENT
             	);
             	int i=dpToPx(14);
             	params.setMargins(0, i, 0, 0);
+       		 li.setVisibility(View.GONE);//hiding graph
+
   	            switch(groupPosition){
 	            case 0:
 
-	        		li.removeAllLines();
-	        		
-	            	li.addLine(graph1);
-	        		li.setRangeY(0, maxrange);
+	            	li2.removeAllLines();
+ 	        		li2.setVisibility(View.VISIBLE); 
+ 	        		
+	            	li2.addLine(graph1);
+	        		li2.setRangeY(0, maxrange);
 
 	            		b1.setVisibility(View.VISIBLE);
 	            		b1.setTextColor(getResources().getColor(R.color.c1));
@@ -420,30 +484,27 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		            	b5.setVisibility(View.GONE);
   	            		break;
 	            case 1:
-	            	li.removeAllLines();
-	            	li.addLine(graph2);
-	        		li.setRangeY(0, maxrange);
+	            	li2.removeAllLines();
+ 	        		li2.setVisibility(View.VISIBLE); 
+ 	        		
+ 	            	li2.addLine(graph2);
+	        		li2.setRangeY(0, maxrange);
 	            	b1.setLayoutParams(params);
 
             		b1.setVisibility(View.VISIBLE);
             		b1.setTextColor(getResources().getColor(R.color.c2));
-//            		LayoutParams params = new LayoutParams(
-//            		        LayoutParams.WRAP_CONTENT,      
-//            		        LayoutParams.WRAP_CONTENT
-//            		);
-//            		params.setMargins(0, 15, 0, 0);
-//            		b1..setLayoutParams(params);
-
-	            	//b1.setBackgroundColor(getResources().getColor(R.color.c2));
+ 
 	            	b2.setVisibility(View.GONE);
 	            	b3.setVisibility(View.GONE);
 	            	b4.setVisibility(View.GONE);
 	            	b5.setVisibility(View.GONE);
                		break;
 	            case 2:
-	            	li.removeAllLines();
-	            	li.addLine(graph3);
-	        		li.setRangeY(0, maxrange);
+	            	li2.removeAllLines();
+ 	        		li2.setVisibility(View.VISIBLE); 
+ 	        		
+ 	            	li2.addLine(graph3);
+	        		li2.setRangeY(0, maxrange);
 	        		
 	            	b1.setLayoutParams(params);
 
@@ -455,9 +516,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	b5.setVisibility(View.GONE);
              		break;
 	            case 3:
-	            	li.removeAllLines();
-	            	li.addLine(graph4);
-	        		li.setRangeY(0, maxrange);
+ 	            	li2.removeAllLines();
+ 	        		li2.setVisibility(View.VISIBLE); 
+	            	li2.addLine(graph4);
+	        		li2.setRangeY(0, maxrange);
 	            	b1.setLayoutParams(params);
 
             		b1.setVisibility(View.VISIBLE);
@@ -468,9 +530,10 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	            	b5.setVisibility(View.GONE);
              		break;
 	            case 4:
-	            	li.removeAllLines();
-	            	li.addLine(graph5);
-	        		li.setRangeY(0, maxrange);
+ 	            	li2.removeAllLines();
+ 	        		li2.setVisibility(View.VISIBLE); 
+	            	li2.addLine(graph5);
+	        		li2.setRangeY(0, maxrange);
 	            	b1.setLayoutParams(params);
 
             		b1.setVisibility(View.VISIBLE);
@@ -495,6 +558,25 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
             		break;
             		
 	            }
+  	            
+  	            
+    ///////////////graph touch//////////////////////////////////////////// 
+        	    
+        	    li2.setOnPointClickedListener(new OnPointClickedListener(){
+        	    	
+        			@Override
+        			public void onClick(int lineIndex, int pointIndex) { 
+        				//list_event.expandGroup(lineIndex);  //can use this later if want to open list by clicking graph
+        				for(int i=0;i<5;i++){
+        				list_event.collapseGroup(i);} //to collopas the graph on click
+        				Log.i("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",lineIndex+"");
+
+        			}
+        			
+        		}); 
+        	    
+        	  
+        	    ////////////////////////////////////////////////////////////////////////// 	   
 	        }
 	        	
 	       
@@ -514,7 +596,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		
 		
 		
-		
+
 		
 		
 		
@@ -540,48 +622,64 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 
 	 
 
-	public void senteventname_value() {
+	public void senteventname_value() throws JSONException {
+		
+		 String newFormat[]=new String[10];
+
+ 	    for(int i=0;i<7;i++){
+		        	    String key = null;
+								try {
+									key = series.getString(i);
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+		        	    SimpleDateFormat formatter ; 
+			            Date date = null ;
+			            formatter = new SimpleDateFormat("yyyy-MM-dd");
+									try {
+										date = formatter.parse(key);
+										 System.out.printf("%s %tB %<te, %<tY", 
+						                         "Due date:", date);
+									} catch (ParseException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+						SimpleDateFormat formatter1 = new SimpleDateFormat("E dd ' of ' MMMM");
+					    newFormat[i] = formatter1.format(date);
+		        	    
+ 	    }
+		
+		
 		/**
 		 * Add Data For event1
 		 */
 		ArrayList<String> child = new ArrayList<String>();
 		
-			try {
+			 
 				for(int i=0;i<7;i++){
-				child.add(series.getString(i)+"          "+Math.round(data_map[0][i]));
+				child.add(newFormat[i]+"          "+Math.round(data_map[0][i]));
 				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 		 
+			  
 		childItem.add(child);
 
 		/**
 		 * Add Data For event 2
 		 */
 		child = new ArrayList<String>();
-		try {
+		 
 			for(int i=0;i<7;i++){
-			child.add(series.getString(i)+"          "+Math.round(data_map[1][i]));
+			child.add(newFormat[i]+"                    "+Math.round(data_map[1][i]));
 			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	 
 	 		 
 	childItem.add(child);
 		/**
 		 * Add Data For event 3
 		 */
 		child = new ArrayList<String>();
-		try {
-			for(int i=0;i<7;i++){
-			child.add(series.getString(i)+"          "+Math.round(data_map[2][i]));
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(int i=0;i<7;i++){
+		child.add(newFormat[i]+"                   "+Math.round(data_map[2][i]));
 		}
 		childItem.add(child);
 
@@ -589,13 +687,8 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		 * Add Data For event 4
 		 */
 		child = new ArrayList<String>();
-		try {
-			for(int i=0;i<7;i++){
-			child.add(series.getString(i)+"          "+Math.round(data_map[3][i]));
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(int i=0;i<7;i++){
+		child.add(newFormat[i]+"                    "+Math.round(data_map[3][i]));
 		}
 		childItem.add(child);
 
@@ -603,13 +696,8 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		 * Add Data For event 5
 		 */
 		child = new ArrayList<String>();
-		try {
-			for(int i=0;i<7;i++){
-			child.add(series.getString(i)+"          "+Math.round(data_map[4][i]));
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(int i=0;i<7;i++){
+		child.add(newFormat[i]+"                    "+Math.round(data_map[4][i]));
 		}
 		childItem.add(child);
 

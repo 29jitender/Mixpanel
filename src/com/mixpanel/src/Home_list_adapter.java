@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,9 @@ public class Home_list_adapter extends BaseExpandableListAdapter {
 		}
 		text = (TextView) convertView;
 	 	text.setTextSize(17);//child size
-	 	
+	 	text.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		text.setText(tempChild.get(childPosition));
+		
 //		 
 		convertView.setTag(tempChild.get(childPosition));
 		return convertView;
