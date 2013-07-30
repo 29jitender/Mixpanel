@@ -41,6 +41,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.src.funnel.Funnel_activity;
 import com.viewpagerindicator.PageIndicator;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -445,7 +446,7 @@ else if(anmi==2){
     		
     		 mMenuDrawer.setActiveView(v);
        		 // mMenuDrawer.closeMenu();
-               startActivity(new Intent(this, About.class));
+               startActivity(new Intent(this, Funnel_activity.class));
                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                anmi=1;
     		

@@ -20,7 +20,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 //    void methodToCallback(String response);
 //}
 
-public class Funnel_activity extends SherlockActivity implements Callback,ActionBar.OnNavigationListener,OnItemSelectedListener  {
+public class Funnel_activity extends SherlockActivity implements Callback ,OnItemSelectedListener  {
  	
 	 public static String click_type="";
  
@@ -39,8 +39,7 @@ public class Funnel_activity extends SherlockActivity implements Callback,Action
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("funnels_list");
 		ParseJson_object.setListener(this);
-		navigation();// calling navigation
-		
+ 		
 		 
 		
 	}
@@ -71,7 +70,7 @@ public class Funnel_activity extends SherlockActivity implements Callback,Action
 			e.printStackTrace();
 		}
 		 
-        Spinner my_spin=(Spinner)findViewById(R.id.my_spinner);
+        Spinner my_spin=(Spinner)findViewById(R.id.spinner2);
         my_spin.setOnItemSelectedListener(this);
         
         ArrayAdapter aa=new ArrayAdapter(this, android.R.layout.simple_spinner_item,array);
@@ -100,58 +99,7 @@ public class Funnel_activity extends SherlockActivity implements Callback,Action
 	
 	 
  
-	
-	//for navigation
-	  public void navigation(){
-		  
-		  getSupportActionBar().setDisplayShowTitleEnabled(false);
-		 
-		  setTheme(SampleList.THEME); //Used for theme switching in samples
-		  String[] mLocations = getResources().getStringArray(R.array.locations);// item location
-		// starting of menu
-		   Context context = getSupportActionBar().getThemedContext();
-	        ArrayAdapter<CharSequence> list = ArrayAdapter.createFromResource(context, R.array.locations, R.layout.sherlock_spinner_item);
-	        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
-
-	        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-	        getSupportActionBar().setListNavigationCallbacks(list, this);
-		// ending of menu
-	  }
-		 @Override
-			protected void onResume() {// setting defult values
-				 //getSupportActionBar().setSelectedNavigationItem(1);
-				super.onResume();
-			}
-	  
-	  
-	  @Override
-	    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		  
-		 switch (itemPosition){
-			
-			case 0:
-				//startActivity(new Intent(this, Event_top.class)); 
-				return true;
-			case 2:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;
-			case 3:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;
-			case 4:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;
-			case 5:
-				//startActivity(new Intent(this, Event_activity.class));
-				
-				return true;	
-			default:
-				return false;
-		 }
-	    }
+	 
 
 
  

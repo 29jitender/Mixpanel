@@ -232,7 +232,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 	 
 		
 		try {
-			 json = new JSONObject(print);
+			  json = new JSONObject(print);
 			  series = json.getJSONArray("series");//taking the series 
 			
 			event_data = json.getJSONObject(TAG_event);
@@ -297,7 +297,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 							        }
 								
 							}
-						else if(event_unit.equals("month")){
+						  else if(event_unit.equals("month")){
 							formatter = new SimpleDateFormat("yyyy-MM-dd");
 							date = formatter.parse(mkey);
 								SimpleDateFormat formatter1 = new SimpleDateFormat("MMMM yyyy");

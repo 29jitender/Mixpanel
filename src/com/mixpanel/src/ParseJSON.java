@@ -2,9 +2,7 @@ package com.mixpanel.src;
 
 import android.util.Log;
  
-interface Callback {
-    void methodToCallback(String response);
-}
+
 
 public class ParseJSON  implements Callback{
 	/** Called when the activity is first created. */
@@ -89,6 +87,15 @@ public class ParseJSON  implements Callback{
 			  Async_task asyncRequest = new Async_task();
 			  asyncRequest.arg = new String[]{};
 			  asyncRequest.execute(All_api_define.event_top1());
+			  asyncRequest.setListener(this);
+
+			  retrun_stuff=display;
+		  }
+		  else if(type_event=="funnels_list"){
+
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{};
+			  asyncRequest.execute(All_api_define.funnels_list());
 			  asyncRequest.setListener(this);
 
 			  retrun_stuff=display;
