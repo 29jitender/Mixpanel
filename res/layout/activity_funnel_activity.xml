@@ -32,4 +32,10 @@
             android:text="To Date" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/funnel_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go" />
+
 </LinearLayout>

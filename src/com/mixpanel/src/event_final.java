@@ -272,7 +272,7 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 							}
 						else if(event_unit.equals("day")){
 							formatter = new SimpleDateFormat("yyyy-MM-dd");
-							date = formatter.parse(mkey);
+							 date = formatter.parse(mkey);
 								SimpleDateFormat formatter1 = new SimpleDateFormat("E dd MMMM yyyy");
 						        newFormat = formatter1.format(date);
 							}

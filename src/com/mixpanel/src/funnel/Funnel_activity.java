@@ -1,21 +1,20 @@
 package com.mixpanel.src.funnel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.text.format.Time;
@@ -23,12 +22,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.mixpanel.src.Event_top;
+import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
+import com.mixpanel.src.All_api_define;
+
 import com.mixpanel.src.R;
 
  
@@ -39,11 +43,15 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 	 private Spinner   spinner2;
 	 ArrayList<HashMap<String, String>> Event_list;
 	 HashMap<String, String> map ;
+	 public static String funnel_id=null;
+	 public static	 String to_date1=null;
+	 public static	 String from_date1=null;
+	 public static int interval=0;
 	 //////////////////date////////////////////
  
         private static final int from_date = 0;
         private static final int to_date = 1;
-
+        
 
  	  
 	 ////////////////////////////////////////////
@@ -99,6 +107,7 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
  						Toast.makeText(parent.getContext(), 
  							"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString()+"lol "+map.get( parent.getItemAtPosition(pos).toString()) ,
  							Toast.LENGTH_SHORT).show();
+ 							funnel_id=map.get( parent.getItemAtPosition(pos).toString());
  					  }
  					 
  					  @Override
@@ -108,9 +117,36 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
      			
      		}); 
      	    
-     	  
-	
-	}
+//////////////////////next activity ie funnel final//////////////////
+ 			
+ 			
+					Button button= (Button) findViewById(R.id.funnel_final);
+					button.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+						Date  date1=null;
+						Date  date2=null;
+						 try {
+							  date1 = formatter.parse(from_date1);
+							    date2 = formatter.parse(to_date1);
+
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						 
+						long diff = date2.getTime() - date1.getTime();
+						  interval=(int) (diff / (1000 * 60 * 60 * 24)+1);////////////calculating interval
+						 Intent myIntent = new Intent(Funnel_activity.this ,Funnal_final.class);//refreshing
+						 
+		                    startActivity(myIntent);
+						
+					 }
+					});
+					/////////////////////////
+						
+						}
 	
 	 ///////////////////////////////////date picker/////////////////////////////////////////
 	
@@ -132,6 +168,7 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 		             chosenDate.set(dayOfMonth, monthOfYear, year);
 		             long dtDob = chosenDate.toMillis(true);
 		             CharSequence strDate = DateFormat.format("yyyy'-'MM'-'dd", dtDob);
+		             from_date1=(String) strDate;
 		             Toast.makeText(Funnel_activity.this, "Date picked: " + strDate, Toast.LENGTH_SHORT).show();
                  		}
 		                 }, 2011,0, 1);
@@ -146,6 +183,8 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 		         chosenDate.set(dayOfMonth, monthOfYear, year);
 		         long dtDob = chosenDate.toMillis(true);
 		         CharSequence strDate = DateFormat.format("yyyy'-'MM'-'dd", dtDob);
+	             to_date1=(String) strDate;
+
 		         Toast.makeText(Funnel_activity.this, "Date picked: " + strDate, Toast.LENGTH_SHORT).show();
 		     		}
 		             }, 2011,0, 1);
@@ -193,7 +232,8 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 	
 	
 	/////////////////
-	
+ 
+ 
  
 		  
 		  
