@@ -138,7 +138,8 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 						 
 						long diff = date2.getTime() - date1.getTime();
 						  interval=(int) (diff / (1000 * 60 * 60 * 24)+1);////////////calculating interval
-						 Intent myIntent = new Intent(Funnel_activity.this ,Funnal_final.class);//refreshing
+						  
+						  Intent myIntent = new Intent(Funnel_activity.this ,Funnal_final.class);//refreshing
 						 
 		                    startActivity(myIntent);
 						
