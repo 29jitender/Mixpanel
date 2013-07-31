@@ -24,6 +24,10 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  	 ArrayList<HashMap<String, String>> Event_list;
  	ArrayList<String> event_name;
  	ArrayList<String> event_value;
+ 	ArrayList<String> event_overall_conv_ratio;
+ 	ArrayList<String> event_step_conv_ratio;
+  
+ 	
 	 HashMap<String, String> map ;
 	 public   JSONArray jarray2;
 	@Override
@@ -45,6 +49,8 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
 	 		 Event_list = new ArrayList<HashMap<String, String>>();
 	 		event_name = new ArrayList<String>();
 	 		event_value = new ArrayList<String>();
+	 		event_overall_conv_ratio = new ArrayList<String>();
+	 		event_step_conv_ratio = new ArrayList<String>();
 
  			try {
  				JSONObject obj1=new JSONObject(response);
@@ -59,11 +65,17 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  				for(int i=0;i<jarray2.length();i++){
 					String count=null;
 					String event=null;
+					String overall_conv_ratio=null;
+					String step_conv_ratio=null;
 					JSONObject obj5 = jarray2.getJSONObject(i);
 					count=obj5.getString("count");
 					event=obj5.getString("event");
+					step_conv_ratio=obj5.getString("step_conv_ratio");
+					overall_conv_ratio=obj5.getString("overall_conv_ratio");
 					event_name.add(event);
 					event_value.add(count); 
+					event_overall_conv_ratio.add(overall_conv_ratio);
+					event_step_conv_ratio.add(step_conv_ratio); 
 					
 				}
 					 
@@ -71,6 +83,8 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  				  Intent myIntent = new Intent(Funnal_final.this ,Funnel_bar_graph.class);//starting funnel bar after getting values
   				  myIntent.putExtra("event_value", event_value);
   				  myIntent.putExtra("event_name", event_name);
+  				  myIntent.putExtra("overall_conv_ratio", event_overall_conv_ratio);
+				  myIntent.putExtra("step_conv_ratio", event_overall_conv_ratio);
 
 
                   startActivity(myIntent);

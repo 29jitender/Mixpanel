@@ -6,7 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="right" >
 
         <Button
             android:id="@+id/funnel_previous"
@@ -24,13 +25,60 @@
             android:layout_alignParentTop="true"
             android:text="Next" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/funnel_text_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+             
+            android:layout_marginRight="18dp"
+            android:layout_toLeftOf="@+id/funnel_next"
+            android:text="TextView" />
 
- 	 <com.echo.holographlibrary.BarGraph
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="22dp"
+            android:layout_toLeftOf="@+id/funnel_text_lable"
+            android:text="Completion" />
+
+        <TextView
+            android:id="@+id/funnel_overall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView2"
+            android:maxLength="5"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/funnel_next"
+            android:layout_alignBottom="@+id/funnel_next"
+            android:layout_toRightOf="@+id/funnel_overall"
+            android:text="rate"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/funnel_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="29dp"
+            android:layout_toRightOf="@+id/funnel_previous"
+            android:text="Medium Text"
+             />
+
+    </RelativeLayout>
+	
+    <com.echo.holographlibrary.BarGraph
+        android:id="@+id/bargraph"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        
-        android:id="@+id/bargraph"/>
-    
+        android:layout_height="match_parent" />
 
 </LinearLayout>

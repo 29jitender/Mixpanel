@@ -44,6 +44,8 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
 	 ArrayList<HashMap<String, String>> Event_list;
 	 HashMap<String, String> map ;
 	 public static String funnel_id=null;
+	 public static String funnel_name=null;
+
 	 public static	 String to_date1=null;
 	 public static	 String from_date1=null;
 	 public static int interval=0;
@@ -108,6 +110,7 @@ public class Funnel_activity extends SherlockActivity implements   com.mixpanel.
  							"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString()+"lol "+map.get( parent.getItemAtPosition(pos).toString()) ,
  							Toast.LENGTH_SHORT).show();
  							funnel_id=map.get( parent.getItemAtPosition(pos).toString());
+ 							funnel_name=parent.getItemAtPosition(pos).toString();
  					  }
  					 
  					  @Override

@@ -12,6 +12,7 @@ public class All_api_define{
 	public static String[] event_name_array=new String[5];
 	///////funnel////////////////
 	public static String funnel_id=null;
+ 
 	public static String to_date=null;
 	public static String from_date=null;
 	
@@ -199,6 +200,7 @@ public class All_api_define{
 	  }
 	  	  
 	  public static String funnels(){// is for funnels
+ 
 		  String funnel_id1=Funnel_activity.funnel_id;
 		  String from_date1=Funnel_activity.from_date1;
 		  String to_date1=Funnel_activity.to_date1;
