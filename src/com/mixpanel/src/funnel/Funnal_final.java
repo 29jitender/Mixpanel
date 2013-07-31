@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -27,13 +29,21 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  	ArrayList<String> event_overall_conv_ratio;
  	ArrayList<String> event_step_conv_ratio;
   
- 	
+ 	String funnel_id=null;
 	 HashMap<String, String> map ;
 	 public   JSONArray jarray2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		//Remove title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		 
+		setContentView(R.layout.progress_layout);//givin layout to drawer
+		Intent in = getIntent();
+		funnel_id=in.getStringExtra("funnel_id");
+		
 		ParseJSON ParseJson_object = new ParseJSON();
 		ParseJson_object.pass_values("funnels");
 		ParseJson_object.setListener(this);
@@ -85,11 +95,15 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
   				  myIntent.putExtra("event_name", event_name);
   				  myIntent.putExtra("overall_conv_ratio", event_overall_conv_ratio);
 				  myIntent.putExtra("step_conv_ratio", event_overall_conv_ratio);
-
+  				  myIntent.putExtra("funnel_id", funnel_id);
+  				  myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//ending all activity
+  	             overridePendingTransition(0, 0);
+  				  myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+  				  finish();
+  	             overridePendingTransition(0, 0);
 
                   startActivity(myIntent);
-                  finish();
-				
+ 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1458,10 +1458,10 @@ containing a value of this type.
         public static final int abs__textButton=0x7f07001e;
         public static final int abs__title=0x7f070026;
         public static final int abs__up=0x7f070016;
-        public static final int action_settings=0x7f0700a6;
-        public static final int add_page=0x7f0700aa;
+        public static final int action_settings=0x7f0700a7;
+        public static final int add_page=0x7f0700ab;
         public static final int arrow=0x7f070075;
-        public static final int bargraph=0x7f070058;
+        public static final int bargraph=0x7f070057;
         public static final int bottom=0x7f070009;
         public static final int btn_slide=0x7f07009c;
         public static final int button1=0x7f070079;
@@ -1486,21 +1486,21 @@ containing a value of this type.
         public static final int demo_text=0x7f07006f;
         public static final int disableHome=0x7f070014;
         public static final int e_date=0x7f070097;
-        public static final int e_date1=0x7f0700a5;
-        public static final int e_name_amount=0x7f0700a4;
+        public static final int e_date1=0x7f0700a6;
+        public static final int e_name_amount=0x7f0700a5;
         public static final int edit_query=0x7f070031;
         public static final int event_activity_list=0x7f07009b;
         public static final int event_activity_name=0x7f070074;
-        public static final int event_filter=0x7f0700ad;
-        public static final int event_setting=0x7f0700a7;
-        public static final int event_top_setting=0x7f0700af;
+        public static final int event_filter=0x7f0700ae;
+        public static final int event_setting=0x7f0700a8;
+        public static final int event_top_setting=0x7f0700b0;
         public static final int eventname_list=0x7f070096;
         public static final int feedback=0x7f070041;
         public static final int feedback_edit=0x7f070043;
-        public static final int funnel_date=0x7f070057;
+        public static final int funnel_date=0x7f070054;
         public static final int funnel_final=0x7f070050;
         public static final int funnel_next=0x7f070052;
-        public static final int funnel_overall=0x7f070055;
+        public static final int funnel_overall=0x7f070056;
         public static final int funnel_previous=0x7f070051;
         public static final int funnel_text_lable=0x7f070053;
         public static final int graph=0x7f070071;
@@ -1519,11 +1519,11 @@ containing a value of this type.
         public static final int item2=0x7f07009e;
         public static final int item3=0x7f07009f;
         public static final int item4=0x7f0700a0;
-        public static final int landing=0x7f0700ae;
+        public static final int landing=0x7f0700af;
         public static final int line_table=0x7f07008f;
         public static final int linegraph_home=0x7f070085;
         public static final int linegraph_home1=0x7f070086;
-        public static final int linlaHeaderProgress=0x7f070059;
+        public static final int linlaHeaderProgress=0x7f070058;
         public static final int linlaHeaderProgress1=0x7f070082;
         public static final int listMode=0x7f07000d;
         public static final int list_view=0x7f07004c;
@@ -1547,31 +1547,32 @@ containing a value of this type.
          */
         public static final int md__menu=0x7f070003;
         public static final int mixpanel=0x7f07003d;
-        public static final int name_label=0x7f0700a3;
+        public static final int name_label=0x7f0700a4;
         public static final int next=0x7f07006c;
         public static final int nointernet_refresh=0x7f0700a2;
         public static final int none=0x7f070006;
         public static final int normal=0x7f07000c;
         public static final int p_change=0x7f070098;
-        public static final int pager=0x7f07005b;
-        public static final int pbHeaderProgress=0x7f07005a;
+        public static final int pager=0x7f07005a;
+        public static final int pbHeaderProgress=0x7f070059;
         public static final int pbHeaderProgress1=0x7f070083;
-        public static final int piegraph=0x7f07005d;
-        public static final int piegraph1=0x7f070060;
+        public static final int piegraph=0x7f07005c;
+        public static final int piegraph1=0x7f07005f;
         public static final int previous=0x7f07006a;
-        public static final int random=0x7f0700a9;
-        public static final int refresh=0x7f0700ac;
+        public static final int progressBar1=0x7f0700a3;
+        public static final int random=0x7f0700aa;
+        public static final int refresh=0x7f0700ad;
         public static final int rel1=0x7f070084;
         public static final int relativeLayout=0x7f0700a1;
-        public static final int relativeLayout1=0x7f07005c;
-        public static final int relativeLayout2=0x7f07005f;
+        public static final int relativeLayout1=0x7f07005b;
+        public static final int relativeLayout2=0x7f07005e;
         public static final int relativeLayout_eventfinal=0x7f070070;
         public static final int relativeLayout_nill=0x7f070072;
-        public static final int remove_page=0x7f0700ab;
+        public static final int remove_page=0x7f0700ac;
         public static final int result=0x7f070067;
         public static final int scrollView1=0x7f070065;
-        public static final int search=0x7f0700b0;
-        public static final int setting=0x7f0700a8;
+        public static final int search=0x7f0700b1;
+        public static final int setting=0x7f0700a9;
         public static final int showCustom=0x7f070013;
         public static final int showHome=0x7f070010;
         public static final int showTitle=0x7f070012;
@@ -1589,13 +1590,13 @@ containing a value of this type.
         public static final int tableRow4=0x7f07007e;
         public static final int tableRow5=0x7f070080;
         public static final int tableRow6=0x7f070087;
-        public static final int textView1=0x7f070056;
-        public static final int textView2=0x7f070054;
+        public static final int textView1=0x7f070061;
+        public static final int textView2=0x7f070055;
         public static final int textView3=0x7f070064;
         public static final int textView4=0x7f070062;
         public static final int textView5=0x7f070063;
-        public static final int textView6=0x7f07005e;
-        public static final int textView7=0x7f070061;
+        public static final int textView6=0x7f07005d;
+        public static final int textView7=0x7f070060;
         public static final int title_text=0x7f070077;
         public static final int top=0x7f07000a;
         public static final int triangle=0x7f070007;
@@ -1656,11 +1657,12 @@ containing a value of this type.
         public static final int menu_scrollview=0x7f030029;
         public static final int new_landing=0x7f03002a;
         public static final int nointernet=0x7f03002b;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
-        public static final int sherlock_spinner_item=0x7f03002d;
-        public static final int temp=0x7f03002e;
-        public static final int top_event_click=0x7f03002f;
-        public static final int top_event_click_list=0x7f030030;
+        public static final int progress_layout=0x7f03002c;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002d;
+        public static final int sherlock_spinner_item=0x7f03002e;
+        public static final int temp=0x7f03002f;
+        public static final int top_event_click=0x7f030030;
+        public static final int top_event_click_list=0x7f030031;
     }
     public static final class menu {
         public static final int about=0x7f0e0000;
@@ -1937,7 +1939,8 @@ containing a value of this type.
     public static final class xml {
         public static final int api_pref=0x7f050000;
         public static final int event_top=0x7f050001;
-        public static final int pref_event=0x7f050002;
+        public static final int funnel=0x7f050002;
+        public static final int pref_event=0x7f050003;
     }
     public static final class styleable {
         /** Attributes that can be used with a CirclePageIndicator.

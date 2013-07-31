@@ -9,74 +9,85 @@
         android:layout_height="wrap_content"
         android:gravity="right" >
 
-        <Button
+        <com.mixpanel.src.Icon_font_button
             android:id="@+id/funnel_previous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Previous" />
+            android:text="@string/previous"
+         android:textColor="#f6f6f6"
+         android:textSize="25sp"
+        android:scaleType="centerInside" />
 
-        <Button
+        <com.mixpanel.src.Icon_font_button
             android:id="@+id/funnel_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="Next" />
+           android:text="@string/next"
+         android:textColor="#f6f6f6"
+         android:textSize="25sp"
+        android:scaleType="centerInside"/>
 
-        <TextView
+        <com.mixpanel.src.Font
             android:id="@+id/funnel_text_lable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+             android:textColor="@color/c2"
+             android:textSize="16sp"
+             android:textStyle="bold"
              
             android:layout_marginRight="18dp"
             android:layout_toLeftOf="@+id/funnel_next"
             android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="22dp"
-            android:layout_toLeftOf="@+id/funnel_text_lable"
-            android:text="Completion" />
-
-        <TextView
-            android:id="@+id/funnel_overall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/textView2"
-            android:maxLength="5"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/funnel_next"
-            android:layout_alignBottom="@+id/funnel_next"
-            android:layout_toRightOf="@+id/funnel_overall"
-            android:text="rate"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
+        <com.mixpanel.src.Font
             android:id="@+id/funnel_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="29dp"
+              android:textColor="@color/c2"
+                  android:textSize="16sp"
+                android:textStyle="bold"
+            
             android:layout_toRightOf="@+id/funnel_previous"
             android:text="Medium Text"
              />
 
+        <com.mixpanel.src.Font
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="32dp"
+            android:layout_toLeftOf="@+id/funnel_text_lable"
+                                  android:textSize="16sp"
+                android:textStyle="bold"
+            
+                    android:textColor="@color/c2"
+            
+            android:text="Completion Rate" />
+
+        <com.mixpanel.src.Font
+            android:id="@+id/funnel_overall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:maxLength="5"
+            android:textColor="@color/red"
+                                  android:textSize="28sp"
+            
+            android:text="Large Text"
+             />
+
     </RelativeLayout>
 	
-    <com.echo.holographlibrary.BarGraph
+   <com.echo.holographlibrary.BarGraph
         android:id="@+id/bargraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

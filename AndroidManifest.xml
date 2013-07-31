@@ -118,7 +118,12 @@
         </activity>
         <activity
             android:name="com.mixpanel.src.funnel.Funnal_final"
+             android:screenOrientation="landscape"  
             android:label="@string/title_activity_funnel_final" >
+        </activity>
+         <activity
+            android:name="com.mixpanel.src.funnel.Funnel_pref"
+             android:label="@string/title_activity_funnel_final" >
         </activity>
     </application>
 

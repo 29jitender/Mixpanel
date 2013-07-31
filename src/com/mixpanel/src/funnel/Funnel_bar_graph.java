@@ -19,10 +19,15 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.echo.holographlibrary.Bar;
 import com.echo.holographlibrary.BarGraph;
 import com.mixpanel.src.All_api_define;
+import com.mixpanel.src.Event_top;
+import com.mixpanel.src.Prefrenceactivity_event_top;
 import com.mixpanel.src.R;
+import com.mixpanel.src.SampleList;
 import com.mixpanel.src.event_final;
 
 public class Funnel_bar_graph extends SherlockActivity{
@@ -41,6 +46,9 @@ public class Funnel_bar_graph extends SherlockActivity{
 	 Button next;
 	 Button previous;
 	 TextView lable;
+	    private int anmi=0;
+	    String funnel_id=null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
  
@@ -115,11 +123,7 @@ public class Funnel_bar_graph extends SherlockActivity{
 	             }
 	          
  		
- 		
- 		
- 		
- 		
- 		
+ 		 
  		
  		
  	
@@ -133,6 +137,7 @@ public class Funnel_bar_graph extends SherlockActivity{
 			 		event_step_conv_ratio = new ArrayList<String>();
 			 		
 			 		Intent in = getIntent();
+					funnel_id=in.getStringExtra("funnel_id");
 			 		event_name=(ArrayList<String>)in.getSerializableExtra("event_name");
 			 		event_value=(ArrayList<String>)in.getSerializableExtra("event_value");
 			 		
@@ -162,7 +167,7 @@ public class Funnel_bar_graph extends SherlockActivity{
 		  
 			  TextView date =(TextView)findViewById(R.id.funnel_date);
 			  
-			  date.setText(Funnel_activity.from_date1+"-"+Funnel_activity.to_date1);
+			  date.setText( All_api_define.from_date+"-"+ All_api_define.to_date);
 		  /////////////////////////////////////////////////////////////////////////////////
 		  
 		  
@@ -183,6 +188,9 @@ public class Funnel_bar_graph extends SherlockActivity{
 						d.setValue(Integer.parseInt(event_value.get(i))); 
 				 		points.add(d);
 					}
+					previous.setVisibility(View.INVISIBLE);
+					next.setVisibility(View.INVISIBLE);
+					lable.setText("Steps 1-"+event_name.size()+" of"+" "+event_name.size());
 						g.setBars(points);					
 		}
 		else{
@@ -330,6 +338,44 @@ public class Funnel_bar_graph extends SherlockActivity{
           return status;
 
           }  
-  
+	  
+	    @Override
+
+	    public boolean onCreateOptionsMenu(Menu menu) {
+	        //Used to put dark icons on light action bar
+	        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light; 
+	        menu.add(Menu.NONE, R.id.event_top_setting, Menu.NONE, R.string.event_top_setting)
+	        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	       //  getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
+
+	        return true;
+	    }
+	    
+
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			
+			switch (item.getItemId()){
+			
+			case R.id.event_top_setting:
+				//startService(intentUpdater);
+				 
+ 				Intent myIntent = new Intent(this, Funnel_pref.class);//refreshing
+             	myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//ending all activity
+
+    		  	myIntent.putExtra("funnel_id", funnel_id);
+    		  	startActivity(myIntent);
+				
+				overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
+		            anmi=2;
+				return true;
+			 
+			 
+			default:
+				return false;
+				
+				
+			}
+		}
 	
 }

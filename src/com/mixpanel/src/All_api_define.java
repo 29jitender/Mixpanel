@@ -15,7 +15,8 @@ public class All_api_define{
  
 	public static String to_date=null;
 	public static String from_date=null;
-	
+	public static String interval_funnel=null;
+
 	////////////////////////////
 	public static String export(){// this is for export api
 		 
@@ -200,21 +201,14 @@ public class All_api_define{
 	  }
 	  	  
 	  public static String funnels(){// is for funnels
- 
-		  String funnel_id1=Funnel_activity.funnel_id;
-		  String from_date1=Funnel_activity.from_date1;
-		  String to_date1=Funnel_activity.to_date1;
-		  String interval=Integer.toString(Funnel_activity.interval);
-
-		  Log.i("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",funnel_id1);
-		  Log.i("111111111111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", from_date1);
-		  Log.i("2222222222222aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",to_date1);
+  
+		 
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		  tm.put("funnel_id", funnel_id1);
- 		  tm.put("from_date", from_date1);
- 		  tm.put("to_date", to_date1);
+		  tm.put("funnel_id", funnel_id);
+ 		  tm.put("from_date", from_date);
+ 		  tm.put("to_date", to_date);
 //		  tm.put("length", new String(""));
- 		  tm.put("interval",interval);
+ 		  tm.put("interval",interval_funnel);
 //		  tm.put("unit", new String(""));
 //		  tm.put("on", new String(" "));
 //		  tm.put("where", new String(""));
