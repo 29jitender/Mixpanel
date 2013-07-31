@@ -1,6 +1,7 @@
   package com.mixpanel.src.funnel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +15,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.echo.holographlibrary.Bar;
@@ -29,8 +39,9 @@ import com.mixpanel.src.Prefrenceactivity_event_top;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.event_final;
+import com.echo.holographlibrary.BarGraph.OnBarClickedListener;
 
-public class Funnel_bar_graph extends SherlockActivity{
+public class Funnel_bar_graph extends SherlockListActivity implements View.OnClickListener{
 	
     public Boolean internt_count=null;// to check the connectvity
 
@@ -38,9 +49,14 @@ public class Funnel_bar_graph extends SherlockActivity{
 	ArrayList<String> event_value;
 	ArrayList<String> event_overall_conv_ratio;
  	ArrayList<String> event_step_conv_ratio;
+ 	ArrayList<String> event_avg_time;
+
+ 	private static String KEY1= "temp";
+	 private static String VALUE1= "temp1";
  	
 	ArrayList<Bar> points ;
 	BarGraph g;
+	int overall_position=0;
 	 int position=0;
 	 int total=0;
 	 Button next;
@@ -48,7 +64,15 @@ public class Funnel_bar_graph extends SherlockActivity{
 	 TextView lable;
 	    private int anmi=0;
 	    String funnel_id=null;
-
+	    //////////////graph labling///////////////////////
+	    TextView barlable1;
+	    TextView barlable2;
+	    TextView barlable3;
+	    TextView barlable4;
+	    
+	    ////////////////
+		RelativeLayout detail;
+		LinearLayout list;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
  
@@ -131,11 +155,16 @@ public class Funnel_bar_graph extends SherlockActivity{
 
 				public void iamcallin(){
 					setContentView(R.layout.activity_funnel_final);
+					  detail = (RelativeLayout)findViewById(R.id.a22);
+					  list = (LinearLayout)findViewById(R.id.a21);
+					
+					
 			 		event_name = new ArrayList<String>();
 			 		event_value = new ArrayList<String>();
 			 		event_overall_conv_ratio = new ArrayList<String>();
 			 		event_step_conv_ratio = new ArrayList<String>();
-			 		
+			 		event_avg_time = new ArrayList<String>();
+
 			 		Intent in = getIntent();
 					funnel_id=in.getStringExtra("funnel_id");
 			 		event_name=(ArrayList<String>)in.getSerializableExtra("event_name");
@@ -143,7 +172,8 @@ public class Funnel_bar_graph extends SherlockActivity{
 			 		
 			 		event_overall_conv_ratio=(ArrayList<String>)in.getSerializableExtra("overall_conv_ratio");
 			 		event_step_conv_ratio=(ArrayList<String>)in.getSerializableExtra("step_conv_ratio");
-			  	 
+			 		event_avg_time=(ArrayList<String>)in.getSerializableExtra("event_avg_time");
+
 			 	 	bar_graph_call();
 					
 					
@@ -154,15 +184,50 @@ public class Funnel_bar_graph extends SherlockActivity{
 		////////////////////////////bar graph////////////////////////////////////
 		points = new ArrayList<Bar>();
 		g = (BarGraph)findViewById(R.id.bargraph);
+		  //////////////find max for range/////////////////
+		  int max=0;
+			
+					  if(event_value.size()>5){
+							  for (int i=0; i< 5; i++){
+								  
+								  
+									  max=max+Integer.parseInt(event_value.get(i));
+								  
+							  }
+					  	}
+					  else{
+						  for (int i=0; i< event_value.size(); i++){
+							  
+							  
+							  max=max+Integer.parseInt(event_value.get(i));
+						 
+						  
+						  
+					  }
+					  }
+					    
+		  
+          Log.i("rrrrrrrrrrasdasd",max+""); 
+
+		  /////////////////////////
+          
+          
+          
+          
+          
+          
+          
+ 		g.setrange(max);
+ 		
 		  next= (Button)findViewById(R.id.funnel_next);
 		  previous= (Button)findViewById(R.id.funnel_previous);
 		  lable= (TextView)findViewById(R.id.funnel_text_lable);
-		  
+
 		  ///////////////////////showing overall conversion and date////////////////////////////////
 		  TextView overall =(TextView)findViewById(R.id.funnel_overall);
 		  
 		  		 float con=Float.parseFloat(event_overall_conv_ratio.get(1));
-		  		 
+		  		 //float width =BarGraph.barWidth;
 			  overall.setText(Float.toString(con*100)); 
 		  
 			  TextView date =(TextView)findViewById(R.id.funnel_date);
@@ -177,65 +242,108 @@ public class Funnel_bar_graph extends SherlockActivity{
 		  Log.i("total",total+"");
 		  Log.i("event size",event_name.size()+"");
 		  
-		  
-		  
+		
 		if(event_name.size()<4){
+				ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+				overall_position=0;
 					for (int i=0; i< event_name.size(); i++)
 					{
 						Bar d = new Bar();
 						d.setColor(Color.parseColor("#99CC00"));
-						d.setName(event_name.get(i));
+						d.setName("");///giving now value
 						d.setValue(Integer.parseInt(event_value.get(i))); 
 				 		points.add(d);
+						HashMap<String, String> map = new HashMap<String, String>();
+
+				 		 map.put(KEY1, event_value.get(i));
+				         map.put(VALUE1, event_name.get(i));// all values
+						 Event_list.add(map);
+
+
 					}
+					listentry(Event_list);
+				
 					previous.setVisibility(View.INVISIBLE);
 					next.setVisibility(View.INVISIBLE);
 					lable.setText("Steps 1-"+event_name.size()+" of"+" "+event_name.size());
-						g.setBars(points);					
+					
+						g.setBars(points);	
+						barclick(g);
+						graph_name(position);
+						
 		}
 		else{
-			
+			ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+			overall_position=0;
 					for (int i=0; i< 4; i++)
 					{
 						Bar d = new Bar();
 						d.setColor(Color.parseColor("#99CC00"));
-						d.setName(event_name.get(i));
+						d.setName("");///giving now value
 						d.setValue(Integer.parseInt(event_value.get(i))); 
 				 		points.add(d);
+				 		HashMap<String, String> map = new HashMap<String, String>();
+
+				 		 map.put(KEY1, event_value.get(i));
+				         map.put(VALUE1, event_name.get(i));// all values
+						 Event_list.add(map);
 					}
-						g.setBars(points);			
+						listentry(Event_list);
+
+						g.setBars(points);	
+						barclick(g);
+						graph_name(position);
+
 						lable.setText("Steps 1-4 of"+" "+event_name.size());	 
 						////on button next click
 						next.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v) {
 								position=position+1; 
-								
+								overall_position=overall_position+4;
 								g.removeAllLines();//removing all graph
 										if(position==total-1){//for secon last
 														if((event_name.size()%4)==0){
+															ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+
 															for (int i=4*position; i< 4*position+4; i++)
 															{ 		Bar d = new Bar();
 																	d.setColor(Color.parseColor("#99CC00"));
-																	d.setName(event_name.get(i));
+																	d.setName("");///giving now value
 																	d.setValue(Integer.parseInt(event_value.get(i))); 
 															 		points.add(d);
+															 		HashMap<String, String> map = new HashMap<String, String>();
+
+															 		 map.put(KEY1, event_value.get(i));
+															         map.put(VALUE1, event_name.get(i));// all values
+																	 Event_list.add(map);
 																 
 															}
 															int last=4*position+4;
 															int first=4*position+1;
 															lable.setText("Steps "+first+"-"+last+" of"+" "+event_name.size());											 
-																	g.setBars(points);
+															listentry(Event_list);
+		
+															g.setBars(points);
+															barclick(g);
+															graph_name(position);
+
 																	next.setVisibility(View.INVISIBLE);
 														}
 														else{
-															
+															ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+
 															for (int i=4*position; i< 4*position+(event_name.size()%4); i++)
 															{ 		Bar d = new Bar();
 																	d.setColor(Color.parseColor("#99CC00"));
-																	d.setName(event_name.get(i));
+																	d.setName("");///giving now value
 																	d.setValue(Integer.parseInt(event_value.get(i))); 
 															 		points.add(d);
+															 		HashMap<String, String> map = new HashMap<String, String>();
+
+															 		 map.put(KEY1, event_value.get(i));
+															         map.put(VALUE1, event_name.get(i));// all values
+																	 Event_list.add(map);
 																 
 															}
 															int first=4*position+1;
@@ -250,28 +358,43 @@ public class Funnel_bar_graph extends SherlockActivity{
 
 															}
 
+															listentry(Event_list);
 
-																g.setBars(points);	 
+																g.setBars(points);	
+																barclick(g);
+																graph_name(position);
+
 																next.setVisibility(View.INVISIBLE);
 														}
 																						
 
 										}	
 										else if (position<total-1){
+											ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+											
 											for (int i=4*position; i< 4*position+4; i++)
 											{ 		Bar d = new Bar();
 													d.setColor(Color.parseColor("#99CC00"));
-													d.setName(event_name.get(i));
+													d.setName("");///giving now value
 													d.setValue(Integer.parseInt(event_value.get(i))); 
 											 		points.add(d);
+											 		HashMap<String, String> map = new HashMap<String, String>();
+
+											 		 map.put(KEY1, event_value.get(i));
+											         map.put(VALUE1, event_name.get(i));// all values
+													 Event_list.add(map);
 												 
 											}
 											int last=4*position+4;
 											int first=4*position+1;
 
 											lable.setText("Steps "+first+"-"+last+" of"+" "+event_name.size());											 
+											listentry(Event_list);
 
-												g.setBars(points);	
+												g.setBars(points);
+												barclick(g);
+												graph_name(position);
+
 										}
 											
 										previous.setVisibility(View.VISIBLE);////previous on click next
@@ -286,25 +409,37 @@ public class Funnel_bar_graph extends SherlockActivity{
 						previous.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v) {
+								overall_position=overall_position-4;
 								g.removeAllLines();//removing all graph
 								position=position-1; 
 								if(position==0){
 									previous.setVisibility(View.INVISIBLE);
 									next.setVisibility(View.VISIBLE);
 								}
+								ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
+
 								for (int i=4*position; i< 4*position+4; i++)
 								{ 		Bar d = new Bar();
 										d.setColor(Color.parseColor("#99CC00"));
-										d.setName(event_name.get(i));
+										d.setName("");///giving now value
 										d.setValue(Integer.parseInt(event_value.get(i))); 
 								 		points.add(d);
+								 		HashMap<String, String> map = new HashMap<String, String>();
+
+								 		 map.put(KEY1, event_value.get(i));
+								         map.put(VALUE1, event_name.get(i));// all values
+										 Event_list.add(map);
 									 
 								}
 								int last=4*position+4;
 								int first=4*position+1;
 								lable.setText("Steps "+first+"-"+last+" of"+" "+event_name.size());									
-									g.setBars(points);	
-								
+								listentry(Event_list);
+	
+								g.setBars(points);	
+								barclick(g);
+								graph_name(position);
+
 									next.setVisibility(View.VISIBLE);
 
 							 }
@@ -316,6 +451,129 @@ public class Funnel_bar_graph extends SherlockActivity{
 	
 	
 	}
+	
+	
+	
+	public void writedetail(int i){
+		TextView step_name=(TextView)findViewById(R.id.funnel_event_name);
+		TextView step_amount=(TextView)findViewById(R.id.textView2);
+		TextView step_time=(TextView)findViewById(R.id.textView5);
+		TextView step_amount_next=(TextView)findViewById(R.id.textView7);
+		TextView step_conv=(TextView)findViewById(R.id.textView9);
+		
+		step_name.setText(event_name.get(i+overall_position));
+		step_amount.setText(event_value.get(i+overall_position));
+		step_time.setText(event_avg_time.get(i+overall_position));
+		step_conv.setText(event_step_conv_ratio.get(i+overall_position));
+		if((i+overall_position)==(event_name.size()-1)){
+			step_amount_next.setText("----");
+		}
+		else{
+		step_amount_next.setText(event_value.get(i+overall_position+1));
+		}	
+			list.setVisibility(View.GONE);
+			detail.setVisibility(View.VISIBLE);
+			
+			
+			
+			
+			
+			
+			Button showall= (Button)findViewById(R.id.funnel_list_show);//toggel list
+			showall.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					list.setVisibility(View.VISIBLE);
+					detail.setVisibility(View.GONE);
+				 }
+					 
+				});					
+
+		
+	}
+	
+	public void barclick(BarGraph bar){
+		
+		bar.setOnBarClickedListener(new OnBarClickedListener(){
+
+            @Override
+            public void onClick(int index) {
+
+				writedetail(index);
+            }
+            
+    });
+	}
+	
+	public void listentry(ArrayList<HashMap<String, String>> Event_list){/// add data into list
+
+				ListAdapter adapter = new SimpleAdapter(this, Event_list,  R.layout.funnel_list,
+						new String[] {VALUE1,KEY1}, new int[] {
+				             R.id.funnel_list_text,R.id.funnel_list_amount});
+		 
+					setListAdapter(adapter);
+			 
+				
+			
+ 		ListView lv = getListView();
+		
+ 		lv.setOnItemClickListener(new OnItemClickListener() {
+		
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+				        int position, long id) {
+					writedetail(position);
+					
+		 
+				}
+		});
+						 
+	}
+	
+	
+	public void graph_name(int i){
+		////////////////////////////////////////////////////graph labling////////////////////////////////////// 
+		barlable1= (TextView)findViewById(R.id.funneltext1);
+		barlable2= (TextView)findViewById(R.id.funneltext2);
+		barlable3= (TextView)findViewById(R.id.funneltext3);
+		barlable4= (TextView)findViewById(R.id.funneltext4);	 
+		barlable1.setWidth((int) BarGraph.barWidth);////getting width from bar graph
+		barlable2.setWidth((int) BarGraph.barWidth);
+		barlable3.setWidth((int) BarGraph.barWidth);
+		barlable4.setWidth((int) BarGraph.barWidth);
+		
+		try {
+			barlable1.setText(event_name.get(i));
+		} catch (Exception e) {
+			barlable1.setText("");
+			e.printStackTrace();
+		}
+		
+		try {
+			barlable2.setText(event_name.get(i+1));
+		} catch (Exception e) {
+			barlable2.setText("");
+			e.printStackTrace();
+		}
+		
+		try {
+			barlable3.setText(event_name.get(i+2));
+		} catch (Exception e) {
+			barlable3.setText("");
+			e.printStackTrace();
+		}
+		
+		try {
+			barlable4.setText(event_name.get(i+3));
+		} catch (Exception e) {
+			barlable4.setText("");
+			e.printStackTrace();
+		}
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	}
+	
+	
+	
  	 ////////////////////////////////////////////////////////rest activity function
 	
 	
@@ -376,6 +634,12 @@ public class Funnel_bar_graph extends SherlockActivity{
 				
 				
 			}
+		}
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
 		}
 	
 }

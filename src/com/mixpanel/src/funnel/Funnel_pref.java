@@ -101,6 +101,21 @@ public static int interval=0;
  		button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
  		                @Override
  		                public boolean onPreferenceClick(Preference arg0) { 
+ 		                	
+ 		                	if(from_date1==null||to_date1==null){///////if no date selected
+ 		                		
+ 		                		if(from_date1==null){
+ 		                			Toast.makeText(getApplicationContext(), "Please Select From Dates", Toast.LENGTH_LONG).show();
+ 		                		}
+ 		                		else if(to_date1==null){
+ 		                			Toast.makeText(getApplicationContext(), "Please Select To Date", Toast.LENGTH_LONG).show();
+ 		                		}
+ 		                		else if(from_date1==null&&to_date1==null){
+ 	 		                		Toast.makeText(getApplicationContext(), "Please Select Dates", Toast.LENGTH_LONG).show();
+ 		                		}
+ 		                		
+ 		                	}
+ 		                	else{
  		                	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
  							Date  date1=null;
  							Date  date2=null;
@@ -131,7 +146,8 @@ public static int interval=0;
  		                   startActivity(myIntent);
 	 		   			    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
 
- 		                   finish(); 		                  
+ 		                   finish(); 	
+ 		                	}
  		                   return true;
  		                }
  		            });

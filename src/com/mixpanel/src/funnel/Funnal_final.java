@@ -28,6 +28,8 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  	ArrayList<String> event_value;
  	ArrayList<String> event_overall_conv_ratio;
  	ArrayList<String> event_step_conv_ratio;
+ 	ArrayList<String> event_avg_time;
+
   
  	String funnel_id=null;
 	 HashMap<String, String> map ;
@@ -61,7 +63,7 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
 	 		event_value = new ArrayList<String>();
 	 		event_overall_conv_ratio = new ArrayList<String>();
 	 		event_step_conv_ratio = new ArrayList<String>();
-
+	 		event_avg_time = new ArrayList<String>();
  			try {
  				JSONObject obj1=new JSONObject(response);
  				JSONObject obj2=obj1.getJSONObject("meta");
@@ -77,15 +79,19 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
 					String event=null;
 					String overall_conv_ratio=null;
 					String step_conv_ratio=null;
+					String event_avg_time1=null;
+
 					JSONObject obj5 = jarray2.getJSONObject(i);
 					count=obj5.getString("count");
 					event=obj5.getString("event");
 					step_conv_ratio=obj5.getString("step_conv_ratio");
 					overall_conv_ratio=obj5.getString("overall_conv_ratio");
+					event_avg_time1=obj5.getString("avg_time");
 					event_name.add(event);
 					event_value.add(count); 
 					event_overall_conv_ratio.add(overall_conv_ratio);
 					event_step_conv_ratio.add(step_conv_ratio); 
+					event_avg_time.add(event_avg_time1); 
 					
 				}
 					 
@@ -96,6 +102,7 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
   				  myIntent.putExtra("overall_conv_ratio", event_overall_conv_ratio);
 				  myIntent.putExtra("step_conv_ratio", event_overall_conv_ratio);
   				  myIntent.putExtra("funnel_id", funnel_id);
+  				 myIntent.putExtra("event_avg_time", event_avg_time);
   				  myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//ending all activity
   	             overridePendingTransition(0, 0);
   				  myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

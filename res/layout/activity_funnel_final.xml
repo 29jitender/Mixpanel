@@ -2,94 +2,289 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_weight="1"
+     android:orientation="horizontal" >
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/a1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right" >
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:background="#c3ac00"
+        android:orientation="vertical" >
 
-        <com.mixpanel.src.Icon_font_button
-            android:id="@+id/funnel_previous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/previous"
-         android:textColor="#f6f6f6"
-         android:textSize="25sp"
-        android:scaleType="centerInside" />
+   <RelativeLayout
+       android:id="@+id/a12"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="#1400c3" >
 
-        <com.mixpanel.src.Icon_font_button
-            android:id="@+id/funnel_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-           android:text="@string/next"
-         android:textColor="#f6f6f6"
-         android:textSize="25sp"
-        android:scaleType="centerInside"/>
+       <TextView
+           android:id="@+id/funnel_date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:text="2013/1/1-2013/2/2" />
 
-        <com.mixpanel.src.Font
-            android:id="@+id/funnel_text_lable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-             android:textColor="@color/c2"
-             android:textSize="16sp"
-             android:textStyle="bold"
-             
-            android:layout_marginRight="18dp"
-            android:layout_toLeftOf="@+id/funnel_next"
-            android:text="TextView" />
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentTop="true"
+           android:text="Complition Rate" />
 
-        <com.mixpanel.src.Font
-            android:id="@+id/funnel_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="29dp"
-              android:textColor="@color/c2"
-                  android:textSize="16sp"
-                android:textStyle="bold"
-            
-            android:layout_toRightOf="@+id/funnel_previous"
-            android:text="Medium Text"
-             />
+       <TextView
+           android:id="@+id/funnel_overall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignTop="@+id/funnel_next"
+           android:text="45%"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:textSize="35dp" />
 
-        <com.mixpanel.src.Font
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="32dp"
-            android:layout_toLeftOf="@+id/funnel_text_lable"
-                                  android:textSize="16sp"
-                android:textStyle="bold"
-            
-                    android:textColor="@color/c2"
-            
-            android:text="Completion Rate" />
+       <TextView
+           android:id="@+id/funnel_text_lable"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignBottom="@+id/funnel_previous"
+           android:layout_alignParentLeft="true"
+           android:text="Steps 1-5 of 21" />
 
-        <com.mixpanel.src.Font
-            android:id="@+id/funnel_overall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:maxLength="5"
-            android:textColor="@color/red"
-                                  android:textSize="28sp"
-            
-            android:text="Large Text"
-             />
+       <Button
+           android:id="@+id/funnel_previous"
+           style="?android:attr/buttonStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/funnel_date"
+           android:layout_marginLeft="36dp"
+           android:layout_toRightOf="@+id/funnel_date"
+           android:text="Pre" />
 
-    </RelativeLayout>
-	
-   <com.echo.holographlibrary.BarGraph
-        android:id="@+id/bargraph"
+       <Button
+           android:id="@+id/funnel_next"
+           style="?android:attr/buttonStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignBaseline="@+id/funnel_previous"
+           android:layout_alignBottom="@+id/funnel_previous"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="36dp"
+           
+           android:layout_toRightOf="@+id/funnel_previous"
+           android:text="Nex" />
+
+   </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/a11"
+       		android:layout_weight="0.8"            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+        	android:background="#c3005f"
+            >
+                  <com.echo.holographlibrary.BarGraph
+
+
+                android:id="@+id/bargraph"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+                <TableRow
+	         android:id="@+id/tableRow6"
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content" 
+	          android:layout_alignBottom="@+id/bargraph"
+          >
+
+         <TextView
+             android:id="@+id/funneltext1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="0.175"
+             android:layout_marginLeft="8dip"
+            android:ellipsize="middle"
+    		  android:maxLines="1"
+    		 android:singleLine="true" 
+              android:text="Mona" />
+
+         <TextView
+             android:id="@+id/funneltext2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.175"
+              android:ellipsize="middle"
+    		  android:maxLines="1"
+    		 android:singleLine="true"   
+             android:text="Tue" />
+
+         <TextView
+             android:id="@+id/funneltext3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.175"
+              android:ellipsize="middle"
+    		  android:maxLines="1"
+    		 android:singleLine="true" 
+             android:text="Wedaaaaaaaaaaaaaaa" />
+		
+         <TextView
+             android:id="@+id/funneltext4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              android:layout_weight="0.175"
+              android:ellipsize="middle"
+    		  android:maxLines="1"
+    		 android:singleLine="true" 
+             android:text="Thuaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
+
+     
+     </TableRow>
+        </RelativeLayout>
+
+      
+        </LinearLayout>
+
+     
+    
+    <LinearLayout
+        android:id="@+id/a2"
+        
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#e53343" 
+          android:layout_weight="0.7"
+           android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/a21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00c339"
+            >
+               <ListView
+        android:id="@+id/android:list"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:divider="@android:color/transparent"
+  		android:dividerHeight="14.0dp"
+        />     
+            
+            
+        </LinearLayout>
+ 
+   <RelativeLayout
+       android:id="@+id/a22"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="#099bfb" 
+                   android:visibility="gone"
+       >
+
+       <Button
+           android:id="@+id/funnel_list_show"
+           style="?android:attr/buttonStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentTop="true"
+           android:text="Show All" />
+
+       <TextView
+           android:id="@+id/funnel_event_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/funnel_list_show"
+           android:text="Medium Text"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+		  <View
+		       android:id="@+id/funnelview1"
+		      android:layout_width="fill_parent"     
+		    android:layout_height="0.5dip"
+		    android:background="@color/menu1"
+    		android:layout_below="@+id/funnel_event_name" />
+       <TextView
+           android:id="@+id/textView2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/textView1"
+           android:text="66666"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/textView2"
+           android:text="Median time from previous step" />
+
+       <TextView
+           android:id="@+id/textView5"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/textView4"
+           android:text="15 min"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+       <TextView
+           android:id="@+id/textView6"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/textView5"
+           android:text="People who continued to the next step" />
+
+       <TextView
+           android:id="@+id/textView7"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/textView6"
+           android:text="67"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+       <TextView
+           android:id="@+id/textView8"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/textView7"
+           android:text="Conversion rate based on the previous step" />
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/funnel_event_name"
+           android:text="People who did this step" />
+
+       <TextView
+           android:id="@+id/textView9"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentRight="true"
+           android:text="100%"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+            
+        </RelativeLayout>
+ 
+	     
+ 
+ 	 
+
+    </LinearLayout>
+ 
+
+    
 </LinearLayout>

@@ -440,17 +440,7 @@ lv.setOnItemClickListener(new OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view,
 		        int position, long id) {
-		    // getting values from selected ListItem
-//		    
-//		    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
-//		    
-//		    // Starting new intent
-//		    Intent in = new Intent(getApplicationContext(), Top_event_click.class);
-//		    
-//		    in.putExtra(key, amount1);
-//		    
-//		    
-//		    startActivity(in);
+ 
 		}
 });
 		 
