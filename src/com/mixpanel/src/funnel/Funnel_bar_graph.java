@@ -1,7 +1,17 @@
   package com.mixpanel.src.funnel;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.content.Intent;
@@ -226,13 +236,27 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 		  ///////////////////////showing overall conversion and date////////////////////////////////
 		  TextView overall =(TextView)findViewById(R.id.funnel_overall);
 		  
-		  		 float con=Float.parseFloat(event_overall_conv_ratio.get(1));
+		  		 float con=Float.parseFloat(event_overall_conv_ratio.get(event_name.size()-1));
 		  		 //float width =BarGraph.barWidth;
 			  overall.setText(Float.toString(con*100)); 
 		  
 			  TextView date =(TextView)findViewById(R.id.funnel_date);
+			  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				 Date date_pr1 = null;
+				 Date date_pr2 = null;
+				try {
+					date_pr1 = formatter.parse(All_api_define.from_date);
+					   date_pr2 = formatter.parse(All_api_define.to_date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+					SimpleDateFormat formatter1 = new SimpleDateFormat("dd MMMM yy");
+					String new_date_pr1 = formatter1.format(date_pr1);
+					String new_date_pr2 = formatter1.format(date_pr2);
 			  
-			  date.setText( All_api_define.from_date+"-"+ All_api_define.to_date);
+			  date.setText( new_date_pr1+" -- "+new_date_pr2 );
 		  /////////////////////////////////////////////////////////////////////////////////
 		  
 		  
@@ -246,6 +270,8 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 		if(event_name.size()<4){
 				ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
 				overall_position=0;
+				graph_name(overall_position);
+
 					for (int i=0; i< event_name.size(); i++)
 					{
 						Bar d = new Bar();
@@ -269,12 +295,13 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 					
 						g.setBars(points);	
 						barclick(g);
-						graph_name(position);
 						
 		}
 		else{
 			ArrayList<HashMap<String, String>> Event_list = new ArrayList<HashMap<String, String>>();
 			overall_position=0;
+			graph_name(overall_position);
+
 					for (int i=0; i< 4; i++)
 					{
 						Bar d = new Bar();
@@ -292,8 +319,6 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 
 						g.setBars(points);	
 						barclick(g);
-						graph_name(position);
-
 						lable.setText("Steps 1-4 of"+" "+event_name.size());	 
 						////on button next click
 						next.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +326,8 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 							public void onClick(View v) {
 								position=position+1; 
 								overall_position=overall_position+4;
+								graph_name(overall_position);
+
 								g.removeAllLines();//removing all graph
 										if(position==total-1){//for secon last
 														if((event_name.size()%4)==0){
@@ -326,8 +353,6 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 		
 															g.setBars(points);
 															barclick(g);
-															graph_name(position);
-
 																	next.setVisibility(View.INVISIBLE);
 														}
 														else{
@@ -362,8 +387,6 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 
 																g.setBars(points);	
 																barclick(g);
-																graph_name(position);
-
 																next.setVisibility(View.INVISIBLE);
 														}
 																						
@@ -393,8 +416,6 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 
 												g.setBars(points);
 												barclick(g);
-												graph_name(position);
-
 										}
 											
 										previous.setVisibility(View.VISIBLE);////previous on click next
@@ -410,6 +431,8 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 							@Override
 							public void onClick(View v) {
 								overall_position=overall_position-4;
+								graph_name(overall_position);
+
 								g.removeAllLines();//removing all graph
 								position=position-1; 
 								if(position==0){
@@ -438,8 +461,6 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 	
 								g.setBars(points);	
 								barclick(g);
-								graph_name(position);
-
 									next.setVisibility(View.VISIBLE);
 
 							 }
@@ -452,7 +473,7 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 	
 	}
 	
-	
+ 
 	
 	public void writedetail(int i){
 		TextView step_name=(TextView)findViewById(R.id.funnel_event_name);
@@ -463,8 +484,38 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 		
 		step_name.setText(event_name.get(i+overall_position));
 		step_amount.setText(event_value.get(i+overall_position));
-		step_time.setText(event_avg_time.get(i+overall_position));
-		step_conv.setText(event_step_conv_ratio.get(i+overall_position));
+		
+		if(event_avg_time.get(i+overall_position).equals("null")){
+			step_time.setText(event_avg_time.get(i+overall_position));
+		}
+		else{
+			int temp=Integer.parseInt(event_avg_time.get(i+overall_position));
+			Log.i("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",temp+"");
+ 			if((temp/3600)==0){
+							if((temp/60)==0){
+								
+								step_time.setText(temp+"seconds");
+							}
+							else{
+			 					step_time.setText(BigDecimal.valueOf((temp/60))+"minutes");
+			
+							}
+							
+			}
+			else{
+				float temp1=Integer.parseInt(event_avg_time.get(i+overall_position));
+				double d=temp1/3600;
+				BigDecimal bd = new BigDecimal(d).setScale(1, RoundingMode.HALF_EVEN);
+				d = bd.doubleValue();
+					step_time.setText(d+"hours");
+ 
+			}
+			
+			
+		}
+		
+		float conv =Float.parseFloat(event_step_conv_ratio.get(i+overall_position));
+		step_conv.setText(conv*100+"");
 		if((i+overall_position)==(event_name.size()-1)){
 			step_amount_next.setText("----");
 		}

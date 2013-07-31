@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -251,6 +252,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 	        		  funnel_name=(String) lv.getItemAtPosition(position);
 	        		  funnel_id=map.get(lv.getItemAtPosition(position));
 						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+						formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
 		        		  Date date = new Date(); 
 						Calendar cal = new GregorianCalendar();
 						cal.setTime(date);						
@@ -258,7 +260,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						Date date7 = cal.getTime();
 	        		  to_date1=formatter.format(date);
 	        		  from_date1=formatter.format(date7);
-	        		  interval=8;
+	        		  interval=7;
 	        		  All_api_define.funnel_id=funnel_id;
 	        		  All_api_define.to_date=to_date1;
 	        		  All_api_define.from_date=from_date1;
