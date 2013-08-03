@@ -320,7 +320,32 @@ public class Funnel_bar_graph extends SherlockListActivity implements View.OnCli
 						g.setBars(points);	
 						barclick(g);
 						lable.setText("Steps 1-4 of"+" "+event_name.size());	 
+						
+						///////////////on swipe left
+ 						g.setOnTouchListener(new OnSwipeTouchListener() {
+					        public boolean onSwipeTop() {
+					            Toast.makeText(Funnel_bar_graph.this, "top", Toast.LENGTH_SHORT).show();
+					            return true;
+					        }
+					        public boolean onSwipeRight() {
+					            Toast.makeText(Funnel_bar_graph.this, "right", Toast.LENGTH_SHORT).show();
+					            return true;
+					        }
+					        public boolean onSwipeLeft() {
+					            Toast.makeText(Funnel_bar_graph.this, "left", Toast.LENGTH_SHORT).show();
+					            return true;
+					        }
+					        public boolean onSwipeBottom() {
+					            Toast.makeText(Funnel_bar_graph.this, "bottom", Toast.LENGTH_SHORT).show();
+					            return true;
+					        }
+					    });
+						
+						//////////////////////
 						////on button next click
+						
+						
+						
 						next.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v) {

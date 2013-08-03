@@ -27,102 +27,127 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mixpanel.src.Splash" >
+        <activity android:name="com.mixpanel.src.Splash" 
+              android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.mixpanel.src.Create_graph" >
+        <activity android:name="com.mixpanel.src.Create_graph" 
+              android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.mixpanel.src.ParseJSON" >
+        <activity android:name="com.mixpanel.src.ParseJSON" 
+              android:screenOrientation="portrait">
         </activity>
         <activity android:name="com.mixpanel.src.Webview_graph" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity"
-            android:label="Settings" >
+            android:label="Settings" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity_event"
-            android:label="Event settings" >
+            android:label="Event settings"
+              android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.event_final"
-            android:label="Events" >
+            android:label="Events" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.MainActivity1"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.demo.Demo"
-            android:theme="@style/Theme.Transparent" >
+            android:theme="@style/Theme.Transparent"
+              android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_top_click"
-            android:label="Top event" >
+            android:label="Top event"
+              android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.mixpanel.src.Conf_API" >
+        <activity android:name="com.mixpanel.src.Conf_API"
+              android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.mixpanel.src.ItemListActivity" >
+        <activity android:name="com.mixpanel.src.ItemListActivity" 
+              android:screenOrientation="portrait">
         </activity>
-        <activity android:name="com.mixpanel.src.ItemDetailActivity" >
+        <activity android:name="com.mixpanel.src.ItemDetailActivity" 
+              android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemListActivity" />
+                android:value=".ItemListActivity"
+                  android:screenOrientation="portrait" />
         </activity>
-        <activity android:name="com.mixpanel.src.Check_key" >
+        <activity android:name="com.mixpanel.src.Check_key"
+              android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_activity"
+              android:screenOrientation="portrait"
             android:label="All events" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Funnel_home"
+              android:screenOrientation="portrait"
             android:label="@string/title_activity_funnel_home" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Funnel"
+              android:screenOrientation="portrait"
             android:label="@string/title_activity_funnel" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Funnel_activity"
+              android:screenOrientation="portrait"
             android:label="@string/title_activity_funnel_activity" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_top"
+              android:screenOrientation="portrait"
             android:label="Top events" >
         </activity>
         <activity
             android:name="com.mixpanel.src.About"
+              android:screenOrientation="portrait"
             android:label="@string/title_activity_about" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Prefrenceactivity_event_top"
-            android:label="Top event filter" >
+            android:label="Top event filter" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.Landing_activity"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+              android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Home_graph"
-            android:label="@string/title_activity_home_graph" >
+            android:label="@string/title_activity_home_graph" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.funnel.Funnel_activity"
-            android:label="@string/title_activity_funnel_activity" >
+            android:label="@string/title_activity_funnel_activity" 
+              android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.mixpanel.src.funnel.Funnel_bar_graph"
-                       android:screenOrientation="landscape"  
+                       android:screenOrientation="portrait"  
             
             android:label="@string/title_activity_funnel_final" >
         </activity>
         <activity
             android:name="com.mixpanel.src.funnel.Funnal_final"
-             android:screenOrientation="landscape"  
+             android:screenOrientation="portrait"  
             android:label="@string/title_activity_funnel_final" >
         </activity>
          <activity
             android:name="com.mixpanel.src.funnel.Funnel_pref"
+              android:screenOrientation="portrait"
              android:label="@string/title_activity_funnel_final" >
         </activity>
     </application>

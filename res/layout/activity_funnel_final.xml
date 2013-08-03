@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-     android:orientation="horizontal" >
+     android:orientation="vertical" 
+         android:id="@+id/final_layout">
 
     <LinearLayout
         android:id="@+id/a1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.3"
+        android:layout_weight="0.4"
       
         android:orientation="vertical" >
 
@@ -158,7 +159,7 @@
         
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-           android:layout_weight="0.7"
+           android:layout_weight="0.6"
            android:orientation="vertical">
 
         <LinearLayout

@@ -4,6 +4,7 @@ import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -103,6 +104,8 @@ public class About extends SherlockActivity implements View.OnClickListener {
         //navigation
 		setContentView(R.layout.activity_about);
 		feedback();
+		Rate();
+		share();
 		//credit
 
 
@@ -165,7 +168,45 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	}
 	
 	
-	  
+	public void share(){
+		TextView share = (TextView) findViewById(R.id.share);
+		  
+		share.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+						String message = "Text I wan't to share.";
+							Intent share = new Intent(Intent.ACTION_SEND);
+							share.setType("text/plain");
+							share.putExtra(Intent.EXTRA_TEXT, message);
+
+							startActivity(Intent.createChooser(share, "Title of the dialog the system will open"));
+				}
+	 
+			});	
+		
+	}
+	
+
+
+	public void Rate(){
+		TextView share = (TextView) findViewById(R.id.rate);
+		  
+		share.setOnClickListener(new OnClickListener() {
+	 
+				@Override
+				public void onClick(View arg0) {
+					 Intent intent = new Intent(Intent.ACTION_VIEW);
+					   intent.setData(Uri.parse("market://details?id=com.android.example"));
+					   startActivity(intent);
+				}
+	 
+			});	
+		
+	}
+
+	
+	
 	  @Override
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        //Used to put dark icons on light action bar

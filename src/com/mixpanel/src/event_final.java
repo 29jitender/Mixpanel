@@ -190,11 +190,11 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
          // Displaying all values on the screen
         
         TextView lblName1 = (TextView) findViewById(R.id.event_activity_name);
-        SpannableString spanString = new SpannableString(name);//underline
+        //SpannableString spanString = new SpannableString(name);//underline
 		 // spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
-		  spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+		 // spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
 		 //spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
-		  lblName1.setText(spanString);
+		  //lblName1.setText(spanString);
        // lblName1.setText(name);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);

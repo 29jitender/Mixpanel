@@ -1,6 +1,7 @@
 package com.mixpanel.src.funnel;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -260,7 +261,23 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						Date date7 = cal.getTime();
 	        		  to_date1=formatter.format(date);
 	        		  from_date1=formatter.format(date7);
-	        		  interval=7;
+	        		 // interval=7;
+	        		  
+ 						Date  date1=null;
+						Date  date2=null;
+						 try {
+							  date1 = formatter.parse(from_date1);
+							  date2 = formatter.parse(to_date1);
+
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						 
+						long diff = date2.getTime() - date1.getTime();
+						  interval=(int) (diff / (1000 * 60 * 60 * 24)+2);////////////calculating interval
+	        		  
+	        		  
 	        		  All_api_define.funnel_id=funnel_id;
 	        		  All_api_define.to_date=to_date1;
 	        		  All_api_define.from_date=from_date1;

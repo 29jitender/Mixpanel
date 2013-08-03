@@ -303,9 +303,9 @@ protected void onPostExecute(Integer result) {
       
        //getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-       menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
-       .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-       .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);   
+//       menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
+//       .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
+//       .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);   
        menu.add(Menu.NONE, R.id.landing, Menu.NONE, "Modify")
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
       
@@ -446,7 +446,7 @@ else if(anmi==2){
     		
     		 mMenuDrawer.setActiveView(v);
        		 // mMenuDrawer.closeMenu();
-               startActivity(new Intent(this, Funnel_activity.class));
+               startActivity(new Intent(this, About.class));
                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                anmi=1;
     		
