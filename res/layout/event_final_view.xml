@@ -62,12 +62,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Output text"
-            android:textColor="#4d3131"
+            android:textColor="#262626"
             android:textSize="25dip"
             android:layout_marginTop="6dip"
             android:layout_marginBottom="6dip"
-            
-            android:layout_marginLeft="16dip"
+             android:layout_marginLeft="16dip"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -77,8 +76,8 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dip"
-         android:divider="@android:color/transparent"
-  android:dividerHeight="17.0sp" >
+          android:divider="#dadada"
+ 		 android:dividerHeight="0.1sp" >
     </ListView>
     
 </LinearLayout>

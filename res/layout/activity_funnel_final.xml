@@ -87,7 +87,7 @@
             android:layout_height="wrap_content" 
         	 
             >
- <com.echo.holographlibrary.BarGraph
+		 <com.echo.holographlibrary.BarGraph
 
 
                 android:id="@+id/bargraph"

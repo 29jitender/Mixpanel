@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
-         android:text="Lorem ipsum dolor sit amet,  tincidunt odio id, ornare ligula. Nulla vel odio lorem. Aliquam et urna est. Praesent blandit ante eget vulputate dictum. Nam quis justo sapien. In eget varius justo, non interdum nisl. Ut elementum tempus mattis. "
+         android:text="Sya allows you to access Mixpanel analytics from your Android device. You can use funnel analysis to track where your customers get lost in the process and thereby increase conversions. It allows you to track custom events to improve customer retention. Track custom events over a given set of time period. "
          android:textSize="25px" 
          android:layout_below="@+id/aboutview1" />
       <com.mixpanel.src.Font

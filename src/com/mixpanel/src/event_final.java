@@ -195,7 +195,15 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 		 // spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
 		 //spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
 		  //lblName1.setText(spanString);
-       // lblName1.setText(name);
+        if(name1.equals("Top")){//to check from where it came from
+        	lblName1.setTextColor(Color.parseColor("#3BB0AA"));
+        	 
+        }
+        else  if(name1.equals("all"))
+        {
+        	lblName1.setTextColor(Color.parseColor("#44C19F"));
+        }
+        lblName1.setText(name);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
 	 	prefs.registerOnSharedPreferenceChangeListener(this);
 	 	
@@ -261,19 +269,19 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 				               formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 				               date = formatter.parse(mkey);
 
-							SimpleDateFormat formatter1 = new SimpleDateFormat("E dd kk:mm a");
+							SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MMMM KK:mm a");
 					        newFormat = formatter1.format(date);
-						}
+ 						}
 						else if(event_unit.equals("hour")){
 							formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 							date = formatter.parse(mkey);
-								SimpleDateFormat formatter1 = new SimpleDateFormat("E dd kk:mm a");
+								SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MMMM KK a");
 						        newFormat = formatter1.format(date);
 							}
 						else if(event_unit.equals("day")){
 							formatter = new SimpleDateFormat("yyyy-MM-dd");
 							 date = formatter.parse(mkey);
-								SimpleDateFormat formatter1 = new SimpleDateFormat("E dd MMMM yyyy");
+								SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MMMM");
 						        newFormat = formatter1.format(date);
 							}
 						else if(event_unit.equals("week")){
@@ -281,20 +289,41 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
 							date = formatter.parse(mkey);
 								SimpleDateFormat formatter1 = new SimpleDateFormat("F");								
 								SimpleDateFormat formatter2 = new SimpleDateFormat("MMMM yyyy");
+								SimpleDateFormat formatter3 = new SimpleDateFormat("yyyy");
+								SimpleDateFormat formatter4 = new SimpleDateFormat("MMMM");
 								String temp=formatter1.format(date);
 								String temp1=formatter2.format(date);
-								if(temp.equals("1")){
-						        newFormat = temp+"st week of "+temp1;
-						        }
-								else if(temp.equals("2")){
-							        newFormat = temp+"nd week of "+temp1;
-							        }
-								else if(temp.equals("3")){
-							        newFormat = temp+"rd week of "+temp1;
-							        }
-								else {
-							        newFormat = temp+"th week of "+temp1;
-							        }
+								String temp2=formatter3.format(date);
+								String temp3=formatter4.format(date);
+								
+								if(temp2.equals("2013")){
+									if(temp.equals("1")){
+								        newFormat = temp+"st week of "+temp3;
+								        }
+										else if(temp.equals("2")){
+									        newFormat = temp+"nd week of "+temp3;
+									        }
+										else if(temp.equals("3")){
+									        newFormat = temp+"rd week of "+temp3;
+									        }
+										else {
+									        newFormat = temp+"th week of "+temp3;
+									        }
+								}
+								else{
+									if(temp.equals("1")){
+								        newFormat = temp+"st week of "+temp1;
+								        }
+										else if(temp.equals("2")){
+									        newFormat = temp+"nd week of "+temp1;
+									        }
+										else if(temp.equals("3")){
+									        newFormat = temp+"rd week of "+temp1;
+									        }
+										else {
+									        newFormat = temp+"th week of "+temp1;
+									        }
+								}
 								
 							}
 						  else if(event_unit.equals("month")){
