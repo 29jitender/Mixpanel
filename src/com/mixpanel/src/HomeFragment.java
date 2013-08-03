@@ -37,6 +37,8 @@ import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 import com.echo.holographlibrary.LinePoint;
 
 public final class HomeFragment extends SherlockFragment implements Callback,OnChildClickListener{
+    public static int check=0;
+
     private static final String KEY_CONTENT = "TestFragment:Content";
 	 public static String[] event_name=new String[5];
 	 private static String TAG_event = "values";
@@ -91,7 +93,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
- 
+        
         Home_graph_call1 
         
         obj =new Home_graph_call1();
@@ -132,7 +134,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 	public void methodToCallback(String print) {
     	 linlaHeaderProgress = (LinearLayout) getView().findViewById(R.id.linlaHeaderProgress1);//progress
     	 line_table = (RelativeLayout) getView().findViewById(R.id.line_table);//progress
-
+    	 check=10;
 		final String[] key_series= new String[100];
 		int range= 7;//converting into float this is the inteval
 		 try {

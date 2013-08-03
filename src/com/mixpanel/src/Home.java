@@ -41,6 +41,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.src.demo.Demo;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.viewpagerindicator.PageIndicator;
 import com.actionbarsherlock.app.ActionBar;
@@ -172,7 +173,9 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     		// navigation
     	
     	mMenuDrawer.setContentView(R.layout.activity_home);//givin layout to drawer
-
+    	Intent mainIntent = new Intent(this,Splash.class);
+        startActivity(mainIntent);///starting splash
+        
          //setContentView(R.layout.activity_home);
           linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);//progress
 
@@ -204,7 +207,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     }
     
      private class Check_api extends AsyncTask<Void, Void, Integer> {
-
+    	 
             protected Integer doInBackground(Void... params) {
                 String url = All_api_define.api_check();
              
@@ -243,7 +246,7 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
 
 protected void onPostExecute(Integer result) {
     linlaHeaderProgress.setVisibility(View.GONE);//hiding the loader
-
+    
                  if(result==200){
                      Log.i("working test",result+"");
                  }
