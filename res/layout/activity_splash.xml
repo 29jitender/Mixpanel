@@ -68,15 +68,16 @@
                 android:layout_toLeftOf="@+id/logo2a"
                 android:src="@drawable/bar1a"
                  android:visibility="invisible" />
-<TextView
+<com.mixpanel.src.Font1
  			    android:id="@+id/textView1"
  			    android:layout_width="wrap_content"
  			    android:layout_height="wrap_content"
  			    android:layout_below="@+id/logo2a"
  			    android:layout_centerHorizontal="true"
  			    android:layout_marginTop="33dp"
- 			    android:text="Mixpanel"
- 			    android:textColor="#000"
+ 			    android:text="hop"
+ 			    android:textSize="60sp"
+ 			    android:textColor="#5c5858"
  			    android:textAppearance="?android:attr/textAppearanceLarge" />
 
  
@@ -92,8 +93,8 @@
 			    android:id="@+id/progressBar1"
 			    android:layout_width="wrap_content"
 			        style="?android:attr/progressBarStyleLarge"
-			    android:layout_marginBottom="10dp"
-			    android:layout_height="wrap_content"
+			    android:layout_marginBottom="30dp"
+			    android:layout_height="100dp"
 			    android:layout_alignParentTop="true"
  			    android:layout_toRightOf="@+id/logo1a"
 			    />

@@ -11,6 +11,7 @@
         android:layout_margin="4dip"
         android:id="@+id/relativeLayout_eventfinal"
                  android:background="#f2f2f2"
+                 
         >
         <com.echo.holographlibrary.LineGraph
         android:id="@+id/graph"
@@ -27,18 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" 
         android:layout_margin="4dip"
-        android:visibility="gone"
-        android:id="@+id/relativeLayout_nill">
-     <com.mixpanel.src.Icon_font
- 	        android:id="@+id/iconfont1"
- 	        android:layout_width="match_parent"
- 	        android:layout_height="wrap_content"
- 	        android:layout_marginLeft="16dip"
- 	        android:gravity="center"
- 	        android:text="@string/graphno"
- 	        android:textAppearance="?android:attr/textAppearanceLarge"
- 	        android:textColor="@color/c2"
- 	        android:textSize="100dip" />
+        android:id="@+id/relativeLayout_nill"
+                                 android:visibility="gone"
+        >
 
  	    <com.mixpanel.src.Font
  	        android:id="@+id/textView1"
@@ -46,10 +38,24 @@
  	        android:layout_height="wrap_content"
  	        android:layout_below="@+id/iconfont1"
  	        android:layout_centerHorizontal="true"
- 	        android:layout_marginTop="50dp"
+ 	        android:layout_marginTop="20dp"
  	        android:textSize="30dip"
  	        
  	        android:text="No Value to Plot Graph" />
+
+ 	    <com.mixpanel.src.Icon_font
+ 	        android:id="@+id/iconfont1"
+ 	        android:layout_width="match_parent"
+ 	        android:layout_height="wrap_content"
+ 	        android:layout_alignParentTop="true"
+ 	        android:layout_alignRight="@+id/textView1"
+ 	        android:layout_marginTop="34dp"
+ 	        android:gravity="center"
+ 	        android:text="@string/graphno"
+ 	        android:textAppearance="?android:attr/textAppearanceLarge"
+ 	        android:textColor="@color/c2"
+ 	        android:textSize="100dip" />
+
      </RelativeLayout>
     
 <LinearLayout

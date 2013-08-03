@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
-         android:text="About"
+          android:text="About"
         android:textColor="@color/menu4"
         android:textSize="30px" 
          android:layout_below="@+id/mixpanel" />
@@ -42,9 +42,10 @@
         android:id="@+id/about_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dip"
-         android:text="Sya allows you to access Mixpanel analytics from your Android device. You can use funnel analysis to track where your customers get lost in the process and thereby increase conversions. It allows you to track custom events to improve customer retention. Track custom events over a given set of time period. "
+        android:layout_marginTop="10dip"
+         android:text="Hop let you access your Mixpanel analytics on the go. It is developed by bunch of mixpanel lovers. Hop is currently in alpha stage"
          android:textSize="25px" 
+         android:lineSpacingExtra="7.5px"
          android:layout_below="@+id/aboutview1" />
       <com.mixpanel.src.Font
         android:id="@+id/feedback"
@@ -158,6 +159,26 @@
           android:textSize="22dp" 
           android:textColor="#000"
          android:layout_below="@+id/crd4" />
+          <com.mixpanel.src.Font
+        android:id="@+id/crd6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd5"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd5" />
+            <com.mixpanel.src.Font
+        android:id="@+id/crd7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"        
+        android:text="@string/crd5"
+          android:textSize="22dp" 
+          android:textColor="#000"
+         android:layout_below="@+id/crd6" />
        
           <com.mixpanel.src.Icon_font
         android:id="@+id/share_icon"
@@ -167,7 +188,7 @@
          android:text="@string/share"
         android:textColor="@color/menu4"
         android:textSize="30px" 
-       android:layout_below="@+id/crd5"/>
+       android:layout_below="@+id/crd7"/>
         
          <com.mixpanel.src.Icon_font
         android:id="@+id/rate_icon"

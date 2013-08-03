@@ -158,7 +158,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
  				public void onClick(View arg0) {
  	 
  					 Intent myIntent = new Intent(Home.this ,Home.class);//refreshing
- 
+ 					myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	                	myIntent.putExtra("no_load","noo" );
                      startActivity(myIntent);
                      finish();  
  	 
@@ -173,9 +174,18 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
     		// navigation
     	
     	mMenuDrawer.setContentView(R.layout.activity_home);//givin layout to drawer
-    	Intent mainIntent = new Intent(this,Splash.class);
-        startActivity(mainIntent);///starting splash
-        
+    	Intent in = getIntent();
+ 		  try {
+			String check =in.getStringExtra("no_load");
+			if(check.equals("noo")){
+				//do nothing smple work
+			}
+			 
+		} catch (Exception e) {
+			Intent mainIntent = new Intent(this,Splash.class);
+			startActivity(mainIntent);///starting splash/////////////////////////////////////////////
+			e.printStackTrace();
+		}
          //setContentView(R.layout.activity_home);
           linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);//progress
 

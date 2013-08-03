@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mixpanel</string>
+    <string name="app_name">Hop for mixpanel</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_graph">Show graph event</string>
@@ -114,6 +114,9 @@
     <string name="crd3">&lt;a href="http://viewpagerindicator.com/">Viewpager indicator&lt;/a></string>
     <string name="crd4">&lt;a href="https://github.com/SimonVT/android-menudrawer">Android menudrawer&lt;/a></string>
     <string name="crd5">&lt;a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome&lt;/a></string>
+    <string name="crd6">&lt;a href="http://www.bariol.com/">Bariol Font&lt;/a></string>
+    <string name="crd7">&lt;a href="http://www.behance.net/gallery/Albatross-Free-Font/5147789">Albatross Font&lt;/a></string>
+        
 
     <!-- spinner -->
 

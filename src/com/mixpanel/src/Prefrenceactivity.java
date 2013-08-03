@@ -74,7 +74,8 @@ static final String TAG="PrefsActivity";
  		                @Override
  		                public boolean onPreferenceClick(Preference arg0) { 
  		                	Intent myIntent = new Intent(Prefrenceactivity.this ,Home.class);//refreshing
- 		                	myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+  		                	myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+  		                	myIntent.putExtra("no_load","noo" );
 
  		                   startActivity(myIntent);
 	 		   			    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);

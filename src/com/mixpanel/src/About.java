@@ -130,6 +130,13 @@ public class About extends SherlockActivity implements View.OnClickListener {
 				((TextView) findViewById(R.id.crd5)).setMovementMethod(LinkMovementMethod.getInstance());
 				((TextView) findViewById(R.id.crd5)).setText(Html.fromHtml( getResources().getString(R.string.crd5) ));
 				stripUnderlines(((TextView) findViewById(R.id.crd5)));
+				
+				((TextView) findViewById(R.id.crd6)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd6)).setText(Html.fromHtml( getResources().getString(R.string.crd6) ));
+				stripUnderlines(((TextView) findViewById(R.id.crd6)));
+				((TextView) findViewById(R.id.crd7)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) findViewById(R.id.crd7)).setText(Html.fromHtml( getResources().getString(R.string.crd7) ));
+				stripUnderlines(((TextView) findViewById(R.id.crd7)));
 
 	}
 	
@@ -175,12 +182,11 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	 
 				@Override
 				public void onClick(View arg0) {
-						String message = "Text I wan't to share.";
+						String message = "Hop for Mixpanel! Now access your Mixpanel analytics on the go.Link: http://bit.ly/19E1vus";
 							Intent share = new Intent(Intent.ACTION_SEND);
 							share.setType("text/plain");
 							share.putExtra(Intent.EXTRA_TEXT, message);
-
-							startActivity(Intent.createChooser(share, "Title of the dialog the system will open"));
+							startActivity(Intent.createChooser(share, "Share Hop for mixpanel"));
 				}
 	 
 			});	
@@ -197,7 +203,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 				@Override
 				public void onClick(View arg0) {
 					 Intent intent = new Intent(Intent.ACTION_VIEW);
-					   intent.setData(Uri.parse("market://details?id=com.android.example"));
+					   intent.setData(Uri.parse("market://details?id=com.mixpanel.src"));
 					   startActivity(intent);
 				}
 	 
