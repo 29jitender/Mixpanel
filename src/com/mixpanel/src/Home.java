@@ -459,7 +459,7 @@ else if(anmi==2){
     		
     		 mMenuDrawer.setActiveView(v);
        		 // mMenuDrawer.closeMenu();
-               startActivity(new Intent(this, About.class));
+               startActivity(new Intent(this, Funnel_activity.class));
                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                anmi=1;
     		

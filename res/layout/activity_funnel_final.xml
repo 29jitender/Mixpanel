@@ -10,7 +10,7 @@
         android:id="@+id/a1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.4"
+        android:layout_weight="0.9"
       
         android:orientation="vertical" >
 
@@ -41,61 +41,30 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
-           android:layout_alignTop="@+id/funnel_next"
+           android:layout_below="@+id/funnel_date"
+           android:maxLength="4"
            android:text="451111111%"
-             android:maxLength="4" 
            android:textAppearance="?android:attr/textAppearanceLarge"
            android:textSize="35dp" />
-
-       <TextView
-           android:id="@+id/funnel_text_lable"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignBottom="@+id/funnel_previous"
-           android:layout_alignParentLeft="true"
-           android:text="Steps 1-5 of 21" />
-
-       <Button
-           android:id="@+id/funnel_previous"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/funnel_date"
-           android:layout_marginLeft="36dp"
-           android:layout_toRightOf="@+id/funnel_date"
-           android:text="Pre" />
-
-       <Button
-           android:id="@+id/funnel_next"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignBaseline="@+id/funnel_previous"
-           android:layout_alignBottom="@+id/funnel_previous"
-           android:layout_marginLeft="20dp"
-           android:layout_marginRight="36dp"
-           
-           android:layout_toRightOf="@+id/funnel_previous"
-           android:text="Nex" />
 
    </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/a11"
-       		android:layout_weight="0.8"            
+       		android:layout_weight="0.6"            
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
         	 
             >
+
 		 <com.echo.holographlibrary.BarGraph
+		     android:id="@+id/bargraph"
+		     android:layout_width="wrap_content"
+		     android:layout_height="match_parent"
+		     android:layout_alignParentLeft="true"
+		     android:layout_alignParentRight="true"
+		     android:layout_alignParentTop="true" />
 
-
-                android:id="@+id/bargraph"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true" />
                 <TableRow
 	         android:id="@+id/tableRow6"
 	         android:layout_width="fill_parent"
@@ -159,7 +128,7 @@
         
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-           android:layout_weight="0.6"
+           android:layout_weight="0.7"
            android:orientation="vertical">
 
         <LinearLayout

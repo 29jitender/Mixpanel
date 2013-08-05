@@ -29,7 +29,7 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
  	ArrayList<String> event_overall_conv_ratio;
  	ArrayList<String> event_step_conv_ratio;
  	ArrayList<String> event_avg_time;
-
+ 	public static int total;
   
  	String funnel_id=null;
 	 HashMap<String, String> map ;
@@ -94,9 +94,10 @@ public class Funnal_final  extends SherlockActivity implements   com.mixpanel.sr
 					event_avg_time.add(event_avg_time1); 
 					
 				}
-					 
+ 				total= event_name.size() ;
+ 				   
  				 
- 				  Intent myIntent = new Intent(Funnal_final.this ,Funnel_bar_graph.class);//starting funnel bar after getting values
+ 				  Intent myIntent = new Intent(Funnal_final.this ,Funnel_display.class);//starting funnel bar after getting values
   				  myIntent.putExtra("event_value", event_value);
   				  myIntent.putExtra("event_name", event_name);
   				  myIntent.putExtra("overall_conv_ratio", event_overall_conv_ratio);

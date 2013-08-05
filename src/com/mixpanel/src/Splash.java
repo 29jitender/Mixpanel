@@ -50,16 +50,17 @@ public class Splash extends Activity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-            	if(value<1)
-            	{
-//            		  prefs = getSharedPreferences("nbRepet",Context.MODE_PRIVATE);
-//            	    	editor = prefs.edit();
-//            	    	editor.putInt("nbRepet", 1);
-//            	    	editor.commit();
-//                Intent mainIntent = new Intent(Splash.this,Demo.class);
-//                Splash.this.startActivity(mainIntent);
-            	}
-            	else{
+//            	if(value<1)
+//            	{
+//            		
+////            		  prefs = getSharedPreferences("nbRepet",Context.MODE_PRIVATE);
+////            	    	editor = prefs.edit();
+////            	    	editor.putInt("nbRepet", 1);
+////            	    	editor.commit();
+////                Intent mainIntent = new Intent(Splash.this,Demo.class);
+////                Splash.this.startActivity(mainIntent);
+//            	}
+//            	else{
             		if(HomeFragment.check==10){
             			overridePendingTransition(0, 0);
                        // myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -67,7 +68,7 @@ public class Splash extends Activity {
                         overridePendingTransition(0, 0);            			}
             		else{
             			main();
-            		}
+//            		}
             	}
              }
         }, SPLASH_DISPLAY_LENGHT);
