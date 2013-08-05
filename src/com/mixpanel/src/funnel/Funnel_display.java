@@ -1,6 +1,9 @@
 package com.mixpanel.src.funnel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +25,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.viewpagerindicator.PageIndicator;
@@ -164,6 +168,38 @@ public class Funnel_display extends SherlockFragmentActivity implements View.OnC
         indicator.setSelectedColor(0xFF000000);
         indicator.setSelectedBold(true);
 
+			        
+			///////////////////////showing overall conversion and date////////////////////////////////
+			TextView overall =(TextView) findViewById(R.id.funnel_overall);
+			
+				 float con=Float.parseFloat(event_overall_conv_ratio.get(event_name.size()-1));
+				 //float width =BarGraph.barWidth;
+			overall.setText(Float.toString(con*100)); 
+			
+			TextView fromdate =(TextView) findViewById(R.id.funnel_date);
+			TextView todate =(TextView) findViewById(R.id.funnel_date1);
+
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				 Date date_pr1 = null;
+				 Date date_pr2 = null;
+				try {
+					date_pr1 = formatter.parse(All_api_define.from_date);
+					   date_pr2 = formatter.parse(All_api_define.to_date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+					SimpleDateFormat formatter1 = new SimpleDateFormat("dd MMMM yy");
+					String new_date_pr1 = formatter1.format(date_pr1);
+					String new_date_pr2 = formatter1.format(date_pr2);
+			
+					fromdate.setText( new_date_pr1);
+					todate.setText(new_date_pr2);
+			/////////////////////////////////////////////////////////////////////////////////
+
+        
+        
 		
 	}
 	

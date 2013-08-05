@@ -1,38 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 Jake Wharton
+ 
 
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:orientation="vertical" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager1"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-    <com.viewpagerindicator.TitlePageIndicator
-        android:id="@+id/indicator1"
-        android:padding="10dip"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#eee" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/textView123"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Complition Rate" />
+
+                <TextView
+                    android:id="@+id/funnel_overall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:maxLength="4"
+                    android:text="451111111%"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/funnel_overall"
+                    android:layout_toRightOf="@+id/funnel_overall"
+                    android:textSize="15sp"
+                    android:text="%" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/textView22121"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                android:layout_weight="2"
+                android:gravity="center_horizontal" >
+
+                <RelativeLayout
+                    android:id="@+id/fromrel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/funnel_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/textView5"
+                        android:text="Medium Text"
+                                                android:layout_centerHorizontal="true"
+                        
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="From" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/torel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/funnel_date1"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:layout_marginTop="17dp"
+                        android:text="To" />
+
+                    <TextView
+                        android:id="@+id/funnel_date1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                                                android:layout_centerHorizontal="true"
+                                                android:gravity="center"
+                        
+                        android:text="Medium Text"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/aboutview1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/nill" />
+
+                <View
+                    android:id="@+id/aboutview2"
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/nill" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        app:linePosition="top"
-        />
+        android:layout_height="fill_parent"
+        android:layout_weight="0.30"
+        android:orientation="vertical" >
+
+        <View
+            android:id="@+id/aboutview3"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/nill" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.viewpagerindicator.TitlePageIndicator
+            android:id="@+id/indicator1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            app:linePosition="top" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.mixpanel.src.funnel;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+import net.simonvt.menudrawer.MenuDrawer;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.simonvt.menudrawer.MenuDrawer;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -41,7 +40,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -57,7 +55,6 @@ import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
-import com.mixpanel.src.event_final;
 
 
 public class Funnel_activity extends SherlockActivity implements   Callback,View.OnClickListener  {
@@ -275,8 +272,8 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						}
 						 
 						long diff = date2.getTime() - date1.getTime();
-						  interval=(int) (diff / (1000 * 60 * 60 * 24)+2);////////////calculating interval
-	        		  
+						  interval=(int) (diff / (1000 * 60 * 60 * 24));////////////calculating interval
+ 
 	        		  
 	        		  All_api_define.funnel_id=funnel_id;
 	        		  All_api_define.to_date=to_date1;

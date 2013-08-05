@@ -385,7 +385,7 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 					        	    
 		        	    }
 		        	    lable1.setText(newFormat[0]);
-		        	    lable2.setText(newFormat[2]);
+		        	    lable2.setText(newFormat[1]);
 		        	    lable3.setText(newFormat[2]);
 		        	    lable4.setText(newFormat[3]);
 		        	    lable5.setText(newFormat[4]);

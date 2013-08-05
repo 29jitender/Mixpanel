@@ -107,6 +107,10 @@
     <string name="previous">&#xF0D9;</string>
     <string name="share">&#xF045;</string>
     <string name="rate">&#xF005;</string>
+     <string name="down">&#xF149;</string>
+        <string name="up">&#xF148;</string>
+     
+    
     <string name="skip">Skip</string>
     <string name="crd1">&lt;a href="https://bitbucket.org/danielnadeau/holographlibrary " >Holograph library&lt;/a></string>
     <string name="crd2">&lt;a href="http://actionbarsherlock.com/">Actionbar sherlock&lt;/a></string>

@@ -20,6 +20,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -234,7 +235,11 @@ public void  get_values_pref(){// getting values from preference
 							    Amount_new= Amount ;
 
 						    }
-						    String parcent_change = c.getString(percent_change);
+						    String parcent_change = c.getString(percent_change);//Double.parseDouble
+ 						    Float percent_changeint = Float.parseFloat(parcent_change);
+ 						    percent_changeint= percent_changeint*100;
+ 						    String parcent_change_new=percent_changeint+"";
+ 						    
 						    String Event = c.getString(event);
 						  
 						 
@@ -243,7 +248,7 @@ public void  get_values_pref(){// getting values from preference
 						     
 						    // adding each child node to HashMap key => value
 						    map.put(amount, Amount_new);
-						    map.put(percent_change, parcent_change);
+						    map.put(percent_change, parcent_change_new);
 						    map.put(event, Event);
 						  
 	 
