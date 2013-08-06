@@ -9,6 +9,7 @@ import android.util.Log;
 public class All_api_define{
 	public static String interval1="";
 	public static String event=null;
+	public static String distinct_ids=null;
 	public static String[] event_name_array=new String[5];
 	///////funnel////////////////
 	public static String funnel_id=null;
@@ -227,6 +228,38 @@ public class All_api_define{
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;
 	  }
+	  
+//	  public static String stream_user(){// is for funnels
+//		  
+//			 
+//		  TreeMap<String, String> tm = new TreeMap<String, String>();
+//		  tm.put("count", "100");  
+//		  tm.put("distinct_ids", distinct_ids);  
+//
+//		  String send_path_first ="http://mixpanel.com/api/2.0/stream/users?";
+//	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+//	      return path_http;
+//	  }
+//	  
+	  public static String stream_user(){// is for funnels
+		  
+			 
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		  tm.put("page", "10");  
+		  tm.put("width", "75");  
+		  tm.put("get_last", "true");
+		  tm.put("distinct_id", distinct_ids);  
+
+		  String send_path_first ="http://mixpanel.com/api/2.0/stream/show_more?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 	  public static String funnels_list(){// is for funnels method is list
