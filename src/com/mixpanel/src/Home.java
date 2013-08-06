@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -33,19 +32,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
-import com.mixpanel.src.demo.Demo;
 import com.mixpanel.src.funnel.Funnel_activity;
+import com.mixpanel.src.streams.Stream_activity_first;
 import com.viewpagerindicator.PageIndicator;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
 public class Home extends SherlockFragmentActivity implements  OnSharedPreferenceChangeListener,View.OnClickListener {
 	HomeFragmentAdapter mAdapter;
        	LinearLayout linlaHeaderProgress;
@@ -448,7 +444,7 @@ else if(anmi==2){
     	case R.id.item3:
     		 mMenuDrawer.setActiveView(v);
    		  //mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Event_top.class));    
+             startActivity(new Intent(this, Stream_activity_first.class));    
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
              //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);

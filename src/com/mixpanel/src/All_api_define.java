@@ -218,6 +218,17 @@ public class All_api_define{
 	      return path_http;
 	  }
 	  
+	  public static String stream_list(){// is for funnels
+		  
+			 
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		  tm.put("count", "100");  
+		  String send_path_first ="http://mixpanel.com/api/2.0/stream/recent?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	  }
+	  
+	  
 	  public static String funnels_list(){// is for funnels method is list
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
