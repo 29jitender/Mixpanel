@@ -350,10 +350,10 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 					    
 					    String distinct_id = user_id.get(position);
 					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), event_final.class);
+					    Intent in = new Intent(getApplicationContext(), Stream_activity_final.class);
  
- 					    All_api_define.event=distinct_id;//assing value to all api deifne
-					    All_api_define.event1();//callin it onece
+ 					    All_api_define.distinct_ids=distinct_id;//assing value to all api deifne
+					    All_api_define.stream_user();//callin it onece
 					    startActivity(in);
 				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
