@@ -218,15 +218,27 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 								
  								if (user_id.contains(id)) {
 								    System.out.println("Account found");
-								} else {
+								} 
+ 								
+ 								
+ 								else {
 									 HashMap<String, String>  map = new HashMap<String, String>();
 									 	user_id.add(id);
 									 	
-									 	if(name.equals("")){
-									 		map.put("name", "Unknown");	
+									 	if(name.equals("")){///////if there is no name 
+									 		int id_int=0;
+									 		for(int z=0;z<id.length();z++){
+									 			char temp=id.charAt(z);									 			
+									 			int temp2=(int)temp;
+									 			id_int=id_int+(temp2*(id.length()-z));
+									 		}
+									 		
+									 		map.put("name", "Guest #"+Integer.toString(id_int));	
+									 		user_name.add("Guest #"+Integer.toString(id_int));
 									 	}
 									 	else{
 									 		map.put("name", name);
+									 		user_name.add(name);
 									 	}
 									 	///caluclation difference in time
 									 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -308,7 +320,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 										 }
 										 
 										 ///////////////////////
-										 
+										   
 										stream_list.add(map);
 										
 								}
@@ -349,10 +361,14 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 					    // getting values from selected ListItem
 					    
 					    String distinct_id = user_id.get(position);
+					    String username = user_name.get(position);
+
 					    // Starting new intent
 					    Intent in = new Intent(getApplicationContext(), Stream_activity_final.class);
  
  					    All_api_define.distinct_ids=distinct_id;//assing value to all api deifne
+ 					    All_api_define.stream_username=username;
+ 					 
 					    All_api_define.stream_user();//callin it onece
 					    startActivity(in);
 				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

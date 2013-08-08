@@ -30,14 +30,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8" >
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        >
+
          <ListView
         android:id="@+id/android:list"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:divider="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+         android:divider="@android:color/transparent"
   		android:dividerHeight="14.0dp"
+  		android:animateLayoutChanges="true"
+  		 android:layout_above="@+id/stream_more"
         />
+	 
+
     </RelativeLayout>
+    
+  
+ 
 
 </LinearLayout>

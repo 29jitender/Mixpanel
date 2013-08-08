@@ -1,12 +1,19 @@
 package com.mixpanel.src.streams;
  
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,37 +22,54 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
+import com.mixpanel.src.HomeFragment;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
+import com.mixpanel.src.funnel.Funnel_pref;
 
 
 
 public class Stream_activity_final extends SherlockListActivity implements Callback ,View.OnClickListener {
-	ArrayList<HashMap<String, String>> stream_list_page;
-	ArrayList<HashMap<String, String>> stream_list_event;
-	ListAdapter adapter_event;
-	ListAdapter adapter_page;
-	 
+	public static ArrayList<HashMap<String, String>> stream_list_page;
+	public static ArrayList<HashMap<String, String>> stream_list_event;
+	public static ListAdapter adapter_event;
+	public static ListAdapter adapter_page;
+	int adapter_type=0;
+	 int more_count=0;
  	 public Boolean internt_count=null;// to check the connectvity
-
-	     private int anmi=0;
-	    
+ 	public static ListView lv;
+ 	     private int anmi=0;
+	     View footerView;
+	     public static ProgressDialog dialog ;
+	    		        
+	     
+	     
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +88,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("Stream final");
+       mTitleTextView.setText(All_api_define.stream_username);
        mTitleTextView.setTextSize(20);
 
        mActionBar.setCustomView(mCustomView);
@@ -109,9 +133,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 	 
 			});	     
             }
-		
- 		 
-
+		 
  		
 	}
 	    public void iamcallin(){ 
@@ -126,23 +148,17 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 			
 	    }
 	 
-
- 
-	 
-	
-	 
-   
 	@Override
 	public void methodToCallback(String print) {
-		 
+
  		 
 					  stream_list_page = new ArrayList<HashMap<String, String>>();
 					  stream_list_event = new ArrayList<HashMap<String, String>>();
 					  try {
-						  
-						JSONArray array1 = new JSONArray(print);
-						JSONObject obj1= array1.getJSONObject(0);
-						JSONArray array2 = obj1.getJSONArray("history");
+						  JSONArray array1 = new JSONArray(print);
+						  JSONObject obj1= array1.getJSONObject(0);
+						  JSONArray array2= obj1.getJSONArray("history");
+
 						
 						for(int i=0;i<array2.length();i++){
 							 HashMap<String, String>  map = new HashMap<String, String>();
@@ -151,31 +167,130 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 							
 							String name=obj2.getString("event");
 							if(name.equals("mp_page_view")){//if it is a page view
-								JSONObject obj3 = obj2.getJSONObject("properties");
-								String referrer =obj3.getString("referrer");
-								String page = obj3.getString("page");
 								map.put("name","page view");
-								map.put("referrer", referrer);
-								map.put("page", page);
+								///last seen/////////////////////////////
 								String last_seen = obj2.getString("ts");
-								map.put("last_seen", last_seen);
+								
+								
+								
+								//////////////
+								///caluclation difference in time
+							 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+								formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
+				        		  Date date = new Date(); 
+			        		
+			        	 
+								 try {
+									 Date date7=formatter.parse(last_seen);
+									 String  now=formatter.format(date);
+					        		  String getting=formatter.format(date7);
+					        		  Date date1 = formatter.parse(now);
+					        		  Date date2 = formatter.parse(getting);
+					        		  long diff = date1.getTime() - date2.getTime();
+					        		  
+					        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
+						        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
+						        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
+						        		diffinmin = bd.doubleValue();
+						        		String timediff;
+
+					        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
+ 	 										map.put("last_seen", timediff);
+					        		  
+								} catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								 
+								 
+							 	
+							 	
+							 	////
+ 					
+							 	////
+								 ///getting notes
+								 if(obj2.has("properties")){
+
+									  JSONObject obj3 =obj2.getJSONObject("properties");
+								         //Toast.makeText(Stream_activity_final.this, "Date picked: "+obj3 , Toast.LENGTH_SHORT).show();
+
+										 
+											 if(obj3.has("referrer")){
+												 String referrer = obj3.getString("referrer");
+												 map.put("referrer", referrer);
+											 }
+											 else{
+												 String referrer = "";
+												 map.put("referrer", referrer);
+											 }
+											 if(obj3.has("page")){
+												 String page = obj3.getString("page");											 
+												 map.put("page", page);
+											 }
+											 else{
+												 String page = "";											 
+												 
+												 map.put("page", page);
+												 
+											 }
+											 	
+  
+								 }
+								 
+								 
+								 ///////////////////////
+								
+								
+								
 								stream_list_page.add(map);							
 								
 							}
 							else{// if it is a defined event
 								String event_name = obj2.getString("event");
 								String event_last_seen=obj2.getString("ts");
-								Log.i("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeea1111",event_name);
-								map.put("event_name", event_name);
-								map.put("event_last_seen", event_last_seen);
+ 								map.put("event_name", event_name);
+								
+								
+								
+								
+					//////////////
+													///caluclation difference in time
+												 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+													formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
+									        		  Date date = new Date(); 
+								        		
+								        	 
+													 try {
+														 Date date7=formatter.parse(event_last_seen);
+														 String  now=formatter.format(date);
+										        		  String getting=formatter.format(date7);
+										        		  Date date1 = formatter.parse(now);
+										        		  Date date2 = formatter.parse(getting);
+										        		  long diff = date1.getTime() - date2.getTime();
+										        		  
+										        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
+											        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
+											        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
+											        		diffinmin = bd.doubleValue();
+											        		String timediff;
+
+										        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
+ 					 	 										map.put("event_last_seen", timediff);
+
+										        		  
+													} catch (ParseException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
+													 
+							 
 								stream_list_event.add(map);							
 
 								
 							}
 							
 						}
-						  Log.i("finalaaaaa",array2+"");
-
+ 
 						
 						
 						
@@ -204,16 +319,28 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 			    R.layout.stream_event_list,
 			    new String[] { "event_name","event_last_seen"}, new int[] {
 			            R.id.stream_event_name,R.id.stream_event_seen  });
+  
+      setListAdapter(adapter_page);///////////defult
+      
+      lv =getListView();
+      
+        footerView = ((LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_more, null, false);
+  
+        lv.addFooterView(footerView);
+      adapter_type=10;
+      
       setListAdapter(adapter_page);///////////defult
 
+  
       //////changing list on button click/////////////////
       Button page =(Button) findViewById(R.id.stream_page);
       Button event =(Button) findViewById(R.id.stream_event);
-      
+      page.performClick();
       page.setOnClickListener(new View.OnClickListener() {
     	    @Override
     	    public void onClick(View v) {
-    	        setListAdapter(adapter_page);///////////defult
+    	        adapter_type=10;
+      	        setListAdapter(adapter_page);///////////defult
 
      	    }
     	});
@@ -221,16 +348,52 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
       event.setOnClickListener(new View.OnClickListener() {
     	    @Override
     	    public void onClick(View v) {
-    	        setListAdapter(adapter_event);///////////defult
+    	        adapter_type=20;
+
+     	        setListAdapter(adapter_event);///////////defult
 
      	    }
     	});
  
     	 
 		 		/////////////////////////////
+      /////////////list update button////////////////////
+      dialog=new ProgressDialog(Stream_activity_final.this);	
+      
+      footerView.setOnClickListener(new View.OnClickListener() {
+  	    @Override
+  	    public void onClick(View v) {
+  	    	 dialog.setMessage("Getting your data... Please wait...");
+  	       dialog.show();
+   	    	more_count= more_count+1;
+  	    	All_api_define.stream_user_update_page=Integer.toString(more_count);//assing value to all api deifne
+		    All_api_define.stream_user_update();//callin it onece
+		    //setting the type of adapter
+		    Stream_activity_list_update.type=adapter_type;
+		    
+  	    	Stream_activity_list_update objectrefresh = new Stream_activity_list_update();
+  	    	objectrefresh.thecall();
+  	    	 
+    	    	
+   	    }
+  	});
+    
+
+      
+      
+ /////////////////////////////
 		
 		
 	}
+	
+//	public   void list_update(){
+// 	    	((SimpleAdapter)getListView().getAdapter()).notifyDataSetChanged();
+//
+//
+//	}
+//	
+	
+	////////////////////
 	@Override
     protected void onResume() {
 

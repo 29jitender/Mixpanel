@@ -127,6 +127,15 @@ public class ParseJSON  implements Callback{
 
 			  retrun_stuff=display;
 		  }
+		  else if(type_event=="stream_update"){//////list of people
+
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{};
+			  asyncRequest.execute(All_api_define.stream_user_update());
+			  asyncRequest.setListener(this);
+
+			  retrun_stuff=display;
+		  }
 
 
 		  return retrun_stuff ;
