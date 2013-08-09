@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +54,7 @@ import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_pref;
+import com.mixpanel.src.live.Customeadapter_simpleadapter;
 
 
 
@@ -75,37 +77,50 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);//for progress it will be passed before layout
-		
-        
-       ////////////////////////////////////////////////////
-       // Action bar
-         ActionBar mActionBar;
-       LayoutInflater mInflater;
-       View mCustomView;
-        TextView mTitleTextView;
-       mActionBar = getSupportActionBar();
-       mActionBar.setDisplayShowHomeEnabled(false);
-       mActionBar.setDisplayShowTitleEnabled(false);
-       mInflater = LayoutInflater.from(this);
-       mCustomView = mInflater.inflate(R.layout.menu, null);
-       mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText(All_api_define.stream_username);
-       mTitleTextView.setTextSize(20);
+					////////////////////////////////////////////////////
+					// Action bar
+					ActionBar mActionBar;
+					LayoutInflater mInflater;
+					View mCustomView;
+					TextView mTitleTextView;
+					mActionBar = getSupportActionBar();
+					mActionBar.setDisplayShowHomeEnabled(false);
+					mActionBar.setDisplayShowTitleEnabled(false);
+					mInflater = LayoutInflater.from(this);
+					mCustomView = mInflater.inflate(R.layout.final_menu, null);
+					mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+					mTitleTextView.setText(All_api_define.stream_username);
+					mTitleTextView.setTextSize(20);
+					
+					mActionBar.setCustomView(mCustomView);
+					mActionBar.setDisplayShowCustomEnabled(true);
+					// mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.at_header_bg));
+					TextView ibItem1 = (TextView)  findViewById(R.id.arrow);
+					ibItem1.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+					finish();
+					}
+					});
+					
+					/////////////////////////////////////////////
+					//navigation
+					
+					
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+					//getActionBar().setDisplayHomeAsUpEnabled(true);
+					getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
+					
+					// this is for the color of title bar
+					ColorDrawable colorDrawable = new ColorDrawable();
+					colorDrawable.setColor(Color.parseColor("#3BB0AA"));
+					
+					android.app.ActionBar actionBar = getActionBar();
+					actionBar.setBackgroundDrawable(colorDrawable);
+					
+					}
 
-       mActionBar.setCustomView(mCustomView);
-       mActionBar.setDisplayShowCustomEnabled(true); 
-       /////////////////////////////////////////////
-       
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//           getActionBar().setDisplayHomeAsUpEnabled(true);
-           // this is for the color of title bar
-    	   ColorDrawable colorDrawable = new ColorDrawable();
-           colorDrawable.setColor(Color.parseColor("#3BB0AA"));
-           android.app.ActionBar actionBar = getActionBar();
-           actionBar.setBackgroundDrawable(colorDrawable);
-
-       }
-
+ 
       
        
        if(isNetworkOnline()==true){//starting settings if internet is not working
@@ -180,7 +195,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 								formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
 				        		  Date date = new Date(); 
 			        		
-			        	 
+			        	 String timediff;
 								 try {
 									 Date date7=formatter.parse(last_seen);
 									 String  now=formatter.format(date);
@@ -188,20 +203,47 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 					        		  Date date1 = formatter.parse(now);
 					        		  Date date2 = formatter.parse(getting);
 					        		  long diff = date1.getTime() - date2.getTime();
- 					        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
-						        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
-						        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
-						        		diffinmin = bd.doubleValue();
-						        		String timediff;
+					        		  diff=diff/1000;
+										 int day = (int)TimeUnit.SECONDS.toDays(diff);        
+										 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
+										 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
+										 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
+										 
+										 if(day==0){
+											 if(hours==0){
+												 if(minute==0){
+													 timediff=second +" S ago";
 
-					        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
- 	 										map.put("last_seen", timediff);
+												 }
+												 else{
+													 timediff=minute +" M ago";
+
+												 }
+												 
+												 
+											 }
+											 else{
+												 timediff=hours +" H ago";
+
+											 }
+											 
+											 
+											 
+										 }
+										 else{
+											 timediff=day +" D ago";
+										 }
+										  
+										 
+											map.put("last_seen", timediff);
+
 					        		  
 								} catch (ParseException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 								 
+								
 								 
 							 	
 							 	
@@ -282,7 +324,8 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 												 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 													formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
 									        		  Date date = new Date(); 
-								        		
+									        			String timediff;
+
 								        	 
 													 try {
 														 Date date7=formatter.parse(event_last_seen);
@@ -291,21 +334,47 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 										        		  Date date1 = formatter.parse(now);
 										        		  Date date2 = formatter.parse(getting);
 										        		  long diff = date1.getTime() - date2.getTime();
-										        		  
-										        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
-											        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
-											        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
-											        		diffinmin = bd.doubleValue();
-											        		String timediff;
+										        		  diff=diff/1000;
+			 												 int day = (int)TimeUnit.SECONDS.toDays(diff);        
+															 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
+															 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
+															 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
+															 
+															 if(day==0){
+																 if(hours==0){
+																	 if(minute==0){
+																		 timediff=second +" S ago";
 
-											        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
-					 	 										map.put("event_last_seen", timediff);
+																	 }
+																	 else{
+																		 timediff=minute +" M ago";
+
+																	 }
+																	 
+																	 
+																 }
+																 else{
+																	 timediff=hours +" H ago";
+
+																 }
+																 
+																 
+																 
+															 }
+															 else{
+																 timediff=day +" D ago";
+															 }
+															  
+															 
+																map.put("event_last_seen", timediff);
 
 										        		  
 													} catch (ParseException e) {
 														// TODO Auto-generated catch block
 														e.printStackTrace();
 													}
+													 
+													
 													 
 							 
 								stream_list_event.add(map);							
@@ -329,7 +398,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 					  
 					  
 	                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-///////////////writing platform
+	                ///////////////writing platform
 	                
 	                RelativeLayout temp =(RelativeLayout) findViewById(R.id.stream_final_rel);
 	                temp.setVisibility(View.VISIBLE);//showing layout after loading
@@ -346,56 +415,19 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 						 browser.setText("N/A");
 						 e.printStackTrace();
 					}
- 
-					 
-	                
-//	               search: for(int i=0;i<stream_list_page.size();i++)
-//	               {	int check=0;
-//						 HashMap<String, String>  map = stream_list_page.get(i);
-//						 if(map.get("platform").equals("N/A")){
-//							 
-//						 }
-//						 else{
-//							 platform.setText(map.get("platform"));
-//							 check=check+1;
-//							 
-//						 }
-//						 
-//						 	if(map.get("browser").equals("N/A")){
-//							 
-//						 }
-//						 else{
-//							 browser.setText(map.get("browser"));
-//							 check=check+1;
-//
-//						 }
-//						 
-//						 	if(check==2){
-//						 		break search;
-//						 	}
-//						 
-//	                	 
-//	                	
-//	                }
-	                
-	                
-	                
-	                
-	                
-	                //////////////////////////////////
- 
+  
 		/**
        * Updating parsed JSON data into ListView
        * */
 					 
-        adapter_page = new SimpleAdapter(this, stream_list_page,
+        adapter_page = new Customeadapter_simpleadapter(this, stream_list_page,
 					    R.layout.stream_list_finalpage,
 					    new String[] { "last_seen","page","referrer"}, new int[] {
 					             R.id.stream_first_time,R.id.stream_first_view,R.id.stream_first_came_from });
-        adapter_event = new SimpleAdapter(this, stream_list_event,
+        adapter_event = new Customeadapter_simpleadapter(this, stream_list_event,
 			    R.layout.stream_event_list,
 			    new String[] {  "event_last_seen","event_name"}, new int[] {
-			            R.id.stream_event_name,R.id.stream_event_seen  });
+			            R.id.stream_event_seen,R.id.stream_event_name  });
   
       setListAdapter(adapter_page);///////////defult
       
@@ -412,7 +444,6 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
       //////changing list on button click/////////////////
       Button page =(Button) findViewById(R.id.stream_page);
       Button event =(Button) findViewById(R.id.stream_event);
-      page.performClick();
       page.setOnClickListener(new View.OnClickListener() {
     	    @Override
     	    public void onClick(View v) {
@@ -432,7 +463,8 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
      	    }
     	});
  
-    	 
+      page.performClick();
+
 		 		/////////////////////////////
       /////////////list update button////////////////////
       dialog=new ProgressDialog(Stream_activity_final.this);	
@@ -458,8 +490,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 
       
       
- /////////////////////////////
-		
+ 		
 		
 	}
 	

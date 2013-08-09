@@ -1,13 +1,12 @@
 package com.mixpanel.src.streams;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,8 +14,6 @@ import org.json.JSONObject;
 
 import android.util.Log;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.mixpanel.src.Callback;
 import com.mixpanel.src.ParseJSON;
@@ -60,7 +57,7 @@ public class Stream_activity_list_update implements Callback{
 				 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
 	        		  Date date = new Date(); 
-        		
+	        		  	String timediff;
         	 
 					 try {
 						 Date date7=formatter.parse(last_seen);
@@ -69,20 +66,45 @@ public class Stream_activity_list_update implements Callback{
 		        		  Date date1 = formatter.parse(now);
 		        		  Date date2 = formatter.parse(getting);
 		        		  long diff = date1.getTime() - date2.getTime();
-		        		  
-		        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
-			        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
-			        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
-			        		diffinmin = bd.doubleValue();
-			        		String timediff;
-			        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
+		        		  diff=diff/1000;
+							 int day = (int)TimeUnit.SECONDS.toDays(diff);        
+							 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
+							 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
+							 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
+							 
+							 if(day==0){
+								 if(hours==0){
+									 if(minute==0){
+										 timediff=second +" S ago";
+
+									 }
+									 else{
+										 timediff=minute +" M ago";
+
+									 }
+									 
+									 
+								 }
+								 else{
+									 timediff=hours +" H ago";
+
+								 }
+								 
+								 
+								 
+							 }
+							 else{
+								 timediff=day +" D ago";
+							 }
+							  
+							 
 								map.put("last_seen", timediff);
+
 		        		  
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					 
 					 
 				 	
 				 	
@@ -140,7 +162,7 @@ public class Stream_activity_list_update implements Callback{
 									 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 										formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
 						        		  Date date = new Date(); 
-					        		
+					        		String timediff;
 					        	 
 										 try {
 											 Date date7=formatter.parse(event_last_seen);
@@ -149,21 +171,47 @@ public class Stream_activity_list_update implements Callback{
 							        		  Date date1 = formatter.parse(now);
 							        		  Date date2 = formatter.parse(getting);
 							        		  long diff = date1.getTime() - date2.getTime();
-							        		  
-							        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
-								        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
-								        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
-								        		diffinmin = bd.doubleValue();
-								        		String timediff;
+							        		  diff=diff/1000;
+												 int day = (int)TimeUnit.SECONDS.toDays(diff);        
+												 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
+												 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
+												 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
+												 
+												 if(day==0){
+													 if(hours==0){
+														 if(minute==0){
+															 timediff=second +" S ago";
 
-								        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
-		 	 										map.put("event_last_seen", timediff);
+														 }
+														 else{
+															 timediff=minute +" M ago";
+
+														 }
+														 
+														 
+													 }
+													 else{
+														 timediff=hours +" H ago";
+
+													 }
+													 
+													 
+													 
+												 }
+												 else{
+													 timediff=day +" D ago";
+												 }
+												  
+												 
+													map.put("event_last_seen", timediff);
 
 							        		  
 										} catch (ParseException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
 										}
+										 
+										
 										 
 										 
 									 	

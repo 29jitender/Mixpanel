@@ -5,76 +5,72 @@
      android:orientation="horizontal" >
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="right" 
-        android:background="#fdfdfd">
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="#fff" >
 
-        <com.mixpanel.src.Font
+        <TextView
             android:id="@+id/stream_first_time"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ccc"
-            android:gravity="right"
-            android:padding="4dp"
-            android:text="Last seen"
-            android:textColor="#1F9DD4"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="5 hour ago" />
 
-      <com.mixpanel.src.Font
-          android:id="@+id/stream_first_view"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/stream_first_time"
-          android:layout_margin="4dp"
-          android:layout_toRightOf="@+id/textView1"
-          android:ellipsize="start"
-          android:paddingBottom="2dip"
-          android:paddingTop="6dip"
-          android:singleLine="true"
-          android:autoLink="web"
-          android:text="fingo.com/market"
-          android:textColor="#61d600"
-          android:textSize="20sp" />
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/stream_first_time"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/stream_first_time"
+            android:text="@string/time" />
 
-         <com.mixpanel.src.Font
-             android:id="@+id/stream_first_came_from"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/stream_first_view"
-             android:layout_below="@+id/stream_first_view"
-             android:layout_margin="4dp"
-             android:ellipsize="end"
-             android:paddingBottom="2dip"
-             android:paddingTop="6dip"
-             android:singleLine="true"
-             android:autoLink="web"
-             android:text="www.google.com/search:?? "
-             android:textColor="#006ed6"
-             android:textSize="15sp" />
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/stream_first_came_from"
+            android:layout_alignBottom="@+id/stream_first_came_from"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:text="@string/from" />
 
-         <TextView
-             android:id="@+id/textView1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignBaseline="@+id/stream_first_view"
-             android:layout_alignBottom="@+id/stream_first_view"
-             android:layout_alignParentLeft="true"
-             android:layout_alignRight="@+id/textView2"
-             android:text="Viewing :" />
+        <TextView
+            android:id="@+id/stream_first_came_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView3"
+            android:text="www.google.com" />
 
-         <TextView
-             android:id="@+id/textView2"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignBaseline="@+id/stream_first_came_from"
-             android:layout_alignBottom="@+id/stream_first_came_from"
-             android:layout_alignParentLeft="true"
-             android:text="Came from :" />
-         
+        <TextView
+            android:id="@+id/stream_first_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/stream_first_came_from"
+            android:layout_below="@+id/textView5"
+            android:text="www.fingo.com"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/Icon_font01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/stream_first_view"
+            android:layout_alignBottom="@+id/stream_first_view"
+            android:layout_alignParentLeft="true"
+             android:layout_marginLeft="5dp"
+            
+            android:text="@string/eye" />
+
     </RelativeLayout>
-
-   
 
 </LinearLayout>

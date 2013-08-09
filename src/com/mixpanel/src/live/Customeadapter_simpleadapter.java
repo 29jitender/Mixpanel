@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;  
   
-/** 
-* @author C'dine 
-* A simple cursor adapter. Only variation is that it displays alternate rows 
-*  in alternate colors. 
-*/  
+   
 public class Customeadapter_simpleadapter extends SimpleAdapter{
 
 	public Customeadapter_simpleadapter(Context context,
