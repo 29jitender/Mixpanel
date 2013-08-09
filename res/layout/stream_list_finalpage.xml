@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+     android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right" 
+        android:background="#fdfdfd">
+
+        <com.mixpanel.src.Font
+            android:id="@+id/stream_first_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ccc"
+            android:gravity="right"
+            android:padding="4dp"
+            android:text="Last seen"
+            android:textColor="#1F9DD4"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+      <com.mixpanel.src.Font
+          android:id="@+id/stream_first_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/stream_first_time"
+          android:layout_margin="4dp"
+          android:layout_toRightOf="@+id/textView1"
+          android:ellipsize="start"
+          android:paddingBottom="2dip"
+          android:paddingTop="6dip"
+          android:singleLine="true"
+          android:autoLink="web"
+          android:text="fingo.com/market"
+          android:textColor="#61d600"
+          android:textSize="20sp" />
+
+         <com.mixpanel.src.Font
+             android:id="@+id/stream_first_came_from"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/stream_first_view"
+             android:layout_below="@+id/stream_first_view"
+             android:layout_margin="4dp"
+             android:ellipsize="end"
+             android:paddingBottom="2dip"
+             android:paddingTop="6dip"
+             android:singleLine="true"
+             android:autoLink="web"
+             android:text="www.google.com/search:?? "
+             android:textColor="#006ed6"
+             android:textSize="15sp" />
+
+         <TextView
+             android:id="@+id/textView1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBaseline="@+id/stream_first_view"
+             android:layout_alignBottom="@+id/stream_first_view"
+             android:layout_alignParentLeft="true"
+             android:layout_alignRight="@+id/textView2"
+             android:text="Viewing :" />
+
+         <TextView
+             android:id="@+id/textView2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBaseline="@+id/stream_first_came_from"
+             android:layout_alignBottom="@+id/stream_first_came_from"
+             android:layout_alignParentLeft="true"
+             android:text="Came from :" />
+         
+    </RelativeLayout>
+
+   
+
+</LinearLayout>

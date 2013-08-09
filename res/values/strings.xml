@@ -109,6 +109,9 @@
     <string name="rate">&#xF005;</string>
      <string name="down">&#xF149;</string>
         <string name="up">&#xF148;</string>
+     <string name="time">&#xF017;</string>
+    <string name="globe">&#xF041;</string>
+    <string name="eye">&#xF06E;</string>
      
     
     <string name="skip">Skip</string>

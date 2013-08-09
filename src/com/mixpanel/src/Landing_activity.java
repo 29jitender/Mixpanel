@@ -231,8 +231,8 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 							textViewToChange2.setText(e_name[1]);
 							final TextView textViewToChange3 = (TextView) findViewById(R.id.textView3);
 							textViewToChange3.setText(e_name[2]);
-							final TextView textViewToChange4 = (TextView) findViewById(R.id.textView4);
-							textViewToChange4.setText(e_name[3]);
+//							final TextView textViewToChange4 = (TextView) findViewById(R.id.textView4);
+//							textViewToChange4.setText(e_name[3]);
 							final TextView textViewToChange5 = (TextView) findViewById(R.id.textView5);
 							textViewToChange5.setText(e_name[4]);
 							//printing amount

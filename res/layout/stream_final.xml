@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#fff" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2" >
+        android:layout_weight="0.18" 
+        android:id="@+id/stream_final_rel"
+        android:visibility="invisible">
 
         <Button
             android:id="@+id/stream_page"
@@ -25,6 +28,42 @@
             android:layout_toRightOf="@+id/stream_page"
             android:text="Events" />
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:text="Platform"
+            android:textColor="#1e1e1e" />
+
+        <TextView
+            android:id="@+id/platform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView1"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textView1"
+            android:layout_below="@+id/stream_event"
+            android:text="Browser"
+            android:textColor="#1e1e1e" />
+
+        <TextView
+            android:id="@+id/browser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView2"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -34,17 +73,14 @@
         android:orientation="vertical"
         >
 
-         <ListView
+      <ListView
         android:id="@+id/android:list"
-        android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:listSelector="@android:color/transparent"
-         android:divider="@android:color/transparent"
-  		android:dividerHeight="14.0dp"
-  		android:animateLayoutChanges="true"
-  		 android:layout_above="@+id/stream_more"
-        />
-	 
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:divider="#f0f0f0"
+        android:dividerHeight="0.10dp" >
+    </ListView>
 
     </RelativeLayout>
     

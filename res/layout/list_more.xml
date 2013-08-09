@@ -5,13 +5,15 @@
     android:orientation="vertical" 
  >
 
-    <TextView
+    <com.mixpanel.src.Icon_font
         android:id="@+id/list_more"
-        android:layout_width="match_parent"
+        android:layout_width="114dp"
         android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#58bef6"
         android:gravity="center"
-         
-        android:background="@drawable/stream_more_button"
-        android:text="More" />
+        android:text="@string/down"
+        android:textColor="#fff"
+        android:textSize="50sp" />
 
 </LinearLayout>

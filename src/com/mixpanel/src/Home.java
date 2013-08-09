@@ -40,6 +40,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.mixpanel.src.funnel.Funnel_activity;
+import com.mixpanel.src.live.live_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 import com.viewpagerindicator.PageIndicator;
 public class Home extends SherlockFragmentActivity implements  OnSharedPreferenceChangeListener,View.OnClickListener {
@@ -435,7 +436,7 @@ else if(anmi==2){
     	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
     		  
-             startActivity(new Intent(this, Event_activity.class));
+             startActivity(new Intent(this, live_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
              //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim

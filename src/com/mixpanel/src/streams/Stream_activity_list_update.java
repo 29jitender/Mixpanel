@@ -75,9 +75,8 @@ public class Stream_activity_list_update implements Callback{
 			        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
 			        		diffinmin = bd.doubleValue();
 			        		String timediff;
-
-		        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
-									map.put("last_seen", timediff);
+			        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
+								map.put("last_seen", timediff);
 		        		  
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
@@ -102,7 +101,7 @@ public class Stream_activity_list_update implements Callback{
 									 map.put("referrer", referrer);
 								 }
 								 else{
-									 String referrer = "";
+									 String referrer = "N/A";
 									 map.put("referrer", referrer);
 								 }
 								 if(obj3.has("page")){
@@ -110,7 +109,7 @@ public class Stream_activity_list_update implements Callback{
 									 map.put("page", page);
 								 }
 								 else{
-									 String page = "";											 
+									 String page = "N/A";											 
 									 
 									 map.put("page", page);
 									 
@@ -157,8 +156,8 @@ public class Stream_activity_list_update implements Callback{
 								        		diffinmin = bd.doubleValue();
 								        		String timediff;
 
-							        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
-			 	 										map.put("event_last_seen", timediff);
+								        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
+		 	 										map.put("event_last_seen", timediff);
 
 							        		  
 										} catch (ParseException e) {
@@ -199,7 +198,8 @@ public class Stream_activity_list_update implements Callback{
 		  ///////updateing array list of stream final
 		  for(int i=0;i<stream_list_event_update.size();i++){
 				 HashMap<String, String>  map = new HashMap<String, String>();
-				 map= stream_list_event_update.get(i);				 
+				 map= stream_list_event_update.get(i);			 
+				 
 			  Stream_activity_final.stream_list_event.add(map);  
 			  
 		  }

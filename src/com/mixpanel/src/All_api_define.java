@@ -1,5 +1,7 @@
 package com.mixpanel.src;
 
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.TreeMap;
 
 import com.mixpanel.src.funnel.Funnel_activity;
@@ -236,7 +238,7 @@ public class All_api_define{
 		  
 			 
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		  tm.put("count", "10");  
+		  tm.put("count", "100");  
 		  tm.put("distinct_ids", distinct_ids);  
 
 		  String send_path_first ="http://mixpanel.com/api/2.0/stream/users?";
@@ -249,11 +251,26 @@ public class All_api_define{
 			 
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  tm.put("page", stream_user_update_page);  
-		  tm.put("width", "20");  
+		  tm.put("width", "75");  
 		  tm.put("get_last", "true");
 		  tm.put("distinct_id", distinct_ids);  
 
 		  String send_path_first ="http://mixpanel.com/api/2.0/stream/show_more?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	  }
+	  
+	  
+	  
+	  public static String live(){// is for funnels
+		  
+			 
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		  Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC")); 
+ 		  long milis1 = cal.getTimeInMillis();
+		  tm.put("start_time", String.valueOf(milis1/1000));
+ 
+		  String send_path_first ="http://mixpanel.com/api/2.0/live?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;
 	  }

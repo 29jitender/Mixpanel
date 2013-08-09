@@ -81,7 +81,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/live_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/live_time"
         android:layout_marginLeft="53dp"
         android:text="TextView"
         android:textAppearance="?android:attr/textAppearanceMedium"

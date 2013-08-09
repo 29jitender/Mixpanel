@@ -1,15 +1,12 @@
-package com.mixpanel.src.streams;
+package com.mixpanel.src.live;
  
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.TimeZone;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import net.simonvt.menudrawer.MenuDrawer;
@@ -26,7 +23,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,30 +42,23 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.mixpanel.src.About;
-import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
 import com.mixpanel.src.Event_activity;
 import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
-import com.mixpanel.src.Prefrenceactivity_event_top;
 import com.mixpanel.src.R;
-import com.mixpanel.src.SampleList;
-import com.mixpanel.src.event_final;
 
 
 
-public class Stream_activity_first extends SherlockListActivity implements Callback ,View.OnClickListener {
-	ArrayList<HashMap<String, String>> stream_list;
-	ArrayList<String> user_name;
- 	ArrayList<String> user_id;
-	
-
-	static JSONObject json = null;
- 	 public Boolean internt_count=null;// to check the connectvity
+public class live_first extends SherlockListActivity implements Callback ,View.OnClickListener {
+	public static ArrayList<HashMap<String, String>> live_list;
+	 
+	   static ListAdapter adapter;
+	   private Timer autoUpdate;
+	   JSONArray array1;
+  	 public Boolean internt_count=null;// to check the connectvity
 
 	 
-	 private static final String username = "percent_change";
- 	 public static String click_type="";
  
  		 //navigation drawer variables
         private static final String STATE_MENUDRAWER = "net.simonvt.menudrawer.samples.WindowSample.menuDrawer";
@@ -103,7 +92,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("Stream");
+       mTitleTextView.setText("Live");
        mTitleTextView.setTextSize(20);
 
        mActionBar.setCustomView(mCustomView);
@@ -166,7 +155,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 				@Override
 				public void onClick(View arg0) {
 	 
-					 Intent myIntent = new Intent(Stream_activity_first.this ,Stream_activity_first.class);//refreshing
+					 Intent myIntent = new Intent(live_first.this ,live_first.class);//refreshing
 
                     startActivity(myIntent);
                     finish();  
@@ -182,233 +171,199 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 	}
 	    public void iamcallin(){ 
 	     	mMenuDrawer.setContentView(R.layout.live);//givin layout to drawer
-
 	         setSupportProgressBarIndeterminateVisibility(true);//onload show
-  
-			  ParseJSON ParseJson_object = new ParseJSON();
-			  ParseJson_object.pass_values("stream_list");
-			  ParseJson_object.setListener(this);
+
+   
+			  
+	          
 			
 			
 	    }
-	 
+	 public void listcall(){
+
+		  ParseJSON ParseJson_object = new ParseJSON();
+		  ParseJson_object.pass_values("live");
+		  ParseJson_object.setListener(this);
+	 }
  
 	
 	 
    
 	@Override
 	public void methodToCallback(String print) {
-		// TODO Auto-generated method stub
- 
-  		user_id = new ArrayList<String>();
-  		user_name = new ArrayList<String>();
 		String timediff;
-		 
-					  stream_list = new ArrayList<HashMap<String, String>>();
-		 				try {
-							JSONArray array1=new JSONArray(print);
-							for(int i=0;i<array1.length();i++){
-								JSONObject obj1=array1.getJSONObject(i);
-								String name=obj1.getString("name_tag");
-								String id=obj1.getString("distinct_id");
-								String time=obj1.getString("ts");
-								
-								
-								
- 								if (user_id.contains(id)) {
-								    System.out.println("Account found");
-								} 
- 								
- 								
- 								else {
-									 HashMap<String, String>  map = new HashMap<String, String>();
-									 	user_id.add(id);
-									 	
-									 	if(name.equals("")){///////if there is no name 
-									 		int id_int=0;
-									 		for(int z=0;z<id.length();z++){
-									 			char temp=id.charAt(z);									 			
-									 			int temp2=(int)temp;
-									 			id_int=id_int+(temp2*(id.length()-z));
-									 		}
-									 		
-									 		map.put("name", "Guest #"+Integer.toString(id_int));	
-									 		user_name.add("Guest #"+Integer.toString(id_int));
-									 	}
-									 	else{
-									 		map.put("name", name);
-									 		user_name.add(name);
-									 	}
-									 	///caluclation difference in time
-									 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-										formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
-						        		  Date date = new Date(); 
-					        		
-					        	 
-										 try {
-											 Date date7=formatter.parse(time);
-											 String  now=formatter.format(date);
-							        		  String getting=formatter.format(date7);
-							        		  Date date1 = formatter.parse(now);
-							        		  Date date2 = formatter.parse(getting);
-							        		  long diff = date1.getTime() - date2.getTime();
-							        		  diff=diff/1000;
- 												 int day = (int)TimeUnit.SECONDS.toDays(diff);        
-												 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
-												 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
-												 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
-												 
-												 if(day==0){
-													 if(hours==0){
-														 if(minute==0){
-															 timediff=second +" S ago";
 
-														 }
-														 else{
-															 timediff=minute +" M ago";
+		  live_list = new ArrayList<HashMap<String, String>>();
+		
+		try {
+			  array1=new JSONArray(print);
+			for(int i=0;i<array1.length();i++){
+				JSONObject obj1=array1.getJSONObject(i);
+				 HashMap<String, String>  map = new HashMap<String, String>();
+				 
+				 String event=obj1.getString("event");
+				 map.put("name", event);
+				///caluclation difference in time
+ 				 String time=obj1.getString("$ts");//time in seconds	  
+					Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+						cal.set(Calendar.SECOND, 0);
+						long timenow = cal.getTimeInMillis();
+						 
+ 						try {
+							long recivetime= (long) Double.parseDouble(time);					 
 
-														 }
-														 
-														 
-													 }
-													 else{
-														 timediff=hours +" H ago";
+							long diff = (timenow-recivetime)/1000; 
+							 int day = (int)TimeUnit.SECONDS.toDays(diff);        
+							 long hours = TimeUnit.SECONDS.toHours(diff) - (day *24);
+							 long minute = TimeUnit.SECONDS.toMinutes(diff) - (TimeUnit.SECONDS.toHours(diff)* 60);
+							 long second = TimeUnit.SECONDS.toSeconds(diff) - (TimeUnit.SECONDS.toMinutes(diff) *60);
+							 
+							 if(day==0){
+								 if(hours==0){
+									 if(minute==0){
+										 timediff=second +" S ago";
 
-													 }
-													 
-													 
-													 
-												 }
-												 else{
-													 timediff=day +" D ago";
-												 }
-												  
-												 
-					   							map.put("time", timediff); 
+									 }
+									 else{
+										 timediff=minute +" M ago";
 
-							        		  
-										} catch (ParseException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-										 
-										
-										 
-									 	
-									 	
-				//////////////////////////				 	/////////////////////////////////
-										 ///getting notes
-										 if(obj1.has("properties")){
-											  JSONObject obj2 =obj1.getJSONObject("properties");
-												 if(obj2.has("referrer")){
-													 String referrer = obj2.getString("referrer");
-													 String page = obj2.getString("page");
-													 map.put("referrer", referrer);
-													 map.put("page", page);
+									 }
+									 
+									 
+								 }
+								 else{
+									 timediff=hours +" H ago";
 
-												 }
-												 else{
-													 String referrer = "";
-													 String page = obj2.getString("page");
-													 map.put("referrer", referrer);
-													 map.put("page", page);
-												 }
-										 }
-										 else{
-											search: for(int j=0;j<array1.length();j++){
-												JSONObject objtemp=array1.getJSONObject(j);
-												String tempid=objtemp.getString("distinct_id");
+								 }
+								 
+								 
+								 
+							 }
+							 else{
+								 timediff=day +" D ago";
+							 }
+							  
+							 
+   							map.put("time", timediff);
 
-													if(objtemp.has("properties")&&tempid.equals(id)){
-														JSONObject obj2 =objtemp.getJSONObject("properties");
-														 if(obj2.has("referrer")){
-															 String referrer = obj2.getString("referrer");
-															 String page = obj2.getString("page");
-															 map.put("referrer", referrer);
-															 map.put("page", page);
-
-														 }
-														 else{
-															 String referrer = "";
-															 String page = obj2.getString("page");
-															 map.put("referrer", referrer);
-															 map.put("page", page);
-														 }
-														
-														
-														
-														break search;
-													}
-												 
-											 }
-										 }
-										 
-										 ///////////////////////
-										   
-										stream_list.add(map);
-										
-								}
-
-							}
+							
+						 } catch (NumberFormatException e) {
+						 	// TODO Auto-generated catch block
+							e.printStackTrace();
+						 	}
+ 						
+ 					
  
+				 	////
+				 /////////adding region/////////
+ 						
+ 						
+ 						
+ 						
+ 						///////////////////
+ 						String location;
+ 						JSONObject obj2 = null;
+						try {
+							  obj2 = obj1.getJSONObject("properties");
 							
+							String region=obj2.getString("$region");	
+							String country =obj2.getString("mp_country_code");							
+							location = region+","+country;
+						} catch (Exception e) {
+							if(obj2.has("mp_country_code"))
+							{
+								location = obj2.getString("mp_country_code");						
+							}
+							else{
+								location = "N/A";
+							}
 							
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+ 						map.put("location", location);
+/////////////////////
+ 						
+				
+				 live_list.add(map);
 
+			}
+			
+			
+			
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
- 
-		/**
-       * Updating parsed JSON data into ListView
-       * */
-					 
-      ListAdapter adapter = new SimpleAdapter(this, stream_list,
-					    R.layout.list_stream_frist,
-					    new String[] { "name","time","page"}, new int[] {
-					            R.id.stream_user_name,R.id.stream_first_time,R.id.stream_first_view });
- 
-      setListAdapter(adapter);
- 
-      // selecting single ListView item
-      ListView lv = getListView();
-     
-      // Launching new screen on Selecting Single ListItem
-      lv.setOnItemClickListener(new OnItemClickListener() {
- 
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-					        int position, long id) {
-					    // getting values from selected ListItem
-					    
-					    String distinct_id = user_id.get(position);
-					    String username = user_name.get(position);
-
-					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), Stream_activity_final.class);
- 
- 					    All_api_define.distinct_ids=distinct_id;//assing value to all api deifne
- 					    All_api_define.stream_username=username;
- 					 
-					    All_api_define.stream_user();//callin it onece
-					    startActivity(in);
-				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
-					    anmi=1;
-					}
-      });
-				 
-		 		
-		
-		
+	///////////updateing data into list
+        ListAdapter temp = null;
+	      setListAdapter(temp);
+        Collections.reverse(live_list);//reversing the order of list
+ 	        adapter = new SimpleAdapter(this, live_list,
+						    R.layout.list_live_first,
+						    new String[] { "name","time","location"}, new int[] {
+						            R.id.live_name,R.id.live_time,R.id.live_location });
+  		 setadapter();
 	}
+// 
+//	@Override
+//	 public void onPause() {
+//	  autoUpdate.cancel();
+//	  super.onPause();
+//	 } 
+	
+	
+	public void setadapter(){
+		
+	      setListAdapter(adapter);///////setting adapter on refresh
+	        setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
+
+	      	ListView lv = getListView();
+	      	lv.setOnItemClickListener(new OnItemClickListener() {
+	      		 
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+				        int position, long id) {
+				    // getting values from selected ListItem
+				    
+				     
+				    // Starting new intent
+				    Intent in = new Intent(getApplicationContext(), Live_detail.class); 
+				    try {
+						in.putExtra("object", array1.getJSONObject(array1.length()-position-1).toString());///because have applied sort
+						in.putExtra("event_name", array1.getJSONObject(array1.length()-position-1).getString("event"));
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				    startActivity(in);
+			          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+				    anmi=1;
+				}
+  });
+	}
+	
 	@Override
     protected void onResume() {
+	      listcall();//call it once
 
-		if(anmi==1){
+		autoUpdate = new Timer();
+		  autoUpdate.schedule(new TimerTask() {
+		   @Override
+		   public void run() {
+		    runOnUiThread(new Runnable() {
+		     public void run() {
+		      listcall();
+              		      
+		     }
+		    });
+		   }
+		  }, 0, 60000); // updates each 60 secs
+		  
+		  
+ 		if(anmi==1){
 			   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 			}
 			else if(anmi==2){
@@ -427,7 +382,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
   				@Override
   				public void onClick(View arg0) {
   	 
-  					 Intent myIntent = new Intent(Stream_activity_first.this ,Stream_activity_first.class);//refreshing
+  					 Intent myIntent = new Intent(live_first.this ,live_first.class);//refreshing
 
                       startActivity(myIntent);
                       finish();  
@@ -440,6 +395,10 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
             }
             
          super.onResume();
+         
+         
+         
+         
     }
 
  public boolean isNetworkOnline() {
@@ -463,17 +422,12 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
      }  
 
 
-	  
 	 
     @Override
 
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
-    	
-        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
-        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
+     
         
         
         return true;
@@ -486,15 +440,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 		switch (item.getItemId()){
 		 
 		 
-		case R.id.refresh:
-			 Intent myIntent = new Intent(this ,Stream_activity_first.class);//refreshing
-			  overridePendingTransition(0, 0);
-	            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-	             finish();
-	            overridePendingTransition(0, 0);
-
-	               startActivity(myIntent);
-			return true;	
+		 
 		case android.R.id.home: //on pressing home
             mMenuDrawer.toggleMenu();
             return true;	
@@ -528,6 +474,10 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
             mMenuDrawer.closeMenu();
             return;
         }
+        else{
+            this.finish();
+
+        }
 
         super.onBackPressed();
     }
@@ -539,7 +489,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
     	case R.id.item1:
     		mMenuDrawer.setActiveView(v);
    		 // mMenuDrawer.closeMenu();
-    		  Intent myIntent = new Intent(Stream_activity_first.this ,Home.class);//refreshing
+    		  Intent myIntent = new Intent(live_first.this ,Home.class);//refreshing
               myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
               Home.mMenuDrawer.closeMenu();
 

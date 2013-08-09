@@ -4,17 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <com.mixpanel.src.Font
+        android:id="@+id/stream_event_seen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ccc"
+        android:gravity="right"
+        android:padding="4dp"
+        android:text="Last seen"
+        android:textColor="#1F9DD4"
+        android:textSize="18dp" />
+
     <TextView
         android:id="@+id/stream_event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/stream_event_seen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
 </LinearLayout>

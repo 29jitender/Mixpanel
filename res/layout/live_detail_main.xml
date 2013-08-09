@@ -3,16 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#f6f6f6">
+    android:background="#fff">
+
     <ListView
         android:id="@+id/android:list"
-        android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-         android:divider="#f6f6f6"
-         android:layout_marginTop="10dp"
-         android:layout_marginLeft="12dp"
-         android:layout_marginRight="12dp"
-  		android:dividerHeight="14.0dp"
-        />
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:divider="#f0f0f0"
+        android:dividerHeight="0.10dp" >
+    </ListView>
 
 </LinearLayout>

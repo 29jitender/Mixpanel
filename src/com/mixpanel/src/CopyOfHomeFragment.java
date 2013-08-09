@@ -125,8 +125,8 @@ public final class CopyOfHomeFragment extends Fragment implements Callback{
 						textViewToChange2.setText(e_name[1]);
 						final TextView textViewToChange3 = (TextView) getView().findViewById(R.id.textView3);
 						textViewToChange3.setText(e_name[2]);
-						final TextView textViewToChange4 = (TextView) getView().findViewById(R.id.textView4);
-						textViewToChange4.setText(e_name[3]);
+//						final TextView textViewToChange4 = (TextView) getView().findViewById(R.id.textView4);
+//						textViewToChange4.setText(e_name[3]);
 						final TextView textViewToChange5 = (TextView) getView().findViewById(R.id.textView5);
 						textViewToChange5.setText(e_name[4]);
  						   	

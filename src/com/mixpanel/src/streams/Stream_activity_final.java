@@ -35,6 +35,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -187,14 +188,13 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 					        		  Date date1 = formatter.parse(now);
 					        		  Date date2 = formatter.parse(getting);
 					        		  long diff = date1.getTime() - date2.getTime();
-					        		  
-					        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
+ 					        		  double diffInHours = diff / ((double) 1000 * 60 * 60);
 						        		  double diffinmin=(diffInHours - (int)diffInHours)*60;
 						        		 BigDecimal bd = new BigDecimal(diffinmin).setScale(1, RoundingMode.HALF_EVEN);
 						        		diffinmin = bd.doubleValue();
 						        		String timediff;
 
-					        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
+					        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
  	 										map.put("last_seen", timediff);
 					        		  
 								} catch (ParseException e) {
@@ -220,7 +220,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 												 map.put("referrer", referrer);
 											 }
 											 else{
-												 String referrer = "";
+												 String referrer = "N/A";
 												 map.put("referrer", referrer);
 											 }
 											 if(obj3.has("page")){
@@ -228,11 +228,35 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 												 map.put("page", page);
 											 }
 											 else{
-												 String page = "";											 
+												 String page = "N/A";											 
 												 
 												 map.put("page", page);
 												 
 											 }
+											 
+											 if(obj3.has("platform")){
+												 String platform = obj3.getString("platform");											 
+												 map.put("platform", platform);
+											 }
+											 else{
+												 String platform = "N/A";											 
+												 
+												 map.put("platform", platform);
+												 
+											 }
+											 
+											 
+											 if(obj3.has("browser")){
+												 String browser = obj3.getString("browser");											 
+												 map.put("browser", browser);
+											 }
+											 else{
+												 String browser = "N/A";											 
+												 
+												 map.put("browser", browser);
+												 
+											 }
+											 
 											 	
   
 								 }
@@ -274,8 +298,8 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 											        		diffinmin = bd.doubleValue();
 											        		String timediff;
 
-										        		  timediff=(int)diffInHours+ "Hours "  +  diffinmin + "Minutes ";
- 					 	 										map.put("event_last_seen", timediff);
+											        		  timediff= (int)diffInHours+ "Hours "  +  diffinmin + "Minutes "+" ago";
+					 	 										map.put("event_last_seen", timediff);
 
 										        		  
 													} catch (ParseException e) {
@@ -305,19 +329,72 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 					  
 					  
 	                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
+///////////////writing platform
+	                
+	                RelativeLayout temp =(RelativeLayout) findViewById(R.id.stream_final_rel);
+	                temp.setVisibility(View.VISIBLE);//showing layout after loading
+	                TextView platform= (TextView) findViewById(R.id.platform);
+	                TextView browser= (TextView) findViewById(R.id.browser);
+	                
+	                try {
+						HashMap<String, String>  map = stream_list_page.get(0);
+						 
+							 platform.setText(map.get("platform")); 
+							 browser.setText(map.get("browser"));
+					} catch (Exception e) {
+						platform.setText("N/A"); 
+						 browser.setText("N/A");
+						 e.printStackTrace();
+					}
+ 
+					 
+	                
+//	               search: for(int i=0;i<stream_list_page.size();i++)
+//	               {	int check=0;
+//						 HashMap<String, String>  map = stream_list_page.get(i);
+//						 if(map.get("platform").equals("N/A")){
+//							 
+//						 }
+//						 else{
+//							 platform.setText(map.get("platform"));
+//							 check=check+1;
+//							 
+//						 }
+//						 
+//						 	if(map.get("browser").equals("N/A")){
+//							 
+//						 }
+//						 else{
+//							 browser.setText(map.get("browser"));
+//							 check=check+1;
+//
+//						 }
+//						 
+//						 	if(check==2){
+//						 		break search;
+//						 	}
+//						 
+//	                	 
+//	                	
+//	                }
+	                
+	                
+	                
+	                
+	                
+	                //////////////////////////////////
  
 		/**
        * Updating parsed JSON data into ListView
        * */
 					 
         adapter_page = new SimpleAdapter(this, stream_list_page,
-					    R.layout.list_stream_frist,
-					    new String[] { "name","last_seen","page","referrer"}, new int[] {
-					            R.id.stream_user_name,R.id.stream_first_time,R.id.stream_first_view,R.id.stream_first_came_from });
+					    R.layout.stream_list_finalpage,
+					    new String[] { "last_seen","page","referrer"}, new int[] {
+					             R.id.stream_first_time,R.id.stream_first_view,R.id.stream_first_came_from });
         adapter_event = new SimpleAdapter(this, stream_list_event,
 			    R.layout.stream_event_list,
-			    new String[] { "event_name","event_last_seen"}, new int[] {
+			    new String[] {  "event_last_seen","event_name"}, new int[] {
 			            R.id.stream_event_name,R.id.stream_event_seen  });
   
       setListAdapter(adapter_page);///////////defult
@@ -364,7 +441,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
   	    @Override
   	    public void onClick(View v) {
   	    	 dialog.setMessage("Getting your data... Please wait...");
-  	       dialog.show();
+  	         dialog.show();
    	    	more_count= more_count+1;
   	    	All_api_define.stream_user_update_page=Integer.toString(more_count);//assing value to all api deifne
 		    All_api_define.stream_user_update();//callin it onece
