@@ -38,6 +38,7 @@
             android:layout_alignBottom="@+id/stream_first_came_from"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
+            android:rotation="270"
             android:text="@string/from" />
 
         <TextView
@@ -54,22 +55,12 @@
             android:id="@+id/stream_first_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/stream_first_came_from"
             android:layout_below="@+id/textView5"
-            android:text="www.fingo.com"
-             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
-        <com.mixpanel.src.Icon_font
-            android:id="@+id/Icon_font01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/stream_first_view"
-            android:layout_alignBottom="@+id/stream_first_view"
-            android:layout_alignParentLeft="true"
-             android:layout_marginLeft="5dp"
+                    	     android:layout_alignParentLeft="true"
             
-            android:text="@string/eye" />
+            android:text="www.fingo.com"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#578910" />
 
     </RelativeLayout>
 

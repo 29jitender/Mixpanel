@@ -10,7 +10,7 @@
         android:layout_width="114dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:background="#58bef6"
+        android:background="@drawable/round_button1"
         android:gravity="center"
         android:text="@string/down"
         android:textColor="#fff"

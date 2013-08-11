@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:background="#fff"
-        >
+        android:gravity="center_vertical" >
 
         <TextView
             android:id="@+id/stream_user_name"
@@ -20,8 +20,10 @@
             android:layout_marginTop="19dp"
             android:maxLines="1"
             android:ellipsize="end"
+            android:textColor="#093c00"
             android:text="Viewed roaster profile"
             android:layout_marginLeft="5dp"
+            
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
        
@@ -67,6 +69,18 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/textView3"
             android:text="California,US" />
+
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/arrow_right"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/grey"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 

@@ -168,6 +168,7 @@
             android:name="com.mixpanel.src.streams.Stream_activity_final"
             android:label="@string/title_activity_funnel_display" >
         </activity>
+        
          <activity
             android:name="com.mixpanel.src.live.live_first"
             android:label="@string/title_activity_funnel_display" 

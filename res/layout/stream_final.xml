@@ -6,10 +6,9 @@
     android:background="#fff" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.18" 
         android:id="@+id/stream_final_rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
         android:visibility="invisible">
 
         <Button
@@ -18,51 +17,26 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/aboutview1"
             android:text="Page" />
 
-        <Button
-            android:id="@+id/stream_event"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/stream_page"
-            android:text="Events" />
+         <Button
+             android:id="@+id/stream_event"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:layout_toRightOf="@+id/aboutview1"
+             android:text="Events" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:text="Platform"
-            android:textColor="#1e1e1e" />
-
-        <TextView
-            android:id="@+id/platform"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textView1"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView1"
-            android:layout_below="@+id/stream_event"
-            android:text="Browser"
-            android:textColor="#1e1e1e" />
-
-        <TextView
-            android:id="@+id/browser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textView2"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+         <View
+             android:id="@+id/aboutview1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_alignBottom="@+id/stream_event"
+             android:layout_alignParentTop="true"
+             android:layout_centerHorizontal="true"
+             android:background="@color/menu1" />
 
     </RelativeLayout>
 

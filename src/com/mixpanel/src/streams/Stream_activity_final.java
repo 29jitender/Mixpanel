@@ -61,18 +61,17 @@ import com.mixpanel.src.live.Customeadapter_simpleadapter;
 public class Stream_activity_final extends SherlockListActivity implements Callback ,View.OnClickListener {
 	public static ArrayList<HashMap<String, String>> stream_list_page;
 	public static ArrayList<HashMap<String, String>> stream_list_event;
-	public static ListAdapter adapter_event;
+ 	public static ListAdapter adapter_event;
 	public static ListAdapter adapter_page;
 	int adapter_type=0;
-	 int more_count=0;
+	 int more_count=-1;
  	 public Boolean internt_count=null;// to check the connectvity
  	public static ListView lv;
  	     private int anmi=0;
 	     View footerView;
 	     public static ProgressDialog dialog ;
 	    		        
-	     //////
-	     
+ 	     
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -402,19 +401,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 	                
 	                RelativeLayout temp =(RelativeLayout) findViewById(R.id.stream_final_rel);
 	                temp.setVisibility(View.VISIBLE);//showing layout after loading
-	                TextView platform= (TextView) findViewById(R.id.platform);
-	                TextView browser= (TextView) findViewById(R.id.browser);
-	                
-	                try {
-						HashMap<String, String>  map = stream_list_page.get(0);
-						 
-							 platform.setText(map.get("platform")); 
-							 browser.setText(map.get("browser"));
-					} catch (Exception e) {
-						platform.setText("N/A"); 
-						 browser.setText("N/A");
-						 e.printStackTrace();
-					}
+	             
   
 		/**
        * Updating parsed JSON data into ListView
@@ -442,13 +429,17 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 
   
       //////changing list on button click/////////////////
-      Button page =(Button) findViewById(R.id.stream_page);
-      Button event =(Button) findViewById(R.id.stream_event);
-      page.setOnClickListener(new View.OnClickListener() {
+     final Button page =(Button) findViewById(R.id.stream_page);
+      final Button event =(Button) findViewById(R.id.stream_event);
+       page.setOnClickListener(new View.OnClickListener() {
     	    @Override
     	    public void onClick(View v) {
-    	        adapter_type=10;
+     	        adapter_type=10;
       	        setListAdapter(adapter_page);///////////defult
+      	        page.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_click));
+      	      event.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_unclick));
+
+
 
      	    }
     	});
@@ -459,6 +450,8 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
     	        adapter_type=20;
 
      	        setListAdapter(adapter_event);///////////defult
+     	        event.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_click));
+       	      page.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_unclick));
 
      	    }
     	});

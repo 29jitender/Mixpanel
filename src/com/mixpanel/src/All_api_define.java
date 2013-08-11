@@ -252,7 +252,7 @@ public class All_api_define{
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  tm.put("page", stream_user_update_page);  
 		  tm.put("width", "75");  
-		  tm.put("get_last", "true");
+//		  tm.put("get_last", "true");
 		  tm.put("distinct_id", distinct_ids);  
 
 		  String send_path_first ="http://mixpanel.com/api/2.0/stream/show_more?";
