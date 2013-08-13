@@ -268,7 +268,8 @@ public class All_api_define{
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		  Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC")); 
  		  long milis1 = cal.getTimeInMillis();
-		  tm.put("start_time", String.valueOf(milis1/1000));
+ 		  //String.valueOf(milis1/1000)
+		  tm.put("start_time","0");
  
 		  String send_path_first ="http://mixpanel.com/api/2.0/live?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);

@@ -50,11 +50,14 @@ import com.actionbarsherlock.view.Window;
 import com.mixpanel.src.About;
 import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
+import com.mixpanel.src.Event_activity;
 import com.mixpanel.src.Event_top;
 import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
+import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.streams.Stream_activity_first;
 
 
 public class Funnel_activity extends SherlockActivity implements   Callback,View.OnClickListener  {
@@ -134,7 +137,8 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 	           
             // this is for the color of title bar
         	 ColorDrawable colorDrawable = new ColorDrawable();
-             colorDrawable.setColor(Color.parseColor("#44C19F"));//menu 2
+        	 int myColor = this.getResources().getColor(R.color.menu5);
+             colorDrawable.setColor(myColor);
              android.app.ActionBar actionBar = getActionBar();
              actionBar.setBackgroundDrawable(colorDrawable);
 
@@ -146,6 +150,9 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
         findViewById(R.id.item2).setOnClickListener(this);
         findViewById(R.id.item3).setOnClickListener(this);
         findViewById(R.id.item4).setOnClickListener(this);
+        findViewById(R.id.item5).setOnClickListener(this);
+        findViewById(R.id.item6).setOnClickListener(this);
+        findViewById(R.id.item7).setOnClickListener(this);
 
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -254,7 +261,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 		        		  Date date = new Date(); 
 						Calendar cal = new GregorianCalendar();
 						cal.setTime(date);						
-						cal.add(Calendar.DAY_OF_MONTH, -7);
+						cal.add(Calendar.DAY_OF_MONTH, -6);
 						Date date7 = cal.getTime();
 	        		  to_date1=formatter.format(date);
 	        		  from_date1=formatter.format(date7);
@@ -272,7 +279,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						}
 						 
 						long diff = date2.getTime() - date1.getTime();
-						  interval=(int) (diff / (1000 * 60 * 60 * 24));////////////calculating interval
+						  interval=(int) (diff / (1000 * 60 * 60 * 24))+1;////////////calculating interval
  
 	        		  
 	        		  All_api_define.funnel_id=funnel_id;
@@ -300,30 +307,33 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
        protected void onResume() {
 
     	if(anmi==1){
-    		   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    		}
-                
-              if(internt_count==false){//starting settings if internet is not working
-            	  setContentView(R.layout.nointernet);//giving new layout to drawer
-                  //setContentView(R.layout.nointernet);
-                 internt_count= false;
-                 Button button = (Button) findViewById(R.id.nointernet_refresh);
-     			 
-                 button.setOnClickListener(new OnClickListener() {
-     	 
-     				@Override
-     				public void onClick(View arg0) {
-     	 
-     					 Intent myIntent = new Intent(Funnel_activity.this ,Funnel_activity.class);//refreshing
+ 		   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+ 		}
+             
+           if(internt_count==false){//starting settings if internet is not working
+         	  setContentView(R.layout.nointernet);//giving new layout to drawer
+               //setContentView(R.layout.nointernet);
+              internt_count= false;
+              Button button = (Button) findViewById(R.id.nointernet_refresh);
+  			 
+              button.setOnClickListener(new OnClickListener() {
+  	 
+  				@Override
+  				public void onClick(View arg0) {
+  	 
+  					 Intent myIntent = new Intent(Funnel_activity.this ,Funnel_activity.class);//refreshing
 
-                         startActivity(myIntent);
-                         finish();  
-     	 
-     				}
-     	 
-     			});	
+                      startActivity(myIntent);
+                      finish();  
+  	 
+  				}
+  	 
+  			});	
 
-               }
+            }
+           else{
+        	   
+           }
                
             super.onResume();
        }
@@ -449,53 +459,71 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
     @Override
     public void onClick(View v) { // for the click view
     	
-
     	switch(v.getId()){
     	case R.id.item1:
-    		mMenuDrawer.setActiveView(v);
-  		  //mMenuDrawer.closeMenu();
-            //startActivity(new Intent(this, Home.class)); 
-            Intent myIntent = new Intent(Funnel_activity.this ,Home.class);//refreshing
-            Home.mMenuDrawer.closeMenu();
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            
-            startActivity(myIntent);
-            //finish();  
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
-    		break;
-    	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
-            // startActivity(new Intent(this, Event_activity.class));
-             
-             anmi=1;
-    		break;
-    	case R.id.item3:
-    		mMenuDrawer.setActiveView(v);
-  		  //mMenuDrawer.closeMenu();
-            startActivity(new Intent(this, Event_top.class));    
+             // mMenuDrawer.closeMenu();
+                  Intent myIntent = new Intent(Funnel_activity.this ,Home.class);//refreshing
+                  myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  Home.mMenuDrawer.closeMenu();
+
+                  startActivity(myIntent);
+                  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                 anmi=1;
+   		break;
+   	case R.id.item2:
+   		 mMenuDrawer.setActiveView(v);
+   		  
+            startActivity(new Intent(this, Event_activity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             anmi=1;
+            //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
+   		
+   		break;
+   	case R.id.item3:
+   	 mMenuDrawer.setActiveView(v);
+		 // mMenuDrawer.closeMenu();
+      startActivity(new Intent(this, Event_top.class));
+      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+      anmi=1;
     		
-    		break;
-    	case R.id.item4:
-    		
-    		 mMenuDrawer.setActiveView(v);
-      		  //mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, About.class));
+   		break;
+   	case R.id.item4:
+   		
+   		 mMenuDrawer.setActiveView(v);
+      		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, live_first.class));
               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
               anmi=1;
-    		
-    		break;
+   		
+   		break;
+   	case R.id.item5:
+   		
+   	 mMenuDrawer.setActiveView(v);
+     mMenuDrawer.closeMenu();
+    // startActivity(new Intent(this, Event_top.class)); 
+     
+  		break;
+   	case R.id.item6:
+   		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Stream_activity_first.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+  		
+  		break;
+   	case R.id.item7:
+   		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, About.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+  		
+  		break;
 
-    	}
-     	  
-    	
-    	
-    	
-    	
-    	
+   	}
       
         mActiveViewId = v.getId();
     }

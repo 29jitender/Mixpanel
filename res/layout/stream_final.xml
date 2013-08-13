@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff" >
+    android:background="#ececec"
+    >
 
     <RelativeLayout
         android:id="@+id/stream_final_rel"
@@ -45,15 +46,19 @@
         android:layout_height="0dp"
         android:layout_weight="0.8"
         android:orientation="vertical"
+        
         >
 
       <ListView
+              android:padding="2dp"
+          
         android:id="@+id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:divider="#f0f0f0"
-        android:dividerHeight="0.10dp" >
+        
+        android:divider="#fff"
+        
+        android:dividerHeight="0dp" >
     </ListView>
 
     </RelativeLayout>

@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,7 +117,52 @@ public final class Funnel_display_main extends ListFragment {
     	scrolllist =(RelativeLayout) getView().findViewById(R.id.scrolllist);
   	 	 	bar_graph_call();
 
-		  
+  	 	 scroll =(Button) getView().findViewById(R.id.funnel_scroll);
+	     check = false;
+
+	scroll.setOnClickListener(new View.OnClickListener() {
+
+		  @Override
+		  public void onClick(View v) {
+			  if(check==true){
+
+				  scrolllist.setVisibility(View.GONE);
+				  scrollview.post(new Runnable() {
+
+					    @Override
+					    public void run() {
+					         
+					       scrollview.fullScroll(ScrollView.FOCUS_UP);
+					       check=false;
+						    scroll.setText(R.string.down);
+
+					    }
+					});
+				  }else{
+
+					  scrolllist.setVisibility(View.VISIBLE);
+					  scrollview.post(new Runnable() {
+
+						    @Override
+						    public void run() {
+						        // to scroll down
+						    	TableRow tab = (TableRow) getView().findViewById(R.id.tableRow6);
+						    	scrollview.scrollTo(0, tab.getBottom());
+
+						        //scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+							    check=true;
+							    scroll.setText(R.string.up);
+
+						    }
+						});
+	            }
+			  
+			 
+			  }
+
+		});
+
+	
  		super.onResume();
 	}
     
@@ -231,49 +277,7 @@ public final class Funnel_display_main extends ListFragment {
 						
 						barclick(g);
  						
-						  scroll =(Button) getView().findViewById(R.id.funnel_scroll);
-						     check = false;
-
-						scroll.setOnClickListener(new View.OnClickListener() {
-
-							  @Override
-							  public void onClick(View v) {
-								  if(check==true){
-
-									  scrolllist.setVisibility(View.GONE);
-									  scrollview.post(new Runnable() {
-
-										    @Override
-										    public void run() {
-										         
-										       scrollview.fullScroll(ScrollView.FOCUS_UP);
-										       check=false;
-											    scroll.setText(R.string.down);
-
-										    }
-										});
-									  }else{
-
-										  scrolllist.setVisibility(View.VISIBLE);
-										  scrollview.post(new Runnable() {
-
-											    @Override
-											    public void run() {
-											        // to scroll down
-											        scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-												    check=true;
-												    scroll.setText(R.string.up);
-
-											    }
-											});
-						            }
-								  
-								 
- 							  }
-
-							});
-		
-						
+						  
 						
 					 	overall_position=0;
 					 	for(int i=0;i<event_name.size();i++){///adding data

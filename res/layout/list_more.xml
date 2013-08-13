@@ -3,17 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
+    android:layout_marginTop="25dp"
  >
 
     <com.mixpanel.src.Icon_font
         android:id="@+id/list_more"
         android:layout_width="114dp"
         android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+        
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/round_button1"
+        android:background="#ececec"
         android:gravity="center"
         android:text="@string/down"
-        android:textColor="#fff"
+        android:textColor="#9fdbf0"
         android:textSize="50sp" />
 
 </LinearLayout>

@@ -1,7 +1,5 @@
 package com.mixpanel.src.streams;
  
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,30 +15,20 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
@@ -49,11 +37,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
-import com.mixpanel.src.HomeFragment;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
-import com.mixpanel.src.funnel.Funnel_pref;
 import com.mixpanel.src.live.Customeadapter_simpleadapter;
 
 
@@ -112,8 +98,8 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 					
 					// this is for the color of title bar
 					ColorDrawable colorDrawable = new ColorDrawable();
-					colorDrawable.setColor(Color.parseColor("#3BB0AA"));
-					
+					int myColor = this.getResources().getColor(R.color.menu6);
+			           colorDrawable.setColor(myColor);					
 					android.app.ActionBar actionBar = getActionBar();
 					actionBar.setBackgroundDrawable(colorDrawable);
 					
@@ -407,11 +393,11 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
        * Updating parsed JSON data into ListView
        * */
 					 
-        adapter_page = new Customeadapter_simpleadapter(this, stream_list_page,
+        adapter_page = new SimpleAdapter(this, stream_list_page,
 					    R.layout.stream_list_finalpage,
 					    new String[] { "last_seen","page","referrer"}, new int[] {
 					             R.id.stream_first_time,R.id.stream_first_view,R.id.stream_first_came_from });
-        adapter_event = new Customeadapter_simpleadapter(this, stream_list_event,
+        adapter_event = new SimpleAdapter(this, stream_list_event,
 			    R.layout.stream_event_list,
 			    new String[] {  "event_last_seen","event_name"}, new int[] {
 			            R.id.stream_event_seen,R.id.stream_event_name  });

@@ -106,11 +106,7 @@
             android:label="@string/title_activity_funnel"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="com.mixpanel.src.Funnel_activity"
-            android:label="@string/title_activity_funnel_activity"
-            android:screenOrientation="portrait" >
-        </activity>
+        
         <activity
             android:name="com.mixpanel.src.Event_top"
             android:label="Top events"

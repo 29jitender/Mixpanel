@@ -74,7 +74,7 @@
     <string name="title_activity_funnel">Funnel</string>
     <string name="meun_funnel">Funnel</string>
     <string name="menu_segmentation">Segmentation</string>
-    <string name="about">About</string>
+     
     <string name="graph_button">Change</string>
     <string name="event_type">Type</string>
     <string name="refresh">refresh</string>
@@ -96,6 +96,15 @@
     <string name="allevent">&#xF002;</string>
     <string name="topevent">&#xF005;</string>
     <string name="about">&#xF129;</string>
+        <string name="live">&#xF076;</string>
+       <string name="people">&#xF183;</string>
+           <string name="funnel">&#xF0C3;</string>
+       
+        
+    
+    
+    
+    
     <string name="graphno">&#xF088;</string>
     <string name="arrow">&#xF060;</string>
     <string name="home_icon_list">&#xF10C;</string>
@@ -113,6 +122,7 @@
     <string name="globe">&#xF041;</string>
     <string name="eye">&#xF06E;</string>
     <string name="from">&#xF064;</string>
+    <string name="bullet">&#xF111;</string>
     
      
     

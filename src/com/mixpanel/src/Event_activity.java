@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -30,7 +29,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -38,6 +36,9 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.src.funnel.Funnel_activity;
+import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.streams.Stream_activity_first;
 
 //interface Callback {
 //    void methodToCallback(String response);
@@ -127,7 +128,9 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         findViewById(R.id.item2).setOnClickListener(this);
         findViewById(R.id.item3).setOnClickListener(this);
         findViewById(R.id.item4).setOnClickListener(this);
-
+        findViewById(R.id.item5).setOnClickListener(this);
+        findViewById(R.id.item6).setOnClickListener(this);
+        findViewById(R.id.item7).setOnClickListener(this);
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
         if (activeView != null) {
@@ -405,49 +408,71 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 
     	switch(v.getId()){
     	case R.id.item1:
-    		mMenuDrawer.setActiveView(v);
-  		  //mMenuDrawer.closeMenu();
-            //startActivity(new Intent(this, Home.class)); 
-            Intent myIntent = new Intent(Event_activity.this ,Home.class);//refreshing
-            Home.mMenuDrawer.closeMenu();
-            myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            
-            startActivity(myIntent);
-            //finish();  
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+   		 mMenuDrawer.setActiveView(v);
+            // mMenuDrawer.closeMenu();
+                 Intent myIntent = new Intent(Event_activity.this ,Home.class);//refreshing
+                 myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                 Home.mMenuDrawer.closeMenu();
 
-    		break;
-    	case R.id.item2:
-    		 mMenuDrawer.setActiveView(v);
-   		  mMenuDrawer.closeMenu();
-            // startActivity(new Intent(this, Event_activity.class));
-             
+                 startActivity(myIntent);
+                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+  		break;
+  	case R.id.item2:
+  		mMenuDrawer.setActiveView(v);
+        mMenuDrawer.closeMenu();
+          // startActivity(new Intent(this, Event_activity.class));
+           
+           anmi=1;
+   		break;
+  	case R.id.item3:
+  	  mMenuDrawer.setActiveView(v);
+      //mMenuDrawer.closeMenu();
+        startActivity(new Intent(this, Event_top.class));    
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        anmi=1;
+        
+        break;
+  	case R.id.item4:
+  		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, live_first.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
-    		break;
-    	case R.id.item3:
-    		mMenuDrawer.setActiveView(v);
-  		  //mMenuDrawer.closeMenu();
-            startActivity(new Intent(this, Event_top.class));    
+  		
+  		break;
+  	case R.id.item5:
+  		
+ 		 mMenuDrawer.setActiveView(v);
+    		 // mMenuDrawer.closeMenu();
+            startActivity(new Intent(this, Funnel_activity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             anmi=1;
-    		
-    		break;
-    	case R.id.item4:
-    		
-    		 mMenuDrawer.setActiveView(v);
-      		  //mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, About.class));
-              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-              anmi=1;
-    		
-    		break;
+ 		
+ 		break;
+  	case R.id.item6:
+  		
+ 		 mMenuDrawer.setActiveView(v);
+    		 // mMenuDrawer.closeMenu();
+            startActivity(new Intent(this, Stream_activity_first.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            anmi=1;
+ 		
+ 		break;
+  	case R.id.item7:
+  		
+ 		 mMenuDrawer.setActiveView(v);
+    		 // mMenuDrawer.closeMenu();
+            startActivity(new Intent(this, About.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            anmi=1;
+ 		
+ 		break;
 
-    	}
-     	  
     	
     	
-    	
-    	
+    	}	
     	
       
         mActiveViewId = v.getId();

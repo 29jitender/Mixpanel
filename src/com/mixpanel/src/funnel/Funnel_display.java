@@ -86,8 +86,9 @@ public class Funnel_display extends SherlockFragmentActivity implements View.OnC
 
 	            // this is for the color of title bar
 	             ColorDrawable colorDrawable = new ColorDrawable();
-	            	 colorDrawable.setColor(Color.parseColor("#3BB0AA")); 
-	            	 android.app.ActionBar actionBar = getActionBar();
+	             int myColor = this.getResources().getColor(R.color.menu5);
+	             colorDrawable.setColor(myColor);
+ 	            	 android.app.ActionBar actionBar = getActionBar();
 	            	 	actionBar.setBackgroundDrawable(colorDrawable);
 
 	        }

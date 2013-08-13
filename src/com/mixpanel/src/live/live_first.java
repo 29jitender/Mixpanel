@@ -44,9 +44,12 @@ import com.actionbarsherlock.view.Window;
 import com.mixpanel.src.About;
 import com.mixpanel.src.Callback;
 import com.mixpanel.src.Event_activity;
+import com.mixpanel.src.Event_top;
 import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
+import com.mixpanel.src.funnel.Funnel_activity;
+import com.mixpanel.src.streams.Stream_activity_first;
 
 
 
@@ -112,19 +115,21 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 //           getActionBar().setDisplayHomeAsUpEnabled(true);
            // this is for the color of title bar
     	   ColorDrawable colorDrawable = new ColorDrawable();
-           colorDrawable.setColor(Color.parseColor("#3BB0AA"));
+    	   int myColor = this.getResources().getColor(R.color.menu4);
+           colorDrawable.setColor(myColor);
            android.app.ActionBar actionBar = getActionBar();
            actionBar.setBackgroundDrawable(colorDrawable);
 
        }
 
       // mContentTextView = (TextView) findViewById(R.id.contentText);
-
        findViewById(R.id.item1).setOnClickListener(this);
        findViewById(R.id.item2).setOnClickListener(this);
        findViewById(R.id.item3).setOnClickListener(this);
        findViewById(R.id.item4).setOnClickListener(this);
-
+       findViewById(R.id.item5).setOnClickListener(this);
+       findViewById(R.id.item6).setOnClickListener(this);
+       findViewById(R.id.item7).setOnClickListener(this);
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
        if (activeView != null) {
@@ -307,11 +312,11 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
   		 setadapter();
 	}
 // 
-//	@Override
-//	 public void onPause() {
-//	  autoUpdate.cancel();
-//	  super.onPause();
-//	 } 
+	@Override
+	 public void onPause() {
+	  autoUpdate.cancel();
+	  super.onPause();
+	 } 
 	
 	
 	public void setadapter(){
@@ -360,7 +365,7 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 		     }
 		    });
 		   }
-		  }, 0, 60000); // updates each 60 secs
+		  }, 0, 30000); // updates each 60 secs
 		  
 		  
  		if(anmi==1){
@@ -487,44 +492,73 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
     	
     	switch(v.getId()){
     	case R.id.item1:
-    		mMenuDrawer.setActiveView(v);
-   		 // mMenuDrawer.closeMenu();
-    		  Intent myIntent = new Intent(live_first.this ,Home.class);//refreshing
-              myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-              Home.mMenuDrawer.closeMenu();
+    		 mMenuDrawer.setActiveView(v);
+             // mMenuDrawer.closeMenu();
+                  Intent myIntent = new Intent(live_first.this ,Home.class);//refreshing
+                  myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  Home.mMenuDrawer.closeMenu();
 
-              startActivity(myIntent);
-              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-             anmi=1;
-    		break;
-    	case R.id.item2:
-    		mMenuDrawer.setActiveView(v);
-//  		  mMenuDrawer.closeMenu();
+                  startActivity(myIntent);
+                  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                 anmi=1;
+   		break;
+   	case R.id.item2:
+   		 mMenuDrawer.setActiveView(v);
+   		  
             startActivity(new Intent(this, Event_activity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             anmi=1;
-    		break;
-    	case R.id.item3:
-    		mMenuDrawer.setActiveView(v);
-    		mMenuDrawer.closeMenu();
-           // startActivity(new Intent(this, Event_top.class)); 
+            //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
+   		
+   		break;
+   	case R.id.item3:
+   	  startActivity(new Intent(this, Event_top.class));
+      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+      anmi=1;
+   		break;
+   	case R.id.item4:
+   		
+		   	 mMenuDrawer.setActiveView(v);
+		     mMenuDrawer.closeMenu();
+		    // startActivity(new Intent(this, Event_top.class)); 
+		     
+		    		
     		
-    		break;
-    	case R.id.item4:
-    		
-    		 mMenuDrawer.setActiveView(v);
-      		 // mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, About.class));
-              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-              anmi=1;
-    		break;
-    	
-    	}
-    	
+   		break;
+   	case R.id.item5:
+   		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Funnel_activity.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+  		
+  		break;
+   	case R.id.item6:
+   		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, Stream_activity_first.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+  		
+  		break;
+   	case R.id.item7:
+   		
+  		 mMenuDrawer.setActiveView(v);
+     		 // mMenuDrawer.closeMenu();
+             startActivity(new Intent(this, About.class));
+             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+             anmi=1;
+  		
+  		break;
+
+   	}
       
         mActiveViewId = v.getId();
     }
 //navigaiton ending
+
 
  
  

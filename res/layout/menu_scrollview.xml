@@ -18,7 +18,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:layout_weight="0.2">
+                 android:layout_weight="0.142">
 
                <com.mixpanel.src.Icon_font
                 android:id="@+id/item1"
@@ -32,7 +32,7 @@
                  android:layout_weight="1"/>
             </TableRow>
             
-            <TableRow   android:layout_weight="0.2"
+            <TableRow   android:layout_weight="0.142"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -51,7 +51,7 @@
             </TableRow>
             
             
-            <TableRow   android:layout_weight="0.2"
+            <TableRow   android:layout_weight="0.142"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -73,7 +73,7 @@
             
             
             
-            <TableRow   android:layout_weight="0.2"
+            <TableRow   android:layout_weight="0.142"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -84,13 +84,63 @@
                 style="@style/MenuDrawer.Widget.Title"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:text="@string/about"
+                 android:text="@string/live"
                  android:gravity="center"
                   android:background="@color/menu4"
                  android:layout_weight="1"/>
             </TableRow>
             
             
+            
+             <TableRow   android:layout_weight="0.142"
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 >
+               <com.mixpanel.src.Icon_font
+                android:id="@+id/item5"
+                 android:textSize="40sp"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                 android:text="@string/funnel"
+                 android:gravity="center"
+                 android:rotation="180"
+                  android:background="@color/menu5"
+                 android:layout_weight="1"/>
+            </TableRow>
+              <TableRow   android:layout_weight="0.142"
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 >
+               <com.mixpanel.src.Icon_font
+                android:id="@+id/item6"
+                 android:textSize="40sp"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                 android:text="@string/people"
+                 android:gravity="center"
+                  android:background="@color/menu6"
+                 android:layout_weight="1"/>
+            </TableRow>
+              <TableRow   android:layout_weight="0.142"
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 >
+               <com.mixpanel.src.Icon_font
+                android:id="@+id/item7"
+                 android:textSize="40sp"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                 android:text="@string/about"
+                 android:gravity="center"
+                  android:background="@color/menu7"
+                 android:layout_weight="1"/>
+            </TableRow> 
             
             </TableLayout>
         

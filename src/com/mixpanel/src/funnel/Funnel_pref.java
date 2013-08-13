@@ -129,7 +129,7 @@ public static int interval=0;
  							}
  							 
  							long diff = date2.getTime() - date1.getTime();
- 							  interval=(int) (diff / (1000 * 60 * 60 * 24));////////////calculating interval
+ 							  interval=(int) (diff / (1000 * 60 * 60 * 24))+1;////////////calculating interval
  		                	
 
 
@@ -268,28 +268,7 @@ public static int interval=0;
 							/////////////////
 							
 							
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	
 	
 	

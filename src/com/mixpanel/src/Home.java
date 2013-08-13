@@ -119,7 +119,9 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         findViewById(R.id.item2).setOnClickListener(this);
         findViewById(R.id.item3).setOnClickListener(this);
         findViewById(R.id.item4).setOnClickListener(this);
-
+        findViewById(R.id.item5).setOnClickListener(this);
+        findViewById(R.id.item6).setOnClickListener(this);
+        findViewById(R.id.item7).setOnClickListener(this);
         
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -436,7 +438,7 @@ else if(anmi==2){
     	case R.id.item2:
     		 mMenuDrawer.setActiveView(v);
     		  
-             startActivity(new Intent(this, live_first.class));
+             startActivity(new Intent(this, Event_activity.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
              //overridePendingTransition(R.anim.push_down_in,R.anim.push_down_out);//calling anim
@@ -445,7 +447,7 @@ else if(anmi==2){
     	case R.id.item3:
     		 mMenuDrawer.setActiveView(v);
    		  //mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Stream_activity_first.class));    
+             startActivity(new Intent(this, Event_top.class));    
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
              //overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
@@ -456,11 +458,38 @@ else if(anmi==2){
     		
     		 mMenuDrawer.setActiveView(v);
        		 // mMenuDrawer.closeMenu();
-               startActivity(new Intent(this, Funnel_activity.class));
+               startActivity(new Intent(this, live_first.class));
                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                anmi=1;
     		
     		break;
+    	case R.id.item5:
+    		
+   		 mMenuDrawer.setActiveView(v);
+      		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, Funnel_activity.class));
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+              anmi=1;
+   		
+   		break;
+    	case R.id.item6:
+    		
+   		 mMenuDrawer.setActiveView(v);
+      		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, Stream_activity_first.class));
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+              anmi=1;
+   		
+   		break;
+    	case R.id.item7:
+    		
+   		 mMenuDrawer.setActiveView(v);
+      		 // mMenuDrawer.closeMenu();
+              startActivity(new Intent(this, About.class));
+              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+              anmi=1;
+   		
+   		break;
 
     	}
      	  

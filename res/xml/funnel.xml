@@ -2,10 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
    <Preference android:title="From Date"
                 android:key="funnel_pref_from"
-                android:summary="Select the date from you want to see funnel" android:icon="@drawable/retry"/>
+                android:summary="Select the date from you want to see funnel"/>
     <Preference android:title="To Date"
                 android:key="funnel_pref_to"
-                android:summary="Select the date from you want to see funnel" android:icon="@drawable/retry"/>
+                android:summary="Select the date from you want to see funnel"  />
 <Preference android:title="Change"
                 android:key="button"
                 android:summary="Refresh" android:icon="@drawable/retry"/>
