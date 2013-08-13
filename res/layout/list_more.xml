@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:background="#ececec"
         android:gravity="center"
-        android:text="@string/down"
+        android:text="@string/listmore"
         android:textColor="#9fdbf0"
         android:textSize="50sp" />
 

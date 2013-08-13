@@ -20,6 +20,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +30,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
@@ -37,6 +39,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
+import com.mixpanel.src.HomeFragment;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
@@ -50,13 +53,14 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
  	public static ListAdapter adapter_event;
 	public static ListAdapter adapter_page;
 	int adapter_type=0;
-	 int more_count=-1;
+	     int more_count=-1;
+	 public static ArrayList<String> timestampcheck;
  	 public Boolean internt_count=null;// to check the connectvity
  	public static ListView lv;
  	     private int anmi=0;
 	     View footerView;
 	     public static ProgressDialog dialog ;
-	    		        
+	     int clickcheckfooter;	        
  	     
 	    @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +156,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 	@Override
 	public void methodToCallback(String print) {
 
- 		 
+					 timestampcheck=new ArrayList<String>();
 					  stream_list_page = new ArrayList<HashMap<String, String>>();
 					  stream_list_event = new ArrayList<HashMap<String, String>>();
 					  try {
@@ -165,11 +169,13 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 							 HashMap<String, String>  map = new HashMap<String, String>();
 
 							JSONObject obj2 =array2.getJSONObject(i);
-							
+							String timestamp=obj2.getString("ts_epoch");
+							timestampcheck.add(timestamp);
 							String name=obj2.getString("event");
 							if(name.equals("mp_page_view")){//if it is a page view
 								map.put("name","page view");
 								///last seen/////////////////////////////
+								
 								String last_seen = obj2.getString("ts");
 								
 								
@@ -447,12 +453,16 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
 		 		/////////////////////////////
       /////////////list update button////////////////////
       dialog=new ProgressDialog(Stream_activity_final.this);	
-      
+          clickcheckfooter=0;
       footerView.setOnClickListener(new View.OnClickListener() {
   	    @Override
   	    public void onClick(View v) {
   	    	 dialog.setMessage("Getting your data... Please wait...");
   	         dialog.show();
+  	         if(clickcheckfooter==1){///////this is to check if it is allready clicked then take the value from api define
+  	         if(more_count<Integer.parseInt(All_api_define.stream_user_update_page)){
+  	        	 more_count=Integer.parseInt(All_api_define.stream_user_update_page);
+  	         }}
    	    	more_count= more_count+1;
   	    	All_api_define.stream_user_update_page=Integer.toString(more_count);//assing value to all api deifne
 		    All_api_define.stream_user_update();//callin it onece
@@ -462,25 +472,23 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
   	    	Stream_activity_list_update objectrefresh = new Stream_activity_list_update();
   	    	objectrefresh.thecall();
   	    	 
+ 			Toast.makeText(getApplicationContext(), more_count+"", Toast.LENGTH_LONG).show();
+ 			clickcheckfooter=1;
     	    	
    	    }
   	});
     
 
-      
-      
  		
 		
 	}
-	
-//	public   void list_update(){
-// 	    	((SimpleAdapter)getListView().getAdapter()).notifyDataSetChanged();
-//
-//
-//	}
-//	
-	
-	////////////////////
+ 
+
+ 
+	@Override
+	public void onBackPressed() {
+	   this.finish();
+	}
 	@Override
     protected void onResume() {
 

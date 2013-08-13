@@ -1831,13 +1831,13 @@ containing a value of this type.
         public static final int bullet=0x7f0c0057;
         public static final int button_graph=0x7f0c0010;
         public static final int conf_summary=0x7f0c0027;
-        public static final int crd1=0x7f0c0059;
-        public static final int crd2=0x7f0c005a;
-        public static final int crd3=0x7f0c005b;
-        public static final int crd4=0x7f0c005c;
-        public static final int crd5=0x7f0c005d;
-        public static final int crd6=0x7f0c005e;
-        public static final int crd7=0x7f0c005f;
+        public static final int crd1=0x7f0c005a;
+        public static final int crd2=0x7f0c005b;
+        public static final int crd3=0x7f0c005c;
+        public static final int crd4=0x7f0c005d;
+        public static final int crd5=0x7f0c005e;
+        public static final int crd6=0x7f0c005f;
+        public static final int crd7=0x7f0c0060;
         public static final int down=0x7f0c0051;
         public static final int event_filter=0x7f0c0031;
         public static final int event_setting=0x7f0c001f;
@@ -1856,6 +1856,7 @@ containing a value of this type.
         public static final int keyboard=0x7f0c004c;
         public static final int landing=0x7f0c0036;
         public static final int landing_more=0x7f0c0035;
+        public static final int listmore=0x7f0c0058;
         public static final int live=0x7f0c0043;
         public static final int menu_event=0x7f0c0013;
         public static final int menu_segmentation=0x7f0c002d;
@@ -1877,17 +1878,17 @@ containing a value of this type.
         public static final int refresh1=0x7f0c004a;
         public static final int share=0x7f0c004f;
         public static final int signal=0x7f0c004b;
-        public static final int skip=0x7f0c0058;
+        public static final int skip=0x7f0c0059;
         public static final int spinner_funnel=0x7f0c0016;
         public static final int time=0x7f0c0053;
         public static final int title_activity_about=0x7f0c0034;
         public static final int title_activity_event_activity=0x7f0c001e;
         public static final int title_activity_funnel=0x7f0c002b;
         public static final int title_activity_funnel_activity=0x7f0c0032;
-        public static final int title_activity_funnel_display=0x7f0c0061;
+        public static final int title_activity_funnel_display=0x7f0c0062;
         /**  spinner 
          */
-        public static final int title_activity_funnel_final=0x7f0c0060;
+        public static final int title_activity_funnel_final=0x7f0c0061;
         public static final int title_activity_funnel_home=0x7f0c0029;
         public static final int title_activity_funnel_home1=0x7f0c002a;
         public static final int title_activity_home=0x7f0c003c;
