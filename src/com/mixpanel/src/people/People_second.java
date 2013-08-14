@@ -95,8 +95,8 @@ public class People_second extends SherlockListActivity implements Callback ,Vie
 					
 					// this is for the color of title bar
 					ColorDrawable colorDrawable = new ColorDrawable();
-					int myColor = this.getResources().getColor(R.color.menu6);
-			           colorDrawable.setColor(myColor);					
+					 int myColor = this.getResources().getColor(R.color.menu7);
+			           colorDrawable.setColor(myColor);				
 					android.app.ActionBar actionBar = getActionBar();
 					actionBar.setBackgroundDrawable(colorDrawable);
 					

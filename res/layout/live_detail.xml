@@ -43,6 +43,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="holaaa"
+            android:textIsSelectable="true"
+            
             android:maxLines="2"
             android:ellipsize="end"
             android:gravity="center_vertical"

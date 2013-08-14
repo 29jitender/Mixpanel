@@ -90,7 +90,8 @@ public static int interval=0;
 	            getSupportActionBar().setIcon(android.R.color.transparent);//to remove the icon from action bar
 	         // this is for the color of title bar
 	             ColorDrawable colorDrawable = new ColorDrawable();
-	            colorDrawable.setColor(Color.parseColor("#3BB0AA"));
+	             int myColor = this.getResources().getColor(R.color.menu5);
+	             colorDrawable.setColor(myColor);
 	            android.app.ActionBar actionBar = getActionBar();
 	            actionBar.setBackgroundDrawable(colorDrawable);
 	 

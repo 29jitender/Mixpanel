@@ -47,7 +47,8 @@
         android:layout_height="61dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@drawable/list_bg" >
+        android:background="@drawable/list_bg"
+        android:gravity="center_vertical" >
 
         <TextView
             android:id="@+id/stream_event_name"
@@ -56,9 +57,8 @@
             android:layout_alignParentLeft="true"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="www.fingo.com"
+             android:layout_marginLeft="10dp"
+             android:text="www.fingo.com"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#578910" />
 

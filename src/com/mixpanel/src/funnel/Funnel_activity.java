@@ -132,7 +132,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 
         Display display = getWindowManager().getDefaultDisplay(); 		 
   		int width = display.getWidth();  
-        mMenuDrawer.setMenuSize(width/3);//size of menu
+        mMenuDrawer.setMenuSize(width/4);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 	           

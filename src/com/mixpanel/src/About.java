@@ -79,7 +79,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
         mMenuDrawer.setMenuView(R.layout.menu_scrollview);// this is the layout for 
         Display display = getWindowManager().getDefaultDisplay(); 		 
   		int width = display.getWidth();  
-        mMenuDrawer.setMenuSize(width/3);//size of menu     
+        mMenuDrawer.setMenuSize(width/4);//size of menu
         mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -227,7 +227,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
  
 	         
-	        menu.add(Menu.NONE, R.id.event_filter, Menu.NONE, "Version 0.1")//defining version in menu
+	        menu.add(Menu.NONE, R.id.event_filter, Menu.NONE, "Version 2.0")//defining version in menu
        
 	        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
 

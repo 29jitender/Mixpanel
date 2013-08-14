@@ -135,7 +135,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        
        Display display = getWindowManager().getDefaultDisplay(); 		 
  		int width = display.getWidth();  
-       mMenuDrawer.setMenuSize(width/3);//size of menu
+        mMenuDrawer.setMenuSize(width/4);//size of menu
        mMenuDrawer.setDropShadow(android.R.color.transparent);//removin showdo
        //navigation
        
