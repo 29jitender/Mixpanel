@@ -1,63 +1,66 @@
-package com.mixpanel.src;
-
+package com.mixpanel.src.people; 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import net.simonvt.menudrawer.MenuDrawer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
+import com.mixpanel.src.About;
+import com.mixpanel.src.All_api_define;
+import com.mixpanel.src.Callback;
+import com.mixpanel.src.Event_activity;
+import com.mixpanel.src.Event_top;
+import com.mixpanel.src.Home;
+import com.mixpanel.src.ParseJSON;
+import com.mixpanel.src.R;
+import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
-import com.mixpanel.src.streams.Stream_activity_first;
+import com.mixpanel.src.streams.Stream_activity_final;
 
-public class Event_top extends SherlockListActivity implements Callback ,OnSharedPreferenceChangeListener,View.OnClickListener {
-	static JSONObject json = null;
-	 SharedPreferences prefs;
-	 public Boolean internt_count=null;// to check the connectvity
 
-	 private static final String TAG_event = "events";
-	 private static final String amount = "amount";
-	 private static final String percent_change = "percent_change";
-	 private static final String event = "event";
-	 public static String click_type="";
-	 public static String limit="";
 
-	    JSONArray event_data = null;
-		 //navigation drawer variables
+public class People_first extends SherlockListActivity implements Callback ,View.OnClickListener {
+	public static ArrayList<HashMap<String, String>> people_list;
+	ArrayList<String> people_name;
+ 	ArrayList<String> people_id;
+    private EditText search;
+
+    SimpleAdapter adapter;
+  	 public Boolean internt_count=null;// to check the connectvity
+
+ 	 
+ 		 //navigation drawer variables
         private static final String STATE_MENUDRAWER = "net.simonvt.menudrawer.samples.WindowSample.menuDrawer";
         private static final String STATE_ACTIVE_VIEW_ID = "net.simonvt.menudrawer.samples.WindowSample.activeViewId";
         private MenuDrawer mMenuDrawer; 
@@ -89,7 +92,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("Top Events of Today");
+       mTitleTextView.setText("People");
        mTitleTextView.setTextSize(20);
 
        mActionBar.setCustomView(mCustomView);
@@ -109,7 +112,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
 //           getActionBar().setDisplayHomeAsUpEnabled(true);
            // this is for the color of title bar
     	   ColorDrawable colorDrawable = new ColorDrawable();
-    	   int myColor = this.getResources().getColor(R.color.menu3);
+    	   int myColor = this.getResources().getColor(R.color.menu6);
            colorDrawable.setColor(myColor);
            android.app.ActionBar actionBar = getActionBar();
            actionBar.setBackgroundDrawable(colorDrawable);
@@ -124,6 +127,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        findViewById(R.id.item5).setOnClickListener(this);
        findViewById(R.id.item6).setOnClickListener(this);
        findViewById(R.id.item7).setOnClickListener(this);
+
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
        if (activeView != null) {
@@ -154,7 +158,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
 				@Override
 				public void onClick(View arg0) {
 	 
-					 Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
+					 Intent myIntent = new Intent(People_first.this ,People_first.class);//refreshing
 
                     startActivity(myIntent);
                     finish();  
@@ -169,150 +173,129 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
  		
 	}
 	    public void iamcallin(){ 
-	     	mMenuDrawer.setContentView(R.layout.event_top);//givin layout to drawer
+	     	mMenuDrawer.setContentView(R.layout.people_first);//givin layout to drawer
 
 	         setSupportProgressBarIndeterminateVisibility(true);//onload show
- 
-			  prefs = PreferenceManager.getDefaultSharedPreferences(this);///Getting preference
-			  prefs.registerOnSharedPreferenceChangeListener(this);
-			  get_values_pref();// it should get values before
+  
 			  ParseJSON ParseJson_object = new ParseJSON();
-			ParseJson_object.pass_values("event_top1");
-			ParseJson_object.setListener(this);
+			  ParseJson_object.pass_values("people_list");
+			  ParseJson_object.setListener(this);
 			
 			
 	    }
 	 
-
-public void  get_values_pref(){// getting values from preference  
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);//geting prefrence
-
-		 
-		String limit1 =prefs.getString("top_event", "10");
-		limit=limit1.replaceAll("\\s","");//removing spaces if user entered by mistake
-//		final TextView textViewToChange10 = (TextView) findViewById(R.id.name_label);//printing the text as heading
-//		textViewToChange10.setText("Top"+" "+limit+" "+"events of the day");
-		 
-		int check= Integer.parseInt(limit);
-		// condition of api
-				//event
-		if(check>100 ){
-			Toast.makeText(getApplicationContext(), "The maximum Limit can be is 100", Toast.LENGTH_LONG).show();
-		}
-		
-		
-		
-		 
-	} 	   
-	
-	
-	 
+ 
 	
 	 
    
 	@Override
 	public void methodToCallback(String print) {
-		// TODO Auto-generated method stub
- 
-			// Hashmap for ListView
-
-					ArrayList<HashMap<String, String>> contactList = new ArrayList<HashMap<String, String>>();
- 
-					try {
-						json = new JSONObject(print);
-						event_data = json.getJSONArray(TAG_event);
-						 
-						// looping through All Contacts
-						for(int i = 0; i < event_data.length(); i++){
-						    JSONObject c = event_data.getJSONObject(i);
-						     
-						    // Storing each json item in variable
-						    String Amount = c.getString(amount);
-						    int amount_int = Integer.parseInt(Amount);
-						    int amount_int_modified=0;
-						    String Amount_new="";
-						    if(amount_int>999){ //formating amount
-						    	amount_int_modified=amount_int/1000;
-							     Amount_new= amount_int_modified+"K";
-
-						    }
-						    else{
-							    Amount_new= Amount ;
-
-						    }
-						    String parcent_change = c.getString(percent_change);//Double.parseDouble
- 						    Float percent_changeint = Float.parseFloat(parcent_change);
- 						    percent_changeint= percent_changeint*100;
- 						    String parcent_change_new=percent_changeint+"";
- 						    
-						    String Event = c.getString(event);
-						  
-						 
-						    // creating new HashMap
-						    HashMap<String, String> map = new HashMap<String, String>();
-						     
-						    // adding each child node to HashMap key => value
-						    map.put(amount, Amount_new);
-						    map.put(percent_change, parcent_change_new);
-						    map.put(event, Event);
-						  
-	 
-						    // adding HashList to ArrayList
-						    contactList.add(map);
-	 
-						}
-	  
-						
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-	                setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
-
- 
-		/**
-       * Updating parsed JSON data into ListView
-       * */
-					 
-      ListAdapter adapter = new SimpleAdapter(this, contactList,
-					    R.layout.list_item,
-					    new String[] { percent_change, event, amount }, new int[] {
-					            R.id.p_change, R.id.e_date, R.id.E_amount });
- 
-      setListAdapter(adapter);
- 
-      // selecting single ListView item
-      ListView lv = getListView();
-     
-      // Launching new screen on Selecting Single ListItem
-      lv.setOnItemClickListener(new OnItemClickListener() {
- 
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-					        int position, long id) {
-					    // getting values from selected ListItem
-					    String perc = ((TextView) view.findViewById(R.id.p_change)).getText().toString();
-					    String name = ((TextView) view.findViewById(R.id.e_date)).getText().toString();
-					    String amount1 = ((TextView) view.findViewById(R.id.E_amount)).getText().toString();
-					    
-					    // Starting new intent
-					    Intent in = new Intent(getApplicationContext(), event_final.class);
-					    in.putExtra(percent_change, perc);
-					    in.putExtra(event, name);
-					    in.putExtra(amount, amount1);
-					    in.putExtra("flag", "Top");//for the color of action bar
-					    All_api_define.event=name;//assing value to all api deifne
-					    All_api_define.event1();//callin it onece
-					    startActivity(in);
-				          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
-					    anmi=1;
-					}
-      });
+		  people_list = new ArrayList<HashMap<String, String>>();
+		  people_id = new ArrayList<String>();
+	  	  people_name = new ArrayList<String>();
+		  
+		  try {
+			JSONObject obj1 = new JSONObject(print);
+			
+			JSONArray array1 =obj1.getJSONArray("results");
+			
+			for(int i=0;i<array1.length();i++){
+				
+				JSONObject obj2=array1.getJSONObject(i);
+				String distinct_id =obj2.getString("$distinct_id");
+				people_id.add(distinct_id);//adding id
+				
+				JSONObject obj3=obj2.getJSONObject("$properties");
+				 HashMap<String, String>  map = new HashMap<String, String>();
 				 
-		 		
+				 String username=obj3.getString("$name");//username
+				 people_name.add(username);
+				 map.put("name", username);
+				 
+				 
+				 String email =obj3.getString("$email");//email
+				 map.put("email", email);
+				 
+				 String lastseen=obj3.getString("$last_seen");//last seen
+				 lastseen = lastseen.replace("T", " @ ");
+
+				 map.put("lastseen", lastseen);
+				 
+				 ///now location
+				 String region;
+				 String city;
+				try {
+					  city = obj3.getString("$city")+"-";
+				} catch (Exception e) {
+					  city = "";				}
+				
+				 try {
+					  region = obj3.getString("$region") + ",";
+				} catch (Exception e) {
+					  region ="";}				 
+				
+				 	String country=obj3.getString("$country_code");
+				
+				 	String location=city+region+country;
+				 	map.put("location", location);
+				 	
+				 	//////
+					people_list.add(map);
+
+			}
+			
+			
+			
+			
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	         setSupportProgressBarIndeterminateVisibility(false); 
+
+		//////////updating data into list 
+		  
+		  adapter = new SimpleAdapter(this, people_list,
+				    R.layout.people_first_list,
+				    new String[] { "name","email","lastseen","location"}, new int[] {
+				            R.id.people_first_name,R.id.people_first_email,R.id.people_first_time,R.id.people_first_location });
+
+		  	setListAdapter(adapter);
+		
+		
+		    // selecting single ListView item
+		      ListView lv = getListView();
+		     
+		      // Launching new screen on Selecting Single ListItem
+		      lv.setOnItemClickListener(new OnItemClickListener() {
+		 
+							@Override
+							public void onItemClick(AdapterView<?> parent, View view,
+							        int position, long id) {
+							    // getting values from selected ListItem
+							    
+							    String people_id1 = people_id.get(position);
+							    
+							    people_id1="[\""+people_id1+"\"]";
+							    String people_name1 = people_name.get(position);
+
+							    // Starting new intent
+							    Intent in = new Intent(getApplicationContext(), People_second.class);
+		 
+		 					    All_api_define.people_id=people_id1;//assing value to all api deifne
+		 					    All_api_define.people_name=people_name1;
+		 					 
+							    All_api_define.people_data();//callin it onece
+							    startActivity(in);
+						        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+							    anmi=1;
+							}
+		      });
+					
+		  	
+		  	
 		
 		
 	}
@@ -338,7 +321,7 @@ public void  get_values_pref(){// getting values from preference
   				@Override
   				public void onClick(View arg0) {
   	 
-  					 Intent myIntent = new Intent(Event_top.this ,Event_top.class);//refreshing
+  					 Intent myIntent = new Intent(People_first.this ,People_first.class);//refreshing
 
                       startActivity(myIntent);
                       finish();  
@@ -381,14 +364,14 @@ public void  get_values_pref(){// getting values from preference
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-        menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
-        .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
-        
-        menu.add(Menu.NONE, R.id.event_top_setting, Menu.NONE, R.string.event_top_setting)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-       //  getSherlock().getMenuInflater().inflate(R.menu.event_top, menu);
 
+    	  menu.add(Menu.NONE, R.id.search, Menu.NONE, "Search")
+          .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+          .setActionView(R.layout.collapsible_edittext)
+          .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+
+     
+        
         return true;
     }
     
@@ -397,24 +380,17 @@ public void  get_values_pref(){// getting values from preference
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		switch (item.getItemId()){
-		
-		case R.id.event_top_setting:
-			//startService(intentUpdater);
-			 
-			startActivity(new Intent(this, Prefrenceactivity_event_top.class));
-            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
-	            anmi=2;
-			return true;
+		case R.id.search: //on pressing home
+			search = (EditText) item.getActionView();
+            search.addTextChangedListener(filterTextWatcher);
+            search.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+			
+			
+			
+			return true;    		 
 		 
-		case R.id.refresh:
-			 Intent myIntent = new Intent(this ,Event_top.class);//refreshing
-			  overridePendingTransition(0, 0);
-	            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-	             finish();
-	            overridePendingTransition(0, 0);
-
-	               startActivity(myIntent);
-			return true;	
 		case android.R.id.home: //on pressing home
             mMenuDrawer.toggleMenu();
             return true;	
@@ -424,7 +400,40 @@ public void  get_values_pref(){// getting values from preference
 			
 		}
 	}
+	private TextWatcher filterTextWatcher = new TextWatcher() {
+	    public void afterTextChanged(Editable s) {
+	    }
 
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+	    	
+	    	// this is to search the items in list
+	    	search.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+					// When user changed the Text
+					People_first.this.adapter.getFilter().filter(cs);	
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+						int arg3) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable arg0) {
+					// TODO Auto-generated method stub							
+				}
+			});
+	    	
+ 	    }
+
+	};
 
 	//rest functinality for of navigation
     @Override
@@ -451,7 +460,6 @@ public void  get_values_pref(){// getting values from preference
 
         super.onBackPressed();
     }
-
     @Override
     public void onClick(View v) { // for the click view
     	
@@ -459,7 +467,7 @@ public void  get_values_pref(){// getting values from preference
     	case R.id.item1:
     		 mMenuDrawer.setActiveView(v);
              // mMenuDrawer.closeMenu();
-                  Intent myIntent = new Intent(Event_top.this ,Home.class);//refreshing
+                  Intent myIntent = new Intent(People_first.this ,Home.class);//refreshing
                   myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                   Home.mMenuDrawer.closeMenu();
 
@@ -477,11 +485,11 @@ public void  get_values_pref(){// getting values from preference
    		
    		break;
    	case R.id.item3:
-   	 mMenuDrawer.setActiveView(v);
-     mMenuDrawer.closeMenu();
-    // startActivity(new Intent(this, Event_top.class)); 
-     
-    		
+   		mMenuDrawer.setActiveView(v);
+ 		 // mMenuDrawer.closeMenu();
+         startActivity(new Intent(this, Event_top.class));
+         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+         anmi=1;
    		break;
    	case R.id.item4:
    		
@@ -503,11 +511,10 @@ public void  get_values_pref(){// getting values from preference
   		break;
    	case R.id.item6:
    		
-  		 mMenuDrawer.setActiveView(v);
-     		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Stream_activity_first.class));
-             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-             anmi=1;
+   	 mMenuDrawer.setActiveView(v);
+     mMenuDrawer.closeMenu();
+    // startActivity(new Intent(this, Event_top.class)); 
+     
   		
   		break;
    	case R.id.item7:
@@ -527,16 +534,8 @@ public void  get_values_pref(){// getting values from preference
 //navigaiton ending
 
  
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		get_values_pref();
-	 
-		
-		
-	}
-
+ 
   
 	
 }
+ 

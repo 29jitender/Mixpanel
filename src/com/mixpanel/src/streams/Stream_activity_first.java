@@ -1,13 +1,9 @@
 package com.mixpanel.src.streams;
  
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -20,22 +16,23 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -52,10 +49,8 @@ import com.mixpanel.src.Event_activity;
 import com.mixpanel.src.Event_top;
 import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
-import com.mixpanel.src.Prefrenceactivity_event_top;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
-import com.mixpanel.src.event_final;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
 
@@ -65,8 +60,9 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 	ArrayList<HashMap<String, String>> stream_list;
 	ArrayList<String> user_name;
  	ArrayList<String> user_id;
-	
+    private EditText search;
 
+    SimpleAdapter adapter;
 	static JSONObject json = null;
  	 public Boolean internt_count=null;// to check the connectvity
 
@@ -106,7 +102,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
        mInflater = LayoutInflater.from(this);
        mCustomView = mInflater.inflate(R.layout.menu, null);
        mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-       mTitleTextView.setText("People");
+       mTitleTextView.setText("Stream");
        mTitleTextView.setTextSize(20);
 
        mActionBar.setCustomView(mCustomView);
@@ -372,7 +368,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
        * Updating parsed JSON data into ListView
        * */
 					 
-      ListAdapter adapter = new SimpleAdapter(this, stream_list,
+        adapter = new SimpleAdapter(this, stream_list,
 					    R.layout.list_stream_frist,
 					    new String[] { "name","time","page"}, new int[] {
 					            R.id.stream_user_name,R.id.stream_first_time,R.id.stream_first_view });
@@ -475,8 +471,14 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
-    	
         boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+
+    	  menu.add(Menu.NONE, R.id.search, Menu.NONE, "Search")
+          .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+          .setActionView(R.layout.collapsible_edittext)
+          .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+
+    	
         menu.add(Menu.NONE, R.id.refresh, Menu.NONE, R.string.refresh)
         .setIcon(isLight ? R.drawable.ic_refresh_inverse : R.drawable.ic_refresh)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);	
@@ -490,7 +492,16 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		switch (item.getItemId()){
-		 
+		case R.id.search: //on pressing home
+			search = (EditText) item.getActionView();
+            search.addTextChangedListener(filterTextWatcher);
+            search.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+			
+			
+			
+			return true;    
 		 
 		case R.id.refresh:
 			 Intent myIntent = new Intent(this ,Stream_activity_first.class);//refreshing
@@ -510,7 +521,40 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 			
 		}
 	}
+	private TextWatcher filterTextWatcher = new TextWatcher() {
+	    public void afterTextChanged(Editable s) {
+	    }
 
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+	    	
+	    	// this is to search the items in list
+	    	search.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+					// When user changed the Text
+					Stream_activity_first.this.adapter.getFilter().filter(cs);	
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+						int arg3) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable arg0) {
+					// TODO Auto-generated method stub							
+				}
+			});
+	    	
+ 	    }
+
+	};
 
 	//rest functinality for of navigation
     @Override

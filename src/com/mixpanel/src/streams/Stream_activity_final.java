@@ -472,8 +472,7 @@ public class Stream_activity_final extends SherlockListActivity implements Callb
   	    	Stream_activity_list_update objectrefresh = new Stream_activity_list_update();
   	    	objectrefresh.thecall();
   	    	 
- 			Toast.makeText(getApplicationContext(), more_count+"", Toast.LENGTH_LONG).show();
- 			clickcheckfooter=1;
+  			clickcheckfooter=1;
     	    	
    	    }
   	});

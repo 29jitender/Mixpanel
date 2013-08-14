@@ -177,6 +177,24 @@
                             android:screenOrientation="portrait"
              >
         </activity>
+        <activity
+            android:name="com.mixpanel.src.people.People_first"
+            android:label="@string/title_activity_funnel_display"
+        	  android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.people.People_second"
+            android:label="@string/title_activity_funnel_display"
+        	  android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.mixpanel.src.people.People_detail"
+            android:label="@string/title_activity_funnel_display"
+        	  android:screenOrientation="portrait"
+             >
+        </activity>
     </application>
 
 </manifest>

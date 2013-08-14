@@ -1,6 +1,9 @@
 package com.mixpanel.src;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
@@ -9,6 +12,12 @@ import com.mixpanel.src.funnel.Funnel_activity;
 import android.util.Log;
 
 public class All_api_define{
+	///this is for people
+	public static String people_name=null;
+	public static String people_id=null;	
+	
+	///////////////
+	
 	public static String interval1="";
 	public static String event=null;
 	public static String distinct_ids=null;
@@ -228,7 +237,7 @@ public class All_api_define{
 		  
 			 
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
-		  tm.put("count", "100");  
+		  tm.put("count", "300");  
 		  String send_path_first ="http://mixpanel.com/api/2.0/stream/recent?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;
@@ -392,6 +401,46 @@ public class All_api_define{
 	      return path_http;
 	  }
 
+	public static String people_list() {
+		
+		  
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		 
+//		  tm.put("where", new String("2013-06-14"));
+		  tm.put("sort_order", "descending");
+		  tm.put("limit", new String("10000"));
+		  
+		  String send_path_first ="http://mixpanel.com/api/2.0/engage/?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	      
+	}
+	public static String people_data() {
+		
+		  
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		 
+		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
+  		  	Date date = new Date(); 
+			Calendar cal = new GregorianCalendar();
+			cal.setTime(date);						
+			cal.add(Calendar.DAY_OF_MONTH, -30);
+			Date date7 = cal.getTime();
+			String to_date=formatter.format(date);
+  		  String from_date=formatter.format(date7);
+		  
+		  
+ 		  tm.put("to_date", to_date);
+		  tm.put("from_date", from_date);
+		  tm.put("distinct_ids", people_id);
+
+		  
+		  String send_path_first ="https://mixpanel.com/api/2.0/stream/query?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	      
+	}
  
 
 }

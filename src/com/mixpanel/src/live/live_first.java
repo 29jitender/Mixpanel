@@ -23,13 +23,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -48,6 +52,7 @@ import com.mixpanel.src.Event_top;
 import com.mixpanel.src.Home;
 import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
+import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.streams.Stream_activity_first;
 
@@ -56,12 +61,13 @@ import com.mixpanel.src.streams.Stream_activity_first;
 public class live_first extends SherlockListActivity implements Callback ,View.OnClickListener {
 	public static ArrayList<HashMap<String, String>> live_list;
 	 
-	   static ListAdapter adapter;
+	    SimpleAdapter adapter;
 	   private Timer autoUpdate;
 	   JSONArray array1;
   	 public Boolean internt_count=null;// to check the connectvity
+  	private EditText search;
 
-	 
+ 	 
  
  		 //navigation drawer variables
         private static final String STATE_MENUDRAWER = "net.simonvt.menudrawer.samples.WindowSample.menuDrawer";
@@ -433,7 +439,12 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
     public boolean onCreateOptionsMenu(Menu menu) {
         //Used to put dark icons on light action bar
      
-        
+        boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
+
+    	  menu.add(Menu.NONE, R.id.search, Menu.NONE, "Search")
+          .setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+          .setActionView(R.layout.collapsible_edittext)
+          .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         
         return true;
     }
@@ -444,7 +455,16 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 		
 		switch (item.getItemId()){
 		 
-		 
+		case R.id.search: //on pressing home
+			search = (EditText) item.getActionView();
+            search.addTextChangedListener(filterTextWatcher);
+            search.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+			
+			
+			
+			return true;    
 		 
 		case android.R.id.home: //on pressing home
             mMenuDrawer.toggleMenu();
@@ -455,7 +475,40 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 			
 		}
 	}
+	private TextWatcher filterTextWatcher = new TextWatcher() {
+	    public void afterTextChanged(Editable s) {
+	    }
 
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+	    	
+	    	// this is to search the items in list
+	    	search.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+					// When user changed the Text
+					live_first.this.adapter.getFilter().filter(cs);	
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+						int arg3) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable arg0) {
+					// TODO Auto-generated method stub							
+				}
+			});
+	    	
+ 	    }
+
+	};
 
 	//rest functinality for of navigation
     @Override

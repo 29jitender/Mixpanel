@@ -14,8 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -41,6 +40,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.people.People_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 import com.viewpagerindicator.PageIndicator;
 public class Home extends SherlockFragmentActivity implements  OnSharedPreferenceChangeListener,View.OnClickListener {
@@ -107,8 +107,9 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
             getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
              ColorDrawable colorDrawable = new ColorDrawable();
-            colorDrawable.setColor(Color.parseColor("#44C1B8"));
-            android.app.ActionBar actionBar = getActionBar();
+             int myColor = this.getResources().getColor(R.color.menu1);
+             colorDrawable.setColor(myColor);
+             android.app.ActionBar actionBar = getActionBar();
             actionBar.setBackgroundDrawable(colorDrawable);
  
  
@@ -485,7 +486,7 @@ else if(anmi==2){
     		
    		 mMenuDrawer.setActiveView(v);
       		 // mMenuDrawer.closeMenu();
-              startActivity(new Intent(this, About.class));
+              startActivity(new Intent(this, People_first.class));
               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
               anmi=1;
    		

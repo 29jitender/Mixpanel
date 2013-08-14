@@ -56,14 +56,14 @@ public class Stream_activity_list_update implements Callback{
 					 HashMap<String, String>  map = new HashMap<String, String>();
 
 					JSONObject obj2 =array2.getJSONObject(i);
-					
+					String timestampinside=obj2.getString("ts_epoch");
+					Stream_activity_final.timestampcheck.add(timestampinside);//adding all timestamp
 					String name=obj2.getString("event");
 					if(name.equals("mp_page_view")){//if it is a page view
 						map.put("name","page view");
 						///last seen/////////////////////////////
 						String last_seen = obj2.getString("ts");
-						String timestampinside=obj2.getString("ts_epoch");
-						Stream_activity_final.timestampcheck.add(timestampinside);//adding all timestamp
+						
 						
 						
 						//////////////

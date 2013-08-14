@@ -132,12 +132,12 @@ public class event_final extends SherlockListActivity implements Callback,OnShar
             // this is for the color of title bar
              ColorDrawable colorDrawable = new ColorDrawable();
              if(name1.equals("Top")){//to check from where it came from
-            	 colorDrawable.setColor(Color.parseColor("#3BB0AA"));
-             }
+            	 int myColor = this.getResources().getColor(R.color.menu3);
+                 colorDrawable.setColor(myColor);             }
              else  if(name1.equals("all"))
              {
-            	 colorDrawable.setColor(Color.parseColor("#44C19F"));
-             }
+            	 int myColor = this.getResources().getColor(R.color.menu2);
+                 colorDrawable.setColor(myColor);             }
             android.app.ActionBar actionBar = getActionBar();
             actionBar.setBackgroundDrawable(colorDrawable);
 

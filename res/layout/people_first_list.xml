@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+     android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:background="#fff"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/people_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="19dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="#093c00"
+            android:text="Ankur anand"
+            android:layout_marginLeft="5dp"
+            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+       
+
+        <TextView
+            android:id="@+id/people_first_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="5 hour ago" />
+
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/people_first_time"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/people_first_time"
+            android:layout_marginTop="8dp"
+            android:text="@string/time" />
+
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/people_first_email"
+            android:layout_alignBottom="@+id/people_first_email"
+            android:layout_alignParentLeft="true"
+          android:layout_marginLeft="5dp"
+            
+            android:text="@string/email" />
+
+        <TextView
+            android:id="@+id/people_first_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/people_first_name"
+             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView3"
+            android:text="ankur@gmail.com" />
+        
+        
+        <com.mixpanel.src.Icon_font
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/people_first_location"
+            android:layout_alignBottom="@+id/people_first_location"
+            android:layout_alignParentLeft="true"
+          android:layout_marginLeft="5dp"
+            
+            android:text="@string/globe" />
+        
+        <TextView
+            android:id="@+id/people_first_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+              android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/textView4"
+            
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/people_first_email"
+            android:text="Delhi,india" />
+        
+			
+    </RelativeLayout>
+
+</LinearLayout>

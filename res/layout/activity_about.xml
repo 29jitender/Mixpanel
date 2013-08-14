@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Mixpanel"
+        android:text="Hop"
         android:textColor="@color/menu4"
         android:textSize="40px" />
      <com.mixpanel.src.Font

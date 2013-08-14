@@ -44,10 +44,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@drawable/list_bg"
+         android:background="@drawable/list_bg"
         
           >
 
@@ -56,9 +56,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/stream_first_came_from"
-            android:layout_alignBottom="@+id/stream_first_came_from"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
+            android:layout_below="@+id/stream_first_view"
+            android:layout_marginBottom="20dp"
             
             android:rotationY="180"
             android:textSize="22sp"
@@ -69,13 +70,15 @@
             android:id="@+id/stream_first_came_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stream_first_view"
+             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/textView3"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:maxLines="2"
+                        android:textIsSelectable="true"
+            
             android:text="www.google.com" />
 
         <TextView
@@ -83,14 +86,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"
-            android:text="www.fingo.com"
+            android:layout_marginTop="10dp"
+              android:text="www.fingo.com"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textIsSelectable="true"
             android:textColor="#578910" />
-
+					 <View
+				  android:layout_width="1dp"
+				  android:layout_height="20dp"
+				  android:layout_below="@+id/stream_first_came_from"/>
+				
     </RelativeLayout>
 
 </LinearLayout>

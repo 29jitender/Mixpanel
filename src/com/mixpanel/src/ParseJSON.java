@@ -146,6 +146,27 @@ public class ParseJSON  implements Callback{
 
 			  retrun_stuff=display;
 		  }
+		  else if(type_event=="people_list"){//////list of people
+
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{};
+			  asyncRequest.execute(All_api_define.people_list());
+			  asyncRequest.setListener(this);
+
+			  retrun_stuff=display;
+		  }
+		  
+		  else if(type_event=="people_data"){//////list of people
+
+			  Async_task asyncRequest = new Async_task();
+			  asyncRequest.arg = new String[]{};
+			  asyncRequest.execute(All_api_define.people_data());
+			  asyncRequest.setListener(this);
+
+			  retrun_stuff=display;
+		  }
+		  
+		  
 		  return retrun_stuff ;
 
 	  }

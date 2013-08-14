@@ -4,22 +4,20 @@
     
     <color name="md__transparent">#00000000</color>
 
-    <color name="md__defaultBackground">#FF555555</color>
-    <color name="c1">#99CC00</color>
+     <color name="c1">#99CC00</color>
     <color name="c2">#FFBB33</color>
     <color name="c3">#AA66CC</color>
     <color name="c4">#f41212</color>
     <color name="c5">#25d3ee</color>
     
     <color name="nill">#fff</color>
-    <color name="menu1">#44C1B8</color>
-    <color name="menu2">#44C19F</color>
-    <color name="menu3">#3BB0AA</color>
-    <color name="menu4">#25d3ee</color> 
-    <color name="menu5">#49817D</color>
-    <color name="menu6">#ACEAE5</color>
-    <color name="menu7">#0C6861</color> 
-    
+     <color name="menu1">#50b4ad</color>
+    <color name="menu2">#569eae</color>
+    <color name="menu3">#5a90af</color>
+    <color name="menu4">#5e82b1</color> 
+    <color name="menu5">#607ab1</color>
+    <color name="menu6">#6665b3</color>
+    <color name="menu7">#6a57b4</color> 
         <color name="grey">#a5a5a5</color>
             <color name="black">#000</color>
    

@@ -116,7 +116,8 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
 	           
             // this is for the color of title bar
         	 ColorDrawable colorDrawable = new ColorDrawable();
-             colorDrawable.setColor(Color.parseColor("#44C19F"));//menu 2
+        	 int myColor = this.getResources().getColor(R.color.menu2);
+             colorDrawable.setColor(myColor);
              android.app.ActionBar actionBar = getActionBar();
              actionBar.setBackgroundDrawable(colorDrawable);
 
@@ -193,30 +194,7 @@ public class Event_activity extends SherlockActivity implements   Callback,View.
         adapter = new ArrayAdapter<String>(this, R.layout.list_item1, R.id.event_activity_list, array);
         lv.setAdapter(adapter);
         
-        // this is to search the items in list
-//        inputSearch = (EditText) findViewById(R.id.inputSearch);
-//
-//        inputSearch.addTextChangedListener(new TextWatcher() {
-//			
-//			@Override
-//			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-//				// When user changed the Text
-//				Event_activity.this.adapter.getFilter().filter(cs);	
-//			}
-//			
-//			@Override
-//			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-//					int arg3) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//			@Override
-//			public void afterTextChanged(Editable arg0) {
-//				// TODO Auto-generated method stub							
-//			}
-//		});
-//		
+ 	
 		 click_action();
 
 	}

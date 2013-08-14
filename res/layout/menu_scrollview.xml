@@ -28,7 +28,7 @@
                 android:textSize="40sp"
                 android:background="@color/menu1"
                  android:text="@string/overview"
-                 android:gravity="center"
+                  android:gravity="center"
                  android:layout_weight="1"/>
             </TableRow>
             
@@ -105,7 +105,7 @@
                 android:layout_height="fill_parent"
                  android:text="@string/funnel"
                  android:gravity="center"
-                 android:rotation="180"
+                 android:rotationX="180"
                   android:background="@color/menu5"
                  android:layout_weight="1"/>
             </TableRow>
