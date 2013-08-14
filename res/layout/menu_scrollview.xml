@@ -18,7 +18,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:layout_weight="0.142">
+                 android:layout_weight="0.125">
 
                <com.mixpanel.src.Icon_font
                 android:id="@+id/item1"
@@ -32,7 +32,7 @@
                  android:layout_weight="1"/>
             </TableRow>
             
-            <TableRow   android:layout_weight="0.142"
+            <TableRow   android:layout_weight="0.125"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -51,7 +51,7 @@
             </TableRow>
             
             
-            <TableRow   android:layout_weight="0.142"
+            <TableRow   android:layout_weight="0.125"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -73,7 +73,7 @@
             
             
             
-            <TableRow   android:layout_weight="0.142"
+            <TableRow   android:layout_weight="0.125"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             
             
             
-             <TableRow   android:layout_weight="0.142"
+             <TableRow   android:layout_weight="0.128"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                   android:background="@color/menu5"
                  android:layout_weight="1"/>
             </TableRow>
-              <TableRow   android:layout_weight="0.142"
+              <TableRow   android:layout_weight="0.125"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -120,12 +120,12 @@
                 style="@style/MenuDrawer.Widget.Title"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:text="@string/people"
+                 android:text="@string/stream"
                  android:gravity="center"
                   android:background="@color/menu6"
                  android:layout_weight="1"/>
             </TableRow>
-              <TableRow   android:layout_weight="0.142"
+            <TableRow   android:layout_weight="0.125"
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -136,9 +136,26 @@
                 style="@style/MenuDrawer.Widget.Title"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:text="@string/about"
+                 android:text="@string/people"
                  android:gravity="center"
                   android:background="@color/menu7"
+                 android:layout_weight="1"/>
+            </TableRow> 
+              
+              <TableRow   android:layout_weight="0.125"
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 >
+               <com.mixpanel.src.Icon_font
+                android:id="@+id/item8"
+                 android:textSize="40sp"
+                style="@style/MenuDrawer.Widget.Title"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                 android:text="@string/about"
+                 android:gravity="center"
+                  android:background="@color/menu8"
                  android:layout_weight="1"/>
             </TableRow> 
             

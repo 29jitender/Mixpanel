@@ -42,6 +42,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.people.People_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 
 public class Event_top extends SherlockListActivity implements Callback ,OnSharedPreferenceChangeListener,View.OnClickListener {
@@ -124,6 +125,7 @@ public class Event_top extends SherlockListActivity implements Callback ,OnShare
        findViewById(R.id.item5).setOnClickListener(this);
        findViewById(R.id.item6).setOnClickListener(this);
        findViewById(R.id.item7).setOnClickListener(this);
+       findViewById(R.id.item8).setOnClickListener(this);
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
        if (activeView != null) {
@@ -511,14 +513,23 @@ public void  get_values_pref(){// getting values from preference
   		
   		break;
    	case R.id.item7:
-   		
+		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, About.class));
+             startActivity(new Intent(this, People_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		
   		break;
+   	case R.id.item8:
+   		
+     		 mMenuDrawer.setActiveView(v);
+        		 // mMenuDrawer.closeMenu();
+                startActivity(new Intent(this, About.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+     		
+     		break;
 
    	}
       

@@ -27,6 +27,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.people.People_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 
 public class About extends SherlockActivity implements View.OnClickListener {
@@ -84,7 +85,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 //            getActionBar().setDisplayHomeAsUpEnabled(true);
             // this is for the color of title bar
         	 ColorDrawable colorDrawable = new ColorDrawable();
-        	 int myColor = this.getResources().getColor(R.color.menu7);
+        	 int myColor = this.getResources().getColor(R.color.menu8);
              colorDrawable.setColor(myColor);
              android.app.ActionBar actionBar = getActionBar();
              actionBar.setBackgroundDrawable(colorDrawable);
@@ -100,6 +101,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
         findViewById(R.id.item5).setOnClickListener(this);
         findViewById(R.id.item6).setOnClickListener(this);
         findViewById(R.id.item7).setOnClickListener(this);
+        findViewById(R.id.item8).setOnClickListener(this);
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
         if (activeView != null) {
@@ -348,12 +350,19 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	  		
 	  		break;
 	   	case R.id.item7:
+    		
+	   		 mMenuDrawer.setActiveView(v);
+	      		 // mMenuDrawer.closeMenu();
+	              startActivity(new Intent(this, People_first.class));
+	              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	              anmi=1;
 	   		
-	   	 mMenuDrawer.setActiveView(v);
-	     mMenuDrawer.closeMenu();
-	    // startActivity(new Intent(this, Event_top.class)); 
-	  		
-	  		break;
+	   		break;
+	    	case R.id.item8:
+	    		
+	    		mMenuDrawer.closeMenu();
+	      		
+	      		break;
 
 	   	}
 	      

@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
@@ -53,6 +55,7 @@ import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.people.People_first;
 
 
 
@@ -137,6 +140,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
        findViewById(R.id.item5).setOnClickListener(this);
        findViewById(R.id.item6).setOnClickListener(this);
        findViewById(R.id.item7).setOnClickListener(this);
+       findViewById(R.id.item8).setOnClickListener(this);
 
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -225,7 +229,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
  								else {
 									 HashMap<String, String>  map = new HashMap<String, String>();
 									 	user_id.add(id);
-									 	
+									 	map.put("id",id);
 									 	if(name.equals("")){///////if there is no name 
 									 		int id_int=0;
 									 		for(int z=0;z<id.length();z++){
@@ -370,13 +374,13 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 					 
         adapter = new SimpleAdapter(this, stream_list,
 					    R.layout.list_stream_frist,
-					    new String[] { "name","time","page"}, new int[] {
-					            R.id.stream_user_name,R.id.stream_first_time,R.id.stream_first_view });
+					    new String[] { "name","time","page","id"}, new int[] {
+					            R.id.stream_user_name,R.id.stream_first_time,R.id.stream_first_view ,R.id.stream_id});
  
       setListAdapter(adapter);
  
       // selecting single ListView item
-      ListView lv = getListView();
+      final ListView lv = getListView();
      
       // Launching new screen on Selecting Single ListItem
       lv.setOnItemClickListener(new OnItemClickListener() {
@@ -385,9 +389,12 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
 					public void onItemClick(AdapterView<?> parent, View view,
 					        int position, long id) {
 					    // getting values from selected ListItem
-					    
-					    String distinct_id = user_id.get(position);
-					    String username = user_name.get(position);
+		 				Object o = lv.getItemAtPosition(position);
+		 				HashMap<String,String> click_data=(HashMap<String, String>) o;
+
+ 
+					    String distinct_id = click_data.get("id");
+					    String username = click_data.get("name");
 
 					    // Starting new intent
 					    Intent in = new Intent(getApplicationContext(), Stream_activity_final.class);
@@ -639,14 +646,23 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
   		
   		break;
    	case R.id.item7:
-   		
+		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, About.class));
+             startActivity(new Intent(this, People_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		
   		break;
+   	case R.id.item8:
+   		
+     		 mMenuDrawer.setActiveView(v);
+        		 // mMenuDrawer.closeMenu();
+                startActivity(new Intent(this, About.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+     		
+     		break;
 
    	}
       

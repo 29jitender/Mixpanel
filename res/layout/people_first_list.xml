@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="131dp"
         android:background="#fff"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical" 
+                android:layout_weight="0.2"
+        >
 
         <TextView
             android:id="@+id/people_first_name"
@@ -94,8 +96,27 @@
             android:layout_marginLeft="10dp"
             android:layout_below="@+id/people_first_email"
             android:text="Delhi,india" />
-        
+
+        <ImageView
+            android:id="@+id/thumbImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/people_first_location"
+            android:layout_alignRight="@+id/people_first_time"
+            android:layout_below="@+id/people_first_name"
+            />
+
+        <TextView
+            android:id="@+id/people_first_id"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/thumbImage"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="22dp"
+            android:text="id" />
 			
     </RelativeLayout>
 
+  
 </LinearLayout>

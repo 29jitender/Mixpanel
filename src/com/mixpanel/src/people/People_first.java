@@ -1,12 +1,17 @@
 package com.mixpanel.src.people; 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
+
+import net.simonvt.menudrawer.MenuDrawer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -22,16 +27,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
@@ -46,18 +51,18 @@ import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
-import com.mixpanel.src.streams.Stream_activity_final;
+import com.mixpanel.src.streams.Stream_activity_first;
 
 
 
-public class People_first extends SherlockListActivity implements Callback ,View.OnClickListener {
+public class People_first extends SherlockActivity implements Callback ,View.OnClickListener {
 	public static ArrayList<HashMap<String, String>> people_list;
 	ArrayList<String> people_name;
  	ArrayList<String> people_id;
     private EditText search;
-
-    SimpleAdapter adapter;
-  	 public Boolean internt_count=null;// to check the connectvity
+    CustomListAdapter adapter;
+    String everything;
+   	 public Boolean internt_count=null;// to check the connectvity
 
  	 
  		 //navigation drawer variables
@@ -112,7 +117,7 @@ public class People_first extends SherlockListActivity implements Callback ,View
 //           getActionBar().setDisplayHomeAsUpEnabled(true);
            // this is for the color of title bar
     	   ColorDrawable colorDrawable = new ColorDrawable();
-    	   int myColor = this.getResources().getColor(R.color.menu6);
+    	   int myColor = this.getResources().getColor(R.color.menu7);
            colorDrawable.setColor(myColor);
            android.app.ActionBar actionBar = getActionBar();
            actionBar.setBackgroundDrawable(colorDrawable);
@@ -127,6 +132,7 @@ public class People_first extends SherlockListActivity implements Callback ,View
        findViewById(R.id.item5).setOnClickListener(this);
        findViewById(R.id.item6).setOnClickListener(this);
        findViewById(R.id.item7).setOnClickListener(this);
+       findViewById(R.id.item8).setOnClickListener(this);
 
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -190,12 +196,53 @@ public class People_first extends SherlockListActivity implements Callback ,View
    
 	@Override
 	public void methodToCallback(String print) {
-		  people_list = new ArrayList<HashMap<String, String>>();
+		everything=print;
+		 
+	         setSupportProgressBarIndeterminateVisibility(false); 
+ 
+	         ArrayList<Item> image_details = getListData();
+	 		final ListView lv1 = (ListView) findViewById(R.id.custom_list);
+	 		adapter=new CustomListAdapter(this, image_details);
+	 		lv1.setAdapter(adapter);
+	 		lv1.setOnItemClickListener(new OnItemClickListener() {
+
+	 			@Override
+	 			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+	 				Object o = lv1.getItemAtPosition(position);
+	 				Item newsData = (Item) o;
+	 				 String pass =newsData.toString();
+	 				String name = pass.substring(0, pass.indexOf(','));
+	 				String idpass= pass.substring(pass.indexOf(',')+1,pass.length());
+	 				idpass="[\""+idpass+"\"]";
+
+	 				
+	 				 // Starting new intent
+				    Intent in = new Intent(getApplicationContext(), People_second.class);
+
+					    All_api_define.people_id=idpass;//assing value to all api deifne
+					    All_api_define.people_name=name;
+					 
+				    All_api_define.people_data();//callin it onece
+				    startActivity(in);
+			        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+				    anmi=1;
+	 			}
+
+	 		});	
+		
+	}
+	
+	
+	private ArrayList<Item> getListData() {
+		ArrayList<Item> results = new ArrayList<Item>();
+		
+		 people_list = new ArrayList<HashMap<String, String>>();
 		  people_id = new ArrayList<String>();
 	  	  people_name = new ArrayList<String>();
 		  
 		  try {
-			JSONObject obj1 = new JSONObject(print);
+			JSONObject obj1 = new JSONObject(everything);
 			
 			JSONArray array1 =obj1.getJSONArray("results");
 			
@@ -241,7 +288,17 @@ public class People_first extends SherlockListActivity implements Callback ,View
 				 	
 				 	//////
 					people_list.add(map);
+					Item data = new Item();
 
+					data.setHeadline(username);
+					data.setReporterName(email);
+					data.setDate(lastseen);
+					data.setuserid(distinct_id);
+					String emailmd5= md5(email);
+					String url="http://www.gravatar.com/avatar/"+emailmd5;
+					data.setUrl(url);		
+					data.setlocation(location);
+					results.add(data);
 			}
 			
 			
@@ -252,53 +309,37 @@ public class People_first extends SherlockListActivity implements Callback ,View
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	         setSupportProgressBarIndeterminateVisibility(false); 
-
-		//////////updating data into list 
-		  
-		  adapter = new SimpleAdapter(this, people_list,
-				    R.layout.people_first_list,
-				    new String[] { "name","email","lastseen","location"}, new int[] {
-				            R.id.people_first_name,R.id.people_first_email,R.id.people_first_time,R.id.people_first_location });
-
-		  	setListAdapter(adapter);
 		
 		
-		    // selecting single ListView item
-		      ListView lv = getListView();
+		
+		return results;
+		}
+	
+	 public static String md5(String input) {
+		    
+		    String md5 = null;
 		     
-		      // Launching new screen on Selecting Single ListItem
-		      lv.setOnItemClickListener(new OnItemClickListener() {
-		 
-							@Override
-							public void onItemClick(AdapterView<?> parent, View view,
-							        int position, long id) {
-							    // getting values from selected ListItem
-							    
-							    String people_id1 = people_id.get(position);
-							    
-							    people_id1="[\""+people_id1+"\"]";
-							    String people_name1 = people_name.get(position);
+		    if(null == input) return null;
+		     
+		    try {
+		         
+		    //Create MessageDigest object for MD5
+		    MessageDigest digest = MessageDigest.getInstance("MD5");
+		     
+		    //Update input string in message digest
+		    digest.update(input.getBytes(), 0, input.length());
 
-							    // Starting new intent
-							    Intent in = new Intent(getApplicationContext(), People_second.class);
-		 
-		 					    All_api_define.people_id=people_id1;//assing value to all api deifne
-		 					    All_api_define.people_name=people_name1;
-		 					 
-							    All_api_define.people_data();//callin it onece
-							    startActivity(in);
-						        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+		    //Converts message digest value in base 16 (hex) 
+		    md5 = new BigInteger(1, digest.digest()).toString(16);
 
-							    anmi=1;
-							}
-		      });
-					
-		  	
-		  	
-		
-		
-	}
+		    } catch (NoSuchAlgorithmException e) {
+
+		        e.printStackTrace();
+		    }
+		    return md5;
+		}
+	
+	
 	@Override
     protected void onResume() {
 
@@ -382,8 +423,27 @@ public class People_first extends SherlockListActivity implements Callback ,View
 		switch (item.getItemId()){
 		case R.id.search: //on pressing home
 			search = (EditText) item.getActionView();
-            search.addTextChangedListener(filterTextWatcher);
-            search.requestFocus();
+			search.addTextChangedListener(new TextWatcher() {
+				 
+		            @Override
+		            public void afterTextChanged(Editable arg0) {
+		                // TODO Auto-generated method stub
+		                String text = search.getText().toString().toLowerCase(Locale.getDefault());
+		                adapter .filter(text);
+		            }
+		 
+		            @Override
+		            public void beforeTextChanged(CharSequence arg0, int arg1,
+		                    int arg2, int arg3) {
+		                // TODO Auto-generated method stub
+		            }
+		 
+		            @Override
+		            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+		                    int arg3) {
+		                // TODO Auto-generated method stub
+		            }
+		        });            search.requestFocus();
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 			
@@ -400,40 +460,7 @@ public class People_first extends SherlockListActivity implements Callback ,View
 			
 		}
 	}
-	private TextWatcher filterTextWatcher = new TextWatcher() {
-	    public void afterTextChanged(Editable s) {
-	    }
-
-	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	    }
-
-	    public void onTextChanged(CharSequence s, int start, int before, int count) {
-	    	
-	    	// this is to search the items in list
-	    	search.addTextChangedListener(new TextWatcher() {
-				
-				@Override
-				public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-					// When user changed the Text
-					People_first.this.adapter.getFilter().filter(cs);	
-				}
-				
-				@Override
-				public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-						int arg3) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void afterTextChanged(Editable arg0) {
-					// TODO Auto-generated method stub							
-				}
-			});
-	    	
- 	    }
-
-	};
+ 
 
 	//rest functinality for of navigation
     @Override
@@ -512,20 +539,29 @@ public class People_first extends SherlockListActivity implements Callback ,View
    	case R.id.item6:
    		
    	 mMenuDrawer.setActiveView(v);
-     mMenuDrawer.closeMenu();
-    // startActivity(new Intent(this, Event_top.class)); 
-     
+		 // mMenuDrawer.closeMenu();
+     startActivity(new Intent(this, Stream_activity_first.class));
+     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+     anmi=1;
+	
   		
   		break;
    	case R.id.item7:
-   		
+		
   		 mMenuDrawer.setActiveView(v);
-     		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, About.class));
-             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-             anmi=1;
+     		   mMenuDrawer.closeMenu();
+             
   		
   		break;
+   	case R.id.item8:
+   		
+     		 mMenuDrawer.setActiveView(v);
+        		 // mMenuDrawer.closeMenu();
+                startActivity(new Intent(this, About.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+     		
+     		break;
 
    	}
       

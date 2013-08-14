@@ -16,8 +16,10 @@
     <color name="menu3">#5a90af</color>
     <color name="menu4">#5e82b1</color> 
     <color name="menu5">#607ab1</color>
-    <color name="menu6">#6665b3</color>
-    <color name="menu7">#6a57b4</color> 
+    <color name="menu6">#646cb2</color>
+    <color name="menu7">#685eb3</color> 
+    <color name="menu8">#6c50b5</color> 
+    
         <color name="grey">#a5a5a5</color>
             <color name="black">#000</color>
    

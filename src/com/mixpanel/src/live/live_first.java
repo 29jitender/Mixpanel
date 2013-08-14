@@ -54,6 +54,7 @@ import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.funnel.Funnel_activity;
+import com.mixpanel.src.people.People_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 
 
@@ -136,6 +137,7 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
        findViewById(R.id.item5).setOnClickListener(this);
        findViewById(R.id.item6).setOnClickListener(this);
        findViewById(R.id.item7).setOnClickListener(this);
+       findViewById(R.id.item8).setOnClickListener(this);
 
        TextView activeView = (TextView) findViewById(mActiveViewId);
        if (activeView != null) {
@@ -214,6 +216,7 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 				 
 				 String event=obj1.getString("event");
 				 map.put("name", event);
+				 map.put("fulldata",obj1.toString());
 				///caluclation difference in time
  				 String time=obj1.getString("$ts");//time in seconds	  
 					Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
@@ -313,7 +316,7 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
         Collections.reverse(live_list);//reversing the order of list
  	        adapter = new SimpleAdapter(this, live_list,
 						    R.layout.list_live_first,
-						    new String[] { "name","time","location"}, new int[] {
+						    new String[] { "name","time","location","fulldata"}, new int[] {
 						            R.id.live_name,R.id.live_time,R.id.live_location });
   		 setadapter();
 	}
@@ -330,24 +333,23 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
 	      setListAdapter(adapter);///////setting adapter on refresh
 	        setSupportProgressBarIndeterminateVisibility(false);//after getting result false of loading icon
 
-	      	ListView lv = getListView();
+	      	final ListView lv = getListView();
 	      	lv.setOnItemClickListener(new OnItemClickListener() {
 	      		 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 				        int position, long id) {
-				    // getting values from selected ListItem
-				    
-				     
+ 				    
+					Object o = lv.getItemAtPosition(position);
+	 				HashMap<String,String> click_data=(HashMap<String, String>) o;
+
+					
+					
 				    // Starting new intent
 				    Intent in = new Intent(getApplicationContext(), Live_detail.class); 
-				    try {
-						in.putExtra("object", array1.getJSONObject(array1.length()-position-1).toString());///because have applied sort
-						in.putExtra("event_name", array1.getJSONObject(array1.length()-position-1).getString("event"));
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+ 						in.putExtra("object", click_data.get("fulldata"));///because have applied sort
+						in.putExtra("event_name", click_data.get("name"));
+					 
 				    startActivity(in);
 			          overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
@@ -597,14 +599,23 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
   		
   		break;
    	case R.id.item7:
-   		
+		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, About.class));
+             startActivity(new Intent(this, People_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		
   		break;
+   	case R.id.item8:
+   		
+     		 mMenuDrawer.setActiveView(v);
+        		 // mMenuDrawer.closeMenu();
+                startActivity(new Intent(this, About.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+     		
+     		break;
 
    	}
       

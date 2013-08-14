@@ -57,6 +57,7 @@ import com.mixpanel.src.ParseJSON;
 import com.mixpanel.src.R;
 import com.mixpanel.src.SampleList;
 import com.mixpanel.src.live.live_first;
+import com.mixpanel.src.people.People_first;
 import com.mixpanel.src.streams.Stream_activity_first;
 
 
@@ -153,6 +154,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
         findViewById(R.id.item5).setOnClickListener(this);
         findViewById(R.id.item6).setOnClickListener(this);
         findViewById(R.id.item7).setOnClickListener(this);
+        findViewById(R.id.item8).setOnClickListener(this);
 
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -279,7 +281,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						}
 						 
 						long diff = date2.getTime() - date1.getTime();
-						  interval=(int) (diff / (1000 * 60 * 60 * 24))+1;////////////calculating interval
+						  interval=(int) (diff / (1000 * 60 * 60 * 24))+2;////////////calculating interval
  
 	        		  
 	        		  All_api_define.funnel_id=funnel_id;
@@ -514,14 +516,23 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
   		
   		break;
    	case R.id.item7:
-   		
+		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, About.class));
+             startActivity(new Intent(this, People_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		
   		break;
+   	case R.id.item8:
+   		
+     		 mMenuDrawer.setActiveView(v);
+        		 // mMenuDrawer.closeMenu();
+                startActivity(new Intent(this, About.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                anmi=1;
+     		
+     		break;
 
    	}
       

@@ -123,6 +123,8 @@ public class Home extends SherlockFragmentActivity implements  OnSharedPreferenc
         findViewById(R.id.item5).setOnClickListener(this);
         findViewById(R.id.item6).setOnClickListener(this);
         findViewById(R.id.item7).setOnClickListener(this);
+        findViewById(R.id.item8).setOnClickListener(this);
+
         
 
         TextView activeView = (TextView) findViewById(mActiveViewId);
@@ -491,6 +493,17 @@ else if(anmi==2){
               anmi=1;
    		
    		break;
+    	case R.id.item8:
+    		
+      		 mMenuDrawer.setActiveView(v);
+         		 // mMenuDrawer.closeMenu();
+                 startActivity(new Intent(this, About.class));
+                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                 anmi=1;
+      		
+      		break;
+   		
+   		
 
     	}
      	  
