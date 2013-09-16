@@ -441,6 +441,29 @@ public class All_api_define{
 	      return path_http;
 	      
 	}
- 
+	public static String revenu_home() {
+		
+		  
+		  TreeMap<String, String> tm = new TreeMap<String, String>();
+		 
+		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
+		  	Date date = new Date(); 
+			Calendar cal = new GregorianCalendar();
+			cal.setTime(date);						
+			cal.add(Calendar.DAY_OF_MONTH, -7);
+			Date date7 = cal.getTime();
+			String to_date=formatter.format(date);
+	  		  String from_date=formatter.format(date7);
+			  
+			tm.put("from_date", to_date );
+		  tm.put("to_date", from_date );
+		  tm.put("unit", new String("week"));
+
+		  String send_path_first ="http://mixpanel.com/api/2.0/engage/revenue/?";
+	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
+	      return path_http;
+	      
+	}
 
 }

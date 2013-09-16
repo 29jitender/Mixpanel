@@ -281,7 +281,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
 						}
 						 
 						long diff = date2.getTime() - date1.getTime();
-						  interval=(int) (diff / (1000 * 60 * 60 * 24))+2;////////////calculating interval
+						  interval=(int) (diff / (1000 * 60 * 60 * 24))+1;////////////calculating interval
  
 	        		  
 	        		  All_api_define.funnel_id=funnel_id;
@@ -467,7 +467,12 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
              // mMenuDrawer.closeMenu();
                   Intent myIntent = new Intent(Funnel_activity.this ,Home.class);//refreshing
                   myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  Home.mMenuDrawer.closeMenu();
+			try {
+				Home.mMenuDrawer.closeMenu();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
                   startActivity(myIntent);
                   overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
