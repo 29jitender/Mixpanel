@@ -496,9 +496,7 @@ public class People_first extends SherlockActivity implements Callback ,View.OnC
              // mMenuDrawer.closeMenu();
                   Intent myIntent = new Intent(People_first.this ,Home.class);//refreshing
                   myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  Home.mMenuDrawer.closeMenu();
-
-                  startActivity(myIntent);
+                   startActivity(myIntent);
                   overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                  anmi=1;
    		break;

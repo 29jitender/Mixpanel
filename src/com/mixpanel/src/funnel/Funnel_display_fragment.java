@@ -2,15 +2,10 @@ package com.mixpanel.src.funnel;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.mixpanel.src.About;
-import com.mixpanel.src.Event_top;
-import com.mixpanel.src.Home;
-import com.mixpanel.src.R;
 import com.viewpagerindicator.IconPagerAdapter;
 
 class Funnel_display_fragment extends FragmentPagerAdapter implements IconPagerAdapter {

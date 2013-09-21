@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -152,7 +153,15 @@ public final class HomeFragment extends SherlockFragment implements Callback,OnC
 		}
 		 	 for(int out=0;out<5;out++){
  					 try {
-						JSONObject c = event_data.getJSONObject(All_api_define.event_name_array[out]);	
+						JSONObject c = null;
+						try {
+							c = event_data.getJSONObject(All_api_define.event_name_array[out]);
+						} catch (Exception e) {//if its null restart app
+							Intent intent = new Intent(getActivity(), Home.class);
+			                startActivity(intent);
+							
+ 							e.printStackTrace();
+						}	
 						 	int i = 0;
 						 	 
 						 	for (Iterator<?> keys = c.keys(); keys.hasNext(); i++) { 	

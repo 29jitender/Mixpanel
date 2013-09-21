@@ -300,8 +300,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	             // mMenuDrawer.closeMenu();
 	                  Intent myIntent = new Intent(About.this ,Home.class);//refreshing
 	                  myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	                  Home.mMenuDrawer.closeMenu();
-
+ 
 	                  startActivity(myIntent);
 	                  overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	                 anmi=1;

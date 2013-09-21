@@ -597,8 +597,7 @@ public class Stream_activity_first extends SherlockListActivity implements Callb
              // mMenuDrawer.closeMenu();
                   Intent myIntent = new Intent(Stream_activity_first.this ,Home.class);//refreshing
                   myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  Home.mMenuDrawer.closeMenu();
-
+ 
                   startActivity(myIntent);
                   overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                  anmi=1;

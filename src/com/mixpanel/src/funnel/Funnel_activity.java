@@ -467,12 +467,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
              // mMenuDrawer.closeMenu();
                   Intent myIntent = new Intent(Funnel_activity.this ,Home.class);//refreshing
                   myIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-			try {
-				Home.mMenuDrawer.closeMenu();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+ 		 
 
                   startActivity(myIntent);
                   overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
