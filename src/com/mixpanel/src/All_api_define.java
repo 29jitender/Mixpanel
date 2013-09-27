@@ -448,17 +448,14 @@ public class All_api_define{
 		 
 		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
-		  	Date date = new Date(); 
-			Calendar cal = new GregorianCalendar();
-			cal.setTime(date);						
-			cal.add(Calendar.DAY_OF_MONTH, -7);
-			Date date7 = cal.getTime();
+		  	Date date = new Date(); 			
 			String to_date=formatter.format(date);
-	  		  String from_date=formatter.format(date7);
-			  
-			tm.put("from_date", to_date );
-		  tm.put("to_date", from_date );
-		  tm.put("unit", new String("week"));
+			 
+			int year= Integer.parseInt(to_date.substring(0, to_date.indexOf("-")))-1;
+			 tm.put("from_date", year+"-01-01" );
+ 			tm.put("to_date", to_date );
+		  tm.put("unit", new String("day"));
+ 		  tm.put("type", new String("unique"));
 
 		  String send_path_first ="http://mixpanel.com/api/2.0/engage/revenue/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);

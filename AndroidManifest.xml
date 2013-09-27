@@ -62,9 +62,9 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.mixpanel.src.demo.Demo"
+            android:name="com.mixpanel.revenue.Revenue_first"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" >
+              >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_top_click"

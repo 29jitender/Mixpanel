@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/revenu_1" >
+
+        <View
+            android:id="@+id/aboutview1"
+            android:layout_width="fill_parent"
+            android:layout_height="5dip"
+            android:layout_below="@+id/about"
+            android:background="@color/c1" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/aboutview1"
+            android:background="#e3e3e3" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:text="Number of Customers"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/revenue_cust"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/relativeLayout1"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginBottom="10dp"
+     android:layout_marginLeft="5dp"
+     android:layout_marginRight="5dp"
+     android:layout_marginTop="10dp"
+     android:layout_weight="0.3"
+     android:background="@drawable/revenu_1" >
+
+     <View
+         android:id="@+id/aboutview1"
+         android:layout_width="fill_parent"
+         android:layout_height="5dip"
+         android:layout_below="@+id/about"
+         android:background="@color/c2" />
+
+     <RelativeLayout
+         android:id="@+id/relativeLayout2"
+         android:layout_width="wrap_content"
+         android:layout_height="40dp"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/aboutview1"
+         android:background="#e3e3e3" >
+
+         <TextView
+             android:id="@+id/textView1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+             android:layout_alignParentTop="true"
+             android:layout_centerHorizontal="true"
+             android:gravity="center_vertical"
+             android:text="AVERAGE REVENUE"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+     </RelativeLayout>
+
+     <TextView
+         android:id="@+id/revenue_avg"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_below="@+id/relativeLayout2"
+         android:layout_centerHorizontal="true"
+         android:gravity="center_vertical"
+         android:text="Large Text"
+         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+ </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/revenu_1" >
+
+        <View
+            android:id="@+id/aboutview1"
+            android:layout_width="fill_parent"
+            android:layout_height="5dip"
+            android:layout_below="@+id/about"
+            android:background="@color/c3" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/aboutview1"
+            android:background="#e3e3e3" >
+
+            <TextView
+                android:id="@+id/tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical"
+                android:text="TOTAL REVENUE"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/revenue_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/relativeLayout3"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+ 
+</LinearLayout>
