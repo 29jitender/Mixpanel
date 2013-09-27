@@ -63,8 +63,15 @@
         </activity>
         <activity
             android:name="com.mixpanel.revenue.Revenue_first"
-            android:screenOrientation="portrait"
-              >
+            android:screenOrientation="portrait" >
+        </activity>
+          <activity
+            android:name="com.mixpanel.revenue.Revenue_pref"
+            android:screenOrientation="portrait" >
+        </activity>
+          <activity
+            android:name="com.mixpanel.revenue.Revenue_custom"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.Event_top_click"
@@ -106,7 +113,6 @@
             android:label="@string/title_activity_funnel"
             android:screenOrientation="portrait" >
         </activity>
-        
         <activity
             android:name="com.mixpanel.src.Event_top"
             android:label="Top events"
@@ -156,45 +162,40 @@
             android:name="com.mixpanel.src.funnel.Funnel_display"
             android:label="@string/title_activity_funnel_display" >
         </activity>
-                <activity
+        <activity
             android:name="com.mixpanel.src.streams.Stream_activity_first"
             android:label="@string/title_activity_funnel_display" >
         </activity>
-         <activity
+        <activity
             android:name="com.mixpanel.src.streams.Stream_activity_final"
             android:label="@string/title_activity_funnel_display" >
         </activity>
-        
-         <activity
+        <activity
             android:name="com.mixpanel.src.live.live_first"
-            android:label="@string/title_activity_funnel_display" 
-                            android:screenOrientation="portrait"
-            >
+            android:label="@string/title_activity_funnel_display"
+            android:screenOrientation="portrait" >
         </activity>
-          <activity
+        <activity
             android:name="com.mixpanel.src.live.Live_detail"
             android:label="@string/title_activity_funnel_display"
-                            android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.people.People_first"
             android:label="@string/title_activity_funnel_display"
-        	  android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.people.People_second"
             android:label="@string/title_activity_funnel_display"
-        	  android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.mixpanel.src.people.People_detail"
             android:label="@string/title_activity_funnel_display"
-        	  android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait" >
         </activity>
+         
     </application>
 
 </manifest>

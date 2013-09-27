@@ -441,22 +441,21 @@ public class All_api_define{
 	      return path_http;
 	      
 	}
-	public static String revenu_home() {
+	public static String revenu_home(String from,String to) {
 		
 		  
 		  TreeMap<String, String> tm = new TreeMap<String, String>();
 		 
-		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
-		  	Date date = new Date(); 			
-			String to_date=formatter.format(date);
-			 
-			int year= Integer.parseInt(to_date.substring(0, to_date.indexOf("-")))-1;
-			 tm.put("from_date", year+"-01-01" );
- 			tm.put("to_date", to_date );
+//		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//			formatter.setTimeZone(TimeZone.getTimeZone("GMT"));////////setting utc time zone
+//		  	Date date = new Date(); 			
+//			String to_date=formatter.format(date);
+//			 
+//			int year= Integer.parseInt(to_date.substring(0, to_date.indexOf("-")))-1;
+			 tm.put("from_date", from );
+ 			tm.put("to_date", to );
 		  tm.put("unit", new String("day"));
- 		  tm.put("type", new String("unique"));
-
+ 
 		  String send_path_first ="http://mixpanel.com/api/2.0/engage/revenue/?";
 	      String path_http = Newapicall.Calc_sig(tm,send_path_first);
 	      return path_http;

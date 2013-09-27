@@ -132,7 +132,7 @@ public class Landing_activity extends SherlockActivity implements Callback,OnSha
 			API_sceret =prefs.getString("api_secret", "nill");
 			Log.i("hi we are in pref",API_key);
 			Log.i("hi we are in pref",API_sceret);
-			Conf_API.setting();// calling conf api to update the api key and valyes
+			//Conf_API.setting();// calling conf api to update the api key and valyes
 			new Check_api().execute();//checking api after the values are updated in conf_api
 		
 	}

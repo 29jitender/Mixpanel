@@ -1446,7 +1446,7 @@ containing a value of this type.
     public static final class id {
         public static final int E_amount=0x7f0700c3;
         public static final int Feedback=0x7f070042;
-        public static final int LinearLayout1=0x7f0700ee;
+        public static final int LinearLayout1=0x7f0700f0;
         public static final int RelativeLayout01=0x7f0700c4;
         public static final int TextView01=0x7f0700bc;
         public static final int TextView03=0x7f0700bf;
@@ -1496,8 +1496,8 @@ containing a value of this type.
         public static final int abs__textButton=0x7f07001e;
         public static final int abs__title=0x7f070026;
         public static final int abs__up=0x7f070016;
-        public static final int action_settings=0x7f0700f2;
-        public static final int add_page=0x7f0700f6;
+        public static final int action_settings=0x7f0700f4;
+        public static final int add_page=0x7f0700f8;
         public static final int arrow=0x7f070093;
         public static final int bargraph=0x7f070069;
         public static final int bottom=0x7f070009;
@@ -1527,14 +1527,14 @@ containing a value of this type.
         public static final int dialog_hide=0x7f07008c;
         public static final int disableHome=0x7f070014;
         public static final int e_date=0x7f0700c1;
-        public static final int e_date1=0x7f0700f1;
-        public static final int e_name_amount=0x7f0700f0;
+        public static final int e_date1=0x7f0700f3;
+        public static final int e_name_amount=0x7f0700f2;
         public static final int edit_query=0x7f070031;
         public static final int event_activity_list=0x7f0700c5;
         public static final int event_activity_name=0x7f070092;
-        public static final int event_filter=0x7f0700f9;
-        public static final int event_setting=0x7f0700f3;
-        public static final int event_top_setting=0x7f0700fb;
+        public static final int event_filter=0x7f0700fb;
+        public static final int event_setting=0x7f0700f5;
+        public static final int event_top_setting=0x7f0700fd;
         public static final int eventname_list=0x7f0700b5;
         public static final int feedback=0x7f070041;
         public static final int feedback_edit=0x7f070043;
@@ -1573,7 +1573,7 @@ containing a value of this type.
         public static final int item6=0x7f0700d5;
         public static final int item7=0x7f0700d6;
         public static final int item8=0x7f0700d7;
-        public static final int landing=0x7f0700fa;
+        public static final int landing=0x7f0700fc;
         public static final int line_table=0x7f0700ae;
         public static final int linearLayout2=0x7f070057;
         public static final int linegraph_home=0x7f0700a5;
@@ -1594,6 +1594,7 @@ containing a value of this type.
         public static final int logo2a=0x7f07007f;
         public static final int logo3=0x7f070082;
         public static final int logo3a=0x7f070081;
+        public static final int main=0x7f0700e5;
         /**  Used with View#setTag(int) to specify a position for the active view. 
          */
         public static final int mdActiveViewPosition=0x7f070005;
@@ -1613,7 +1614,7 @@ containing a value of this type.
          */
         public static final int md__menu=0x7f070003;
         public static final int mixpanel=0x7f07003d;
-        public static final int name_label=0x7f0700ef;
+        public static final int name_label=0x7f0700f1;
         public static final int next=0x7f070088;
         public static final int nointernet_refresh=0x7f0700d9;
         public static final int none=0x7f070006;
@@ -1635,22 +1636,23 @@ containing a value of this type.
         public static final int popup_platform=0x7f0700e2;
         public static final int popup_ref=0x7f0700e1;
         public static final int previous=0x7f070086;
+        public static final int progress=0x7f0700e9;
         public static final int progressBar1=0x7f070085;
-        public static final int random=0x7f0700f5;
+        public static final int random=0x7f0700f7;
         public static final int rate=0x7f070051;
         public static final int rate_icon=0x7f07004f;
-        public static final int refresh=0x7f0700f8;
+        public static final int refresh=0x7f0700fa;
         public static final int rel1=0x7f0700a4;
         public static final int relativeLayout=0x7f0700d8;
         public static final int relativeLayout1=0x7f070075;
         public static final int relativeLayout2=0x7f070078;
-        public static final int relativeLayout3=0x7f0700e6;
+        public static final int relativeLayout3=0x7f0700e7;
         public static final int relativeLayout_eventfinal=0x7f07008e;
         public static final int relativeLayout_nill=0x7f070090;
-        public static final int remove_page=0x7f0700f7;
+        public static final int remove_page=0x7f0700f9;
         public static final int result=0x7f07007d;
         public static final int revenue_avg=0x7f0700bd;
-        public static final int revenue_cust=0x7f0700e5;
+        public static final int revenue_cust=0x7f0700e6;
         public static final int revenue_date1=0x7f0700b6;
         public static final int revenue_date2=0x7f0700b7;
         public static final int revenue_total=0x7f0700c0;
@@ -1658,8 +1660,8 @@ containing a value of this type.
         public static final int scr=0x7f070067;
         public static final int scrollView1=0x7f07007b;
         public static final int scrolllist=0x7f070071;
-        public static final int search=0x7f0700fc;
-        public static final int setting=0x7f0700f4;
+        public static final int search=0x7f0700fe;
+        public static final int setting=0x7f0700f6;
         public static final int share=0x7f070050;
         public static final int share_icon=0x7f07004e;
         public static final int showCustom=0x7f070013;
@@ -1670,15 +1672,15 @@ containing a value of this type.
         public static final int spacV=0x7f070094;
         public static final int spinner2=0x7f070053;
         public static final int splash_bg=0x7f07007e;
-        public static final int stream_event=0x7f0700ec;
-        public static final int stream_event_name=0x7f0700e9;
-        public static final int stream_event_seen=0x7f0700e8;
-        public static final int stream_final_rel=0x7f0700ea;
-        public static final int stream_first_came_from=0x7f0700ed;
+        public static final int stream_event=0x7f0700ee;
+        public static final int stream_event_name=0x7f0700eb;
+        public static final int stream_event_seen=0x7f0700ea;
+        public static final int stream_final_rel=0x7f0700ec;
+        public static final int stream_first_came_from=0x7f0700ef;
         public static final int stream_first_time=0x7f0700ca;
         public static final int stream_first_view=0x7f0700cb;
         public static final int stream_id=0x7f0700cc;
-        public static final int stream_page=0x7f0700eb;
+        public static final int stream_page=0x7f0700ed;
         public static final int stream_user_name=0x7f0700c9;
         public static final int submit=0x7f070044;
         public static final int tabMode=0x7f07000e;
@@ -1689,7 +1691,7 @@ containing a value of this type.
         public static final int tableRow4=0x7f07009e;
         public static final int tableRow5=0x7f0700a0;
         public static final int tableRow6=0x7f07006a;
-        public static final int tex=0x7f0700e7;
+        public static final int tex=0x7f0700e8;
         public static final int textView1=0x7f07005b;
         public static final int textView123=0x7f070058;
         public static final int textView2=0x7f07006f;
@@ -1806,8 +1808,9 @@ containing a value of this type.
         public static final int new_landing=0x7f0e000b;
         public static final int prefrenceactivity=0x7f0e000c;
         public static final int prefrenceactivity_event_top=0x7f0e000d;
-        public static final int splash=0x7f0e000e;
-        public static final int temp=0x7f0e000f;
+        public static final int revenue_custom=0x7f0e000e;
+        public static final int splash=0x7f0e000f;
+        public static final int temp=0x7f0e0010;
     }
     public static final class string {
         public static final int Search=0x7f0c003e;
@@ -1932,6 +1935,7 @@ containing a value of this type.
         public static final int title_activity_new_landing=0x7f0c003b;
         public static final int title_activity_prefrenceactivity=0x7f0c0017;
         public static final int title_activity_prefrenceactivity_event_top=0x7f0c003a;
+        public static final int title_activity_revenue_custom=0x7f0c0065;
         public static final int title_activity_splash=0x7f0c0020;
         public static final int title_activity_temp=0x7f0c0028;
         public static final int title_activity_webview_graph=0x7f0c0011;
