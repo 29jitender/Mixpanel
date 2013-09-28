@@ -47,6 +47,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.revenue.Revenue_first;
 import com.mixpanel.src.About;
 import com.mixpanel.src.All_api_define;
 import com.mixpanel.src.Callback;
@@ -510,7 +511,7 @@ public class Funnel_activity extends SherlockActivity implements   Callback,View
    		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Stream_activity_first.class));
+         startActivity(new Intent(this, Revenue_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		

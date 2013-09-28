@@ -1913,11 +1913,11 @@ containing a value of this type.
         public static final int rate=0x7f0c0051;
         public static final int refresh=0x7f0c0030;
         public static final int refresh1=0x7f0c004b;
+        public static final int revenu=0x7f0c0046;
         public static final int share=0x7f0c0050;
         public static final int signal=0x7f0c004c;
         public static final int skip=0x7f0c005b;
         public static final int spinner_funnel=0x7f0c0016;
-        public static final int stream=0x7f0c0046;
         public static final int time=0x7f0c0054;
         public static final int title_activity_about=0x7f0c0034;
         public static final int title_activity_event_activity=0x7f0c001e;

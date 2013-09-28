@@ -40,6 +40,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.mixpanel.revenue.Revenue_first;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
 import com.mixpanel.src.people.People_first;
@@ -506,8 +507,8 @@ public void  get_values_pref(){// getting values from preference
    		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Stream_activity_first.class));
-             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+         startActivity(new Intent(this, Revenue_first.class));
+         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		
   		break;

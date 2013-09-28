@@ -45,6 +45,7 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.mixpanel.revenue.Revenue_first;
 import com.mixpanel.src.About;
 import com.mixpanel.src.Callback;
 import com.mixpanel.src.Event_activity;
@@ -592,7 +593,7 @@ public class live_first extends SherlockListActivity implements Callback ,View.O
    		
   		 mMenuDrawer.setActiveView(v);
      		 // mMenuDrawer.closeMenu();
-             startActivity(new Intent(this, Stream_activity_first.class));
+         startActivity(new Intent(this, Revenue_first.class));
              overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
              anmi=1;
   		

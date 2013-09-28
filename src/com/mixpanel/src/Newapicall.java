@@ -26,8 +26,8 @@ import android.util.Log;
 	  public static String Calc_sig(TreeMap<String, String> receive , String path){
 		  
 		   
-		  receive.put("api_key", Conf_API.API_key);
-		  receive.put("expire",  Conf_API.expire);
+		  receive.put("api_key", Home.API_key);
+		  receive.put("expire",  "1410949530");
 		 
 		  Set<Entry<String, String>> set = receive.entrySet();
 	      // Get an iterator
@@ -50,7 +50,7 @@ import android.util.Log;
 	         //Log.i("check the newew send path",Send_path+"sdad");
 	         
 	      }
-	        sig= sig+ Conf_API.API_sceret;
+	        sig= sig+ Home.API_sceret;
 	      	
 	        sig = md5(sig);
 	        Send_path = Send_path + "&sig=" + sig;

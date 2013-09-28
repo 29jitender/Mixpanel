@@ -25,6 +25,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.mixpanel.revenue.Revenue_first;
 import com.mixpanel.src.funnel.Funnel_activity;
 import com.mixpanel.src.live.live_first;
 import com.mixpanel.src.people.People_first;
@@ -343,7 +344,7 @@ public class About extends SherlockActivity implements View.OnClickListener {
 	   		
 	  		 mMenuDrawer.setActiveView(v);
 	     		 // mMenuDrawer.closeMenu();
-	             startActivity(new Intent(this, Stream_activity_first.class));
+             startActivity(new Intent(this, Revenue_first.class));
 	             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	             anmi=1;
 	  		

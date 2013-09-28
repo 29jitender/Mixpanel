@@ -120,7 +120,7 @@
                 style="@style/MenuDrawer.Widget.Title"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                 android:text="@string/stream"
+                 android:text="@string/revenu"
                  android:gravity="center"
                   android:background="@color/menu6"
                  android:layout_weight="1"/>
