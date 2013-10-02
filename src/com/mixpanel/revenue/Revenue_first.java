@@ -178,13 +178,13 @@ import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 	                indicator.setViewPager(mPager);
 
 	                final float density = getResources().getDisplayMetrics().density;
-	                indicator.setBackgroundColor(0x18FF0000);
-	                indicator.setFooterColor(0xFFAA2222);
-	                indicator.setFooterLineHeight(1 * density); //1dp
+	                indicator.setBackgroundColor(0xffffffff);
+	                indicator.setFooterColor(0xff646cb2);
+	                indicator.setFooterLineHeight(0 * density); //1dp
 	                indicator.setFooterIndicatorHeight(3 * density); //3dp
 	                indicator.setFooterIndicatorStyle(IndicatorStyle.Underline);
 	                indicator.setTextColor(0xAA000000);
-	                indicator.setSelectedColor(0xFF000000);
+ 	                indicator.setSelectedColor(0xff646cb2);
 	                indicator.setSelectedBold(true);
 	             } });
  }

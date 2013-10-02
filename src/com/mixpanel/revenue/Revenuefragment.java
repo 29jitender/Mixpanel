@@ -1,5 +1,6 @@
 package com.mixpanel.revenue;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -85,6 +86,11 @@ public final class Revenuefragment extends SherlockFragment {
    }
      
 
+    public float roundof(Float f){
+    	 BigDecimal bd = new BigDecimal(Float.toString(f));
+    	    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+    	    return bd.floatValue();
+    }
   
 	@Override
 	public void onResume() {
@@ -113,7 +119,8 @@ public final class Revenuefragment extends SherlockFragment {
 
 			}
 			else{
-				revenue_avg.setText(Float.parseFloat(obj3.getString("amount"))/Float.parseFloat(obj3.getString("paid_count"))+"");
+				
+				revenue_avg.setText(roundof(Float.parseFloat(obj3.getString("amount"))/Float.parseFloat(obj3.getString("paid_count")))+"");
 
 			}
 			revenue_total.setText(obj3.getString("amount"));
@@ -135,7 +142,7 @@ public final class Revenuefragment extends SherlockFragment {
 
 				}
 				else{
-					revenue_avg.setText(Float.parseFloat(obj3.getString("amount"))/Float.parseFloat(obj3.getString("paid_count"))+"");
+					revenue_avg.setText(roundof(Float.parseFloat(obj3.getString("amount"))/Float.parseFloat(obj3.getString("paid_count")))+"");
 
 				}
 				revenue_total.setText(obj3.getString("amount"));
@@ -155,7 +162,7 @@ public final class Revenuefragment extends SherlockFragment {
 
 				}
 				else{
-					revenue_avg.setText(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count"))+"");
+					revenue_avg.setText(roundof(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count")))+"");
 
 				}
 				revenue_total.setText(obj2.getString("amount"));
@@ -301,7 +308,7 @@ public final class Revenuefragment extends SherlockFragment {
 
 				}
 				else{
-					revenue_avg.setText(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count"))+"");
+					revenue_avg.setText(roundof(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count")))+"");
 
 				}
 				revenue_total.setText(obj2.getString("amount"));

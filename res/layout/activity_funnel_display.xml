@@ -84,33 +84,37 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
                         android:text="From" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/torel"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/aboutview1" >
 
                     <TextView
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_above="@+id/funnel_date1"
-                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
                         android:gravity="center"
-                        android:layout_marginTop="17dp"
                         android:text="To" />
 
                     <TextView
                         android:id="@+id/funnel_date1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentRight="true"
+                        android:layout_below="@+id/textView7"
                         android:gravity="center"
                         android:text="Medium Text"
                         android:textAppearance="?android:attr/textAppearanceMedium" />

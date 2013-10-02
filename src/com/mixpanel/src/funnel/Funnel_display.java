@@ -191,7 +191,7 @@ public class Funnel_display extends SherlockFragmentActivity implements View.OnC
 					e.printStackTrace();
 				}
 				
-					SimpleDateFormat formatter1 = new SimpleDateFormat("dd MMMM yy");
+					SimpleDateFormat formatter1 = new SimpleDateFormat("dd MMMM ");
 					String new_date_pr1 = formatter1.format(date_pr1);
 					String new_date_pr2 = formatter1.format(date_pr2);
 			

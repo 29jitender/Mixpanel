@@ -22,12 +22,7 @@
             android:layout_weight="0.3"
             android:background="@drawable/revenu_1" >
 
-            <View
-                android:id="@+id/aboutview1"
-                android:layout_width="fill_parent"
-                android:layout_height="5dip"
-                android:layout_below="@+id/about"
-                android:background="@color/c1" />
+       
 
             <RelativeLayout
                 android:id="@+id/relativeLayout1"
@@ -36,7 +31,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/aboutview1"
-                android:background="#e3e3e3" >
+                android:background="#AA99CC00"
+                 >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -59,7 +55,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+               	android:textSize="50sp"
+					/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -72,12 +69,7 @@
             android:layout_weight="0.3"
             android:background="@drawable/revenu_1" >
 
-            <View
-                android:id="@+id/aboutview1"
-                android:layout_width="fill_parent"
-                android:layout_height="5dip"
-                android:layout_below="@+id/about"
-                android:background="@color/c2" />
+            
 
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
@@ -86,7 +78,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/aboutview1"
-                android:background="#e3e3e3" >
+                android:background="#aaFFBB33" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -109,7 +101,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                            	android:textSize="50sp"
+/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -122,12 +115,7 @@
             android:layout_weight="0.3"
             android:background="@drawable/revenu_1" >
 
-            <View
-                android:id="@+id/aboutview1"
-                android:layout_width="fill_parent"
-                android:layout_height="5dip"
-                android:layout_below="@+id/about"
-                android:background="@color/c3" />
+            
 
             <RelativeLayout
                 android:id="@+id/relativeLayout3"
@@ -136,7 +124,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/aboutview1"
-                android:background="#e3e3e3" >
+                android:background="#aaAA66CC" >
 
                 <TextView
                     android:id="@+id/tex"
@@ -159,7 +147,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                              	android:textSize="50sp"
+/>
         </RelativeLayout>
     </LinearLayout>
 

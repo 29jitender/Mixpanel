@@ -1,4 +1,6 @@
 package com.mixpanel.revenue;
+import java.math.BigDecimal;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -139,7 +141,13 @@ public class Revenue_custom extends SherlockActivity   {
              }
           
     }
-	
+
+    public float roundof(Float f){
+    	 BigDecimal bd = new BigDecimal(Float.toString(f));
+    	    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+    	    return bd.floatValue();
+    }
+  
 	public void iamcallin(){
 		
 
@@ -174,7 +182,7 @@ public class Revenue_custom extends SherlockActivity   {
 
 				}
 				else{
-					revenue_avg.setText(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count"))+"");
+					revenue_avg.setText(roundof(Float.parseFloat(obj2.getString("amount"))/Float.parseFloat(obj2.getString("paid_count")))+"");
 
 				}
 				revenue_total.setText(obj2.getString("amount"));
